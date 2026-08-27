@@ -272,7 +272,7 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 .flas{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9700}
 
 /* hero açılışın altından çıxır */
-.acilis + .hero{margin-top:-100svh;position:relative;z-index:1}
+.acilis ~ .hero{margin-top:-100svh;position:relative;z-index:1}
 
 /* açılış görünəndə naviqasiya işıqlı olsun */
 body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
@@ -288,7 +288,7 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 }
 @media (prefers-reduced-motion:reduce){
   .acilis,.flas{display:none}
-  .acilis + .hero{margin-top:0}
+  .acilis ~ .hero{margin-top:0}
   .acilis-ox i,.acilis-rec i{animation:none}
 }
 
@@ -2864,7 +2864,8 @@ function pkRenderMobilQiymet(hesab){
     /* səhnə flaşın zirvəsində yox olur — altından ağ səhifə çıxır */
     var sehneOp = p < ESIK ? 1 : kilid(1 - (p - ESIK) / (PARTLAMA * 1.15));
     sehne.style.opacity = sehneOp.toFixed(3);
-    acilis.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
+    sehne.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
+    acilis.style.background = sehneOp < 0.01 ? 'transparent' : 'var(--murekkeb)';
 
     document.body.classList.toggle('acilis-var', p < ESIK);
     document.body.classList.toggle('hero-acildi', p >= ESIK - 0.02);
