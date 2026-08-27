@@ -445,6 +445,84 @@ footer{
    REC qırmızısı (var(--rec)).
    ============================================================ */
 
+
+/* ================= LENT KARUSELİ ================= */
+.lnt{
+  display:grid;grid-template-columns:minmax(0,38%) minmax(0,62%);
+  margin-top:clamp(34px,5vh,58px);border:1px solid var(--xett-ag);border-radius:clamp(22px,3vw,40px);
+  overflow:hidden;min-height:min(74vh,620px)
+}
+.lnt-sol{
+  position:relative;overflow:hidden;display:flex;align-items:center;
+  padding:clamp(26px,3.4vw,52px);background:rgba(251,250,248,.035)
+}
+.lnt-sol::before,.lnt-sol::after{
+  content:"";position:absolute;left:0;right:0;height:34%;z-index:3;pointer-events:none
+}
+.lnt-sol::before{top:0;background:linear-gradient(to bottom,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
+.lnt-sol::after{bottom:0;background:linear-gradient(to top,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
+.lnt-cipler{position:relative;width:100%;height:100%;min-height:420px}
+.lnt-cip{
+  position:absolute;left:0;top:50%;display:flex;align-items:center;gap:11px;
+  padding:12px 22px;border-radius:999px;border:1px solid var(--xett-ag);
+  background:transparent;color:rgba(251,250,248,.5);cursor:pointer;white-space:nowrap;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  transition:background .55s var(--yum),color .55s var(--yum),border-color .55s var(--yum),transform .75s var(--yum),opacity .75s var(--yum);
+  will-change:transform,opacity
+}
+.lnt-cip:hover{color:rgba(251,250,248,.86);border-color:rgba(251,250,248,.4)}
+.lnt-cip.aktiv{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);z-index:4}
+.lnt-cip svg{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5}
+.lnt-sag{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  padding:clamp(30px,4vw,60px);border-left:1px solid var(--xett-ag);
+  background:rgba(251,250,248,.02);overflow:hidden
+}
+.lnt-sehne{position:relative;width:100%;max-width:340px;aspect-ratio:4/5}
+.lnt-kart{
+  position:absolute;inset:0;border-radius:clamp(16px,2vw,26px);overflow:hidden;
+  border:5px solid var(--murekkeb);background:var(--murekkeb);
+  transition:transform .8s var(--yum),opacity .8s var(--yum),filter .8s var(--yum);
+  will-change:transform,opacity
+}
+.lnt-kart img{width:100%;height:100%;object-fit:cover;display:block}
+.lnt-kart.pas img{filter:grayscale(1) brightness(.62) blur(1.5px)}
+.lnt-mtn{
+  position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,3vw,30px);padding-top:100px;
+  background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.35) 46%,transparent);
+  opacity:0;transform:translateY(14px);transition:opacity .6s var(--yum),transform .6s var(--yum);
+  pointer-events:none
+}
+.lnt-kart.aktiv .lnt-mtn{opacity:1;transform:none}
+.lnt-rozet{
+  display:inline-block;background:var(--kagiz);color:var(--murekkeb);
+  padding:5px 12px;border-radius:999px;margin-bottom:11px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase
+}
+.lnt-mtn p{font-size:clamp(15px,1.5vw,19px);line-height:1.34;color:#fff;letter-spacing:-.008em;margin:0}
+.lnt-canli{
+  position:absolute;top:clamp(16px,2vw,24px);left:clamp(16px,2vw,24px);z-index:3;
+  display:flex;align-items:center;gap:9px;opacity:0;transition:opacity .5s var(--yum)
+}
+.lnt-kart.aktiv .lnt-canli{opacity:1}
+.lnt-canli i{
+  width:7px;height:7px;border-radius:50%;background:var(--rec);
+  box-shadow:0 0 11px var(--rec);animation:lntNebz 2s infinite
+}
+.lnt-canli span{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(251,250,248,.72)}
+@keyframes lntNebz{0%,100%{opacity:1}50%{opacity:.32}}
+@media (max-width:900px){
+  .lnt{grid-template-columns:1fr;min-height:0}
+  .lnt-sol{order:2;min-height:330px;padding:24px}
+  .lnt-cipler{min-height:300px}
+  .lnt-sag{order:1;border-left:0;border-bottom:1px solid var(--xett-ag);padding:34px 24px}
+  .lnt-sehne{max-width:290px}
+}
+@media (prefers-reduced-motion:reduce){
+  .lnt-cip,.lnt-kart,.lnt-mtn{transition:none !important}
+  .lnt-canli i{animation:none}
+}
+
 /* ================= KALKULYATOR TİZERİ ================= */
 .kt-tor{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
@@ -851,13 +929,12 @@ footer{
   <div class="kicik">Seçilmiş işlər</div>
   <h2 id="i-bas" data-ac style="margin-top:16px">Lent</h2>
 
-  <div class="lent" id="lent" tabindex="0" role="region" aria-label="İşlər lenti"></div>
-
-  <div class="lent-idare">
-    <span class="lent-say"><b id="lent-indi">01</b> / <span id="lent-cem">06</span></span>
-    <div class="oxlar">
-      <button class="ox" id="ox-sol" type="button" aria-label="Əvvəlki">←</button>
-      <button class="ox" id="ox-sag" type="button" aria-label="Növbəti">→</button>
+  <div class="lnt" data-ac data-gec="1">
+    <div class="lnt-sol">
+      <div class="lnt-cipler" id="lnt-cipler" role="tablist" aria-label="İş kateqoriyaları"></div>
+    </div>
+    <div class="lnt-sag">
+      <div class="lnt-sehne" id="lnt-sehne"></div>
     </div>
   </div>
 </section>
@@ -1030,92 +1107,6 @@ footer{
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('il').textContent = new Date().getFullYear();
 
-  /* ---------- İşlər ---------- */
-  var isler = [
-    {ad:'Şəms & Cavidan', tip:'Love Story', tc:'00:03:12:04', a:'#2a2a2e', b:'#6b6257'},
-    {ad:'Food Shot', tip:'Restoran', tc:'00:00:42:18', a:'#1a1a1c', b:'#4d4038'},
-    {ad:'Drinks', tip:'Bar / Reklam', tc:'00:00:28:00', a:'#101014', b:'#3c4a4f'},
-    {ad:'Neo Team Lab', tip:'Backstage', tc:'00:01:36:12', a:'#15171a', b:'#2f3f36'},
-    {ad:'Lənkəran', tip:'Şəhər filmi', tc:'00:02:04:06', a:'#1c1a18', b:'#57493c'},
-    {ad:'Dilman şəlaləsi', tip:'Təbiət', tc:'00:01:12:20', a:'#0f1412', b:'#31463a'}
-  ];
-  var lent = document.getElementById('lent');
-  isler.forEach(function(o){
-    var k = '';
-    for(var i=0;i<6;i++){
-      k += '<div class="kadr'+(i===0?' aktiv':'')+'" style="background:linear-gradient('
-        + (150 + i*14) + 'deg,' + o.a + ' ' + (8+i*8) + '%,' + o.b + ' 100%)"></div>';
-    }
-    var el = document.createElement('article');
-    el.className = 'is';
-    el.innerHTML = '<div class="is-kadr">'+k+'<span class="is-tc">'+o.tc+'</span><span class="is-cizgi"></span></div>'
-      + '<div class="is-alt"><h3>'+o.ad+'</h3><small>'+o.tip+'</small></div>';
-    lent.appendChild(el);
-  });
-
-  var kartlar = [].slice.call(lent.querySelectorAll('.is'));
-  var oxSol = document.getElementById('ox-sol'), oxSag = document.getElementById('ox-sag');
-  var indi = document.getElementById('lent-indi');
-  document.getElementById('lent-cem').textContent = String(kartlar.length).padStart(2,'0');
-  function addim(){ return kartlar.length ? kartlar[0].offsetWidth + 14 : lent.clientWidth; }
-
-  function lentYenile(){
-    var r = lent.getBoundingClientRect(), merkez = r.left + r.width/2;
-    var yaxin = 0, qisa = Infinity;
-    kartlar.forEach(function(k,i){
-      var kr = k.getBoundingClientRect(), km = kr.left + kr.width/2, f = Math.abs(km - merkez);
-      if(f < qisa){ qisa = f; yaxin = i; }
-      k.classList.toggle('yaxin', kr.left < r.right - 30 && kr.right > r.left + 30);
-      var kadrlar = k.querySelectorAll('.kadr');
-      var p = Math.max(0, Math.min(.999, (merkez - kr.left) / kr.width));
-      var idx = Math.floor(p * kadrlar.length);
-      kadrlar.forEach(function(c,j){ c.classList.toggle('aktiv', j === idx); });
-      var cizgi = k.querySelector('.is-cizgi');
-      if(cizgi) cizgi.style.width = (p*100)+'%';
-    });
-    indi.textContent = String(yaxin+1).padStart(2,'0');
-    var maks = lent.scrollWidth - lent.clientWidth;
-    oxSol.disabled = lent.scrollLeft <= 4;
-    oxSag.disabled = lent.scrollLeft >= maks - 4;
-  }
-  var lIs = false;
-  lent.addEventListener('scroll', function(){
-    if(!lIs){ lIs = true; requestAnimationFrame(function(){ lentYenile(); lIs = false; }); }
-  }, {passive:true});
-  oxSag.onclick = function(){ lent.scrollBy({left: addim(), behavior: azalt?'auto':'smooth'}); };
-  oxSol.onclick = function(){ lent.scrollBy({left:-addim(), behavior: azalt?'auto':'smooth'}); };
-  lent.addEventListener('keydown', function(e){
-    if(e.key==='ArrowRight'){ e.preventDefault(); oxSag.click(); }
-    if(e.key==='ArrowLeft'){ e.preventDefault(); oxSol.click(); }
-  });
-
-  var bx=0, bs=0, dart=false, hrk=false;
-  lent.addEventListener('pointerdown', function(e){
-    if(e.pointerType === 'touch') return;
-    dart = true; hrk = false; bx = e.clientX; bs = lent.scrollLeft;
-    lent.classList.add('dart'); lent.setPointerCapture(e.pointerId);
-  });
-  lent.addEventListener('pointermove', function(e){
-    if(!dart) return;
-    var d = e.clientX - bx;
-    if(Math.abs(d) > 4) hrk = true;
-    lent.scrollLeft = bs - d;
-  });
-  function bitir(){
-    if(!dart) return;
-    dart = false; lent.classList.remove('dart');
-    var a = addim();
-    lent.scrollTo({left: Math.round(lent.scrollLeft/a)*a, behavior: azalt?'auto':'smooth'});
-  }
-  ['pointerup','pointercancel','pointerleave'].forEach(function(ev){ lent.addEventListener(ev, bitir); });
-  lent.addEventListener('click', function(e){ if(hrk){ e.preventDefault(); e.stopPropagation(); } }, true);
-  lent.addEventListener('wheel', function(e){
-    if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-    var maks = lent.scrollWidth - lent.clientWidth;
-    if((e.deltaY < 0 && lent.scrollLeft <= 0) || (e.deltaY > 0 && lent.scrollLeft >= maks)) return;
-    e.preventDefault(); lent.scrollLeft += e.deltaY;
-  }, {passive:false});
-
   /* ---------- Qiymət rulonu ---------- */
   var reqemler = [].slice.call(document.querySelectorAll('.reqemler'));
   var rejimBtn = [].slice.call(document.querySelectorAll('.rejim button'));
@@ -1227,9 +1218,8 @@ footer{
   addEventListener('scroll', function(){
     if(!isleyir){ isleyir = true; requestAnimationFrame(scrollYenile); }
   }, {passive:true});
-  addEventListener('resize', function(){ surguYer(cari); lentYenile(); scrollYenile(); });
+  addEventListener('resize', function(){ surguYer(cari); scrollYenile(); });
   scrollYenile();
-  lentYenile();
 })();
 </script>
 <script>
@@ -2421,6 +2411,107 @@ function pkRenderMobilQiymet(hesab){
     io.observe(kart);
   }
   });
+})();
+
+/* ---------- LENT KARUSELİ ---------- */
+(function(){
+  var cipQab = document.getElementById('lnt-cipler');
+  var sehne  = document.getElementById('lnt-sehne');
+  if(!cipQab || !sehne) return;
+
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ADDIM = 62, INTERVAL = 3600;
+
+  var IKON = {
+    kalb:  '<path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7C19 15.4 12 20 12 20z"/>',
+    boshqab:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+    kamera:'<rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/>',
+    teqvim:'<rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+    dag:   '<path d="M3 19l6-9 4 5.5 2.5-3.5L21 19z"/>',
+    bina:  '<rect x="5" y="4" width="14" height="16"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1"/>',
+    telefon:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
+    ulduz: '<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>'
+  };
+
+  var ISLER = [
+    { ad:'Love Story',       ikon:'kalb',    sekil:'/media/lovestory.jpg', metn:'Şəms &amp; Cavidan — təbiətdə çəkilmiş hekayə əsaslı love story filmi.' },
+    { ad:'Food &amp; Restoran',  ikon:'boshqab', sekil:'/media/food.jpg',      metn:'Mətbəxdə iş başında — restoran menyusu üçün kinematik food kadrları.' },
+    { ad:'Backstage',        ikon:'kamera',  sekil:'/media/backstage.jpg', metn:'Neo Team Lab — brend üçün backstage seriyası və sosial media kontenti.' },
+    { ad:'Tədbir çəkilişi',  ikon:'teqvim',  sekil:'/media/tedbir.jpg',    metn:'Forum və konfransların video sənədləşdirilməsi, çoxkameralı çəkiliş.' },
+    { ad:'Təbiət filmi',     ikon:'dag',     sekil:'/media/ismayilli.jpg', metn:'İsmayıllı — dron və yer kadrları ilə qurulmuş regional təbiət filmi.' },
+    { ad:'Reportaj',         ikon:'bina',    sekil:'/media/lankaran.jpg',  metn:'Lənkəran bazarı — məkanın atmosferini danışan sənədli reportaj.' },
+    { ad:'Reels / Sosial',   ikon:'telefon', sekil:'/media/reels.jpg',     metn:'Fikirdən kadra — şaquli format qısa videolar və kontent seriyası.' },
+    { ad:'Gecə çəkilişi',    ikon:'ulduz',   sekil:'/media/baku.jpg',      metn:'Bakı — alov qüllələri və gecə şəhər işıqları ilə kinematik kadrlar.' }
+  ];
+
+  var N = ISLER.length, addim = 0, dayandi = false, taymer = null;
+
+  ISLER.forEach(function(o, i){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'lnt-cip'; b.setAttribute('role','tab');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">' + IKON[o.ikon] + '</svg><span>' + o.ad + '</span>';
+    b.addEventListener('click', function(){
+      var ferq = (i - cari() + N) % N;
+      if(ferq > 0) addim += ferq; else addim += N;
+      ciz();
+    });
+    b.addEventListener('mouseenter', function(){ dayandi = true; });
+    b.addEventListener('mouseleave', function(){ dayandi = false; });
+    cipQab.appendChild(b);
+
+    var k = document.createElement('div');
+    k.className = 'lnt-kart';
+    k.innerHTML =
+      '<span class="lnt-canli"><i></i><span>Lent</span></span>' +
+      '<img src="' + o.sekil + '" alt="' + o.ad.replace(/&amp;/g,'&') + ' — Rəhman Məlikzadə" loading="lazy" decoding="async">' +
+      '<span class="lnt-mtn"><span class="lnt-rozet">' + String(i+1).padStart(2,'0') + ' &bull; ' + o.ad + '</span><p>' + o.metn + '</p></span>';
+    sehne.appendChild(k);
+  });
+
+  var cipler = [].slice.call(cipQab.children);
+  var kartlar = [].slice.call(sehne.children);
+
+  function cari(){ return ((addim % N) + N) % N; }
+  function sar(v){ var yari = N/2; var d = v; if(d > yari) d -= N; if(d < -yari) d += N; return d; }
+
+  function ciz(){
+    var c = cari();
+    cipler.forEach(function(el, i){
+      var d = sar(i - c);
+      el.style.transform = 'translateY(calc(-50% + ' + (d * ADDIM) + 'px))';
+      el.style.opacity = Math.max(0, 1 - Math.abs(d) * 0.26);
+      el.classList.toggle('aktiv', d === 0);
+      el.setAttribute('aria-selected', d === 0 ? 'true' : 'false');
+      el.tabIndex = d === 0 ? 0 : -1;
+    });
+    kartlar.forEach(function(el, i){
+      var d = sar(i - c);
+      var x = d === 0 ? 0 : (d === -1 ? -92 : (d === 1 ? 92 : 0));
+      var s = d === 0 ? 1 : (Math.abs(d) === 1 ? .86 : .72);
+      var o = d === 0 ? 1 : (Math.abs(d) === 1 ? .38 : 0);
+      var r = d === -1 ? -3 : (d === 1 ? 3 : 0);
+      el.style.transform = 'translateX(' + x + 'px) scale(' + s + ') rotate(' + r + 'deg)';
+      el.style.opacity = o;
+      el.style.zIndex = d === 0 ? 20 : (Math.abs(d) === 1 ? 10 : 0);
+      el.classList.toggle('aktiv', d === 0);
+      el.classList.toggle('pas', d !== 0);
+    });
+  }
+
+  function basla(){
+    if(azalt || taymer) return;
+    taymer = setInterval(function(){ if(!dayandi && !document.hidden){ addim++; ciz(); } }, INTERVAL);
+  }
+  sehne.addEventListener('mouseenter', function(){ dayandi = true; });
+  sehne.addEventListener('mouseleave', function(){ dayandi = false; });
+
+  ciz();
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(g){
+      g.forEach(function(x){ if(x.isIntersecting){ basla(); io.disconnect(); } });
+    }, {threshold:.25});
+    io.observe(cipQab);
+  } else { basla(); }
 })();
 
 </script>
