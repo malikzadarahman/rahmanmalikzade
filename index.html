@@ -536,6 +536,61 @@ footer{
 }
 .lnt-canli span{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(251,250,248,.72)}
 @keyframes lntNebz{0%,100%{opacity:1}50%{opacity:.32}}
+
+/* ---- Lent: oynat düyməsi + video modalı ---- */
+.lnt-kart.aktiv .lnt-oynat{opacity:1;transform:scale(1)}
+.lnt-oynat{
+  position:absolute;top:50%;left:50%;z-index:5;
+  width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:50%;
+  border:1px solid rgba(251,250,248,.5);background:rgba(11,11,12,.42);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;transform:scale(.76);
+  transition:opacity .5s var(--yum),transform .5s var(--yum),background .4s var(--yum),border-color .4s var(--yum)
+}
+.lnt-oynat::after{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border:1px solid rgba(251,250,248,.32);animation:lntDalga 2.6s var(--yum) infinite
+}
+.lnt-oynat svg{width:19px;height:19px;fill:var(--kagiz);stroke:none;margin-left:3px;transition:fill .35s var(--yum)}
+.lnt-kart.aktiv:hover .lnt-oynat{background:var(--kagiz);border-color:var(--kagiz);transform:scale(1.1)}
+.lnt-kart.aktiv:hover .lnt-oynat svg{fill:var(--murekkeb)}
+.lnt-kart.aktiv{cursor:pointer;pointer-events:auto}
+@keyframes lntDalga{0%{transform:scale(1);opacity:.65}70%{transform:scale(1.42);opacity:0}100%{opacity:0}}
+
+.lnt-modal{position:fixed;inset:0;z-index:9800;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .38s var(--yum);padding:clamp(16px,4vw,54px)}
+.lnt-modal.aciq{opacity:1;pointer-events:auto}
+.lnt-modal-fon{position:absolute;inset:0;background:rgba(6,6,7,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lnt-modal-qutu{
+  position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;
+  max-width:100%;max-height:100%;
+  transform:translateY(22px) scale(.965);transition:transform .48s var(--yum)
+}
+.lnt-modal.aciq .lnt-modal-qutu{transform:none}
+.lnt-modal-bas{
+  font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(251,250,248,.62);order:2
+}
+.lnt-cerceve{
+  position:relative;order:1;width:min(92vw,1080px);aspect-ratio:16/9;
+  border-radius:clamp(12px,1.6vw,20px);overflow:hidden;background:#000;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9)
+}
+.lnt-cerceve.saqulu{width:auto;height:min(78vh,860px);aspect-ratio:9/16;max-width:92vw}
+.lnt-cerceve iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.lnt-bagla{
+  position:fixed;top:clamp(14px,2.4vw,28px);right:clamp(14px,2.4vw,28px);z-index:3;
+  width:42px;height:42px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--xett-ag);background:rgba(11,11,12,.6);color:var(--kagiz);
+  font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:background .3s var(--yum),border-color .3s var(--yum),transform .3s var(--yum)
+}
+.lnt-bagla:hover{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){
+  .lnt-oynat,.lnt-modal,.lnt-modal-qutu,.lnt-bagla{transition:none !important}
+  .lnt-oynat::after{animation:none}
+}
 @media (max-width:900px){
   .lnt{grid-template-columns:1fr;min-height:0}
   .lnt-sol{order:2;min-height:330px;padding:24px}
@@ -2459,7 +2514,7 @@ function pkRenderMobilQiymet(hesab){
   };
 
   var ISLER = [
-    { ad:'Love Story',       ikon:'kalb',    sekil:'/media/lovestory.jpg', metn:'Şəms &amp; Cavidan — təbiətdə çəkilmiş hekayə əsaslı love story filmi.' },
+    { ad:'Love Story',       ikon:'kalb',    sekil:'/media/lovestory.jpg', video:'738448/fea7fd8f-619b-47c8-9674-7b0d5af3339c', saqulu:true, metn:'Şəms &amp; Cavidan — təbiətdə çəkilmiş hekayə əsaslı love story filmi.' },
     { ad:'Food &amp; Restoran',  ikon:'boshqab', sekil:'/media/food.jpg',      metn:'Mətbəxdə iş başında — restoran menyusu üçün kinematik food kadrları.' },
     { ad:'Backstage',        ikon:'kamera',  sekil:'/media/backstage.jpg', metn:'Neo Team Lab — brend üçün backstage seriyası və sosial media kontenti.' },
     { ad:'Tədbir çəkilişi',  ikon:'teqvim',  sekil:'/media/tedbir.jpg',    metn:'Forum və konfransların video sənədləşdirilməsi, çoxkameralı çəkiliş.' },
@@ -2486,10 +2541,16 @@ function pkRenderMobilQiymet(hesab){
       '<span class="lnt-canli"><i></i><span>Lent</span></span>' +
       '<img src="' + o.sekil + '" alt="' + o.ad.replace(/&amp;/g,'&') + ' — Rəhman Məlikzadə" loading="lazy" decoding="async">' +
       '<span class="lnt-yan-isare"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg>' + o.ad + '</span></span>' +
+      (o.video ? '<button type="button" class="lnt-oynat" aria-label="' + o.ad.replace(/&amp;/g,'&') + ' videosunu izlə"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg></button>' : '') +
       '<span class="lnt-mtn"><span class="lnt-rozet">' + String(i+1).padStart(2,'0') + ' &bull; ' + o.ad + '</span><p>' + o.metn + '</p></span>';
-    k.addEventListener('click', function(){ if(k.classList.contains('yan')) kecid(i); });
+    k.addEventListener('click', function(){
+      if(k.classList.contains('yan')){ kecid(i); return; }
+      if(o.video) videoAc(o);
+    });
     k.addEventListener('keydown', function(e){
-      if((e.key === 'Enter' || e.key === ' ') && k.classList.contains('yan')){ e.preventDefault(); kecid(i); }
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      if(k.classList.contains('yan')){ e.preventDefault(); kecid(i); }
+      else if(o.video){ e.preventDefault(); videoAc(o); }
     });
     k.addEventListener('mouseenter', function(){ dayandi = true; });
     k.addEventListener('mouseleave', function(){ dayandi = false; });
@@ -2547,6 +2608,50 @@ function pkRenderMobilQiymet(hesab){
   }
   sehne.addEventListener('mouseenter', function(){ dayandi = true; });
   sehne.addEventListener('mouseleave', function(){ dayandi = false; });
+
+  /* ---- video modalı ---- */
+  var modal = null, sonFokus = null;
+  function modalQur(){
+    modal = document.createElement('div');
+    modal.className = 'lnt-modal';
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.innerHTML =
+      '<div class="lnt-modal-fon" data-lnt-bagla></div>' +
+      '<div class="lnt-modal-qutu">' +
+        '<button type="button" class="lnt-bagla" data-lnt-bagla aria-label="Bağla">&times;</button>' +
+        '<div class="lnt-modal-bas"></div>' +
+        '<div class="lnt-cerceve"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e){ if(e.target.closest('[data-lnt-bagla]')) videoBagla(); });
+  }
+  function videoAc(o){
+    if(!modal) modalQur();
+    sonFokus = document.activeElement;
+    modal.querySelector('.lnt-modal-bas').textContent = o.ad.replace(/&amp;/g,'&');
+    var cer = modal.querySelector('.lnt-cerceve');
+    cer.className = 'lnt-cerceve' + (o.saqulu ? ' saqulu' : '');
+    cer.innerHTML = '<iframe src="https://iframe.mediadelivery.net/embed/' + o.video +
+      '?autoplay=true&loop=false&muted=false&preload=true&responsive=true" ' +
+      'loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen" ' +
+      'allowfullscreen title="' + o.ad.replace(/&amp;/g,'&') + '"></iframe>';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ modal.classList.add('aciq'); });
+    dayandi = true;
+    var b = modal.querySelector('.lnt-bagla'); if(b) b.focus();
+  }
+  function videoBagla(){
+    if(!modal) return;
+    modal.classList.remove('aciq');
+    document.body.style.overflow = '';
+    dayandi = false;
+    setTimeout(function(){ var cer = modal.querySelector('.lnt-cerceve'); if(cer) cer.innerHTML = ''; }, 380);
+    if(sonFokus && sonFokus.focus) sonFokus.focus();
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal && modal.classList.contains('aciq')) videoBagla();
+  });
 
   ciz();
   if('IntersectionObserver' in window){
