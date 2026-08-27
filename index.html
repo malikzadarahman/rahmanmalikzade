@@ -2821,9 +2821,9 @@ function pkRenderMobilQiymet(hesab){
   var iris   = acilis.querySelector('.kam-iris');
   var mtn    = document.getElementById('acilis-mtn');
 
-  var ESIK = 0.84;      /* flaşın partladığı nöqtə */
-  var PARTLAMA = 0.035; /* flaşın qalxma zolağı */
-  var SONME    = 0.20;  /* flaşın sönmə zolağı */
+  var ESIK = 0.80;      /* flaşın partladığı nöqtə */
+  var PARTLAMA = 0.03;  /* flaşın qalxma zolağı */
+  var SONME    = 0.09;  /* flaşın sönmə zolağı — p=1-ə çatmamış tam sönməlidir */
   var isleyir = false;
 
   function kilid(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
@@ -2854,12 +2854,14 @@ function pkRenderMobilQiymet(hesab){
 
     /* ağ flaş */
     var f = 0;
-    if(p >= ESIK){
+    if(p >= ESIK && p < 0.96){
       var qalx = kilid((p - ESIK) / PARTLAMA);
       var son  = kilid((p - ESIK - PARTLAMA) / SONME);
       f = qalx * (1 - son);
+      if(f < 0.004) f = 0;
     }
     flas.style.opacity = f.toFixed(3);
+    flas.style.display = f === 0 ? 'none' : 'block';
 
     /* səhnə flaşın zirvəsində yox olur — altından ağ səhifə çıxır */
     var sehneOp = p < ESIK ? 1 : kilid(1 - (p - ESIK) / (PARTLAMA * 1.15));
