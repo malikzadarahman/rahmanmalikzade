@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- ============ SEO: ƏSAS META ============ -->
-<title>Rəhman Məlikzadə — Videoqraf &amp; Filmmaker | Bakı | Reklam, brend və kinematik video</title>
+<title>Video paketini özün qur — Rəhman Məlikzadə | Video qiymət kalkulyatoru</title>
 <meta name="description" content="Bakıda videoqraf və filmmaker Rəhman Məlikzadə. Storytelling əsaslı video çəkiliş: reklam, brend filmi, food &amp; drinks, love story və şəhər filmləri. Portfolio, paketlər və qiymət üçün əlaqə saxlayın.">
 <meta name="author" content="Rahman Malikzadə">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://rahmanmalikzade.com/">
+<link rel="canonical" href="https://rahmanmalikzade.com/video-kalkulyator">
 <meta name="theme-color" content="#fbfaf8">
 
 <!-- ============ SEO: SOSİAL PAYLAŞIM ============ -->
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Rahman Malikzadə">
 <meta property="og:title" content="Rəhman Məlikzadə — Videoqraf &amp; Filmmaker, Bakı">
 <meta property="og:description" content="Storytelling əsaslı reklam, brend filmi, food &amp; drinks və love story çəkilişləri. Bakı və bütün Azərbaycan.">
-<meta property="og:url" content="https://rahmanmalikzade.com/">
+<meta property="og:url" content="https://rahmanmalikzade.com/video-kalkulyator">
 <meta property="og:image" content="https://rahmanmalikzade.com/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -444,74 +444,6 @@ footer{
    palitra əlavə etmir. Vurğu rəngi: sayt boyu artıq tanış olan
    REC qırmızısı (var(--rec)).
    ============================================================ */
-
-/* ================= KALKULYATOR TİZERİ ================= */
-.kt-tor{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-  gap:clamp(16px,2.2vw,26px);margin-top:clamp(36px,6vh,64px);max-width:1000px
-}
-.kt-kart{
-  display:block;position:relative;overflow:hidden;text-decoration:none;color:inherit;border:1px solid var(--xett);border-radius:22px;
-  background:var(--murekkeb);color:var(--kagiz);
-  padding:clamp(24px,3.4vw,38px);
-  transform:perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1);
-  transition:transform .25s var(--yum),border-color .4s var(--yum),box-shadow .4s var(--yum);
-  will-change:transform;transform-style:preserve-3d;
-  box-shadow:0 18px 50px -30px rgba(11,11,12,.55)
-}
-.kt-kart:hover{box-shadow:0 34px 80px -34px rgba(11,11,12,.75)}
-.kt-parilti{
-  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
-  transition:opacity .35s var(--yum);overflow:hidden;border-radius:inherit
-}
-.kt-kart:hover .kt-parilti{opacity:1}
-.kt-parilti::after{
-  content:"";position:absolute;width:200%;height:200%;border-radius:50%;
-  left:var(--px,50%);top:var(--py,50%);transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(217,58,30,.34) 0%,rgba(251,250,248,.08) 26%,transparent 46%)
-}
-.kt-ic{position:relative;z-index:2;display:block}
-.kt-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.kt-nisan{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--kagiz);color:var(--murekkeb);padding:5px 11px;border-radius:999px
-}
-.kt-saniye{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(251,250,248,.5);text-transform:uppercase}
-.kt-orta{display:block;margin-top:clamp(46px,7vw,76px)}
-.kt-reqem{display:flex;align-items:baseline;gap:9px}
-.kt-reqem b{font-family:var(--dsp);font-weight:400;font-size:clamp(42px,6.4vw,68px);line-height:1;letter-spacing:-.015em}
-.kt-reqem i{font-family:var(--dsp);font-style:normal;font-size:clamp(19px,2.6vw,26px);color:var(--rec)}
-.kt-etiket{display:block;margin-top:10px;font-size:13.5px;color:rgba(251,250,248,.62)}
-.kt-alt{
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  margin-top:clamp(28px,4vw,40px);padding-top:20px;border-top:1px solid var(--xett-ag)
-}
-.kt-cta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.kt-ox{font-size:19px;transition:transform .4s var(--yum);display:inline-block}
-.kt-kart:hover .kt-ox{transform:translateX(7px)}
-.kt-siyahi{display:block;margin-top:clamp(22px,3vw,30px)}
-.kt-siyahi span{
-  display:block;position:relative;padding-left:17px;font-size:13px;line-height:2.05;
-  color:rgba(251,250,248,.58)
-}
-.kt-siyahi span::before{
-  content:"";position:absolute;left:0;top:.92em;width:7px;height:1px;background:var(--kt-aksent,var(--rec))
-}
-.kt-kart--video{--kt-aksent:#4a9d8f}
-.kt-kart--video .kt-reqem i{color:var(--kt-aksent)}
-.kt-kart--video .kt-parilti::after{
-  background:radial-gradient(circle,rgba(74,157,143,.34) 0%,rgba(251,250,248,.08) 26%,transparent 46%)
-}
-@media (max-width:640px){
-  .kt-tor{grid-template-columns:1fr}
-}
-@media (max-width:640px){
-  .kt-orta{margin-top:40px}
-}
-@media (prefers-reduced-motion:reduce){
-  .kt-kart{transition:none !important}
-  .kt-parilti{display:none}
-}
 #kalkulyator{ --pk-vurgu: var(--rec); }
 #kalkulyator #k-bas{font-size:clamp(22px,3.2vw,38px)}
 
@@ -774,6 +706,29 @@ footer{
 }
 
 </style>
+<style>
+/* --- yalnız kalkulyator səhifəsi --- */
+.hero,.reel,#xidmetler,#isler,#paketler,#faq{display:none !important}
+#kalkulyator{padding-top:clamp(104px,16vh,180px)}
+.klk-geri{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--sus);text-decoration:none;
+  transition:color .3s var(--yum)
+}
+.klk-geri:hover{color:var(--murekkeb)}
+.klk-geri span{transition:transform .3s var(--yum);display:inline-block}
+.klk-geri:hover span{transform:translateX(-4px)}
+</style>
+<style>
+.klk-secim{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.klk-secim a{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;color:var(--sus);border:1px solid var(--xett);border-radius:999px;
+  padding:9px 16px;transition:color .3s var(--yum),border-color .3s var(--yum),background .3s var(--yum)
+}
+.klk-secim a:hover{color:var(--murekkeb);border-color:var(--murekkeb)}
+.klk-secim a.aktiv{background:var(--murekkeb);border-color:var(--murekkeb);color:var(--kagiz)}
+</style>
 </head>
 <body>
 
@@ -781,13 +736,12 @@ footer{
 <div class="xett-ust" id="xett-ust" aria-hidden="true"></div>
 
 <nav class="nav" id="nav">
-  <a href="#bas" class="nav-ad">Rəhman Məlikzadə</a>
+  <a href="/" class="nav-ad">Rəhman Məlikzadə</a>
   <div class="nav-links">
-    <a href="#xidmetler">Xidmətlər</a>
-    <a href="#isler">İşlər</a>
-    <a href="#paketler">Paketlər</a>
-    <a href="#kalkulyator-tizer">Kalkulyator</a>
-    <a href="#elaqe">Əlaqə</a>
+    <a href="/#xidmetler">Xidmətlər</a>
+    <a href="/#isler">İşlər</a>
+    <a href="/#paketler">Paketlər</a>
+    <a href="/#elaqe">Əlaqə</a>
   </div>
   <span class="rec-ust kicik" aria-label="Yazılır"><i aria-hidden="true"></i> Rec</span>
 </nav>
@@ -918,62 +872,33 @@ footer{
 <div class="perf" aria-hidden="true"></div>
 
 <!-- ================= FAQ ================= -->
-<!-- ================= KALKULYATOR TİZERLƏRİ ================= -->
-<section class="blok" id="kalkulyator-tizer" aria-labelledby="kt-bas">
-  <div class="kicik">Kalkulyator</div>
-  <h2 id="kt-bas" data-ac style="margin-top:16px;font-size:clamp(26px,4vw,52px)">Paketini özün qur</h2>
-  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:54ch;font-size:14.5px">
-    Foto, yoxsa video? Aşağıdan işinə uyğun olanı seç — detalları özün tənzimlə, qiymət addım-addım gözünün qarşısında formalaşsın.
+<!-- ================= KALKULYATOR ================= -->
+<section class="blok" id="kalkulyator" aria-labelledby="k-bas">
+  <a class="klk-geri" href="/"><span>&larr;</span> Ana səhifə</a>
+  <div class="kicik" style="margin-top:26px">Video kalkulyator</div>
+  <h2 id="k-bas" data-ac style="margin-top:16px">Video paketini özün qur</h2>
+  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:56ch;font-size:14.5px">
+    Video növünü seç, sonra kamera sayı, çəkiliş müddəti, montaj səviyyəsi və formatları öz layihənə uyğunlaşdır. Qiymət sağda (mobil versiyada aşağıda) canlı hesablanır.
   </p>
 
-  <div class="kt-tor" data-ac data-gec="2">
+  <div class="klk-secim"><a href="/kalkulyator">Foto çəkilişi</a><a href="/video-kalkulyator" class="aktiv">Video çəkilişi</a></div>
 
-    <a class="kt-kart" href="/kalkulyator" aria-label="Foto kalkulyatorunu aç">
-      <span class="kt-parilti" aria-hidden="true"></span>
-      <span class="kt-ic">
-        <span class="kt-ust">
-          <span class="kt-nisan">Foto çəkilişi</span>
-          <span class="kt-saniye">~60 saniyə</span>
-        </span>
-        <span class="kt-orta">
-          <span class="kt-reqem"><b data-kt-say>140</b><i>AZN</i></span>
-          <span class="kt-etiket">-dən başlayan foto paketləri</span>
-        </span>
-        <span class="kt-siyahi">
-          <span>Food, məhsul və e-commerce</span>
-          <span>Portret, model və moda</span>
-          <span>Məkan, tədbir və sosial media</span>
-        </span>
-        <span class="kt-alt">
-          <span class="kt-cta">Foto kalkulyatoru</span>
-          <span class="kt-ox" aria-hidden="true">&rarr;</span>
-        </span>
-      </span>
-    </a>
+  <div class="pk-lay" data-ac data-gec="2">
+    <div class="pk-sutun">
+      <div id="pk-akkordeon"></div>
+    </div>
+    <aside class="pk-yan" aria-label="Təxmini qiymət">
+      <div class="pk-panel" id="pk-panel-daxil"></div>
+    </aside>
+  </div>
 
-    <a class="kt-kart kt-kart--video" href="/video-kalkulyator" aria-label="Video kalkulyatorunu aç">
-      <span class="kt-parilti" aria-hidden="true"></span>
-      <span class="kt-ic">
-        <span class="kt-ust">
-          <span class="kt-nisan">Video çəkilişi</span>
-          <span class="kt-saniye">~60 saniyə</span>
-        </span>
-        <span class="kt-orta">
-          <span class="kt-reqem"><b data-kt-say>320</b><i>AZN</i></span>
-          <span class="kt-etiket">-dən başlayan video paketləri</span>
-        </span>
-        <span class="kt-siyahi">
-          <span>Reklam çarxı və brend filmi</span>
-          <span>Reels / TikTok kontenti</span>
-          <span>Toy, love story və tədbir</span>
-        </span>
-        <span class="kt-alt">
-          <span class="kt-cta">Video kalkulyatoru</span>
-          <span class="kt-ox" aria-hidden="true">&rarr;</span>
-        </span>
-      </span>
-    </a>
-
+  <div class="pk-mobil-panel" id="pk-mobil-panel">
+    <div class="pk-mobil-tutac" id="pk-mobil-tutac">
+      <span class="pk-cubuq" aria-hidden="true"></span>
+      <div class="pk-mobil-qiymet" id="pk-mobil-qiymet">— <span>AZN</span></div>
+      <span class="pk-mobil-ox" aria-hidden="true">↑</span>
+    </div>
+    <div class="pk-mobil-icerik" id="pk-mobil-icerik"></div>
   </div>
 </section>
 
@@ -1245,158 +1170,155 @@ const PK_CFG = {
   valyuta: "AZN",
   whatsappNomresi: "994000000000", // ← real WhatsApp biznes nömrənizlə əvəz edin (994 ilə, boşluqsuz)
 
-  /* --- addım artımları --- */
-  fotoMin: 5, fotoMaks: 50, fotoAddimi: 5,
-  fotoAddimQiymeti: 12,      // hər əlavə 5 fotoya görə
+  /* --- addım artımları (VİDEO) --- */
+  fotoMin: 1, fotoMaks: 12, fotoAddimi: 1,
+  fotoAddimQiymeti: 60,      // hər əlavə hazır video
 
-  rakursMin: 1, rakursMaks: 10,
-  rakursQiymeti: 8,          // hər əlavə rakurs
+  rakursMin: 1, rakursMaks: 4,
+  rakursQiymeti: 90,         // hər əlavə kamera/operator
 
-  saatMin: 1, saatMaks: 10,
-  saatQiymeti: 35,           // hər əlavə saat
+  saatMin: 2, saatMaks: 12,
+  saatQiymeti: 60,           // hər əlavə çəkiliş saatı
 
-  mehsulSayMaks: 20,         // bu limitdən sonra "Fərdi təklif alın"
-  mehsulQiymeti: 6,          // hər əlavə məhsul/model/nəfər
+  mehsulSayMaks: 20,
+  mehsulQiymeti: 25,
 
-  /* ---------------- 1. ÇƏKİLİŞ NÖVLƏRİ ---------------- */
+  /* ---------------- 1. VİDEO ÇƏKİLİŞ NÖVLƏRİ ---------------- */
   shootTypes: [
-    { id:"yemek",  ad:"Food çəkilişi", aciqlama:"Restoran menyusu və yemək brendləri üçün iştah açan kadrlar.",
-      ikon:"plate", baza:180, daxilFoto:10, daxilRakurs:3, daxilSaat:1, daxilMehsul:5, sayLabel:"Yemək sayı" },
-    { id:"mehsul", ad:"Məhsul çəkilişi", aciqlama:"E-commerce və kataloq üçün təmiz, işıqlı məhsul fotoları.",
-      ikon:"box", baza:150, daxilFoto:10, daxilRakurs:3, daxilSaat:1, daxilMehsul:5, sayLabel:"Məhsul sayı" },
-    { id:"model", ad:"Model çəkilişi", aciqlama:"Portfolio, kampaniya və brend üçün model çəkilişi.",
-      ikon:"person", baza:220, daxilFoto:15, daxilRakurs:4, daxilSaat:2, daxilMehsul:1, sayLabel:"Model sayı" },
-    { id:"portret", ad:"Portret çəkilişi", aciqlama:"Fərdi, ailə və ya komanda üçün portret çəkilişi.",
-      ikon:"person", baza:140, daxilFoto:10, daxilRakurs:3, daxilSaat:1, daxilMehsul:1, sayLabel:"İştirakçı sayı" },
-    { id:"moda", ad:"Moda çəkilişi", aciqlama:"Geyim brendləri və lookbook üçün moda çəkilişi.",
-      ikon:"shirt", baza:260, daxilFoto:15, daxilRakurs:5, daxilSaat:2, daxilMehsul:1, sayLabel:"Model sayı" },
-    { id:"mekan", ad:"Restoran və məkan çəkilişi", aciqlama:"İnteryer və atmosferi əks etdirən məkan çəkilişi.",
-      ikon:"building", baza:200, daxilFoto:12, daxilRakurs:4, daxilSaat:2, daxilMehsul:1, sayLabel:"Zal/otaq sayı" },
-    { id:"ecom", ad:"E-commerce / kataloq çəkilişi", aciqlama:"Onlayn mağaza üçün standartlaşdırılmış kataloq fotoları.",
-      ikon:"box", baza:160, daxilFoto:20, daxilRakurs:2, daxilSaat:2, daxilMehsul:10, sayLabel:"Məhsul sayı" },
-    { id:"tedbir", ad:"Tədbir çəkilişi", aciqlama:"Konfrans, açılış və korporativ tədbirlərin sənədləşdirilməsi.",
-      ikon:"calendar", baza:250, daxilFoto:30, daxilRakurs:2, daxilSaat:3, daxilMehsul:1, sayLabel:"Təxmini qonaq sayı" },
-    { id:"sosial", ad:"Sosial media üçün kontent", aciqlama:"Instagram və TikTok üçün seriya halında kontent.",
-      ikon:"phone", baza:130, daxilFoto:10, daxilRakurs:3, daxilSaat:1, daxilMehsul:3, sayLabel:"Məhsul/Mövzu sayı" },
-    { id:"diger", ad:"Digər çəkiliş", aciqlama:"Yuxarıdakılara uyğun gəlmirsə, ehtiyacını qısaca yaz.",
+    { id:"reklam", ad:"Reklam çarxı", aciqlama:"Məhsul və ya xidmət üçün qısa, dinamik kommersiya videosu.",
+      ikon:"video", baza:650, daxilFoto:1, daxilRakurs:1, daxilSaat:4, daxilMehsul:1, sayLabel:"Məhsul/səhnə sayı" },
+    { id:"brend", ad:"Brend filmi", aciqlama:"Şirkətin hekayəsini danışan imic və korporativ film.",
+      ikon:"building", baza:900, daxilFoto:1, daxilRakurs:2, daxilSaat:6, daxilMehsul:1, sayLabel:"Müsahibə/personaj sayı" },
+    { id:"sosial", ad:"Reels / TikTok kontenti", aciqlama:"Şaquli format qısa videolar, seriya halında sosial media kontenti.",
+      ikon:"phone", baza:320, daxilFoto:3, daxilRakurs:1, daxilSaat:3, daxilMehsul:3, sayLabel:"Mövzu sayı" },
+    { id:"food", ad:"Restoran və food videosu", aciqlama:"Yemək, içki və məkan atmosferini göstərən kinematik kadrlar.",
+      ikon:"plate", baza:480, daxilFoto:2, daxilRakurs:1, daxilSaat:4, daxilMehsul:5, sayLabel:"Yemək/içki sayı" },
+    { id:"tedbir", ad:"Tədbir videosu", aciqlama:"Konfrans, açılış və korporativ tədbirlərin video sənədləşdirilməsi.",
+      ikon:"calendar", baza:700, daxilFoto:2, daxilRakurs:2, daxilSaat:5, daxilMehsul:1, sayLabel:"Təxmini qonaq sayı" },
+    { id:"toy", ad:"Toy filmi", aciqlama:"Toy gününün tam çəkilişi — kinematik montaj və highlight klip.",
+      ikon:"heart", baza:1200, daxilFoto:2, daxilRakurs:2, daxilSaat:8, daxilMehsul:1, sayLabel:"Məkan sayı" },
+    { id:"lovestory", ad:"Love story / nişan", aciqlama:"Cütlük üçün hekayə əsaslı qısa kinematik klip.",
+      ikon:"heart", baza:550, daxilFoto:1, daxilRakurs:1, daxilSaat:4, daxilMehsul:1, sayLabel:"Məkan sayı" },
+    { id:"musahibe", ad:"Müsahibə / podcast", aciqlama:"Studiya və ya ofis şəraitində çoxkameralı müsahibə çəkilişi.",
+      ikon:"person", baza:450, daxilFoto:1, daxilRakurs:2, daxilSaat:3, daxilMehsul:2, sayLabel:"İştirakçı sayı" },
+    { id:"diger", ad:"Digər video", aciqlama:"Yuxarıdakılara uyğun gəlmirsə, ehtiyacını qısaca yaz.",
       ikon:"dots", baza:null, daxilFoto:0, daxilRakurs:0, daxilSaat:0, daxilMehsul:0, sayLabel:"Say" }
   ],
 
-  /* ---------------- 2. FON VƏ MƏKAN ---------------- */
+  /* ---------------- 2. SƏS YAZISI VƏ MƏKAN ---------------- */
   backgrounds: [
-    { id:"ag",         ad:"Sadə ağ fon",            qiymet:0 },
-    { id:"qara",       ad:"Qara fon",                qiymet:0 },
-    { id:"rengli",     ad:"Rəngli fon",               qiymet:15 },
-    { id:"lifestyle",  ad:"Lifestyle / interyer fonu", qiymet:30 },
-    { id:"dekor",      ad:"Xüsusi dekorasiyalı səhnə", qiymet:50 },
-    { id:"seffaf",     ad:"Şəffaf fon üçün çəkiliş",   qiymet:20 }
+    { id:"yoxdur",    ad:"Səs lazım deyil (yalnız görüntü)", qiymet:0 },
+    { id:"kamera",    ad:"Kamera mikrofonu",                  qiymet:0 },
+    { id:"petlichka", ad:"Petlichka (yaxa mikrofonu)",         qiymet:40 },
+    { id:"boom",      ad:"Boom mikrofon + operator",           qiymet:90 },
+    { id:"studiya-ses",ad:"Studiya səviyyəli səs yazısı",      qiymet:140 },
+    { id:"coxkanal",  ad:"Çoxkanallı səs (2+ danışan)",        qiymet:110 }
   ],
   locations: [
-    { id:"musteri",  ad:"Müştərinin məkanında",         qiymet:0 },
-    { id:"studiya",  ad:"Studiyada",                     qiymet:60, qeyd:"Studiya icarəsi daxildir" },
-    { id:"achiq",    ad:"Açıq havada",                    qiymet:0 },
-    { id:"fotoqraf", ad:"Fotoqrafın müəyyən etdiyi məkanda", qiymet:20 }
+    { id:"musteri",  ad:"Müştərinin məkanında",                qiymet:0 },
+    { id:"studiya",  ad:"Studiyada",                            qiymet:120, qeyd:"Studiya icarəsi daxildir" },
+    { id:"achiq",    ad:"Açıq havada",                           qiymet:0 },
+    { id:"coxmekan", ad:"Bir neçə məkanda (eyni gün)",           qiymet:90 },
+    { id:"operator", ad:"Operatorun müəyyən etdiyi məkanda",     qiymet:50 }
   ],
 
   /* ---------------- 3. AVADANLIQ ---------------- */
-  /* daxil:true → standart çəkilişə daxildir, ayrıca qiymətə əlavə olunmur */
   equipment: {
     kamera: [
-      { id:"kamera-1", ad:"1 peşəkar full-frame kamera", fayda:"Əsas çəkiliş kamerası", qiymet:0, daxil:true },
-      { id:"kamera-2", ad:"2-ci ehtiyat kamera", fayda:"Paralel rakurs və ehtiyat üçün", qiymet:40, daxil:false }
+      { id:"kamera-1", ad:"1 peşəkar kinematik kamera", fayda:"Əsas çəkiliş kamerası", qiymet:0, daxil:true },
+      { id:"kamera-2", ad:"2-ci kamera (multicam)", fayda:"Paralel rakurs, müsahibə üçün", qiymet:130, daxil:false, tovsiye:["musahibe","tedbir","toy"] },
+      { id:"kamera-3", ad:"3-cü kamera", fayda:"Geniş plan və ehtiyat kadr", qiymet:110, daxil:false, tovsiye:["tedbir","toy"] },
+      { id:"dron",     ad:"Dron (aerial çəkiliş)", fayda:"Yuxarıdan geniş kinematik kadrlar", qiymet:180, daxil:false, tovsiye:["brend","toy","lovestory","tedbir"] }
     ],
     lens: [
-      { id:"lens-standart", ad:"Standart lens", fayda:"Universal, əksər çəkilişlər üçün", qiymet:0, daxil:true },
-      { id:"lens-zoom",     ad:"Zoom lens", fayda:"Məsafədən kadrlaşdırma", qiymet:25, daxil:false },
-      { id:"lens-macro",    ad:"Macro lens", fayda:"Yaxın plan və detal çəkilişi", qiymet:30, daxil:false, tovsiye:["yemek","mehsul","ecom"] },
-      { id:"lens-portret",  ad:"Portret lens", fayda:"Yumşaq fon və dərinlik effekti", qiymet:25, daxil:false, tovsiye:["portret","model"] },
-      { id:"lens-genis",    ad:"Genişbucaqlı lens", fayda:"İnteryer və geniş səhnələr", qiymet:25, daxil:false, tovsiye:["mekan","tedbir"] }
+      { id:"lens-standart", ad:"Standart kino lens dəsti", fayda:"Universal, əksər səhnələr üçün", qiymet:0, daxil:true },
+      { id:"lens-genis",    ad:"Genişbucaqlı lens", fayda:"İnteryer və geniş səhnələr", qiymet:45, daxil:false, tovsiye:["tedbir","food","brend"] },
+      { id:"lens-macro",    ad:"Macro lens", fayda:"Yaxın plan detal kadrları", qiymet:55, daxil:false, tovsiye:["food","reklam"] },
+      { id:"lens-tele",     ad:"Telefoto lens", fayda:"Məsafədən sıxılmış kadr", qiymet:50, daxil:false, tovsiye:["tedbir","toy"] },
+      { id:"anamorfik",     ad:"Anamorfik lens", fayda:"Geniş ekran kino görüntüsü", qiymet:120, daxil:false, tovsiye:["brend","reklam","lovestory"] }
     ],
     isiq: [
-      { id:"isiq-1",       ad:"1 əsas studiya işığı", fayda:"Baza işıqlandırma", qiymet:0, daxil:true },
-      { id:"isiq-2",       ad:"2 studiya işığı", fayda:"Kontrastlı, çox istiqamətli işıq", qiymet:35, daxil:false },
-      { id:"isiq-3",       ad:"3 studiya işığı", fayda:"Tam idarə olunan studiya sxemi", qiymet:60, daxil:false },
-      { id:"isiq-rgb",     ad:"Əlavə RGB işıq", fayda:"Rəngli aksent və atmosfer", qiymet:20, daxil:false },
-      { id:"softbox",      ad:"Softbox", fayda:"Yumşaq, bərabər işıq", qiymet:15, daxil:false },
-      { id:"reflektor",    ad:"Reflektor", fayda:"Kölgələri yumşaldır", qiymet:0, daxil:true },
-      { id:"stripbox",     ad:"Stripbox", fayda:"Dar, istiqamətli işıq zolağı", qiymet:15, daxil:false },
-      { id:"beauty-dish",  ad:"Beauty dish", fayda:"Portret üçün kəskin-yumşaq işıq", qiymet:20, daxil:false, tovsiye:["portret","model","moda"] },
-      { id:"lightbox",     ad:"Məhsul çəkilişi üçün lightbox", fayda:"Kiçik məhsullar üçün tam bərabər işıq", qiymet:15, daxil:false, tovsiye:["mehsul","ecom"] }
+      { id:"isiq-1",    ad:"1 əsas video işığı", fayda:"Baza işıqlandırma", qiymet:0, daxil:true },
+      { id:"isiq-2",    ad:"2 video işığı", fayda:"Kontrastlı işıq sxemi", qiymet:70, daxil:false },
+      { id:"isiq-3",    ad:"3 video işığı (tam sxem)", fayda:"Key + fill + arxa işıq", qiymet:120, daxil:false, tovsiye:["musahibe","brend","reklam"] },
+      { id:"isiq-rgb",  ad:"RGB aksent işıqları", fayda:"Rəngli atmosfer və fon", qiymet:60, daxil:false, tovsiye:["sosial","reklam"] },
+      { id:"softbox",   ad:"Softbox dəsti", fayda:"Yumşaq, bərabər işıq", qiymet:35, daxil:false },
+      { id:"reflektor", ad:"Reflektor", fayda:"Kölgələri yumşaldır", qiymet:0, daxil:true },
+      { id:"praktik",   ad:"Praktik işıqlar (səhnə içi)", fayda:"Kadrın içində görünən atmosfer işığı", qiymet:45, daxil:false }
     ],
     diger: [
-      { id:"tripod",     ad:"Tripod", fayda:"Sabit kadr və uzun ekspozisiya", qiymet:0, daxil:true },
-      { id:"ustden",     ad:"Üstdən çəkiliş sistemi", fayda:"Yuxarıdan (flat-lay) kadrlar", qiymet:25, daxil:false, tovsiye:["yemek","mehsul"] },
-      { id:"turntable",  ad:"Turntable / 360° platforma", fayda:"Məhsulun dönən 360° görüntüsü", qiymet:30, daxil:false, tovsiye:["mehsul","ecom"] },
-      { id:"tusteme",    ad:"Tüstü maşını", fayda:"Atmosferik effekt", qiymet:25, daxil:false },
-      { id:"fon-sistemi",ad:"Fon sistemi", fayda:"Rulon fon dəyişdirmə sistemi", qiymet:20, daxil:false },
-      { id:"kagiz-fon",  ad:"Rəngli kağız fon", fayda:"Sürətli fon dəyişimi", qiymet:15, daxil:false },
-      { id:"enerji",     ad:"Portativ enerji mənbəyi", fayda:"Açıq hava çəkilişləri üçün", qiymet:20, daxil:false, tovsiye:["achiq"] },
-      { id:"tethered",   ad:"Tethered çəkiliş üçün laptop/monitor", fayda:"Kadrları anında böyük ekranda yoxlama", qiymet:20, daxil:false, tovsiye:["mehsul","moda","ecom"] }
+      { id:"tripod",     ad:"Video tripod (fluid head)", fayda:"Sabit pan/tilt hərəkəti", qiymet:0, daxil:true },
+      { id:"gimbal",     ad:"Gimbal stabilizator", fayda:"Hamar hərəkətli kadrlar", qiymet:70, daxil:false, tovsiye:["reklam","brend","sosial","toy"] },
+      { id:"slayder",    ad:"Slayder / rels", fayda:"Kinematik sürüşən kadr", qiymet:60, daxil:false, tovsiye:["food","reklam","brend"] },
+      { id:"kran",       ad:"Kran / jib", fayda:"Yuxarıdan enən geniş kadr", qiymet:150, daxil:false, tovsiye:["tedbir","toy","brend"] },
+      { id:"teleprompter",ad:"Teleprompter", fayda:"Mətnin kameraya baxaraq oxunması", qiymet:80, daxil:false, tovsiye:["brend","musahibe"] },
+      { id:"monitor",    ad:"Rejissor monitoru", fayda:"Kadrın anında böyük ekranda nəzarəti", qiymet:50, daxil:false },
+      { id:"tusteme",    ad:"Tüstü maşını", fayda:"Atmosferik işıq şüaları", qiymet:55, daxil:false, tovsiye:["reklam","brend","lovestory"] },
+      { id:"enerji",     ad:"Portativ enerji mənbəyi", fayda:"Açıq hava çəkilişləri üçün", qiymet:45, daxil:false, tovsiye:["achiq"] }
     ]
   },
   avadTovsiyeMetni: {
-    yemek:"Peşəkar kamera, macro lens, 2 studiya işığı və reflektor.",
-    mehsul:"Peşəkar kamera, standart/macro lens, lightbox və 2 studiya işığı.",
-    model:"Peşəkar kamera, portret lens, 2 studiya işığı, beauty dish və reflektor.",
-    portret:"Peşəkar kamera, portret lens, 1 studiya işığı və reflektor.",
-    moda:"Peşəkar kamera, zoom/portret lens, 2 studiya işığı və beauty dish.",
-    mekan:"Peşəkar kamera, genişbucaqlı lens və tripod.",
-    ecom:"Peşəkar kamera, standart lens, lightbox, turntable və tethered monitor.",
-    tedbir:"Peşəkar kamera, zoom/genişbucaqlı lens, ehtiyat kamera və portativ enerji mənbəyi.",
-    sosial:"Peşəkar kamera, zoom lens, 1 studiya işığı və reflektor.",
+    reklam:"Kinematik kamera, macro/standart lens, 3 işıq sxemi, gimbal və slayder.",
+    brend:"2 kamera, anamorfik/standart lens, tam işıq sxemi, gimbal, teleprompter və dron.",
+    sosial:"Kinematik kamera, standart lens, RGB aksent işıqlar və gimbal.",
+    food:"Kinematik kamera, macro lens, slayder və 2 video işığı.",
+    tedbir:"2 kamera, genişbucaqlı/telefoto lens, petlichka səs, gimbal və portativ enerji.",
+    toy:"2–3 kamera, gimbal, dron, telefoto lens və petlichka səs sistemi.",
+    lovestory:"Kinematik kamera, anamorfik lens, gimbal, dron və tüstü maşını.",
+    musahibe:"2 kamera, 3 işıq sxemi, petlichka + boom səs, teleprompter və monitor.",
     diger:"Çəkiliş detallarına uyğun avadanlıq tərəfimizdən müəyyən ediləcək."
   },
 
-  /* ---------------- 4. RETUŞ / FORMAT / TƏHVİL ---------------- */
+  /* ---------------- 4. MONTAJ / FORMAT / TƏHVİL ---------------- */
   retouch: [
-    { id:"standart", ad:"Standart retuş", qiymetPerFoto:0, aciqlama:"Rəng, işıq və kontrast düzəlişi." },
-    { id:"premium",  ad:"Premium retuş", qiymetPerFoto:6, aciqlama:"Əlavə dəri, fon və məhsul təmizlənməsi." },
-    { id:"reklam",   ad:"Reklam səviyyəli retuş", qiymetPerFoto:12, aciqlama:"Kompozit, detallı təmizləmə, yüksək səviyyəli kommersiya işlənməsi." }
+    { id:"standart", ad:"Standart montaj", qiymetPerFoto:0, aciqlama:"Kadrların yığılması, rəng korreksiyası, fon musiqisi." },
+    { id:"premium",  ad:"Genişləndirilmiş montaj", qiymetPerFoto:120, aciqlama:"Kinematik rəng qradasiyası, səs dizaynı, sadə qrafika." },
+    { id:"reklam",   ad:"Reklam səviyyəli post-produksiya", qiymetPerFoto:280, aciqlama:"Motion qrafika, VFX təmizləmə, peşəkar səs miksi." }
   ],
   formats: [
-    { id:"sosial",   ad:"Yalnız sosial media ölçüləri", qiymet:0 },
-    { id:"tam",      ad:"Yüksək keyfiyyətli tam ölçü", qiymet:0 },
-    { id:"her-ikisi",ad:"Hər iki format", qiymet:10 },
-    { id:"png",      ad:"Şəffaf PNG", qiymet:10 },
-    { id:"cap",      ad:"Çap üçün hazırlanmış fayllar", qiymet:15 },
-    { id:"ecom-opt", ad:"Sayt/e-commerce üçün optimallaşdırılmış", qiymet:10 }
+    { id:"yatay",     ad:"Yatay 16:9 (YouTube, sayt)",      qiymet:0 },
+    { id:"saqulu",    ad:"Şaquli 9:16 (Reels, TikTok)",      qiymet:0 },
+    { id:"kvadrat",   ad:"Kvadrat 1:1 (feed)",               qiymet:40 },
+    { id:"teaser",    ad:"15–20 san. qısa teaser versiyası", qiymet:80 },
+    { id:"subtitr",   ad:"Subtitr (AZ və ya EN)",            qiymet:50 },
+    { id:"4k",        ad:"4K master fayl",                    qiymet:60 }
   ],
   delivery: [
-    { id:"standart", ad:"Standart", muddet:"5–7 iş günü", faiz:0 },
-    { id:"suretli",  ad:"Sürətli",  muddet:"2–3 iş günü", faiz:20 },
-    { id:"ekspress", ad:"Ekspress", muddet:"24 saat",     faiz:45 }
+    { id:"standart", ad:"Standart", muddet:"10–14 iş günü", faiz:0 },
+    { id:"suretli",  ad:"Sürətli",  muddet:"5–7 iş günü",   faiz:20 },
+    { id:"ekspress", ad:"Ekspress", muddet:"48–72 saat",    faiz:45 }
   ],
 
   /* ---------------- 5. ƏLAVƏ XİDMƏTLƏR ---------------- */
   extraServices: [
-    { id:"moodboard",  ad:"Moodboard və çəkiliş konsepti", izah:"Vizual istiqamət və ilham lövhəsi hazırlanır.", qiymet:40 },
-    { id:"art-dir",    ad:"Art direction", izah:"Çəkiliş boyu yaradıcı istiqamətin idarə olunması.", qiymet:80 },
-    { id:"stilizasiya",ad:"Məhsulun stilizasiyası", izah:"Məhsulun kadr üçün düzülüşü və tərtibatı.", qiymet:50 },
-    { id:"food-stylist",ad:"Food stylist", izah:"Yeməyin peşəkar hazırlanması və düzülüşü.", qiymet:90 },
-    { id:"vizajist",   ad:"Vizajist", izah:"Model/iştirakçı üçün makiyaj xidməti.", qiymet:70 },
-    { id:"sac",        ad:"Saç ustası", izah:"Çəkiliş üçün saç düzümü.", qiymet:60 },
-    { id:"model-temin",ad:"Model təmin edilməsi", izah:"Bizim şəbəkəmizdən uyğun model.", qiymet:120 },
-    { id:"el-modeli",  ad:"Əl modeli", izah:"Məhsul çəkilişləri üçün əl modeli.", qiymet:50 },
-    { id:"geyim",      ad:"Geyim / stil seçimi", izah:"Çəkilişə uyğun geyim və stilinq.", qiymet:60 },
-    { id:"dekor",      ad:"Dekor və rekvizit", izah:"Səhnə üçün dekorativ elementlər.", qiymet:50 },
-    { id:"getir-catdir",ad:"Məhsulların götürülməsi və geri çatdırılması", izah:"Çəkiliş üçün məhsulların daşınması.", qiymet:30 },
-    { id:"baki-neqliyyat",ad:"Bakı daxilində nəqliyyat", izah:"Komanda və avadanlığın yerdəyişməsi.", qiymet:20 },
-    { id:"bakidan-kenar",ad:"Bakıdan kənar çəkiliş", izah:"Yol və vaxt xərcini əhatə edir.", qiymet:80 },
+    { id:"ssenari",     ad:"Ssenari və rejissura", izah:"Video üçün hekayə strukturu və rejissor işi.", qiymet:180 },
+    { id:"storyboard",  ad:"Storyboard / raskadrovka", izah:"Kadr-kadr vizual plan.", qiymet:90 },
+    { id:"art-dir",     ad:"Art direction", izah:"Çəkiliş boyu yaradıcı istiqamətin idarə olunması.", qiymet:150 },
+    { id:"aktyor",      ad:"Aktyor / model təmin edilməsi", izah:"Rol üçün uyğun aktyor və ya model.", qiymet:220 },
+    { id:"vizajist",    ad:"Vizajist", izah:"İştirakçılar üçün makiyaj xidməti.", qiymet:80 },
+    { id:"stilizasiya", ad:"Məhsulun stilizasiyası", izah:"Kadr üçün məhsulun düzülüşü və tərtibatı.", qiymet:70 },
+    { id:"food-stylist",ad:"Food stylist", izah:"Yeməyin peşəkar hazırlanması və düzülüşü.", qiymet:110 },
+    { id:"sesleme",     ad:"Peşəkar səsləndirmə (voice-over)", izah:"Diktor səsi ilə mətnin oxunması.", qiymet:120 },
+    { id:"musiqi",      ad:"Lisenziyalı musiqi", izah:"Kommersiya istifadəsi üçün təmiz musiqi hüququ.", qiymet:70 },
+    { id:"motion",      ad:"Motion qrafika / animasiya", izah:"Loqo animasiyası, başlıq və infoqrafika.", qiymet:200 },
+    { id:"tercume",     ad:"Tərcümə və çoxdilli subtitr", izah:"Mətnin tərcüməsi və ikinci dil subtitri.", qiymet:80 },
+    { id:"foto-paket",  ad:"Video ilə birlikdə foto çəkilişi", izah:"Eyni gün ərzində əlavə foto kontenti.", qiymet:200 },
+    { id:"bts",         ad:"Behind-the-scenes videosu", izah:"Prosesin özünün sənədləşdirilməsi.", qiymet:90 },
+    { id:"canli-yayim", ad:"Canlı yayım quraşdırması", izah:"Tədbirin real vaxtda yayımlanması.", qiymet:350 },
+    { id:"baki-neqliyyat",ad:"Bakı daxilində nəqliyyat", izah:"Komanda və avadanlığın yerdəyişməsi.", qiymet:40 },
+    { id:"bakidan-kenar",ad:"Bakıdan kənar çəkiliş", izah:"Yol və vaxt xərcini əhatə edir.", qiymet:200 },
     { id:"konsultasiya",ad:"Çəkiliş öncəsi konsultasiya", izah:"Planlaşdırma zəngi/görüşü.", qiymet:0, pulsuz:true },
-    { id:"elave-duzelis",ad:"Əlavə düzəliş mərhələsi", izah:"Standart düzəlişdən artıq redaktə raundu.", qiymet:25 },
-    { id:"raw",        ad:"RAW faylların təhvil verilməsi", izah:"Emal edilməmiş orijinal fayllar.", qiymet:35 },
-    { id:"reels",      ad:"Foto ilə birlikdə qısa video/Reels", izah:"Şaquli format, sosial media üçün hazır.", qiymet:70 },
-    { id:"bts",        ad:"Behind-the-scenes çəkilişi", izah:"Prosesin özünün sənədləşdirilməsi.", qiymet:40 },
-    { id:"lisenziya",  ad:"Geniş kommersiya lisenziyası", izah:"Reklam və geniş istifadə hüququ.", qiymet:100 }
+    { id:"elave-duzelis",ad:"Əlavə montaj düzəlişi", izah:"Standart düzəlişdən artıq redaktə raundu.", qiymet:100 },
+    { id:"raw",         ad:"RAW/orijinal kadrların təhvili", izah:"Emal edilməmiş bütün çəkiliş materialı.", qiymet:150 },
+    { id:"lisenziya",   ad:"Geniş kommersiya lisenziyası", izah:"TV və geniş reklam istifadəsi hüququ.", qiymet:300 }
   ],
 
-  /* ---------------- 6. ENDİRİMLƏR (aç/bağla + faiz) ---------------- */
+  /* ---------------- 6. ENDİRİMLƏR ---------------- */
   discounts: {
-    uzunCekilis: { aktiv:true, esasSaat:5, faiz:8, ad:"Uzun çəkiliş endirimi" },
-    coxFoto:     { aktiv:true, esasFoto:20, faiz:5, ad:"Çox foto endirimi" },
-    combo:       { aktiv:true, faiz:5, ad:"Foto + Reels combo endirimi" },
+    uzunCekilis: { aktiv:true, esasSaat:8, faiz:8, ad:"Tam günlük çəkiliş endirimi" },
+    coxFoto:     { aktiv:true, esasFoto:4, faiz:6, ad:"Çox video endirimi" },
+    combo:       { aktiv:true, faiz:5, ad:"Video + foto combo endirimi" },
     promo: {
-      // demo promo kodlar — böyük hərflə saxlanılır
       "REHMAN10": { faiz:10, ad:"Promo kod endirimi" },
       "YENI5":    { faiz:5,  ad:"Yeni müştəri endirimi" }
     }
@@ -1413,6 +1335,8 @@ const PK_IKON = {
   calendar:'<rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/>',
   phone:   '<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
   dots:    '<circle cx="6" cy="12" r="1.4"/><circle cx="12" cy="12" r="1.4"/><circle cx="18" cy="12" r="1.4"/>',
+  video:   '<rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/>',
+  heart:   '<path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7C19 15.4 12 20 12 20z"/>',
   tik:     '<path d="M4 8.5l2.6 2.6L12 4.5" stroke-linecap="round" stroke-linejoin="round"/>',
   ugur:    '<path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/>'
 };
@@ -1462,12 +1386,12 @@ function pkHesabla(state, CFG){
   var extraFoto = Math.max(0, state.foto - tip.daxilFoto);
   var fotoAddimSayi = Math.ceil(extraFoto / CFG.fotoAddimi);
   var fotoMeb = fotoAddimSayi * CFG.fotoAddimQiymeti;
-  if(fotoMeb > 0){ breakdown.push({ ad:"Əlavə foto (+" + extraFoto + ")", meb:fotoMeb, qrup:"detal" }); cem += fotoMeb; }
+  if(fotoMeb > 0){ breakdown.push({ ad:"Əlavə video (+" + extraFoto + ")", meb:fotoMeb, qrup:"detal" }); cem += fotoMeb; }
 
   /* rakurs */
   var extraRakurs = Math.max(0, state.rakurs - tip.daxilRakurs);
   var rakursMeb = extraRakurs * CFG.rakursQiymeti;
-  if(rakursMeb > 0){ breakdown.push({ ad:"Əlavə rakurs (+" + extraRakurs + ")", meb:rakursMeb, qrup:"detal" }); cem += rakursMeb; }
+  if(rakursMeb > 0){ breakdown.push({ ad:"Əlavə kamera (+" + extraRakurs + ")", meb:rakursMeb, qrup:"detal" }); cem += rakursMeb; }
 
   /* saat */
   var extraSaat = Math.max(0, state.saat - tip.daxilSaat);
@@ -1505,7 +1429,7 @@ function pkHesabla(state, CFG){
   var retus = CFG.retouch.find(function(r){ return r.id === state.retus; });
   if(retus && retus.qiymetPerFoto > 0){
     var retusMeb = retus.qiymetPerFoto * state.foto;
-    breakdown.push({ ad:retus.ad + " (" + state.foto + " foto)", meb:retusMeb, qrup:"retus" });
+    breakdown.push({ ad:retus.ad + " (" + state.foto + " video)", meb:retusMeb, qrup:"retus" });
     cem += retusMeb;
   }
 
@@ -1530,7 +1454,7 @@ function pkHesabla(state, CFG){
   var D = CFG.discounts;
   if(D.uzunCekilis.aktiv && state.saat >= D.uzunCekilis.esasSaat){ endirimFaiz += D.uzunCekilis.faiz; endirimSeb.push(D.uzunCekilis.ad); }
   if(D.coxFoto.aktiv && state.foto >= D.coxFoto.esasFoto){ endirimFaiz += D.coxFoto.faiz; endirimSeb.push(D.coxFoto.ad); }
-  if(D.combo.aktiv && state.xidmetler.indexOf("reels") !== -1 && state.foto > 0){ endirimFaiz += D.combo.faiz; endirimSeb.push(D.combo.ad); }
+  if(D.combo.aktiv && state.xidmetler.indexOf("foto-paket") !== -1 && state.foto > 0){ endirimFaiz += D.combo.faiz; endirimSeb.push(D.combo.ad); }
   if(state.promoAktivKod && D.promo[state.promoAktivKod]){
     endirimFaiz += D.promo[state.promoAktivKod].faiz;
     endirimSeb.push(D.promo[state.promoAktivKod].ad);
@@ -1553,7 +1477,7 @@ function pkHesabla(state, CFG){
 }
 
 /* --- localStorage --- */
-var PK_LS_KEY = "pk_cekilis_kalkulyator_v1";
+var PK_LS_KEY = "pk_cekilis_kalkulyator_v1-video";
 function pkSaxla(state){
   try{
     var kopya = JSON.parse(JSON.stringify(state));
@@ -1581,16 +1505,16 @@ function pkQiymetYaz(meb){
 }
 
 var BOLME_META = {
-  tip:         { ad:"Çəkiliş növü" },
-  foto:        { ad:"Foto sayı" },
-  rakurs:      { ad:"Rakurs sayı" },
+  tip:         { ad:"Video növü" },
+  foto:        { ad:"Hazır video sayı" },
+  rakurs:      { ad:"Kamera / rakurs sayı" },
   saat:        { ad:"Çəkiliş müddəti" },
   say:         { ad:"Say" }, // dinamik ad aşağıda təyin olunur
-  fon:         { ad:"Fon seçimi" },
+  fon:         { ad:"Səs yazısı" },
   mekan:       { ad:"Çəkiliş məkanı" },
   avadanliq:   { ad:"Avadanlıq" },
-  retus:       { ad:"Retuş səviyyəsi" },
-  format:      { ad:"Foto formatları" },
+  retus:       { ad:"Montaj səviyyəsi" },
+  format:      { ad:"Video formatları" },
   catdirilma:  { ad:"Təhvil müddəti" },
   xidmetler:   { ad:"Əlavə xidmətlər" },
   yekun:       { ad:"Yekun paket" }
@@ -1612,12 +1536,12 @@ function pkBolmeSiyahisiUcun(tip){
 function pkBolmeSiyahisi(state){ return pkBolmeSiyahisiUcun(state.tip); }
 
 function pkSliderVahidi(alan){
-  return { foto:"foto", rakurs:"rakurs", saat:"saat", say:"ədəd" }[alan] || "";
+  return { foto:"video", rakurs:"kamera", saat:"saat", say:"ədəd" }[alan] || "";
 }
 function pkSliderMetni(alan, deyer){ return deyer + " " + pkSliderVahidi(alan); }
 function pkSaatNisanHtml(saat){
-  if(saat >= 8) return '<span class="pk-nisan">Tam günlük çəkiliş</span>';
-  if(saat >= 5) return '<span class="pk-nisan">Yarım günlük çəkiliş</span>';
+  if(saat >= 8) return '<span class="pk-nisan">Tam çəkiliş günü</span>';
+  if(saat >= 5) return '<span class="pk-nisan">Yarım çəkiliş günü</span>';
   return "";
 }
 
@@ -1672,10 +1596,10 @@ function pkIcerikTip(state){
 function pkIcerikSlider(alan, state){
   var min,max,step,deyer,basliqQeyd;
   if(alan === 'foto'){ min=PK_CFG.fotoMin; max=PK_CFG.fotoMaks; step=PK_CFG.fotoAddimi; deyer=state.foto;
-    basliqQeyd = 'Təhvil veriləcək retuşlu foto sayı'; }
+    basliqQeyd = 'Montaj olunub təhvil veriləcək hazır video sayı'; }
   else if(alan === 'rakurs'){ min=PK_CFG.rakursMin; max=PK_CFG.rakursMaks; step=1; deyer=state.rakurs;
-    basliqQeyd = 'Hər məhsul/səhnə üçün fərqli rakurs sayı ' +
-      '<span class="pk-info" tabindex="0">i<span class="pk-info-tip">Ön, yan, yuxarı, yaxın plan və detal çəkilişləri fərqli rakurs hesab olunur.</span></span>'; }
+    basliqQeyd = 'Eyni anda çəkən kamera/operator sayı ' +
+      '<span class="pk-info" tabindex="0">i<span class="pk-info-tip">Multicam çəkiliş — müsahibə, tədbir və toy üçün 2+ kamera tövsiyə olunur.</span></span>'; }
   else if(alan === 'saat'){ min=PK_CFG.saatMin; max=PK_CFG.saatMaks; step=1; deyer=state.saat;
     basliqQeyd = 'Çəkiliş neçə saat davam edəcək?'; }
   else { min=1; max=PK_CFG.mehsulSayMaks; step=1; deyer=Math.min(state.mehsulSayi, PK_CFG.mehsulSayMaks);
@@ -2077,7 +2001,7 @@ function pkRenderMobilQiymet(hesab){
   function pkTipSec(yeniTip){
     var eskiTip = state.tip;
     state.tip = yeniTip;
-    try{ if(yeniTip){ history.pushState({pkTip:yeniTip}, "", "/paket/" + yeniTip); } }catch(e){}
+    try{ if(yeniTip){ history.pushState({pkTip:yeniTip}, "", "/video-paket/" + yeniTip); } }catch(e){}
     var tipObj = pkTipTap(PK_CFG, yeniTip);
     if(tipObj && yeniTip !== "diger"){
       state.foto = Math.max(PK_CFG.fotoMin, tipObj.daxilFoto || PK_CFG.fotoMin);
@@ -2347,7 +2271,7 @@ function pkRenderMobilQiymet(hesab){
 
   /* ---------- URL-dən paket növü təyini (/paket/<id>) ---------- */
   (function(){
-    var urlMatch = location.pathname.match(/^\/paket\/([a-z0-9-]+)\/?$/i);
+    var urlMatch = location.pathname.match(/^\/video-paket\/([a-z0-9-]+)\/?$/i);
     if(urlMatch && !state.tip){
       var pathTip = urlMatch[1];
       var tipObj = pkTipTap(PK_CFG, pathTip);
@@ -2372,55 +2296,9 @@ function pkRenderMobilQiymet(hesab){
   /* ---------- Başlanğıc ---------- */
   pkStrukturuYenidenQur(state.acigBolme);
   pkYenile();
-  if(state.tip && /^\/paket\//.test(location.pathname)){
+  if(state.tip && /^\/video-paket\//.test(location.pathname)){
     setTimeout(function(){ kok.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
   }
-})();
-
-/* ---------- Kalkulyator tizeri: 3D tilt + parıltı ---------- */
-(function(){
-  var kartlar = [].slice.call(document.querySelectorAll('.kt-kart'));
-  if(!kartlar.length) return;
-  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  kartlar.forEach(function(kart){
-  var parilti = kart.querySelector('.kt-parilti');
-  var LIMIT = 9, MIQYAS = 1.022, PERSPEKTIV = 1200;
-
-  function sifirla(){
-    kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-  }
-  if(!azalt && matchMedia('(hover: hover)').matches){
-    kart.addEventListener('pointermove', function(e){
-      var r = kart.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      var xRot = (py - 0.5) * (LIMIT * 2) * -1;
-      var yRot = (px - 0.5) * (LIMIT * 2);
-      kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
-      if(parilti){ parilti.style.setProperty('--px', (px*100).toFixed(1) + '%'); parilti.style.setProperty('--py', (py*100).toFixed(1) + '%'); }
-    });
-    kart.addEventListener('pointerleave', sifirla);
-  }
-
-  /* rəqəm sayğacı — kart ekrana girəndə bir dəfə */
-  var sayEl = kart.querySelector('[data-kt-say]');
-  if(sayEl && !azalt && 'IntersectionObserver' in window){
-    var hedef = parseInt(sayEl.textContent, 10) || 140, oynadi = false;
-    var io = new IntersectionObserver(function(girisler){
-      girisler.forEach(function(g){
-        if(!g.isIntersecting || oynadi) return;
-        oynadi = true; io.disconnect();
-        var basla = performance.now(), muddet = 900;
-        (function addim(indi){
-          var p = Math.min(1, (indi - basla) / muddet);
-          var yum = 1 - Math.pow(1 - p, 3);
-          sayEl.textContent = Math.round(hedef * yum);
-          if(p < 1) requestAnimationFrame(addim);
-        })(basla);
-      });
-    }, {threshold:.4});
-    io.observe(kart);
-  }
-  });
 })();
 
 </script>

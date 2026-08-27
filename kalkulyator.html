@@ -719,6 +719,16 @@ footer{
 .klk-geri span{transition:transform .3s var(--yum);display:inline-block}
 .klk-geri:hover span{transform:translateX(-4px)}
 </style>
+<style>
+.klk-secim{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
+.klk-secim a{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  text-decoration:none;color:var(--sus);border:1px solid var(--xett);border-radius:999px;
+  padding:9px 16px;transition:color .3s var(--yum),border-color .3s var(--yum),background .3s var(--yum)
+}
+.klk-secim a:hover{color:var(--murekkeb);border-color:var(--murekkeb)}
+.klk-secim a.aktiv{background:var(--murekkeb);border-color:var(--murekkeb);color:var(--kagiz)}
+</style>
 </head>
 <body>
 
@@ -870,6 +880,8 @@ footer{
   <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:56ch;font-size:14.5px">
     Aşağıdakı sualları bir-bir seç — hər bölmə cavab veriləndə özü bağlanır, növbəti sual açılır. Qiymət sağda (mobil versiyada aşağıda) canlı hesablanır.
   </p>
+
+  <div class="klk-secim"><a href="/kalkulyator" class="aktiv">Foto çəkilişi</a><a href="/video-kalkulyator">Video çəkilişi</a></div>
 
   <div class="pk-lay" data-ac data-gec="2">
     <div class="pk-sutun">

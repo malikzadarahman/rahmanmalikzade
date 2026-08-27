@@ -1,6 +1,7 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/paket/:id", "destination": "/kalkulyator.html" }
+    { "source": "/paket/:id", "destination": "/kalkulyator.html" },
+    { "source": "/video-paket/:id", "destination": "/video-kalkulyator.html" }
   ]
 }
