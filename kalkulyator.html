@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- ============ SEO: ƏSAS META ============ -->
-<title>Rəhman Məlikzadə — Videoqraf &amp; Filmmaker | Bakı | Reklam, brend və kinematik video</title>
+<title>Paketini özün qur — Rəhman Məlikzadə | Çəkiliş qiymət kalkulyatoru</title>
 <meta name="description" content="Bakıda videoqraf və filmmaker Rəhman Məlikzadə. Storytelling əsaslı video çəkiliş: reklam, brend filmi, food &amp; drinks, love story və şəhər filmləri. Portfolio, paketlər və qiymət üçün əlaqə saxlayın.">
 <meta name="author" content="Rahman Malikzadə">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://rahmanmalikzade.com/">
+<link rel="canonical" href="https://rahmanmalikzade.com/kalkulyator">
 <meta name="theme-color" content="#fbfaf8">
 
 <!-- ============ SEO: SOSİAL PAYLAŞIM ============ -->
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Rahman Malikzadə">
 <meta property="og:title" content="Rəhman Məlikzadə — Videoqraf &amp; Filmmaker, Bakı">
 <meta property="og:description" content="Storytelling əsaslı reklam, brend filmi, food &amp; drinks və love story çəkilişləri. Bakı və bütün Azərbaycan.">
-<meta property="og:url" content="https://rahmanmalikzade.com/">
+<meta property="og:url" content="https://rahmanmalikzade.com/kalkulyator">
 <meta property="og:image" content="https://rahmanmalikzade.com/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -444,56 +444,6 @@ footer{
    palitra əlavə etmir. Vurğu rəngi: sayt boyu artıq tanış olan
    REC qırmızısı (var(--rec)).
    ============================================================ */
-
-/* ================= KALKULYATOR TİZERİ ================= */
-.kt-kart{
-  display:block;position:relative;overflow:hidden;text-decoration:none;color:inherit;
-  margin-top:clamp(36px,6vh,64px);max-width:560px;border:1px solid var(--xett);border-radius:22px;
-  background:var(--murekkeb);color:var(--kagiz);
-  padding:clamp(24px,3.4vw,38px);
-  transform:perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1);
-  transition:transform .25s var(--yum),border-color .4s var(--yum),box-shadow .4s var(--yum);
-  will-change:transform;transform-style:preserve-3d;
-  box-shadow:0 18px 50px -30px rgba(11,11,12,.55)
-}
-.kt-kart:hover{box-shadow:0 34px 80px -34px rgba(11,11,12,.75)}
-.kt-parilti{
-  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
-  transition:opacity .35s var(--yum);overflow:hidden;border-radius:inherit
-}
-.kt-kart:hover .kt-parilti{opacity:1}
-.kt-parilti::after{
-  content:"";position:absolute;width:200%;height:200%;border-radius:50%;
-  left:var(--px,50%);top:var(--py,50%);transform:translate(-50%,-50%);
-  background:radial-gradient(circle,rgba(217,58,30,.34) 0%,rgba(251,250,248,.08) 26%,transparent 46%)
-}
-.kt-ic{position:relative;z-index:2;display:block}
-.kt-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
-.kt-nisan{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
-  background:var(--kagiz);color:var(--murekkeb);padding:5px 11px;border-radius:999px
-}
-.kt-saniye{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(251,250,248,.5);text-transform:uppercase}
-.kt-orta{display:block;margin-top:clamp(46px,7vw,76px)}
-.kt-reqem{display:flex;align-items:baseline;gap:9px}
-.kt-reqem b{font-family:var(--dsp);font-weight:400;font-size:clamp(42px,6.4vw,68px);line-height:1;letter-spacing:-.015em}
-.kt-reqem i{font-family:var(--dsp);font-style:normal;font-size:clamp(19px,2.6vw,26px);color:var(--rec)}
-.kt-etiket{display:block;margin-top:10px;font-size:13.5px;color:rgba(251,250,248,.62)}
-.kt-alt{
-  display:flex;align-items:center;justify-content:space-between;gap:14px;
-  margin-top:clamp(28px,4vw,40px);padding-top:20px;border-top:1px solid var(--xett-ag)
-}
-.kt-cta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
-.kt-ox{font-size:19px;transition:transform .4s var(--yum);display:inline-block}
-.kt-kart:hover .kt-ox{transform:translateX(7px)}
-@media (max-width:640px){
-  .kt-kart{max-width:none}
-  .kt-orta{margin-top:40px}
-}
-@media (prefers-reduced-motion:reduce){
-  .kt-kart{transition:none !important}
-  .kt-parilti{display:none}
-}
 #kalkulyator{ --pk-vurgu: var(--rec); }
 #kalkulyator #k-bas{font-size:clamp(22px,3.2vw,38px)}
 
@@ -756,6 +706,19 @@ footer{
 }
 
 </style>
+<style>
+/* --- yalnız kalkulyator səhifəsi --- */
+.hero,.reel,#xidmetler,#isler,#paketler,#faq{display:none !important}
+#kalkulyator{padding-top:clamp(104px,16vh,180px)}
+.klk-geri{
+  display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--sus);text-decoration:none;
+  transition:color .3s var(--yum)
+}
+.klk-geri:hover{color:var(--murekkeb)}
+.klk-geri span{transition:transform .3s var(--yum);display:inline-block}
+.klk-geri:hover span{transform:translateX(-4px)}
+</style>
 </head>
 <body>
 
@@ -763,13 +726,12 @@ footer{
 <div class="xett-ust" id="xett-ust" aria-hidden="true"></div>
 
 <nav class="nav" id="nav">
-  <a href="#bas" class="nav-ad">Rəhman Məlikzadə</a>
+  <a href="/" class="nav-ad">Rəhman Məlikzadə</a>
   <div class="nav-links">
-    <a href="#xidmetler">Xidmətlər</a>
-    <a href="#isler">İşlər</a>
-    <a href="#paketler">Paketlər</a>
-    <a href="/kalkulyator">Kalkulyator</a>
-    <a href="#elaqe">Əlaqə</a>
+    <a href="/#xidmetler">Xidmətlər</a>
+    <a href="/#isler">İşlər</a>
+    <a href="/#paketler">Paketlər</a>
+    <a href="/#elaqe">Əlaqə</a>
   </div>
   <span class="rec-ust kicik" aria-label="Yazılır"><i aria-hidden="true"></i> Rec</span>
 </nav>
@@ -900,33 +862,32 @@ footer{
 <div class="perf" aria-hidden="true"></div>
 
 <!-- ================= FAQ ================= -->
-<!-- ================= KALKULYATOR TİZERİ ================= -->
-<section class="blok" id="kalkulyator-tizer" aria-labelledby="kt-bas">
-  <div class="kicik">Kalkulyator</div>
-  <h2 id="kt-bas" data-ac style="margin-top:16px;font-size:clamp(26px,4vw,52px)">Paketini özün qur</h2>
-  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:52ch;font-size:14.5px">
-    Çəkiliş növünü seç, detalları öz ehtiyacına uyğunlaşdır — qiymət canlı olaraq gözünün qarşısında formalaşsın.
+<!-- ================= KALKULYATOR ================= -->
+<section class="blok" id="kalkulyator" aria-labelledby="k-bas">
+  <a class="klk-geri" href="/"><span>&larr;</span> Ana səhifə</a>
+  <div class="kicik" style="margin-top:26px">Kalkulyator</div>
+  <h2 id="k-bas" data-ac style="margin-top:16px">Paketini özün qur</h2>
+  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:56ch;font-size:14.5px">
+    Aşağıdakı sualları bir-bir seç — hər bölmə cavab veriləndə özü bağlanır, növbəti sual açılır. Qiymət sağda (mobil versiyada aşağıda) canlı hesablanır.
   </p>
 
-  <a class="kt-kart" href="/kalkulyator" data-ac data-gec="2" aria-label="Kalkulyatoru aç — paketini özün qur">
-    <span class="kt-parilti" aria-hidden="true"></span>
-    <span class="kt-ic">
-      <span class="kt-ust">
-        <span class="kt-nisan">Interaktiv</span>
-        <span class="kt-saniye">~60 saniyə</span>
-      </span>
-      <span class="kt-orta">
-        <span class="kt-reqem" aria-hidden="true">
-          <b data-kt-say>140</b><i>AZN</i>
-        </span>
-        <span class="kt-etiket">-dən başlayan paketlər</span>
-      </span>
-      <span class="kt-alt">
-        <span class="kt-cta">Kalkulyatoru aç</span>
-        <span class="kt-ox" aria-hidden="true">&rarr;</span>
-      </span>
-    </span>
-  </a>
+  <div class="pk-lay" data-ac data-gec="2">
+    <div class="pk-sutun">
+      <div id="pk-akkordeon"></div>
+    </div>
+    <aside class="pk-yan" aria-label="Təxmini qiymət">
+      <div class="pk-panel" id="pk-panel-daxil"></div>
+    </aside>
+  </div>
+
+  <div class="pk-mobil-panel" id="pk-mobil-panel">
+    <div class="pk-mobil-tutac" id="pk-mobil-tutac">
+      <span class="pk-cubuq" aria-hidden="true"></span>
+      <div class="pk-mobil-qiymet" id="pk-mobil-qiymet">— <span>AZN</span></div>
+      <span class="pk-mobil-ox" aria-hidden="true">↑</span>
+    </div>
+    <div class="pk-mobil-icerik" id="pk-mobil-icerik"></div>
+  </div>
 </section>
 
 <div class="perf" aria-hidden="true"></div>
@@ -2326,50 +2287,6 @@ function pkRenderMobilQiymet(hesab){
   pkYenile();
   if(state.tip && /^\/paket\//.test(location.pathname)){
     setTimeout(function(){ kok.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
-  }
-})();
-
-/* ---------- Kalkulyator tizeri: 3D tilt + parıltı ---------- */
-(function(){
-  var kart = document.querySelector('.kt-kart');
-  if(!kart) return;
-  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var parilti = kart.querySelector('.kt-parilti');
-  var LIMIT = 9, MIQYAS = 1.022, PERSPEKTIV = 1200;
-
-  function sifirla(){
-    kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
-  }
-  if(!azalt && matchMedia('(hover: hover)').matches){
-    kart.addEventListener('pointermove', function(e){
-      var r = kart.getBoundingClientRect();
-      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
-      var xRot = (py - 0.5) * (LIMIT * 2) * -1;
-      var yRot = (px - 0.5) * (LIMIT * 2);
-      kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
-      if(parilti){ parilti.style.setProperty('--px', (px*100).toFixed(1) + '%'); parilti.style.setProperty('--py', (py*100).toFixed(1) + '%'); }
-    });
-    kart.addEventListener('pointerleave', sifirla);
-  }
-
-  /* rəqəm sayğacı — kart ekrana girəndə bir dəfə */
-  var sayEl = kart.querySelector('[data-kt-say]');
-  if(sayEl && !azalt && 'IntersectionObserver' in window){
-    var hedef = parseInt(sayEl.textContent, 10) || 140, oynadi = false;
-    var io = new IntersectionObserver(function(girisler){
-      girisler.forEach(function(g){
-        if(!g.isIntersecting || oynadi) return;
-        oynadi = true; io.disconnect();
-        var basla = performance.now(), muddet = 900;
-        (function addim(indi){
-          var p = Math.min(1, (indi - basla) / muddet);
-          var yum = 1 - Math.pow(1 - p, 3);
-          sayEl.textContent = Math.round(hedef * yum);
-          if(p < 1) requestAnimationFrame(addim);
-        })(basla);
-      });
-    }, {threshold:.4});
-    io.observe(kart);
   }
 })();
 
