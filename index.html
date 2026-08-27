@@ -487,6 +487,31 @@ footer{
 }
 .lnt-kart img{width:100%;height:100%;object-fit:cover;display:block}
 .lnt-kart.pas img{filter:grayscale(1) brightness(.62) blur(1.5px)}
+.lnt-kart.yan{cursor:pointer;pointer-events:auto}
+.lnt-kart.yan img{transition:filter .6s var(--yum),transform .8s var(--yum)}
+.lnt-kart.yan:hover img,.lnt-kart.yan:focus-visible img{
+  filter:grayscale(.15) brightness(.95) blur(0);transform:scale(1.05)
+}
+.lnt-kart.yan:focus-visible{outline:2px solid var(--kagiz);outline-offset:4px}
+.lnt-yan-isare{
+  position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .45s var(--yum);pointer-events:none
+}
+.lnt-kart.yan:hover .lnt-yan-isare,.lnt-kart.yan:focus-visible .lnt-yan-isare{opacity:1}
+.lnt-yan-isare span{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(251,250,248,.94);color:var(--murekkeb);
+  padding:10px 17px;border-radius:999px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+  transform:scale(.86);transition:transform .45s var(--yum);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.7)
+}
+.lnt-kart.yan:hover .lnt-yan-isare span,.lnt-kart.yan:focus-visible .lnt-yan-isare span{transform:scale(1)}
+.lnt-yan-isare svg{width:12px;height:12px;fill:currentColor;stroke:none}
+.lnt-kart:not(.yan){pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .lnt-kart.yan img,.lnt-yan-isare,.lnt-yan-isare span{transition:none !important}
+}
 .lnt-mtn{
   position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,3vw,30px);padding-top:100px;
   background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.35) 46%,transparent);
@@ -2450,11 +2475,7 @@ function pkRenderMobilQiymet(hesab){
     var b = document.createElement('button');
     b.type = 'button'; b.className = 'lnt-cip'; b.setAttribute('role','tab');
     b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">' + IKON[o.ikon] + '</svg><span>' + o.ad + '</span>';
-    b.addEventListener('click', function(){
-      var ferq = (i - cari() + N) % N;
-      if(ferq > 0) addim += ferq; else addim += N;
-      ciz();
-    });
+    b.addEventListener('click', function(){ kecid(i); });
     b.addEventListener('mouseenter', function(){ dayandi = true; });
     b.addEventListener('mouseleave', function(){ dayandi = false; });
     cipQab.appendChild(b);
@@ -2464,7 +2485,14 @@ function pkRenderMobilQiymet(hesab){
     k.innerHTML =
       '<span class="lnt-canli"><i></i><span>Lent</span></span>' +
       '<img src="' + o.sekil + '" alt="' + o.ad.replace(/&amp;/g,'&') + ' — Rəhman Məlikzadə" loading="lazy" decoding="async">' +
+      '<span class="lnt-yan-isare"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg>' + o.ad + '</span></span>' +
       '<span class="lnt-mtn"><span class="lnt-rozet">' + String(i+1).padStart(2,'0') + ' &bull; ' + o.ad + '</span><p>' + o.metn + '</p></span>';
+    k.addEventListener('click', function(){ if(k.classList.contains('yan')) kecid(i); });
+    k.addEventListener('keydown', function(e){
+      if((e.key === 'Enter' || e.key === ' ') && k.classList.contains('yan')){ e.preventDefault(); kecid(i); }
+    });
+    k.addEventListener('mouseenter', function(){ dayandi = true; });
+    k.addEventListener('mouseleave', function(){ dayandi = false; });
     sehne.appendChild(k);
   });
 
@@ -2472,6 +2500,12 @@ function pkRenderMobilQiymet(hesab){
   var kartlar = [].slice.call(sehne.children);
 
   function cari(){ return ((addim % N) + N) % N; }
+  function kecid(hedef){
+    var d = sar(hedef - cari());
+    if(d === 0) return;
+    addim += d;
+    ciz();
+  }
   function sar(v){ var yari = N/2; var d = v; if(d > yari) d -= N; if(d < -yari) d += N; return d; }
 
   function ciz(){
@@ -2495,6 +2529,15 @@ function pkRenderMobilQiymet(hesab){
       el.style.zIndex = d === 0 ? 20 : (Math.abs(d) === 1 ? 10 : 0);
       el.classList.toggle('aktiv', d === 0);
       el.classList.toggle('pas', d !== 0);
+      var yanMi = Math.abs(d) === 1;
+      el.classList.toggle('yan', yanMi);
+      if(yanMi){
+        el.setAttribute('role','button');
+        el.setAttribute('tabindex','0');
+        el.setAttribute('aria-label', ISLER[i].ad.replace(/&amp;/g,'&') + ' işinə keç');
+      } else {
+        el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label');
+      }
     });
   }
 
