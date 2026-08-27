@@ -210,6 +210,77 @@ p{max-width:46ch}
 .nav-links a:hover,.nav-links a.aktiv{color:var(--murekkeb)}
 .xett-ust{position:fixed;top:0;left:0;height:2px;background:var(--murekkeb);width:0;z-index:9500}
 
+
+
+/* açılış səhnəsi görünəndə naviqasiya işıqlı olsun */
+body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
+body.acilis-var .nav-ad{color:var(--kagiz)}
+body.acilis-var .nav-links a{color:rgba(251,250,248,.5)}
+body.acilis-var .nav-links a:hover,body.acilis-var .nav-links a.aktiv{color:var(--kagiz)}
+body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
+body.acilis-var .xett-ust{background:var(--kagiz)}
+/* ================= AÇILIŞ: KAMERA + FLAŞ ================= */
+.acilis{position:relative;height:210vh;background:var(--murekkeb)}
+.acilis-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
+.acilis-sehne{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(30px,5vh,58px);
+  background:var(--murekkeb);will-change:opacity
+}
+.acilis-rec{
+  position:absolute;top:clamp(84px,11vh,120px);left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(251,250,248,.42)
+}
+.acilis-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:acNebz 1.9s infinite}
+@keyframes acNebz{0%,100%{opacity:1}50%{opacity:.25}}
+
+.kam{position:relative;width:min(58vw,420px);will-change:transform}
+.kam svg{width:100%;height:auto;display:block;overflow:visible}
+.kam-c,.kam-lens,.kam-iris{
+  stroke:var(--kagiz);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none;
+  vector-effect:non-scaling-stroke
+}
+.kam-c,.kam-lens{opacity:.82}
+.kam-iris{opacity:.5;transform-origin:96px 95px;transition:transform .25s var(--yum)}
+.kam-parlaq{
+  position:absolute;left:36.9%;top:55.9%;width:22%;aspect-ratio:1;transform:translate(-50%,-50%) scale(.2);
+  border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.55) 34%,transparent 68%);
+  opacity:0;pointer-events:none;will-change:opacity,transform
+}
+
+.acilis-mtn{display:flex;flex-direction:column;align-items:center;gap:clamp(18px,2.6vh,28px);will-change:opacity}
+.acilis-bas{
+  font-family:var(--dsp);font-weight:400;font-size:clamp(22px,3.4vw,40px);
+  color:var(--kagiz);letter-spacing:-.01em;line-height:1
+}
+.acilis-ipucu{
+  display:flex;flex-direction:column;align-items:center;gap:13px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(251,250,248,.4)
+}
+.acilis-ox{position:relative;display:block;width:1px;height:44px;background:rgba(251,250,248,.16);overflow:hidden}
+.acilis-ox i{
+  position:absolute;left:0;top:0;width:1px;height:14px;background:var(--kagiz);
+  animation:acAxin 1.9s var(--yum) infinite
+}
+@keyframes acAxin{0%{transform:translateY(-16px);opacity:0}22%{opacity:1}80%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+
+.flas{
+  position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9700;
+  will-change:opacity
+}
+body.acilis-bitdi .acilis{display:none}
+@media (max-width:640px){
+  .kam{width:74vw}
+  .acilis{height:190vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .acilis{display:none}
+  .acilis-ox i,.acilis-rec i{animation:none}
+}
+
 /* ============ HERO ============ */
 .hero{
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
@@ -949,6 +1020,46 @@ footer{
   </div>
   <span class="rec-ust kicik" aria-label="Yazılır"><i aria-hidden="true"></i> Rec</span>
 </nav>
+
+<!-- ================= AÇILIŞ: KAMERA + FLAŞ ================= -->
+<div class="acilis" id="acilis" aria-hidden="true">
+  <div class="acilis-yapisqan">
+    <div class="acilis-sehne" id="acilis-sehne">
+
+      <div class="acilis-rec"><i></i>REC</div>
+
+      <div class="kam" id="kam">
+        <svg viewBox="0 0 260 170" fill="none" aria-hidden="true">
+          <!-- gövdə -->
+          <rect class="kam-c" x="30" y="52" width="132" height="86" rx="9"/>
+          <!-- lens gövdəsi -->
+          <path class="kam-c" d="M162 74h26l30-16v72l-30-16h-26z"/>
+          <!-- üst tutacaq -->
+          <path class="kam-c" d="M62 52V40h56v12"/>
+          <!-- makara -->
+          <circle class="kam-c" cx="76" cy="26" r="16"/>
+          <circle class="kam-c" cx="126" cy="26" r="16"/>
+          <!-- lens dairəsi -->
+          <circle class="kam-lens" cx="96" cy="95" r="27"/>
+          <circle class="kam-iris" cx="96" cy="95" r="13"/>
+          <!-- flaş qutusu -->
+          <rect class="kam-c" x="128" y="72" width="24" height="18" rx="3"/>
+        </svg>
+        <span class="kam-parlaq" id="kam-parlaq"></span>
+      </div>
+
+      <div class="acilis-mtn">
+        <div class="acilis-bas">Kadr hazırdır</div>
+        <div class="acilis-ipucu">
+          <span>Aşağı sürüşdür</span>
+          <span class="acilis-ox" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="flas" id="flas" aria-hidden="true"></div>
+</div>
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="bas">
@@ -2660,6 +2771,79 @@ function pkRenderMobilQiymet(hesab){
     }, {threshold:.25});
     io.observe(cipQab);
   } else { basla(); }
+})();
+
+/* ---------- AÇILIŞ: kamera → flaş → ağ səhifə ---------- */
+(function(){
+  var acilis = document.getElementById('acilis');
+  if(!acilis) return;
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(azalt){ acilis.remove(); return; }
+  document.body.classList.add('acilis-var');
+
+  var sehne  = document.getElementById('acilis-sehne');
+  var kam    = document.getElementById('kam');
+  var parlaq = document.getElementById('kam-parlaq');
+  var iris   = acilis.querySelector('.kam-iris');
+  var mtn    = acilis.querySelector('.acilis-mtn');
+  var flas   = document.getElementById('flas');
+  var ESIK = 0.62;
+  var partladi = false, isleyir = false;
+
+  function yenile(){
+    isleyir = false;
+    var h = acilis.offsetHeight - innerHeight;
+    var p = h > 0 ? Math.min(1, Math.max(0, window.scrollY / h)) : 0;
+
+    /* kamera irəli gəlir, mətn solur */
+    var boy = 1 + p * 0.34;
+    kam.style.transform = 'scale(' + boy.toFixed(3) + ')';
+    if(iris) iris.style.transform = 'scale(' + (1 - p * 0.55).toFixed(3) + ')';
+    mtn.style.opacity = Math.max(0, 1 - p * 2.2).toFixed(3);
+
+    /* lensdə işıq toplanır */
+    if(!partladi){
+      var t = Math.max(0, (p - 0.18) / (ESIK - 0.18));
+      parlaq.style.opacity = (t * 0.85).toFixed(3);
+      parlaq.style.transform = 'translate(-50%,-50%) scale(' + (0.2 + t * 1.1).toFixed(3) + ')';
+    }
+
+    if(p >= ESIK && !partladi) partla();
+    if(p < 0.05 && partladi) geriQaytar();
+  }
+
+  function partla(){
+    partladi = true;
+    parlaq.style.transition = 'opacity .12s linear, transform .12s linear';
+    parlaq.style.opacity = '1';
+    parlaq.style.transform = 'translate(-50%,-50%) scale(3.4)';
+    flas.style.transition = 'opacity .09s linear';
+    flas.style.opacity = '1';
+    setTimeout(function(){
+      sehne.style.transition = 'opacity .5s var(--yum)';
+      sehne.style.opacity = '0';
+      flas.style.transition = 'opacity .62s cubic-bezier(.22,.61,.36,1)';
+      flas.style.opacity = '0';
+    }, 110);
+    document.body.classList.remove('acilis-var');
+    setTimeout(function(){ document.body.classList.add('acilis-bitdi'); }, 780);
+  }
+
+  function geriQaytar(){
+    partladi = false;
+    document.body.classList.remove('acilis-bitdi');
+    document.body.classList.add('acilis-var');
+    sehne.style.transition = 'none'; sehne.style.opacity = '1';
+    parlaq.style.transition = 'none';
+    flas.style.transition = 'none'; flas.style.opacity = '0';
+  }
+
+  addEventListener('scroll', function(){
+    if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
+  }, {passive:true});
+  addEventListener('resize', yenile);
+  if(history.scrollRestoration) history.scrollRestoration = 'manual';
+  yenile();
 })();
 
 </script>
