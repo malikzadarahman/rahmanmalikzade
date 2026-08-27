@@ -1424,9 +1424,17 @@ footer{
     xanaBolme.forEach(function(b,i){ if(b && b.offsetTop <= xOrta) xAktiv = i; });
     xanalar.forEach(function(a,i){ a.classList.toggle('aktiv', i === xAktiv); });
 
-    if(!azalt && heroIc && y < innerHeight){
-      heroIc.style.transform = 'translateY('+(y*0.14)+'px)';
-      heroIc.style.opacity = String(Math.max(0, 1 - y/(innerHeight*0.72)));
+    if(!azalt && heroIc){
+      var heroEl = document.getElementById('bas');
+      var heroBas = heroEl ? heroEl.offsetTop : 0;
+      var hy = y - heroBas;                       /* hero-nun öz sürüşməsi */
+      if(hy < 0) hy = 0;
+      if(hy < innerHeight){
+        heroIc.style.transform = 'translateY('+(hy*0.14)+'px)';
+        heroIc.style.opacity = String(Math.max(0, 1 - hy/(innerHeight*0.72)));
+      } else {
+        heroIc.style.opacity = '0';
+      }
     }
 
     if(cerceve && reel){
