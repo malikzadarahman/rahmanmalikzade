@@ -269,7 +269,13 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 }
 @keyframes acAxin{0%{transform:translateY(-16px);opacity:0}22%{opacity:1}80%{opacity:1}100%{transform:translateY(46px);opacity:0}}
 
-.flas{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9700}
+.flas{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9700;display:none}
+.flas.partla{display:block;animation:flasPartla .62s var(--yum) forwards}
+@keyframes flasPartla{
+  0%{opacity:0}
+  11%{opacity:1}
+  100%{opacity:0}
+}
 
 /* hero açılışın altından çıxır */
 .acilis ~ .hero{margin-top:-100svh;position:relative;z-index:1}
@@ -1404,7 +1410,7 @@ footer{
     return '00:'+p(d)+':'+p(sn)+':'+p(k);
   }
 
-  var isleyir = false;
+  var isleyir = false, partladi = false;
   function scrollYenile(){
     var y = window.scrollY;
     var hs = document.documentElement.scrollHeight - innerHeight;
@@ -2822,9 +2828,8 @@ function pkRenderMobilQiymet(hesab){
   var mtn    = document.getElementById('acilis-mtn');
 
   var ESIK = 0.80;      /* flaşın partladığı nöqtə */
-  var PARTLAMA = 0.03;  /* flaşın qalxma zolağı */
-  var SONME    = 0.09;  /* flaşın sönmə zolağı — p=1-ə çatmamış tam sönməlidir */
-  var isleyir = false;
+  var PARTLAMA = 0.03;  /* səhnənin sönmə zolağı */
+  var isleyir = false, partladi = false;
 
   function kilid(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
 
@@ -2853,15 +2858,16 @@ function pkRenderMobilQiymet(hesab){
     parlaq.style.transform = 'translate(-50%,-50%) scale(' + partOlcu.toFixed(3) + ')';
 
     /* ağ flaş */
-    var f = 0;
-    if(p >= ESIK && p < 0.96){
-      var qalx = kilid((p - ESIK) / PARTLAMA);
-      var son  = kilid((p - ESIK - PARTLAMA) / SONME);
-      f = qalx * (1 - son);
-      if(f < 0.004) f = 0;
+    /* ağ flaş — bir dəfə partlayır və özü tam sönür */
+    if(p >= ESIK && !partladi){
+      partladi = true;
+      flas.classList.remove('partla');
+      void flas.offsetWidth;
+      flas.classList.add('partla');
+    } else if(p < ESIK - 0.05 && partladi){
+      partladi = false;
+      flas.classList.remove('partla');
     }
-    flas.style.opacity = f.toFixed(3);
-    flas.style.display = f === 0 ? 'none' : 'block';
 
     /* səhnə flaşın zirvəsində yox olur — altından ağ səhifə çıxır */
     var sehneOp = p < ESIK ? 1 : kilid(1 - (p - ESIK) / (PARTLAMA * 1.15));
