@@ -220,7 +220,7 @@ body.acilis-var .nav-links a:hover,body.acilis-var .nav-links a.aktiv{color:var(
 body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
 body.acilis-var .xett-ust{background:var(--kagiz)}
 /* ================= AÇILIŞ: KAMERA + FLAŞ ================= */
-.acilis{position:relative;z-index:5;height:132vh;background:var(--murekkeb);pointer-events:none}
+.acilis{position:relative;z-index:5;height:146vh;background:var(--murekkeb);pointer-events:none}
 .acilis-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
 .acilis-sehne{
   position:absolute;inset:0;display:flex;flex-direction:column;
@@ -236,16 +236,17 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 .acilis-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:acNebz 1.9s infinite}
 @keyframes acNebz{0%,100%{opacity:1}50%{opacity:.25}}
 
-.kam{position:relative;width:min(60vw,440px);will-change:transform}
+.kam{position:relative;width:min(48vw,330px);will-change:transform}
 .kam svg{width:100%;height:auto;display:block;overflow:visible}
 .kam-c,.kam-lens,.kam-iris{
   stroke:var(--kagiz);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none;
   vector-effect:non-scaling-stroke
 }
 .kam-c,.kam-lens{opacity:.82}
-.kam-iris{opacity:.5;transform-origin:140px 120px}
+.kam-iris{opacity:.5;transform-origin:76px 118px}
+.kam-koruk{stroke:var(--kagiz);stroke-width:1.4;opacity:.42;fill:none;vector-effect:non-scaling-stroke}
 .kam-parlaq{
-  position:absolute;left:50%;top:63.2%;width:30%;aspect-ratio:1;
+  position:absolute;left:25.3%;top:36.9%;width:34%;aspect-ratio:1;
   transform:translate(-50%,-50%) scale(.2);
   border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.6) 32%,transparent 66%);
   opacity:0;pointer-events:none;will-change:opacity,transform
@@ -282,8 +283,8 @@ body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
 body.acilis-var .xett-ust{background:var(--kagiz)}
 
 @media (max-width:640px){
-  .kam{width:78vw}
-  .acilis{height:126vh}
+  .kam{width:64vw}
+  .acilis{height:138vh}
 }
 @media (prefers-reduced-motion:reduce){
   .acilis,.flas{display:none}
@@ -299,11 +300,16 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 .hero-ic{will-change:transform,opacity}
 .hero h1{max-width:15ch}
 .hero h1 .st{display:block;overflow:hidden}
-.hero h1 .st i{display:block;font-style:normal;transform:translateY(102%);animation:qalx 1.15s var(--yum) forwards}
-.hero h1 .st:nth-child(2) i{animation-delay:.08s}
+.hero h1 .st i{display:block;font-style:normal;transform:translateY(102%)}
+body.hero-acildi .hero h1 .st i{animation:qalx 1.05s var(--yum) forwards}
+body.hero-acildi .hero h1 .st:nth-child(2) i{animation-delay:.09s}
 @keyframes qalx{to{transform:translateY(0)}}
-.hero-alt{margin-top:clamp(20px,3vh,34px);opacity:0;animation:ac 1s .5s var(--yum) forwards}
+.hero-alt{margin-top:clamp(20px,3vh,34px);opacity:0;transform:translateY(20px)}
+body.hero-acildi .hero-alt{animation:qalxSol .95s .34s var(--yum) forwards}
 @keyframes ac{to{opacity:1}}
+@keyframes qalxSol{to{opacity:1;transform:none}}
+.hero .kicik{opacity:0;transform:translateY(14px)}
+body.hero-acildi .hero .kicik{animation:qalxSol .8s .06s var(--yum) forwards}
 .hero-alt p{font-size:clamp(15px,1.4vw,18px);color:var(--sus);max-width:38ch}
 .dugmeler{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
 .dgm{
@@ -318,8 +324,9 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 .hero-etek{
   position:absolute;left:var(--kenar);right:var(--kenar);bottom:clamp(18px,4vh,34px);
   display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
-  opacity:0;animation:ac 1s .8s var(--yum) forwards;
+  opacity:0;transform:translateY(16px);
 }
+body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
 .rec{display:flex;align-items:center;gap:7px}
 .rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);animation:nabz 2s infinite}
 @keyframes nabz{0%,42%{opacity:1}52%,100%{opacity:.18}}
@@ -1039,24 +1046,37 @@ footer{
       <div class="acilis-rec"><i></i>REC</div>
 
       <div class="kam" id="kam">
-        <svg viewBox="0 0 280 190" fill="none" aria-hidden="true">
-          <!-- flaş başlığı -->
-          <path class="kam-c" d="M116 44h48v18h-48z"/>
-          <path class="kam-c" d="M128 44V32h24v12"/>
-          <!-- görücü qabarıq -->
-          <path class="kam-c" d="M104 62h72l6 16h-84z"/>
-          <!-- gövdə -->
-          <rect class="kam-c" x="34" y="78" width="212" height="84" rx="14"/>
-          <!-- sağ tutacaq -->
-          <path class="kam-c" d="M212 78v84"/>
-          <!-- deklanşör -->
-          <rect class="kam-c" x="52" y="68" width="26" height="12" rx="5"/>
-          <!-- lens -->
-          <circle class="kam-lens" cx="140" cy="120" r="40"/>
-          <circle class="kam-lens" cx="140" cy="120" r="29" style="opacity:.45"/>
-          <circle class="kam-iris" cx="140" cy="120" r="16"/>
-          <!-- kiçik göstərici -->
-          <circle class="kam-c" cx="62" cy="103" r="4"/>
+        <svg viewBox="0 0 300 320" fill="none" aria-hidden="true">
+          <!-- görücü qutusu -->
+          <rect class="kam-c" x="206" y="44" width="28" height="16" rx="2"/>
+          <!-- arxa dayaq (film lövhəsi) -->
+          <rect class="kam-c" x="204" y="60" width="16" height="112" rx="2"/>
+          <!-- ön dayaq (lens lövhəsi) -->
+          <rect class="kam-c" x="84" y="70" width="14" height="102" rx="2"/>
+          <circle class="kam-c" cx="91" cy="62" r="4"/>
+          <!-- körük -->
+          <path class="kam-c" d="M98 76L204 68"/>
+          <path class="kam-c" d="M98 158L204 166"/>
+          <path class="kam-koruk" d="M110 75.1V158.9"/>
+          <path class="kam-koruk" d="M122 74.2V159.8"/>
+          <path class="kam-koruk" d="M134 73.3V160.7"/>
+          <path class="kam-koruk" d="M146 72.4V161.6"/>
+          <path class="kam-koruk" d="M158 71.5V162.5"/>
+          <path class="kam-koruk" d="M170 70.6V163.4"/>
+          <path class="kam-koruk" d="M182 69.7V164.3"/>
+          <path class="kam-koruk" d="M194 68.8V165.2"/>
+          <!-- obyektiv -->
+          <circle class="kam-lens" cx="76" cy="118" r="22"/>
+          <circle class="kam-lens" cx="76" cy="118" r="15" style="opacity:.45"/>
+          <circle class="kam-iris" cx="76" cy="118" r="8"/>
+          <!-- baza relsi -->
+          <rect class="kam-c" x="72" y="172" width="160" height="11" rx="3"/>
+          <!-- tripod -->
+          <rect class="kam-c" x="132" y="183" width="36" height="8" rx="2"/>
+          <path class="kam-c" d="M150 191L58 308"/>
+          <path class="kam-c" d="M150 191L242 308"/>
+          <path class="kam-c" d="M158 191L168 296"/>
+          <path class="kam-c" d="M100 252H200"/>
         </svg>
         <span class="kam-parlaq" id="kam-parlaq"></span>
       </div>
@@ -2792,7 +2812,7 @@ function pkRenderMobilQiymet(hesab){
   var flas   = document.getElementById('flas');
   if(!acilis || !flas) return;
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){
-    acilis.remove(); flas.remove(); return;
+    acilis.remove(); flas.remove(); document.body.classList.add('hero-acildi'); return;
   }
 
   var sehne  = document.getElementById('acilis-sehne');
@@ -2801,7 +2821,7 @@ function pkRenderMobilQiymet(hesab){
   var iris   = acilis.querySelector('.kam-iris');
   var mtn    = document.getElementById('acilis-mtn');
 
-  var ESIK = 0.70;      /* flaşın partladığı nöqtə */
+  var ESIK = 0.84;      /* flaşın partladığı nöqtə */
   var PARTLAMA = 0.035; /* flaşın qalxma zolağı */
   var SONME    = 0.20;  /* flaşın sönmə zolağı */
   var isleyir = false;
@@ -2847,6 +2867,7 @@ function pkRenderMobilQiymet(hesab){
     acilis.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
 
     document.body.classList.toggle('acilis-var', p < ESIK);
+    document.body.classList.toggle('hero-acildi', p >= ESIK - 0.02);
   }
 
   addEventListener('scroll', function(){
