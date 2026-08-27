@@ -1976,6 +1976,7 @@ function pkRenderMobilQiymet(hesab){
   function pkTipSec(yeniTip){
     var eskiTip = state.tip;
     state.tip = yeniTip;
+    try{ if(yeniTip){ history.pushState({pkTip:yeniTip}, "", "/paket/" + yeniTip); } }catch(e){}
     var tipObj = pkTipTap(PK_CFG, yeniTip);
     if(tipObj && yeniTip !== "diger"){
       state.foto = Math.max(PK_CFG.fotoMin, tipObj.daxilFoto || PK_CFG.fotoMin);
@@ -2243,9 +2244,36 @@ function pkRenderMobilQiymet(hesab){
   document.addEventListener("visibilitychange", function(){ if(document.hidden) pkTerkIzle(); });
   window.addEventListener("pagehide", pkTerkIzle);
 
+  /* ---------- URL-dən paket növü təyini (/paket/<id>) ---------- */
+  (function(){
+    var urlMatch = location.pathname.match(/^\/paket\/([a-z0-9-]+)\/?$/i);
+    if(urlMatch && !state.tip){
+      var pathTip = urlMatch[1];
+      var tipObj = pkTipTap(PK_CFG, pathTip);
+      if(tipObj){
+        state.tip = pathTip;
+        if(pathTip !== "diger"){
+          state.foto = Math.max(PK_CFG.fotoMin, tipObj.daxilFoto || PK_CFG.fotoMin);
+          state.rakurs = Math.max(PK_CFG.rakursMin, tipObj.daxilRakurs || PK_CFG.rakursMin);
+          state.saat = Math.max(PK_CFG.saatMin, tipObj.daxilSaat || PK_CFG.saatMin);
+          state.mehsulSayi = Math.max(1, tipObj.daxilMehsul || 1);
+        }
+        state.tamamlanmisBolmeler = ["tip"];
+        state.acigBolme = pathTip === "diger" ? "tip" : "foto";
+        kalkulyatorBasladiMi = true;
+      }
+    }
+  })();
+
+  /* ---------- Geri/irəli (brauzer düymələri) ---------- */
+  window.addEventListener("popstate", function(){ location.reload(); });
+
   /* ---------- Başlanğıc ---------- */
   pkStrukturuYenidenQur(state.acigBolme);
   pkYenile();
+  if(state.tip && /^\/paket\//.test(location.pathname)){
+    setTimeout(function(){ kok.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
+  }
 })();
 
 </script>

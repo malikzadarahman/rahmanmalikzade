@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/paket/:id", "destination": "/index.html" }
+  ]
+}
