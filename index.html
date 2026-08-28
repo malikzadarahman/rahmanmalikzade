@@ -542,54 +542,38 @@ footer{
 
 
 /* ================= KADR ARXASI (parallaks) ================= */
-.karx{height:250vh;position:relative;background:var(--kagiz)}
+.karx{height:250vh;position:relative;background:var(--kagiz);overflow:hidden}
 .karx-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
 .karx-sehne{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
-.karx-qat{position:absolute;inset:-18% -6%;will-change:transform;pointer-events:none}
+.karx-qat{position:absolute;inset:-22% -10%;will-change:transform;pointer-events:none}
 
-.kgz{
-  position:absolute;background:#fff;border:1px solid rgba(11,11,12,.09);
-  padding:11px 14px;border-radius:2px;
-  font-family:var(--mono);letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(11,11,12,.42);white-space:nowrap;
-  box-shadow:0 14px 34px -22px rgba(11,11,12,.5);
-  display:flex;flex-direction:column;gap:7px
-}
-.kgz b{font-weight:400;font-size:10px;line-height:1}
-.kgz i{display:block;height:1px;background:rgba(11,11,12,.09);font-style:normal}
-.kgz i:nth-child(3){width:72%}
-.kgz i:nth-child(4){width:54%}
-.karx-qat[data-qat="1"] .kgz{opacity:.42;transform-origin:center;filter:blur(.4px)}
-.karx-qat[data-qat="2"] .kgz{opacity:.72}
-.karx-qat[data-qat="3"] .kgz{opacity:.95;box-shadow:0 22px 46px -24px rgba(11,11,12,.55)}
+.qzt{position:absolute;display:block;height:auto;transform-origin:center;user-select:none}
+.karx-qat[data-qat="1"] .qzt{opacity:.34;filter:grayscale(1) blur(1.6px) contrast(.9)}
+.karx-qat[data-qat="2"] .qzt{opacity:.62;filter:grayscale(1) blur(.5px)}
+.karx-qat[data-qat="3"] .qzt{opacity:.92;filter:grayscale(1)}
 
 .karx-foto{
-  position:relative;z-index:2;height:88%;display:flex;align-items:flex-end;
+  position:relative;z-index:2;height:92%;display:flex;align-items:flex-end;
   will-change:transform;pointer-events:none
 }
-.karx-foto img{
-  height:100%;width:auto;object-fit:contain;display:block;
-  mix-blend-mode:multiply;filter:grayscale(1) contrast(1.06)
-}
+.karx-foto img{height:100%;width:auto;object-fit:contain;display:block}
 
 .karx-mtn{
   position:absolute;left:var(--kenar);top:clamp(96px,15vh,170px);z-index:4;
-  max-width:min(42ch,46vw);pointer-events:none
+  max-width:min(40ch,44vw);pointer-events:none
 }
 .karx-bas{
   font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
   font-size:clamp(28px,4.4vw,62px);margin-top:16px
 }
 @media (max-width:820px){
-  .karx{height:210vh}
-  .karx-foto{height:70%}
+  .karx{height:200vh}
+  .karx-foto{height:66%}
   .karx-mtn{max-width:none;right:var(--kenar);top:clamp(84px,12vh,120px)}
-  .kgz b{font-size:9px}
 }
 @media (prefers-reduced-motion:reduce){
   .karx{height:auto;min-height:100svh}
   .karx-yapisqan{position:relative}
-  .karx-qat{display:none}
 }
 
 /* ================= LENT KARUSELİ ================= */
@@ -1185,7 +1169,7 @@ footer{
       <div class="karx-qat" data-qat="2" aria-hidden="true"></div>
 
       <div class="karx-foto" data-qat="foto">
-        <img src="/media/rahman.jpg" alt="Rəhman Məlikzadə — gimbal ilə çəkiliş zamanı" loading="lazy" decoding="async">
+        <img src="/media/rahman.png" alt="Rəhman Məlikzadə — gimbal ilə çəkiliş zamanı" loading="lazy" decoding="async">
       </div>
 
       <div class="karx-qat" data-qat="3" aria-hidden="true"></div>
@@ -2950,56 +2934,53 @@ function pkRenderMobilQiymet(hesab){
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
   yenile();
 })();
-/* ---------- KADR ARXASI: uçuşan kağızlar (parallaks) ---------- */
+/* ---------- KADR ARXASI: uçuşan qəzetlər (parallaks) ---------- */
 (function(){
   var kadr = document.getElementById('karx');
   var sehne = document.getElementById('karx-sehne');
   if(!kadr || !sehne) return;
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var SOZLER = [
-    'Cinematography','Director','Storyboard','Colour Grade','B-Roll','Montage',
-    'Shot List','Depth of Field','Golden Hour','Wide Shot','Close Up','Slow Motion',
-    'Roll Camera','Fade In','Take 04','Scene 12','24 FPS','Rack Focus',
-    'Tracking Shot','Establishing Shot','Handheld','Key Light','Voice Over',
-    'Final Cut','Dailies','Call Sheet','Location Scout','Frame Rate','Cutaway','Match Cut'
-  ];
+  /* q: qat (1 arxa … 3 ön) | x,y: faizlə mövqe | d: fırlanma | w: en (vw) | f: fayl */
+  var QEZETLER = [
+    {q:1,f:'q05',x:9, y:12,d:-14,w:9},  {q:1,f:'q09',x:74,y:8, d:11,w:10},
+    {q:1,f:'q12',x:33,y:6, d:6, w:7},   {q:1,f:'q14',x:57,y:19,d:-9, w:7},
+    {q:1,f:'q10',x:90,y:30,d:-17,w:8},  {q:1,f:'q13',x:3, y:40,d:13, w:7},
+    {q:1,f:'q08',x:46,y:33,d:-5, w:6},  {q:1,f:'q11',x:66,y:47,d:9,  w:7},
 
-  /* qat: 1 = ən arxa, 3 = ən ön | x,y faizlə, d = fırlanma dərəcəsi */
-  var KAGIZLAR = [
-    {q:1,x:6, y:14,d:-9,  s:.86},{q:1,x:78,y:9, d:7,   s:.9},
-    {q:1,x:31,y:5, d:4,   s:.8},{q:1,x:60,y:22,d:-6,  s:.84},
-    {q:1,x:88,y:34,d:-12, s:.78},{q:1,x:2, y:44,d:11,  s:.82},
-    {q:1,x:45,y:38,d:-4,  s:.76},{q:1,x:70,y:52,d:9,   s:.8},
-    {q:2,x:12,y:26,d:-13, s:1},  {q:2,x:82,y:20,d:10,  s:.96},
-    {q:2,x:26,y:52,d:6,   s:.92},{q:2,x:68,y:40,d:-8,  s:1.02},
-    {q:2,x:4, y:66,d:8,   s:.94},{q:2,x:90,y:60,d:-5,  s:.9},
-    {q:2,x:38,y:16,d:12,  s:.88},{q:2,x:56,y:70,d:-10, s:.96},
-    {q:3,x:8, y:76,d:-7,  s:1.14},{q:3,x:84,y:78,d:9,  s:1.1},
-    {q:3,x:30,y:88,d:5,   s:1.06},{q:3,x:64,y:92,d:-11,s:1.12},
-    {q:3,x:48,y:80,d:8,   s:1.02},{q:3,x:96,y:46,d:-6, s:1.04}
+    {q:2,f:'q02',x:13,y:24,d:-13,w:15}, {q:2,f:'q06',x:84,y:18,d:12, w:13},
+    {q:2,f:'q07',x:25,y:56,d:8,  w:14}, {q:2,f:'q04',x:71,y:38,d:-10,w:14},
+    {q:2,f:'q03',x:5, y:70,d:9,  w:15}, {q:2,f:'q05',x:93,y:58,d:-7, w:12},
+
+    {q:3,f:'q01',x:8, y:82,d:-9, w:21}, {q:3,f:'q04',x:88,y:80,d:11, w:19},
+    {q:3,f:'q02',x:28,y:95,d:6,  w:18}, {q:3,f:'q03',x:70,y:97,d:-13,w:20},
+    {q:3,f:'q06',x:97,y:44,d:-8, w:15}
   ];
 
   var qatlar = {};
   [1,2,3].forEach(function(n){ qatlar[n] = sehne.querySelector('[data-qat="'+n+'"]'); });
 
-  KAGIZLAR.forEach(function(k, i){
+  QEZETLER.forEach(function(k){
     var qat = qatlar[k.q];
     if(!qat) return;
-    var el = document.createElement('div');
-    el.className = 'kgz';
-    el.style.left = k.x + '%';
-    el.style.top  = k.y + '%';
-    el.style.transform = 'translate(-50%,-50%) rotate(' + k.d + 'deg) scale(' + k.s + ')';
-    el.innerHTML = '<b>' + SOZLER[i % SOZLER.length] + '</b><i></i><i></i>';
-    qat.appendChild(el);
+    var im = document.createElement('img');
+    im.className = 'qzt';
+    im.src = '/media/qzt/' + k.f + '.png';
+    im.alt = '';
+    im.loading = 'lazy';
+    im.decoding = 'async';
+    im.style.left = k.x + '%';
+    im.style.top  = k.y + '%';
+    im.style.width = k.w + 'vw';
+    im.style.transform = 'translate(-50%,-50%) rotate(' + k.d + 'deg)';
+    qat.appendChild(im);
   });
 
   if(azalt) return;
 
   var foto = sehne.querySelector('.karx-foto');
   var mtn  = sehne.querySelector('.karx-mtn');
-  var SUR = { 1: 16, 2: -10, 3: -34 };   /* vh olaraq yerdəyişmə */
+  var SUR = { 1: 14, 2: -12, 3: -40 };   /* vh olaraq yerdəyişmə */
   var isleyir = false;
 
   function yenile(){
@@ -3014,8 +2995,8 @@ function pkRenderMobilQiymet(hesab){
       var q = qatlar[n];
       if(q) q.style.transform = 'translate3d(0,' + (p * SUR[n] * vh).toFixed(1) + 'px,0)';
     });
-    if(foto) foto.style.transform = 'translate3d(0,' + (p * 5 * vh).toFixed(1) + 'px,0) scale(' + (1 + p * 0.05).toFixed(3) + ')';
-    if(mtn)  mtn.style.transform  = 'translate3d(0,' + (p * -7 * vh).toFixed(1) + 'px,0)';
+    if(foto) foto.style.transform = 'translate3d(0,' + (p * 4 * vh).toFixed(1) + 'px,0) scale(' + (1 + p * 0.045).toFixed(3) + ')';
+    if(mtn)  mtn.style.transform  = 'translate3d(0,' + (p * -6 * vh).toFixed(1) + 'px,0)';
   }
 
   addEventListener('scroll', function(){
@@ -3024,7 +3005,6 @@ function pkRenderMobilQiymet(hesab){
   addEventListener('resize', yenile);
   yenile();
 })();
-
 </script>
 </body>
 </html>
