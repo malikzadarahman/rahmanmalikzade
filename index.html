@@ -542,33 +542,36 @@ footer{
 
 
 /* ================= KADR ARXASI (parallaks) ================= */
-.karx{height:250vh;position:relative;background:var(--kagiz);overflow:hidden}
+.karx{height:300vh;position:relative;background:var(--kagiz)}
 .karx-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
 .karx-sehne{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
-.karx-qat{position:absolute;inset:-22% -10%;will-change:transform;pointer-events:none}
+.karx-qat{position:absolute;inset:-40% -20%;will-change:transform;pointer-events:none}
 
-.qzt{position:absolute;display:block;height:auto;transform-origin:center;user-select:none}
-.karx-qat[data-qat="1"] .qzt{opacity:.34;filter:grayscale(1) blur(1.6px) contrast(.9)}
-.karx-qat[data-qat="2"] .qzt{opacity:.62;filter:grayscale(1) blur(.5px)}
-.karx-qat[data-qat="3"] .qzt{opacity:.92;filter:grayscale(1)}
+.qzt{position:absolute;display:block;height:auto;transform-origin:center;user-select:none;will-change:transform}
+.karx-qat[data-qat="1"]{z-index:1}
+.karx-qat[data-qat="2"]{z-index:3}
+.karx-qat[data-qat="3"]{z-index:5}
+.karx-qat[data-qat="1"] .qzt{opacity:.3;filter:blur(2.4px)}
+.karx-qat[data-qat="2"] .qzt{opacity:.66;filter:blur(.7px)}
+.karx-qat[data-qat="3"] .qzt{opacity:.96;filter:drop-shadow(0 26px 40px rgba(11,11,12,.16))}
 
 .karx-foto{
-  position:relative;z-index:2;height:92%;display:flex;align-items:flex-end;
+  position:relative;z-index:2;height:94%;display:flex;align-items:flex-end;
   will-change:transform;pointer-events:none
 }
 .karx-foto img{height:100%;width:auto;object-fit:contain;display:block}
 
 .karx-mtn{
-  position:absolute;left:var(--kenar);top:clamp(96px,15vh,170px);z-index:4;
-  max-width:min(40ch,44vw);pointer-events:none
+  position:absolute;left:var(--kenar);top:clamp(96px,15vh,170px);z-index:6;
+  max-width:min(40ch,42vw);pointer-events:none;will-change:transform
 }
 .karx-bas{
   font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
   font-size:clamp(28px,4.4vw,62px);margin-top:16px
 }
 @media (max-width:820px){
-  .karx{height:200vh}
-  .karx-foto{height:66%}
+  .karx{height:230vh}
+  .karx-foto{height:64%}
   .karx-mtn{max-width:none;right:var(--kenar);top:clamp(84px,12vh,120px)}
 }
 @media (prefers-reduced-motion:reduce){
@@ -2941,20 +2944,25 @@ function pkRenderMobilQiymet(hesab){
   if(!kadr || !sehne) return;
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* q: qat (1 arxa … 3 ön) | x,y: faizlə mövqe | d: fırlanma | w: en (vw) | f: fayl */
+  /* q: qat (1 ən arxa … 3 ən ön) | x,y: % | d: fırlanma | w: en (vw) */
   var QEZETLER = [
-    {q:1,f:'q05',x:9, y:12,d:-14,w:9},  {q:1,f:'q09',x:74,y:8, d:11,w:10},
-    {q:1,f:'q12',x:33,y:6, d:6, w:7},   {q:1,f:'q14',x:57,y:19,d:-9, w:7},
-    {q:1,f:'q10',x:90,y:30,d:-17,w:8},  {q:1,f:'q13',x:3, y:40,d:13, w:7},
-    {q:1,f:'q08',x:46,y:33,d:-5, w:6},  {q:1,f:'q11',x:66,y:47,d:9,  w:7},
+    /* --- 1: uzaq fon, kiçik və bulanıq --- */
+    {q:1,f:'q08',x:11,y:10,d:-16,w:7},  {q:1,f:'q13',x:31,y:4, d:9, w:5},
+    {q:1,f:'q09',x:62,y:8, d:14, w:6},  {q:1,f:'q11',x:86,y:14,d:-11,w:6},
+    {q:1,f:'q14',x:5, y:34,d:12, w:5},  {q:1,f:'q12',x:44,y:26,d:-7, w:5},
+    {q:1,f:'q15',x:74,y:31,d:17, w:6},  {q:1,f:'q10',x:94,y:42,d:-13,w:7},
+    {q:1,f:'q07',x:20,y:52,d:6,  w:6},  {q:1,f:'q06',x:56,y:47,d:-15,w:6},
+    {q:1,f:'q13',x:82,y:60,d:10, w:5},  {q:1,f:'q09',x:36,y:68,d:-9, w:6},
 
-    {q:2,f:'q02',x:13,y:24,d:-13,w:15}, {q:2,f:'q06',x:84,y:18,d:12, w:13},
-    {q:2,f:'q07',x:25,y:56,d:8,  w:14}, {q:2,f:'q04',x:71,y:38,d:-10,w:14},
-    {q:2,f:'q03',x:5, y:70,d:9,  w:15}, {q:2,f:'q05',x:93,y:58,d:-7, w:12},
+    /* --- 2: orta dərinlik, adlı qəzetlər --- */
+    {q:2,f:'q03',x:15,y:22,d:-12,w:14}, {q:2,f:'q04',x:84,y:24,d:13, w:13},
+    {q:2,f:'q05',x:27,y:62,d:8,  w:14}, {q:2,f:'q01',x:73,y:56,d:-10,w:14},
+    {q:2,f:'q10',x:4, y:78,d:15, w:9},  {q:2,f:'q07',x:96,y:70,d:-8, w:9},
 
-    {q:3,f:'q01',x:8, y:82,d:-9, w:21}, {q:3,f:'q04',x:88,y:80,d:11, w:19},
-    {q:3,f:'q02',x:28,y:95,d:6,  w:18}, {q:3,f:'q03',x:70,y:97,d:-13,w:20},
-    {q:3,f:'q06',x:97,y:44,d:-8, w:15}
+    /* --- 3: ön plan, iri, adamın qarşısından uçur --- */
+    {q:3,f:'q02',x:7, y:88,d:-11,w:24}, {q:3,f:'q01',x:91,y:86,d:12, w:22},
+    {q:3,f:'q05',x:33,y:104,d:7, w:20}, {q:3,f:'q04',x:66,y:108,d:-14,w:21},
+    {q:3,f:'q03',x:99,y:40,d:-9, w:17}, {q:3,f:'q02',x:-2,y:46,d:10, w:16}
   ];
 
   var qatlar = {};
@@ -2966,9 +2974,7 @@ function pkRenderMobilQiymet(hesab){
     var im = document.createElement('img');
     im.className = 'qzt';
     im.src = '/media/qzt/' + k.f + '.png';
-    im.alt = '';
-    im.loading = 'lazy';
-    im.decoding = 'async';
+    im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
     im.style.left = k.x + '%';
     im.style.top  = k.y + '%';
     im.style.width = k.w + 'vw';
@@ -2980,7 +2986,9 @@ function pkRenderMobilQiymet(hesab){
 
   var foto = sehne.querySelector('.karx-foto');
   var mtn  = sehne.querySelector('.karx-mtn');
-  var SUR = { 1: 14, 2: -12, 3: -40 };   /* vh olaraq yerdəyişmə */
+
+  /* qat: [şaquli vh, üfüqi vw, fırlanma dərəcə] */
+  var HRK = { 1:[ 34,  3,  5], 2:[-26, -4, -6], 3:[-78,  6,  9] };
   var isleyir = false;
 
   function yenile(){
@@ -2989,14 +2997,17 @@ function pkRenderMobilQiymet(hesab){
     var uzun = kadr.offsetHeight - innerHeight;
     if(uzun <= 0) return;
     var p = Math.min(1, Math.max(0, -r.top / uzun));
-    var vh = innerHeight / 100;
+    var vh = innerHeight / 100, vw = innerWidth / 100;
 
     [1,2,3].forEach(function(n){
-      var q = qatlar[n];
-      if(q) q.style.transform = 'translate3d(0,' + (p * SUR[n] * vh).toFixed(1) + 'px,0)';
+      var q = qatlar[n], h = HRK[n];
+      if(!q) return;
+      q.style.transform =
+        'translate3d(' + (p*h[1]*vw).toFixed(1) + 'px,' + (p*h[0]*vh).toFixed(1) + 'px,0)' +
+        ' rotate(' + (p*h[2]).toFixed(2) + 'deg)';
     });
-    if(foto) foto.style.transform = 'translate3d(0,' + (p * 4 * vh).toFixed(1) + 'px,0) scale(' + (1 + p * 0.045).toFixed(3) + ')';
-    if(mtn)  mtn.style.transform  = 'translate3d(0,' + (p * -6 * vh).toFixed(1) + 'px,0)';
+    if(foto) foto.style.transform = 'translate3d(0,' + (p * 7 * vh).toFixed(1) + 'px,0) scale(' + (1 + p*0.07).toFixed(3) + ')';
+    if(mtn)  mtn.style.transform  = 'translate3d(0,' + (p * -11 * vh).toFixed(1) + 'px,0)';
   }
 
   addEventListener('scroll', function(){
