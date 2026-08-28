@@ -542,10 +542,10 @@ footer{
 
 
 /* ================= KADR ARXASI (parallaks) ================= */
-.kadr{height:250vh;position:relative;background:var(--kagiz)}
-.kadr-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
-.kadr-sehne{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
-.kadr-qat{position:absolute;inset:-18% -6%;will-change:transform;pointer-events:none}
+.karx{height:250vh;position:relative;background:var(--kagiz)}
+.karx-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
+.karx-sehne{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
+.karx-qat{position:absolute;inset:-18% -6%;will-change:transform;pointer-events:none}
 
 .kgz{
   position:absolute;background:#fff;border:1px solid rgba(11,11,12,.09);
@@ -559,37 +559,37 @@ footer{
 .kgz i{display:block;height:1px;background:rgba(11,11,12,.09);font-style:normal}
 .kgz i:nth-child(3){width:72%}
 .kgz i:nth-child(4){width:54%}
-.kadr-qat[data-qat="1"] .kgz{opacity:.42;transform-origin:center;filter:blur(.4px)}
-.kadr-qat[data-qat="2"] .kgz{opacity:.72}
-.kadr-qat[data-qat="3"] .kgz{opacity:.95;box-shadow:0 22px 46px -24px rgba(11,11,12,.55)}
+.karx-qat[data-qat="1"] .kgz{opacity:.42;transform-origin:center;filter:blur(.4px)}
+.karx-qat[data-qat="2"] .kgz{opacity:.72}
+.karx-qat[data-qat="3"] .kgz{opacity:.95;box-shadow:0 22px 46px -24px rgba(11,11,12,.55)}
 
-.kadr-foto{
+.karx-foto{
   position:relative;z-index:2;height:88%;display:flex;align-items:flex-end;
   will-change:transform;pointer-events:none
 }
-.kadr-foto img{
+.karx-foto img{
   height:100%;width:auto;object-fit:contain;display:block;
   mix-blend-mode:multiply;filter:grayscale(1) contrast(1.06)
 }
 
-.kadr-mtn{
+.karx-mtn{
   position:absolute;left:var(--kenar);top:clamp(96px,15vh,170px);z-index:4;
   max-width:min(42ch,46vw);pointer-events:none
 }
-.kadr-bas{
+.karx-bas{
   font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
   font-size:clamp(28px,4.4vw,62px);margin-top:16px
 }
 @media (max-width:820px){
-  .kadr{height:210vh}
-  .kadr-foto{height:70%}
-  .kadr-mtn{max-width:none;right:var(--kenar);top:clamp(84px,12vh,120px)}
+  .karx{height:210vh}
+  .karx-foto{height:70%}
+  .karx-mtn{max-width:none;right:var(--kenar);top:clamp(84px,12vh,120px)}
   .kgz b{font-size:9px}
 }
 @media (prefers-reduced-motion:reduce){
-  .kadr{height:auto;min-height:100svh}
-  .kadr-yapisqan{position:relative}
-  .kadr-qat{display:none}
+  .karx{height:auto;min-height:100svh}
+  .karx-yapisqan{position:relative}
+  .karx-qat{display:none}
 }
 
 /* ================= LENT KARUSELİ ================= */
@@ -1178,21 +1178,21 @@ footer{
 <div class="perf" aria-hidden="true"></div>
 
 <!-- ================= KADR ARXASI (parallaks) ================= -->
-<section class="kadr" id="kadr" aria-label="Kadr arxası">
-  <div class="kadr-yapisqan">
-    <div class="kadr-sehne" id="kadr-sehne">
-      <div class="kadr-qat" data-qat="1" aria-hidden="true"></div>
-      <div class="kadr-qat" data-qat="2" aria-hidden="true"></div>
+<section class="karx" id="karx" aria-label="Kadr arxası">
+  <div class="karx-yapisqan">
+    <div class="karx-sehne" id="karx-sehne">
+      <div class="karx-qat" data-qat="1" aria-hidden="true"></div>
+      <div class="karx-qat" data-qat="2" aria-hidden="true"></div>
 
-      <div class="kadr-foto" data-qat="foto">
+      <div class="karx-foto" data-qat="foto">
         <img src="/media/rahman.jpg" alt="Rəhman Məlikzadə — gimbal ilə çəkiliş zamanı" loading="lazy" decoding="async">
       </div>
 
-      <div class="kadr-qat" data-qat="3" aria-hidden="true"></div>
+      <div class="karx-qat" data-qat="3" aria-hidden="true"></div>
 
-      <div class="kadr-mtn">
+      <div class="karx-mtn">
         <div class="kicik">Kadr arxası</div>
-        <h2 class="kadr-bas">Kadrın arxasında<br>bir adam var</h2>
+        <h2 class="karx-bas">Kadrın arxasında<br>bir adam var</h2>
       </div>
     </div>
   </div>
@@ -2952,8 +2952,8 @@ function pkRenderMobilQiymet(hesab){
 })();
 /* ---------- KADR ARXASI: uçuşan kağızlar (parallaks) ---------- */
 (function(){
-  var kadr = document.getElementById('kadr');
-  var sehne = document.getElementById('kadr-sehne');
+  var kadr = document.getElementById('karx');
+  var sehne = document.getElementById('karx-sehne');
   if(!kadr || !sehne) return;
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -2997,8 +2997,8 @@ function pkRenderMobilQiymet(hesab){
 
   if(azalt) return;
 
-  var foto = sehne.querySelector('.kadr-foto');
-  var mtn  = sehne.querySelector('.kadr-mtn');
+  var foto = sehne.querySelector('.karx-foto');
+  var mtn  = sehne.querySelector('.karx-mtn');
   var SUR = { 1: 16, 2: -10, 3: -34 };   /* vh olaraq yerdəyişmə */
   var isleyir = false;
 
