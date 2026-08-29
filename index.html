@@ -1464,29 +1464,84 @@ footer{
   .suse{border:1px solid rgba(251,250,248,.22)}
 }
 
-/* ---- Portfolio: kateqoriya həbləri ---- */
+/* ---- Portfolio: şüşə həblər (işıq düşən səth) ---- */
 .lnt-cip{
-  border:0;
-  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
-  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
-  box-shadow:inset 0 1px 1px rgba(251,250,248,.18),inset 0 -1px 1px rgba(11,11,12,.35)
+  border:0;color:rgba(251,250,248,.72);
+  background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03) 42%,rgba(0,0,0,.16));
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.4),
+    inset 0 -1px 1px rgba(0,0,0,.4),
+    inset 0 0 14px rgba(255,255,255,.06),
+    0 6px 18px -8px rgba(0,0,0,.75),
+    0 0 0 .5px rgba(255,255,255,.1),
+    0 0 22px -6px rgba(255,255,255,.12);
+  transition:
+    color .5s var(--yum),
+    box-shadow .5s var(--yum),
+    background .5s var(--yum),
+    transform .75s var(--yum),
+    opacity .75s var(--yum)
 }
+/* kursoru izləyən işıq ləkəsi */
+.lnt-cip::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+  background:radial-gradient(120px circle at var(--mx,50%) var(--my,0%),
+    rgba(255,255,255,.55),rgba(255,255,255,.14) 34%,transparent 62%);
+  opacity:0;transition:opacity .45s var(--yum)
+}
+/* parlaq kənar halqası */
 .lnt-cip::after{
-  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
-  pointer-events:none;
-  background:conic-gradient(from var(--bucaq) at 50% 50%,
-    rgba(251,250,248,.5) 0%, transparent 6% 40%,
-    rgba(251,250,248,.45) 50%, transparent 60% 94%,
-    rgba(251,250,248,.5) 100%);
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;box-sizing:border-box;
+  pointer-events:none;z-index:1;
+  background:linear-gradient(var(--isiq,150deg),
+    rgba(255,255,255,.85) 0%,
+    rgba(255,255,255,.24) 26%,
+    rgba(255,255,255,.06) 52%,
+    rgba(255,255,255,.3) 78%,
+    rgba(255,255,255,.7) 100%);
   -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   mask-composite:exclude;
-  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
+  opacity:.55;transition:opacity .5s var(--yum)
 }
-.lnt-cip:hover::after{--bucaq:-125deg}
-.lnt-cip.aktiv{box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 22px -12px rgba(0,0,0,.7)}
+.lnt-cip > *{position:relative;z-index:2}
+
+.lnt-cip:hover{
+  color:#fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 -1px 1px rgba(0,0,0,.42),
+    inset 0 0 22px rgba(255,255,255,.12),
+    0 10px 26px -10px rgba(0,0,0,.8),
+    0 0 0 .5px rgba(255,255,255,.2),
+    0 0 34px -4px rgba(255,255,255,.26)
+}
+.lnt-cip:hover::before{opacity:1}
+.lnt-cip:hover::after{opacity:1}
+
+/* seçili həb — ağ şüşə */
+.lnt-cip.aktiv{
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(244,243,240,.9));
+  color:var(--murekkeb);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 -1px 2px rgba(0,0,0,.12),
+    0 12px 30px -12px rgba(0,0,0,.7),
+    0 0 38px -8px rgba(255,255,255,.4)
+}
 .lnt-cip.aktiv::after{opacity:0}
+.lnt-cip.aktiv::before{
+  background:radial-gradient(110px circle at var(--mx,50%) var(--my,0%),
+    rgba(255,255,255,.9),rgba(255,255,255,.2) 40%,transparent 66%);
+  mix-blend-mode:overlay
+}
+@supports not (mask-composite: exclude){
+  .lnt-cip::after{display:none}
+  .lnt-cip{border:1px solid rgba(255,255,255,.22)}
+}
 
 /* ---- Portfolio qabı: şüşə panel ---- */
 .lnt{
@@ -3411,7 +3466,22 @@ function pkRenderMobilQiymet(hesab){
     b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">' + IKON[o.ikon] + '</svg><span>' + o.ad + '</span>';
     b.addEventListener('click', function(){ kecid(i); });
     b.addEventListener('mouseenter', function(){ dayandi = true; });
-    b.addEventListener('mouseleave', function(){ dayandi = false; });
+    b.addEventListener('mouseleave', function(){
+      dayandi = false;
+      b.style.setProperty('--mx','50%'); b.style.setProperty('--my','0%');
+      b.style.setProperty('--isiq','150deg');
+    });
+    /* kursorun mövqeyi → şüşənin üstündəki işıq */
+    b.addEventListener('pointermove', function(e){
+      var r = b.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      b.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+      b.style.setProperty('--my', (py*100).toFixed(1) + '%');
+      /* kənar işığı da kursora görə fırlansın */
+      var bucaq = Math.atan2(py - 0.5, px - 0.5) * 180 / Math.PI + 90;
+      b.style.setProperty('--isiq', bucaq.toFixed(1) + 'deg');
+    });
     cipQab.appendChild(b);
 
     var k = document.createElement('div');
