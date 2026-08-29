@@ -521,13 +521,7 @@ details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
 details p{padding:0 0 22px;color:var(--sus);font-size:14.5px;max-width:62ch}
 
 /* ============ ƏLAQƏ ============ */
-.elaqe-mail{
-  font-family:var(--dsp);font-size:clamp(24px,5.4vw,72px);line-height:1.05;display:inline-block;
-  margin-top:22px;border-bottom:1px solid var(--xett-ag);padding-bottom:8px;transition:opacity .4s;word-break:break-word;
-}
 .elaqe-mail:hover{opacity:.65}
-.elaqe-tor{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:clamp(36px,6vh,64px);font-size:13.5px}
-.elaqe-tor b{display:block;font-weight:400;margin-bottom:6px}
 footer{
   background:var(--murekkeb);color:rgba(251,250,248,.42);padding:26px var(--kenar) 34px;
   display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;
@@ -560,6 +554,109 @@ footer{
 
 
 
+
+
+/* ================= FOOTER / ƏLAQƏ ================= */
+#elaqe{padding-bottom:clamp(48px,7vh,80px)}
+.ft-tor{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:clamp(30px,4vw,64px)
+}
+.ft-xana{position:relative;display:flex;flex-direction:column;min-width:0}
+.ft-xana--esas{padding-right:clamp(0px,2vw,32px)}
+.ft-hale{
+  position:absolute;right:-10%;top:-24%;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,58,30,.28),transparent 68%);filter:blur(46px);
+  pointer-events:none
+}
+.ft-bas{
+  font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
+  font-size:clamp(30px,3.6vw,52px);margin-top:16px
+}
+.ft-izah{margin-top:16px;font-size:13.5px;line-height:1.66;color:rgba(251,250,248,.56);max-width:38ch}
+
+.ft-form{position:relative;margin-top:26px;max-width:440px}
+.ft-form input{
+  width:100%;height:48px;padding:0 56px 0 18px;border-radius:999px;
+  background:rgba(251,250,248,.06);border:1px solid var(--xett-ag);color:var(--kagiz);
+  font-family:var(--metn);font-size:13.5px;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  transition:border-color .35s var(--yum),background .35s var(--yum)
+}
+.ft-form input::placeholder{color:rgba(251,250,248,.36)}
+.ft-form input:focus{outline:none;border-color:rgba(251,250,248,.5);background:rgba(251,250,248,.1)}
+.ft-form button{
+  position:absolute;right:5px;top:5px;width:38px;height:38px;border-radius:50%;cursor:pointer;
+  background:var(--kagiz);border:0;display:flex;align-items:center;justify-content:center;
+  transition:transform .35s var(--yum),background .35s var(--yum)
+}
+.ft-form button svg{width:15px;height:15px;fill:var(--murekkeb);stroke:none;margin-left:1px}
+.ft-form button:hover{transform:scale(1.08);background:var(--rec)}
+.ft-form button:hover svg{fill:var(--kagiz)}
+
+.ft-secim{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.ft-kicik-dgm{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:8px 15px;border-radius:999px;border:1px solid var(--xett-ag);color:rgba(251,250,248,.6);
+  transition:color .3s var(--yum),border-color .3s var(--yum),background .3s var(--yum)
+}
+.ft-kicik-dgm:hover{color:var(--murekkeb);background:var(--kagiz);border-color:var(--kagiz)}
+
+.ft-basliq{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(251,250,248,.4);font-weight:400;margin-bottom:20px
+}
+.ft-xana nav,.ft-xana a{min-width:0}
+.ft-xana > a,.ft-unvan a,.ft-unvan span{
+  display:block;font-size:13.5px;line-height:2.15;color:rgba(251,250,248,.6);
+  transition:color .3s var(--yum),transform .3s var(--yum)
+}
+.ft-xana > a:hover,.ft-unvan a:hover{color:var(--kagiz);transform:translateX(4px)}
+.ft-unvan{font-style:normal}
+.ft-status{
+  display:flex !important;align-items:center;gap:8px;margin-top:14px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(251,250,248,.45) !important;line-height:1.4 !important
+}
+.ft-status i{width:6px;height:6px;border-radius:50%;background:#4a9d8f;box-shadow:0 0 9px #4a9d8f;flex:none;animation:nabz 2.4s infinite}
+
+.ft-sosial{display:flex;gap:10px;flex-wrap:wrap}
+.ft-sosial a{
+  position:relative;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--xett-ag);display:flex;align-items:center;justify-content:center;
+  color:rgba(251,250,248,.62);
+  transition:background .35s var(--yum),color .35s var(--yum),border-color .35s var(--yum),transform .35s var(--yum)
+}
+.ft-sosial a svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}
+.ft-sosial a:hover{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);transform:translateY(-3px)}
+/* ipucu */
+.ft-sosial a::after{
+  content:attr(data-ipucu);position:absolute;bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%) translateY(4px);white-space:nowrap;
+  background:var(--kagiz);color:var(--murekkeb);border-radius:7px;padding:6px 10px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:0;pointer-events:none;transition:opacity .28s var(--yum),transform .28s var(--yum);z-index:5
+}
+.ft-sosial a:hover::after,.ft-sosial a:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.ft-saat{margin-top:22px;display:flex;flex-direction:column;gap:5px}
+.ft-saat span{font-family:var(--mono);font-size:19px;letter-spacing:.06em;color:rgba(251,250,248,.82)}
+.ft-saat em{font-family:var(--mono);font-style:normal;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,250,248,.34)}
+
+.ft-alt{
+  margin-top:clamp(44px,6vh,72px);padding-top:26px;border-top:1px solid var(--xett-ag);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:12.5px;color:rgba(251,250,248,.42)
+}
+.ft-alt-link{display:flex;gap:22px;align-items:center}
+.ft-alt-link a{color:rgba(251,250,248,.42);transition:color .3s var(--yum)}
+.ft-alt-link a:hover{color:var(--kagiz)}
+.ft-yuxari i{font-style:normal;display:inline-block;transition:transform .35s var(--yum)}
+.ft-yuxari:hover i{transform:translateY(-3px)}
+
+@media (max-width:1040px){ .ft-tor{grid-template-columns:1fr 1fr} .ft-xana--esas{grid-column:1 / -1} }
+@media (max-width:600px){ .ft-tor{grid-template-columns:1fr} .ft-alt{flex-direction:column;align-items:flex-start} }
+@media (prefers-reduced-motion:reduce){ .ft-status i{animation:none} }
 
 /* ================= XİDMƏTLƏR (şüşə xanalar) ================= */
 .xd-sahne{position:relative;margin-top:clamp(36px,6vh,64px)}
@@ -1569,15 +1666,77 @@ footer{
 
 <!-- ================= ƏLAQƏ ================= -->
 <section class="blok blok--tund" id="elaqe" aria-labelledby="e-bas">
-  <div class="kicik">Əlaqə</div>
-  <h2 id="e-bas" data-ac style="margin-top:16px">Layihəniz var?</h2>
-  <a class="elaqe-mail" href="mailto:salam@rahmanmalikzade.com" data-ac data-gec="1">salam@rahmanmalikzade.com</a>
+  <div class="ft-tor">
 
-  <div class="elaqe-tor" data-ac data-gec="2">
-    <div><b>Telefon</b><a href="tel:+994000000000" class="solğun">+994 00 000 00 00</a></div>
-    <div><b>Instagram</b><a href="https://www.instagram.com/rahmanmalikzade" target="_blank" rel="me noopener" class="solğun">@rahmanmalikzade</a></div>
-    <div><b>Studiya</b><a href="https://www.instagram.com/nexcineart" target="_blank" rel="noopener" class="solğun">@nexcineart</a></div>
-    <div><b>Yer</b><span class="solğun">Bakı, Azərbaycan</span></div>
+    <!-- 1 · sürətli mesaj -->
+    <div class="ft-xana ft-xana--esas">
+      <span class="ft-hale" aria-hidden="true"></span>
+      <div class="kicik">Əlaqə</div>
+      <h2 id="e-bas" class="ft-bas">Layihən var?</h2>
+      <p class="ft-izah">Qısaca yaz — nə çəkmək istədiyini, təxmini vaxtı və büdcəni. Adətən bir neçə saat ərzində cavab verirəm.</p>
+
+      <form class="ft-form" id="ft-form" novalidate>
+        <input type="text" id="ft-mesaj" placeholder="Məsələn: restoran üçün Reels çəkilişi…" aria-label="Mesajın">
+        <button type="submit" aria-label="Göndər">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 8 6 8z"/></svg>
+        </button>
+      </form>
+      <div class="ft-secim">
+        <a class="ft-kicik-dgm" href="mailto:salam@rahmanmalikzade.com">E-poçt</a>
+        <a class="ft-kicik-dgm" href="https://wa.me/994000000000" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- 2 · keçidlər -->
+    <nav class="ft-xana" aria-label="Sürətli keçidlər">
+      <h3 class="ft-basliq">Keçidlər</h3>
+      <a href="#bas">Ana səhifə</a>
+      <a href="#xidmetler">Xidmətlər</a>
+      <a href="#isler">Portfolio</a>
+      <a href="#paketler">Paketlər</a>
+      <a href="/kalkulyator">Foto kalkulyator</a>
+      <a href="/video-kalkulyator">Video kalkulyator</a>
+    </nav>
+
+    <!-- 3 · əlaqə -->
+    <div class="ft-xana">
+      <h3 class="ft-basliq">Rekvizitlər</h3>
+      <address class="ft-unvan">
+        <a href="mailto:salam@rahmanmalikzade.com">salam@rahmanmalikzade.com</a>
+        <a href="tel:+994000000000">+994 00 000 00 00</a>
+        <span>Bakı, Azərbaycan</span>
+        <span class="ft-status"><i aria-hidden="true"></i>Yeni layihələrə açığam</span>
+      </address>
+    </div>
+
+    <!-- 4 · sosial -->
+    <div class="ft-xana">
+      <h3 class="ft-basliq">İzlə</h3>
+      <div class="ft-sosial">
+        <a href="https://www.instagram.com/rahmanmalikzade" target="_blank" rel="me noopener" data-ipucu="@rahmanmalikzade" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.instagram.com/nexcineart" target="_blank" rel="noopener" data-ipucu="Studiya — @nexcineart" aria-label="Nexcineart studiyası">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></svg>
+        </a>
+        <a href="https://wa.me/994000000000" target="_blank" rel="noopener" data-ipucu="WhatsApp ilə yaz" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.6-4A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c.6 2.4 3.1 4.9 5.5 5.5l1.2-1.4 1.8.9c-.3 1.2-1.6 1.6-2.6 1.4-3.2-.6-6.2-3.6-6.8-6.8-.2-1 .2-2.3 1.4-2.6l.9 1.8z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:salam@rahmanmalikzade.com" data-ipucu="salam@rahmanmalikzade.com" aria-label="E-poçt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+        </a>
+      </div>
+      <div class="ft-saat"><span id="ft-saat">—</span><em>Bakı · GMT+4</em></div>
+    </div>
+  </div>
+
+  <div class="ft-alt">
+    <span>© <span id="il">2026</span> Rəhman Məlikzadə — bütün hüquqlar qorunur</span>
+    <div class="ft-alt-link">
+      <a href="#xidmetler">Xidmətlər</a>
+      <a href="/kalkulyator">Qiymət</a>
+      <a href="#bas" class="ft-yuxari">Yuxarı <i aria-hidden="true">&uarr;</i></a>
+    </div>
   </div>
 </section>
 
@@ -1595,10 +1754,7 @@ footer{
   </div>
 </div>
 
-<footer>
-  <span>© <span id="il">2026</span> Rəhman Məlikzadə</span>
-  <span>Videoqraf &amp; Filmmaker — Bakı</span>
-</footer>
+
 
 
 <script>
@@ -3341,6 +3497,32 @@ function pkRenderMobilQiymet(hesab){
         x.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
       });
     });
+  }
+})();
+
+/* ---------- Footer: sürətli mesaj + Bakı saatı ---------- */
+(function(){
+  var form = document.getElementById('ft-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var m = (document.getElementById('ft-mesaj').value || '').trim();
+      if(!m){ document.getElementById('ft-mesaj').focus(); return; }
+      location.href = 'mailto:salam@rahmanmalikzade.com'
+        + '?subject=' + encodeURIComponent('Sayt üzərindən sorğu')
+        + '&body=' + encodeURIComponent(m);
+    });
+  }
+  var saatEl = document.getElementById('ft-saat');
+  if(saatEl){
+    function saatYaz(){
+      try{
+        saatEl.textContent = new Date().toLocaleTimeString('az-AZ', {
+          timeZone:'Asia/Baku', hour:'2-digit', minute:'2-digit', hour12:false
+        });
+      }catch(e){ saatEl.textContent = ''; }
+    }
+    saatYaz(); setInterval(saatYaz, 30000);
   }
 })();
 
