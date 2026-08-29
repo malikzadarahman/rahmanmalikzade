@@ -911,24 +911,24 @@ footer{
 }
 .lnt-sol::before{top:0;background:linear-gradient(to bottom,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
 .lnt-sol::after{bottom:0;background:linear-gradient(to top,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
-.lnt-cipler{position:relative;width:100%;height:100%;min-height:420px}
+.lnt-cipler{position:relative;width:100%;height:100%;min-height:480px}
 .lnt-cip{
-  position:absolute;left:0;top:50%;display:flex;align-items:center;gap:11px;
-  padding:12px 22px;border-radius:999px;border:1px solid var(--xett-ag);
+  position:absolute;left:0;top:50%;display:flex;align-items:center;gap:13px;
+  padding:15px 27px;border-radius:999px;border:1px solid var(--xett-ag);
   background:transparent;color:rgba(251,250,248,.5);cursor:pointer;white-space:nowrap;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
   transition:background .55s var(--yum),color .55s var(--yum),border-color .55s var(--yum),transform .75s var(--yum),opacity .75s var(--yum);
   will-change:transform,opacity
 }
 .lnt-cip:hover{color:rgba(251,250,248,.86);border-color:rgba(251,250,248,.4)}
 .lnt-cip.aktiv{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);z-index:4}
-.lnt-cip svg{width:15px;height:15px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5}
+.lnt-cip svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5}
 .lnt-sag{
   position:relative;display:flex;align-items:center;justify-content:center;
-  padding:clamp(30px,4vw,60px);border-left:1px solid var(--xett-ag);
+  padding:clamp(22px,2.4vw,38px);border-left:1px solid var(--xett-ag);
   background:rgba(251,250,248,.02);overflow:hidden
 }
-.lnt-sehne{position:relative;width:100%;max-width:340px;aspect-ratio:4/5}
+.lnt-sehne{position:relative;width:100%;max-width:min(430px,42vw);aspect-ratio:4/5}
 .lnt-kart{
   position:absolute;inset:0;border-radius:clamp(16px,2vw,26px);overflow:hidden;
   border:5px solid var(--murekkeb);background:var(--murekkeb);
@@ -963,7 +963,7 @@ footer{
   .lnt-kart.yan img,.lnt-yan-isare,.lnt-yan-isare span{transition:none !important}
 }
 .lnt-mtn{
-  position:absolute;left:0;right:0;bottom:0;padding:clamp(20px,3vw,30px);padding-top:100px;
+  position:absolute;left:0;right:0;bottom:0;padding:clamp(16px,2.2vw,24px);padding-top:90px;
   background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.35) 46%,transparent);
   opacity:0;transform:translateY(14px);transition:opacity .6s var(--yum),transform .6s var(--yum);
   pointer-events:none
@@ -971,10 +971,10 @@ footer{
 .lnt-kart.aktiv .lnt-mtn{opacity:1;transform:none}
 .lnt-rozet{
   display:inline-block;background:var(--kagiz);color:var(--murekkeb);
-  padding:5px 12px;border-radius:999px;margin-bottom:11px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase
+  padding:4px 10px;border-radius:999px;margin-bottom:9px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase
 }
-.lnt-mtn p{font-size:clamp(15px,1.5vw,19px);line-height:1.34;color:#fff;letter-spacing:-.008em;margin:0}
+.lnt-mtn p{font-size:clamp(12px,1vw,14px);line-height:1.45;color:rgba(255,255,255,.92);letter-spacing:0;margin:0}
 .lnt-canli{
   position:absolute;top:clamp(16px,2vw,24px);left:clamp(16px,2vw,24px);z-index:3;
   display:flex;align-items:center;gap:9px;opacity:0;transition:opacity .5s var(--yum)
@@ -991,7 +991,7 @@ footer{
 .lnt-kart.aktiv .lnt-oynat{opacity:1;transform:scale(1)}
 .lnt-oynat{
   position:absolute;top:50%;left:50%;z-index:5;
-  width:66px;height:66px;margin:-33px 0 0 -33px;border-radius:50%;
+  width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
   border:1px solid rgba(251,250,248,.5);background:rgba(11,11,12,.42);
   backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
   display:flex;align-items:center;justify-content:center;cursor:pointer;
@@ -1392,7 +1392,7 @@ footer{
 /* iki hərəkətli rəng qatı — üst-üstə düşəndə qarışır (screen) */
 .blok--tund::before,.blok--tund::after{
   content:"";position:absolute;inset:-35%;z-index:0;pointer-events:none;
-  will-change:transform;filter:blur(52px);mix-blend-mode:screen
+  will-change:transform;filter:blur(64px);mix-blend-mode:screen;opacity:.62
 }
 .blok--tund::before{
   background:
@@ -1490,13 +1490,17 @@ footer{
 
 /* ---- Portfolio qabı: şüşə panel ---- */
 .lnt{
-  border:1px solid rgba(251,250,248,.12);
-  background:linear-gradient(150deg,rgba(251,250,248,.07),rgba(251,250,248,.025) 46%,rgba(251,250,248,.07));
-  -webkit-backdrop-filter:blur(26px) saturate(180%);backdrop-filter:blur(26px) saturate(180%);
-  box-shadow:inset 0 1px 0 rgba(251,250,248,.16),0 30px 70px -50px rgba(0,0,0,.9)
+  border:1px solid rgba(251,250,248,.2);
+  background:linear-gradient(150deg,rgba(251,250,248,.16),rgba(251,250,248,.085) 48%,rgba(251,250,248,.14));
+  -webkit-backdrop-filter:blur(40px) saturate(150%) brightness(1.05);
+  backdrop-filter:blur(40px) saturate(150%) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,0,0,.3),
+    0 40px 90px -55px rgba(0,0,0,.95)
 }
-.lnt-sol{background:rgba(251,250,248,.02)}
-.lnt-sag{background:transparent}
+.lnt-sol{background:rgba(251,250,248,.05)}
+.lnt-sag{background:rgba(251,250,248,.03)}
 
 /* ---- Footer: input, düymələr, sosial ---- */
 .ft-form input{
@@ -3307,7 +3311,7 @@ function pkRenderMobilQiymet(hesab){
   if(!cipQab || !sehne) return;
 
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var ADDIM = 62, INTERVAL = 3600;
+  var ADDIM = 72, INTERVAL = 3600;
 
   var IKON = {
     kalb:  '<path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7C19 15.4 12 20 12 20z"/>',
