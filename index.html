@@ -236,20 +236,39 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 .acilis-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:acNebz 1.9s infinite}
 @keyframes acNebz{0%,100%{opacity:1}50%{opacity:.25}}
 
-.kam{position:relative;width:min(48vw,330px);will-change:transform}
-.kam svg{width:100%;height:auto;display:block;overflow:visible}
-.kam-c,.kam-lens,.kam-iris{
-  stroke:var(--kagiz);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;fill:none;
-  vector-effect:non-scaling-stroke
+.kam{position:relative;width:min(62vw,540px);will-change:transform}
+.kam img{
+  width:100%;height:auto;display:block;
+  mix-blend-mode:screen;         /* qara fon yox olur, yalnız kamera və işıq qalır */
+  filter:contrast(1.04) brightness(1.02)
 }
-.kam-c,.kam-lens{opacity:.82}
-.kam-iris{opacity:.5;transform-origin:76px 118px}
-.kam-koruk{stroke:var(--kagiz);stroke-width:1.4;opacity:.42;fill:none;vector-effect:non-scaling-stroke}
+/* flaş yuvasından çıxan işıq */
 .kam-parlaq{
-  position:absolute;left:25.3%;top:36.9%;width:34%;aspect-ratio:1;
+  position:absolute;left:62%;top:12.5%;width:30%;aspect-ratio:1;
   transform:translate(-50%,-50%) scale(.2);
-  border-radius:50%;background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.6) 32%,transparent 66%);
-  opacity:0;pointer-events:none;will-change:opacity,transform
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.72) 26%,rgba(255,255,255,.18) 48%,transparent 70%);
+  opacity:0;pointer-events:none;will-change:opacity,transform;z-index:2
+}
+/* işıq şüaları */
+.kam-sua{
+  position:absolute;left:62%;top:12.5%;width:120%;height:120%;
+  transform:translate(-50%,-50%) scale(.3);
+  opacity:0;pointer-events:none;z-index:1;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg, rgba(255,255,255,.5) 3deg, transparent 7deg,
+      transparent 40deg, rgba(255,255,255,.34) 44deg, transparent 48deg,
+      transparent 86deg, rgba(255,255,255,.42) 90deg, transparent 95deg,
+      transparent 130deg, rgba(255,255,255,.3) 134deg, transparent 139deg,
+      transparent 176deg, rgba(255,255,255,.46) 180deg, transparent 185deg,
+      transparent 220deg, rgba(255,255,255,.32) 224deg, transparent 229deg,
+      transparent 268deg, rgba(255,255,255,.44) 272deg, transparent 277deg,
+      transparent 314deg, rgba(255,255,255,.3) 318deg, transparent 323deg,
+      transparent 360deg);
+  -webkit-mask-image:radial-gradient(circle,#000 6%,rgba(0,0,0,.55) 32%,transparent 64%);
+  mask-image:radial-gradient(circle,#000 6%,rgba(0,0,0,.55) 32%,transparent 64%);
+  will-change:opacity,transform
 }
 
 .acilis-mtn{display:flex;flex-direction:column;align-items:center;gap:clamp(16px,2.4vh,26px);will-change:opacity}
@@ -289,7 +308,7 @@ body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
 body.acilis-var .xett-ust{background:var(--kagiz)}
 
 @media (max-width:640px){
-  .kam{width:64vw}
+  .kam{width:84vw}
   .acilis{height:138vh}
 }
 @media (prefers-reduced-motion:reduce){
@@ -1233,39 +1252,9 @@ footer{
       <div class="acilis-rec"><i></i>REC</div>
 
       <div class="kam" id="kam">
-        <svg viewBox="0 0 300 320" fill="none" aria-hidden="true">
-          <!-- görücü qutusu -->
-          <rect class="kam-c" x="206" y="44" width="28" height="16" rx="2"/>
-          <!-- arxa dayaq (film lövhəsi) -->
-          <rect class="kam-c" x="204" y="60" width="16" height="112" rx="2"/>
-          <!-- ön dayaq (lens lövhəsi) -->
-          <rect class="kam-c" x="84" y="70" width="14" height="102" rx="2"/>
-          <circle class="kam-c" cx="91" cy="62" r="4"/>
-          <!-- körük -->
-          <path class="kam-c" d="M98 76L204 68"/>
-          <path class="kam-c" d="M98 158L204 166"/>
-          <path class="kam-koruk" d="M110 75.1V158.9"/>
-          <path class="kam-koruk" d="M122 74.2V159.8"/>
-          <path class="kam-koruk" d="M134 73.3V160.7"/>
-          <path class="kam-koruk" d="M146 72.4V161.6"/>
-          <path class="kam-koruk" d="M158 71.5V162.5"/>
-          <path class="kam-koruk" d="M170 70.6V163.4"/>
-          <path class="kam-koruk" d="M182 69.7V164.3"/>
-          <path class="kam-koruk" d="M194 68.8V165.2"/>
-          <!-- obyektiv -->
-          <circle class="kam-lens" cx="76" cy="118" r="22"/>
-          <circle class="kam-lens" cx="76" cy="118" r="15" style="opacity:.45"/>
-          <circle class="kam-iris" cx="76" cy="118" r="8"/>
-          <!-- baza relsi -->
-          <rect class="kam-c" x="72" y="172" width="160" height="11" rx="3"/>
-          <!-- tripod -->
-          <rect class="kam-c" x="132" y="183" width="36" height="8" rx="2"/>
-          <path class="kam-c" d="M150 191L58 308"/>
-          <path class="kam-c" d="M150 191L242 308"/>
-          <path class="kam-c" d="M158 191L168 296"/>
-          <path class="kam-c" d="M100 252H200"/>
-        </svg>
+        <img src="/media/kamera.jpg" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
         <span class="kam-parlaq" id="kam-parlaq"></span>
+        <span class="kam-sua" aria-hidden="true"></span>
       </div>
 
       <div class="acilis-mtn" id="acilis-mtn">
@@ -3175,7 +3164,7 @@ function pkRenderMobilQiymet(hesab){
   var sehne  = document.getElementById('acilis-sehne');
   var kam    = document.getElementById('kam');
   var parlaq = document.getElementById('kam-parlaq');
-  var iris   = acilis.querySelector('.kam-iris');
+  var sua    = acilis.querySelector('.kam-sua');
   var mtn    = document.getElementById('acilis-mtn');
 
   var ESIK = 0.80;      /* flaşın partladığı nöqtə */
@@ -3191,7 +3180,7 @@ function pkRenderMobilQiymet(hesab){
 
     /* kamera irəliləyir, mətn solur */
     kam.style.transform = 'scale(' + (1 + p * 0.42).toFixed(3) + ')';
-    if(iris) iris.style.transform = 'scale(' + (1 - p * 0.62).toFixed(3) + ')';
+
     mtn.style.opacity = kilid(1 - p * 2.4).toFixed(3);
 
     /* lensdə işıq toplanır, sonra partlayır */
@@ -3207,6 +3196,11 @@ function pkRenderMobilQiymet(hesab){
     }
     parlaq.style.opacity = partOp.toFixed(3);
     parlaq.style.transform = 'translate(-50%,-50%) scale(' + partOlcu.toFixed(3) + ')';
+    if(sua){
+      sua.style.opacity = (partOp * 0.9).toFixed(3);
+      sua.style.transform = 'translate(-50%,-50%) scale(' + (0.3 + partOlcu * 0.9).toFixed(3) +
+        ') rotate(' + (p * 26).toFixed(1) + 'deg)';
+    }
 
     /* ağ flaş */
     /* ağ flaş — bir dəfə partlayır və özü tam sönür */
