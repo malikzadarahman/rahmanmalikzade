@@ -659,143 +659,6 @@ footer{
 @media (prefers-reduced-motion:reduce){ .ft-status i{animation:none} }
 
 
-/* ================= TÜND BÖLMƏLƏR ÜÇÜN ŞÜŞƏ SƏTHLƏR ================= */
-@property --bucaq{ syntax:"<angle>"; inherits:false; initial-value:-75deg }
-
-/* tünd bölmələrin arxasında yumşaq işıq zəmini — şüşənin sındıracağı fon */
-.blok--tund{position:relative;isolation:isolate}
-.blok--tund > *{position:relative;z-index:1}
-.blok--tund::before{
-  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
-  background:
-    radial-gradient(46% 42% at 12% 18%, rgba(74,138,196,.22), transparent 70%),
-    radial-gradient(40% 38% at 88% 26%, rgba(217,58,30,.16), transparent 70%),
-    radial-gradient(52% 46% at 62% 92%, rgba(120,150,190,.14), transparent 72%)
-}
-
-/* ---- ümumi şüşə səth ---- */
-.suse{
-  position:relative;isolation:isolate;
-  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.16),rgba(251,250,248,.05));
-  -webkit-backdrop-filter:blur(14px) saturate(160%);
-  backdrop-filter:blur(14px) saturate(160%);
-  border:0;
-  box-shadow:
-    inset 0 1px 1px rgba(251,250,248,.22),
-    inset 0 -1px 1px rgba(11,11,12,.4),
-    0 6px 14px -8px rgba(0,0,0,.7);
-  transition:background .45s var(--yum),box-shadow .45s var(--yum),transform .45s var(--yum)
-}
-/* konik işıq haşiyəsi */
-.suse::after{
-  content:"";position:absolute;inset:-1px;z-index:2;pointer-events:none;
-  border-radius:inherit;padding:1px;box-sizing:border-box;
-  background:conic-gradient(from var(--bucaq) at 50% 50%,
-    rgba(251,250,248,.55) 0%, transparent 6% 40%,
-    rgba(251,250,248,.5) 50%, transparent 60% 94%,
-    rgba(251,250,248,.55) 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite:exclude;
-  transition:--bucaq .6s var(--yum),opacity .45s var(--yum)
-}
-.suse:hover,.suse:focus-within{
-  background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.22),rgba(251,250,248,.08));
-  box-shadow:
-    inset 0 1px 1px rgba(251,250,248,.3),
-    inset 0 -1px 1px rgba(11,11,12,.42),
-    0 12px 26px -12px rgba(0,0,0,.75)
-}
-.suse:hover::after,.suse:focus-within::after{--bucaq:-125deg}
-@supports not (mask-composite: exclude){
-  .suse::after{display:none}
-  .suse{border:1px solid rgba(251,250,248,.22)}
-}
-
-/* ---- Portfolio: kateqoriya həbləri ---- */
-.lnt-cip{
-  border:0;
-  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
-  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
-  box-shadow:inset 0 1px 1px rgba(251,250,248,.18),inset 0 -1px 1px rgba(11,11,12,.35)
-}
-.lnt-cip::after{
-  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
-  pointer-events:none;
-  background:conic-gradient(from var(--bucaq) at 50% 50%,
-    rgba(251,250,248,.5) 0%, transparent 6% 40%,
-    rgba(251,250,248,.45) 50%, transparent 60% 94%,
-    rgba(251,250,248,.5) 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite:exclude;
-  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
-}
-.lnt-cip:hover::after{--bucaq:-125deg}
-.lnt-cip.aktiv{box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 22px -12px rgba(0,0,0,.7)}
-.lnt-cip.aktiv::after{opacity:0}
-
-/* ---- Portfolio qabı: şüşə panel ---- */
-.lnt{
-  border:1px solid rgba(251,250,248,.1);
-  background:linear-gradient(150deg,rgba(251,250,248,.05),rgba(251,250,248,.02) 46%,rgba(251,250,248,.05));
-  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
-  box-shadow:inset 0 1px 0 rgba(251,250,248,.16),0 30px 70px -50px rgba(0,0,0,.9)
-}
-.lnt-sol{background:rgba(251,250,248,.02)}
-.lnt-sag{background:transparent}
-
-/* ---- Footer: input, düymələr, sosial ---- */
-.ft-form input{
-  border:0;
-  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.15),rgba(251,250,248,.05));
-  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
-  box-shadow:inset 0 1px 1px rgba(251,250,248,.22),inset 0 -1px 1px rgba(11,11,12,.4)
-}
-.ft-form{position:relative}
-.ft-form::after{
-  content:"";position:absolute;inset:-1px;height:50px;border-radius:999px;padding:1px;box-sizing:border-box;
-  pointer-events:none;
-  background:conic-gradient(from var(--bucaq) at 50% 50%,
-    rgba(251,250,248,.5) 0%, transparent 6% 40%,
-    rgba(251,250,248,.45) 50%, transparent 60% 94%,
-    rgba(251,250,248,.5) 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite:exclude;
-  transition:--bucaq .6s var(--yum)
-}
-.ft-form:focus-within::after{--bucaq:-125deg}
-.ft-form input:focus{background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.2),rgba(251,250,248,.08))}
-
-.ft-kicik-dgm,.ft-sosial a{
-  border:0;position:relative;
-  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
-  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
-  box-shadow:inset 0 1px 1px rgba(251,250,248,.2),inset 0 -1px 1px rgba(11,11,12,.35)
-}
-.ft-kicik-dgm::before,.ft-sosial a::before{
-  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
-  pointer-events:none;
-  background:conic-gradient(from var(--bucaq) at 50% 50%,
-    rgba(251,250,248,.5) 0%, transparent 6% 40%,
-    rgba(251,250,248,.45) 50%, transparent 60% 94%,
-    rgba(251,250,248,.5) 100%);
-  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-  mask-composite:exclude;
-  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
-}
-.ft-kicik-dgm:hover::before,.ft-sosial a:hover::before{--bucaq:-125deg;opacity:0}
-
-@media (prefers-reduced-motion:reduce){
-  .suse,.suse::after,.lnt-cip::after,.ft-kicik-dgm::before,.ft-sosial a::before,.ft-form::after{transition:none !important}
-}
-
 /* ================= XİDMƏTLƏR (şüşə xanalar) ================= */
 .xd-sahne{position:relative;margin-top:clamp(36px,6vh,64px)}
 
@@ -1517,6 +1380,145 @@ footer{
 @media (prefers-reduced-motion:reduce){
   #kalkulyator *{transition-duration:.01ms !important}
 }
+
+
+/* ================= TÜND BÖLMƏLƏR ÜÇÜN ŞÜŞƏ SƏTHLƏR ================= */
+@property --bucaq{ syntax:"<angle>"; inherits:false; initial-value:-75deg }
+
+/* tünd bölmələrin arxasında yumşaq işıq zəmini — şüşənin sındıracağı fon */
+.blok--tund{position:relative;isolation:isolate}
+.blok--tund > *{position:relative;z-index:1}
+.blok--tund::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden;
+  background:
+    radial-gradient(46% 42% at 12% 18%, rgba(74,138,196,.22), transparent 70%),
+    radial-gradient(40% 38% at 88% 26%, rgba(217,58,30,.16), transparent 70%),
+    radial-gradient(52% 46% at 62% 92%, rgba(120,150,190,.14), transparent 72%)
+}
+
+/* ---- ümumi şüşə səth ---- */
+.suse{
+  position:relative;isolation:isolate;
+  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.16),rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  backdrop-filter:blur(14px) saturate(160%);
+  border:0;
+  box-shadow:
+    inset 0 1px 1px rgba(251,250,248,.22),
+    inset 0 -1px 1px rgba(11,11,12,.4),
+    0 6px 14px -8px rgba(0,0,0,.7);
+  transition:background .45s var(--yum),box-shadow .45s var(--yum),transform .45s var(--yum)
+}
+/* konik işıq haşiyəsi */
+.suse::after{
+  content:"";position:absolute;inset:-1px;z-index:2;pointer-events:none;
+  border-radius:inherit;padding:1px;box-sizing:border-box;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.55) 0%, transparent 6% 40%,
+    rgba(251,250,248,.5) 50%, transparent 60% 94%,
+    rgba(251,250,248,.55) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum),opacity .45s var(--yum)
+}
+.suse:hover,.suse:focus-within{
+  background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.22),rgba(251,250,248,.08));
+  box-shadow:
+    inset 0 1px 1px rgba(251,250,248,.3),
+    inset 0 -1px 1px rgba(11,11,12,.42),
+    0 12px 26px -12px rgba(0,0,0,.75)
+}
+.suse:hover::after,.suse:focus-within::after{--bucaq:-125deg}
+@supports not (mask-composite: exclude){
+  .suse::after{display:none}
+  .suse{border:1px solid rgba(251,250,248,.22)}
+}
+
+/* ---- Portfolio: kateqoriya həbləri ---- */
+.lnt-cip{
+  border:0;
+  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
+  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  box-shadow:inset 0 1px 1px rgba(251,250,248,.18),inset 0 -1px 1px rgba(11,11,12,.35)
+}
+.lnt-cip::after{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
+  pointer-events:none;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.5) 0%, transparent 6% 40%,
+    rgba(251,250,248,.45) 50%, transparent 60% 94%,
+    rgba(251,250,248,.5) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
+}
+.lnt-cip:hover::after{--bucaq:-125deg}
+.lnt-cip.aktiv{box-shadow:inset 0 1px 1px rgba(255,255,255,.9),0 10px 22px -12px rgba(0,0,0,.7)}
+.lnt-cip.aktiv::after{opacity:0}
+
+/* ---- Portfolio qabı: şüşə panel ---- */
+.lnt{
+  border:1px solid rgba(251,250,248,.1);
+  background:linear-gradient(150deg,rgba(251,250,248,.05),rgba(251,250,248,.02) 46%,rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(18px) saturate(150%);backdrop-filter:blur(18px) saturate(150%);
+  box-shadow:inset 0 1px 0 rgba(251,250,248,.16),0 30px 70px -50px rgba(0,0,0,.9)
+}
+.lnt-sol{background:rgba(251,250,248,.02)}
+.lnt-sag{background:transparent}
+
+/* ---- Footer: input, düymələr, sosial ---- */
+.ft-form input{
+  border:0;
+  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.15),rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:inset 0 1px 1px rgba(251,250,248,.22),inset 0 -1px 1px rgba(11,11,12,.4)
+}
+.ft-form{position:relative}
+.ft-form::after{
+  content:"";position:absolute;inset:-1px;height:50px;border-radius:999px;padding:1px;box-sizing:border-box;
+  pointer-events:none;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.5) 0%, transparent 6% 40%,
+    rgba(251,250,248,.45) 50%, transparent 60% 94%,
+    rgba(251,250,248,.5) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum)
+}
+.ft-form:focus-within::after{--bucaq:-125deg}
+.ft-form input:focus{background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.2),rgba(251,250,248,.08))}
+
+.ft-kicik-dgm,.ft-sosial a{
+  border:0;position:relative;
+  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
+  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  box-shadow:inset 0 1px 1px rgba(251,250,248,.2),inset 0 -1px 1px rgba(11,11,12,.35)
+}
+.ft-kicik-dgm::before,.ft-sosial a::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
+  pointer-events:none;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.5) 0%, transparent 6% 40%,
+    rgba(251,250,248,.45) 50%, transparent 60% 94%,
+    rgba(251,250,248,.5) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
+}
+.ft-kicik-dgm:hover::before,.ft-sosial a:hover::before{--bucaq:-125deg;opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  .suse,.suse::after,.lnt-cip::after,.ft-kicik-dgm::before,.ft-sosial a::before,.ft-form::after{transition:none !important}
+}
+
 
 </style>
 </head>
