@@ -2723,10 +2723,22 @@ function pkRenderMobilQiymet(hesab){
     dag:   '<path d="M3 19l6-9 4 5.5 2.5-3.5L21 19z"/>',
     bina:  '<rect x="5" y="4" width="14" height="16"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1"/>',
     telefon:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
-    ulduz: '<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>'
+    ulduz: '<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>',
+    ssenari:'<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/>',
+    qutu:  '<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>',
+    acar:  '<path d="M15.5 4.5a5 5 0 0 0-6.4 6.4L4 16v4h4l5.1-5.1a5 5 0 0 0 6.4-6.4l-3 3-2.9-2.9z"/>'
   };
 
   var ISLER = [
+    { ad:'Ssenarili reels',  ikon:'ssenari', sekil:'https://vz-d125fae9-c0e.b-cdn.net/cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf/thumbnail_4116516b.jpg',
+      video:'738448/cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf', saqulu:true,
+      metn:'İngilis dili müəllimi haqqında ssenarili qısa hekayə — maşın, çöl və dərs otağı kadrları bir fragmentdə.' },
+    { ad:'Məhsul prosesi',   ikon:'qutu', sekil:'https://vz-d125fae9-c0e.b-cdn.net/107326c0-c4a6-4599-8d0d-4a77120447eb/thumbnail_d78bbaa5.jpg',
+      video:'738448/107326c0-c4a6-4599-8d0d-4a77120447eb',
+      metn:'Fit yemək şirkəti üçün hazırlanma və qablaşdırılma prosesi — dinamik montajlı yatay çəkiliş.' },
+    { ad:'Açılış çəkilişi',  ikon:'acar', sekil:'https://vz-d125fae9-c0e.b-cdn.net/e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71/thumbnail_7d6903b6.jpg',
+      video:'738448/e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71', saqulu:true,
+      metn:'Avto atelye açılışı — yuxarıda kofe shop, aşağıda təmir sahəsi, hamısı bir hekayədə.' },
     { ad:'Love Story',       ikon:'kalb',    sekil:'/media/lovestory.jpg', video:'738448/fea7fd8f-619b-47c8-9674-7b0d5af3339c', saqulu:true, metn:'Şəms &amp; Cavidan — təbiətdə çəkilmiş hekayə əsaslı love story filmi.' },
     { ad:'Food &amp; Restoran',  ikon:'boshqab', sekil:'/media/food.jpg',      metn:'Mətbəxdə iş başında — restoran menyusu üçün kinematik food kadrları.' },
     { ad:'Backstage',        ikon:'kamera',  sekil:'/media/backstage.jpg', metn:'Neo Team Lab — brend üçün backstage seriyası və sosial media kontenti.' },
