@@ -297,7 +297,9 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 }
 
 /* hero açılışın altından çıxır */
-.acilis ~ .hero{margin-top:-100svh;position:relative;z-index:1}
+.hero-qab{position:relative;z-index:1;height:190svh;margin-top:-100svh}
+.hero-qab .hero{position:sticky;top:0;height:100svh;min-height:100svh}
+@media (max-width:640px){ .hero-qab{height:165svh} }
 
 /* açılış görünəndə naviqasiya işıqlı olsun */
 body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
@@ -313,7 +315,8 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 }
 @media (prefers-reduced-motion:reduce){
   .acilis,.flas{display:none}
-  .acilis ~ .hero{margin-top:0}
+  .hero-qab{margin-top:0;height:auto}
+  .hero-qab .hero{position:relative}
   .acilis-ox i,.acilis-rec i{animation:none}
 }
 
@@ -1962,6 +1965,7 @@ footer{
 <div class="flas" id="flas" aria-hidden="true"></div>
 
 <!-- ================= HERO ================= -->
+<div class="hero-qab">
 <header class="hero" id="bas">
   <div class="hero-ic" id="hero-ic">
     <div class="kicik" style="margin-bottom:22px">Videoqraf &amp; Filmmaker — Bakı</div>
@@ -1983,6 +1987,7 @@ footer{
     <span class="asagi">Sürüşdür <span aria-hidden="true"></span></span>
   </div>
 </header>
+</div>
 
 <div class="perf" aria-hidden="true"></div>
 
@@ -2638,8 +2643,8 @@ footer{
     if(xEl) oxbas.style.transform = 'translateX(' + (xEl.offsetLeft + xEl.offsetWidth * ic).toFixed(1) + 'px)';
 
     if(!azalt && heroIc){
-      var heroEl = document.getElementById('bas');
-      var heroBas = heroEl ? heroEl.offsetTop : 0;
+      var heroQab = document.querySelector('.hero-qab');
+      var heroBas = heroQab ? heroQab.offsetTop : 0;
       var hy = y - heroBas;                       /* hero-nun öz sürüşməsi */
       if(hy < 0) hy = 0;
       if(hy < innerHeight){
