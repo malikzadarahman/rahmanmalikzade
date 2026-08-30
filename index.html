@@ -692,7 +692,7 @@ footer{
 .xd--t2,.xd--t4          {--aksR:56; --aksG:118;--aksB:206}  /* mavi    */
 .xd.gorunur{opacity:1}
 .xd.gorunur .xd-govde{transform:none}
-.xd.gorunur:hover .xd-govde{
+.xd.gorunur.isiq .xd-govde{
   border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.4);
   box-shadow:
     0 34px 80px -34px rgba(11,11,12,.75),
@@ -701,14 +701,14 @@ footer{
 /* kursoru izləyən aksent parıltısı */
 .xd-parilti{
   position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
-  transition:opacity .35s var(--yum);
+  transition:opacity .16s linear;
   background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),
     rgba(var(--aksR),var(--aksG),var(--aksB),.4) 0%,
     rgba(var(--aksR),var(--aksG),var(--aksB),.16) 34%,
     rgba(var(--aksR),var(--aksG),var(--aksB),0) 66%)
 }
 
-.xd:hover .xd-parilti{opacity:1}
+.xd.isiq .xd-parilti{opacity:1;transition:opacity .42s var(--yum)}
 
 .xd-ic{position:relative;display:flex;flex-direction:column;height:100%}
 .xd-tor{align-items:stretch}
@@ -718,12 +718,12 @@ footer{
   background:var(--kagiz);color:var(--murekkeb);padding:6px 13px;border-radius:999px;
   transition:background .45s var(--yum),color .45s var(--yum)
 }
-.xd:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd.isiq .xd-nisan{background:var(--aks);color:#fff}
 .xd-no{
   font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
   color:rgba(251,250,248,.42);transition:color .45s var(--yum)
 }
-.xd:hover .xd-no{color:rgba(251,250,248,.72)}
+.xd.isiq .xd-no{color:rgba(251,250,248,.72)}
 
 .xd-orta{display:flex;align-items:center;gap:14px;margin-top:clamp(42px,6vw,72px)}
 .xd-ikon{
@@ -732,20 +732,20 @@ footer{
   transition:transform .5s var(--yum),background .5s var(--yum),border-color .5s var(--yum)
 }
 .xd-ikon svg{width:17px;height:17px;fill:none;stroke:rgba(251,250,248,.8);stroke-width:1.5;transition:stroke .5s var(--yum)}
-.xd:hover .xd-ikon{transform:translateY(-3px) rotate(-6deg);background:var(--aks);border-color:var(--aks)}
-.xd:hover .xd-ikon svg{stroke:#fff}
+.xd.isiq .xd-ikon{transform:translateY(-3px) rotate(-6deg);background:var(--aks);border-color:var(--aks)}
+.xd.isiq .xd-ikon svg{stroke:#fff}
 .xd-ad{
   font-family:var(--dsp);font-weight:400;letter-spacing:-.015em;line-height:1;
   font-size:clamp(24px,2.4vw,34px);
   transition:transform .5s var(--yum)
 }
-.xd:hover .xd-ad{transform:translateX(4px)}
+.xd.isiq .xd-ad{transform:translateX(4px)}
 
 .xd-izah{
   margin-top:16px;font-size:13px;line-height:1.66;color:rgba(251,250,248,.58);max-width:38ch;
   transition:color .5s var(--yum)
 }
-.xd:hover .xd-izah{color:rgba(251,250,248,.75)}
+.xd.isiq .xd-izah{color:rgba(251,250,248,.75)}
 
 .xd-siyahi{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .xd-siyahi li{
@@ -757,12 +757,12 @@ footer{
   content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--aks);
   transform:scaleX(.4);transform-origin:left;transition:transform .45s var(--yum),width .45s var(--yum)
 }
-.xd:hover .xd-siyahi li{transform:translateX(4px);color:rgba(251,250,248,.88);padding-left:21px}
-.xd:hover .xd-siyahi li::before{transform:scaleX(1);width:12px}
-.xd:hover .xd-siyahi li:nth-child(2),.xd:hover .xd-siyahi li:nth-child(2)::before{transition-delay:.05s}
-.xd:hover .xd-siyahi li:nth-child(3),.xd:hover .xd-siyahi li:nth-child(3)::before{transition-delay:.1s}
-.xd:hover .xd-siyahi li:nth-child(4),.xd:hover .xd-siyahi li:nth-child(4)::before{transition-delay:.15s}
-.xd:hover .xd-siyahi li:nth-child(5),.xd:hover .xd-siyahi li:nth-child(5)::before{transition-delay:.2s}
+.xd.isiq .xd-siyahi li{transform:translateX(4px);color:rgba(251,250,248,.88);padding-left:21px}
+.xd.isiq .xd-siyahi li::before{transform:scaleX(1);width:12px}
+.xd.isiq .xd-siyahi li:nth-child(2),.xd.isiq .xd-siyahi li:nth-child(2)::before{transition-delay:.05s}
+.xd.isiq .xd-siyahi li:nth-child(3),.xd.isiq .xd-siyahi li:nth-child(3)::before{transition-delay:.1s}
+.xd.isiq .xd-siyahi li:nth-child(4),.xd.isiq .xd-siyahi li:nth-child(4)::before{transition-delay:.15s}
+.xd.isiq .xd-siyahi li:nth-child(5),.xd.isiq .xd-siyahi li:nth-child(5)::before{transition-delay:.2s}
 
 .xd-alt{
   display:flex;align-items:center;justify-content:space-between;gap:14px;
@@ -772,9 +772,9 @@ footer{
   font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
   color:rgba(251,250,248,.62);transition:color .45s var(--yum)
 }
-.xd:hover .xd-cta{color:var(--kagiz)}
+.xd.isiq .xd-cta{color:var(--kagiz)}
 .xd-ox{font-size:18px;color:rgba(251,250,248,.62);transition:transform .45s var(--yum),color .45s var(--yum);display:inline-block}
-.xd:hover .xd-ox{transform:translateX(7px);color:var(--aks)}
+.xd.isiq .xd-ox{transform:translateX(7px);color:var(--aks)}
 
 /* kalkulyator xanası — açıq, seçilsin */
 .xd--cta{--aksR:217;--aksG:58;--aksB:30;color:var(--murekkeb)}
@@ -783,13 +783,13 @@ footer{
   box-shadow:0 20px 54px -34px rgba(11,11,12,.45)
 }
 .xd--cta .xd-nisan{background:var(--murekkeb);color:var(--kagiz)}
-.xd--cta:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd--cta.isiq .xd-nisan{background:var(--aks);color:#fff}
 .xd--cta .xd-no,.xd--cta .xd-cta,.xd--cta .xd-ox{color:var(--sus)}
-.xd--cta:hover .xd-no{color:var(--murekkeb)}
+.xd--cta.isiq .xd-no{color:var(--murekkeb)}
 .xd--cta .xd-izah{color:var(--sus)}
-.xd--cta:hover .xd-izah{color:rgba(11,11,12,.75)}
+.xd--cta.isiq .xd-izah{color:rgba(11,11,12,.75)}
 .xd--cta .xd-alt{border-top-color:var(--xett)}
-.xd--cta:hover .xd-cta{color:var(--murekkeb)}
+.xd--cta.isiq .xd-cta{color:var(--murekkeb)}
 .xd--cta .xd-parilti{background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.2) 0%,rgba(217,58,30,.07) 36%,rgba(217,58,30,0) 66%)}
 
 /* daxili elementlərin pilləli açılışı */
@@ -3839,6 +3839,13 @@ function pkRenderMobilQiymet(hesab){
     xanalar.forEach(function(x){
       var govde = x.querySelector('.xd-govde');
       if(!govde) return;
+      x.addEventListener('pointerenter', function(e){
+        var r = x.getBoundingClientRect();
+        x.style.setProperty('--mx', (((e.clientX - r.left)/r.width)*100).toFixed(1) + '%');
+        x.style.setProperty('--my', (((e.clientY - r.top)/r.height)*100).toFixed(1) + '%');
+        /* mövqe yerləşdikdən sonra işığı yandır — sıçrayış olmasın */
+        requestAnimationFrame(function(){ x.classList.add('isiq'); });
+      });
       x.addEventListener('pointermove', function(e){
         var r = x.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width;
@@ -3853,9 +3860,8 @@ function pkRenderMobilQiymet(hesab){
           ' translateY(-5px) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
       });
       x.addEventListener('pointerleave', function(){
+        x.classList.remove('isiq');
         govde.style.transform = '';
-        x.style.setProperty('--mx','50%');
-        x.style.setProperty('--my','50%');
       });
     });
   }
