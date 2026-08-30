@@ -5,11 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- ============ SEO: ƏSAS META ============ -->
-<title>Paketini özün qur — Rəhman Məlikzadə | Çəkiliş qiymət kalkulyatoru</title>
+<title>Paketini özün qur — Rəhman Məlikzadə | Foto və video kalkulyatoru</title>
 <meta name="description" content="Bakıda videoqraf və filmmaker Rəhman Məlikzadə. Storytelling əsaslı video çəkiliş: reklam, brend filmi, food &amp; drinks, love story və şəhər filmləri. Portfolio, paketlər və qiymət üçün əlaqə saxlayın.">
 <meta name="author" content="Rahman Malikzadə">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-<link rel="canonical" href="https://rahmanmalikzade.com/kalkulyator">
+<link rel="canonical" href="https://rahmanmalikzade.com/paket">
 <meta name="theme-color" content="#fbfaf8">
 
 <!-- ============ SEO: SOSİAL PAYLAŞIM ============ -->
@@ -18,7 +18,7 @@
 <meta property="og:site_name" content="Rahman Malikzadə">
 <meta property="og:title" content="Rəhman Məlikzadə — Videoqraf &amp; Filmmaker, Bakı">
 <meta property="og:description" content="Storytelling əsaslı reklam, brend filmi, food &amp; drinks və love story çəkilişləri. Bakı və bütün Azərbaycan.">
-<meta property="og:url" content="https://rahmanmalikzade.com/kalkulyator">
+<meta property="og:url" content="https://rahmanmalikzade.com/paket">
 <meta property="og:image" content="https://rahmanmalikzade.com/og-cover.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -210,6 +210,113 @@ p{max-width:46ch}
 .nav-links a:hover,.nav-links a.aktiv{color:var(--murekkeb)}
 .xett-ust{position:fixed;top:0;left:0;height:2px;background:var(--murekkeb);width:0;z-index:9500}
 
+
+
+/* açılış səhnəsi görünəndə naviqasiya işıqlı olsun */
+body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
+body.acilis-var .nav-ad{color:var(--kagiz)}
+body.acilis-var .nav-links a{color:rgba(251,250,248,.5)}
+body.acilis-var .nav-links a:hover,body.acilis-var .nav-links a.aktiv{color:var(--kagiz)}
+body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
+body.acilis-var .xett-ust{background:var(--kagiz)}
+/* ================= AÇILIŞ: KAMERA + FLAŞ ================= */
+.acilis{position:relative;z-index:5;height:146vh;background:var(--murekkeb);pointer-events:none}
+.acilis-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
+.acilis-sehne{
+  position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:clamp(28px,4.6vh,54px);
+  background:var(--murekkeb);will-change:opacity
+}
+.acilis-rec{
+  position:absolute;top:clamp(84px,11vh,120px);left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:9px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(251,250,248,.42)
+}
+.acilis-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:acNebz 1.9s infinite}
+@keyframes acNebz{0%,100%{opacity:1}50%{opacity:.25}}
+
+.kam{position:relative;width:min(62vw,540px);will-change:transform}
+.kam picture{display:block}
+.kam img{
+  width:100%;height:auto;display:block;
+  filter:contrast(1.05) brightness(1.04) drop-shadow(0 26px 50px rgba(0,0,0,.65))
+}
+/* flaş yuvasından çıxan işıq */
+.kam-parlaq{
+  position:absolute;left:66.5%;top:9.5%;width:30%;aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(.2);
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.72) 26%,rgba(255,255,255,.18) 48%,transparent 70%);
+  opacity:0;pointer-events:none;will-change:opacity,transform;z-index:2
+}
+/* işıq şüaları */
+.kam-sua{
+  position:absolute;left:66.5%;top:9.5%;width:120%;height:120%;
+  transform:translate(-50%,-50%) scale(.3);
+  opacity:0;pointer-events:none;z-index:1;
+  background:
+    conic-gradient(from 0deg,
+      transparent 0deg, rgba(255,255,255,.5) 3deg, transparent 7deg,
+      transparent 40deg, rgba(255,255,255,.34) 44deg, transparent 48deg,
+      transparent 86deg, rgba(255,255,255,.42) 90deg, transparent 95deg,
+      transparent 130deg, rgba(255,255,255,.3) 134deg, transparent 139deg,
+      transparent 176deg, rgba(255,255,255,.46) 180deg, transparent 185deg,
+      transparent 220deg, rgba(255,255,255,.32) 224deg, transparent 229deg,
+      transparent 268deg, rgba(255,255,255,.44) 272deg, transparent 277deg,
+      transparent 314deg, rgba(255,255,255,.3) 318deg, transparent 323deg,
+      transparent 360deg);
+  -webkit-mask-image:radial-gradient(circle,#000 6%,rgba(0,0,0,.55) 32%,transparent 64%);
+  mask-image:radial-gradient(circle,#000 6%,rgba(0,0,0,.55) 32%,transparent 64%);
+  will-change:opacity,transform
+}
+
+.acilis-mtn{display:flex;flex-direction:column;align-items:center;gap:clamp(16px,2.4vh,26px);will-change:opacity}
+.acilis-bas{
+  font-family:var(--dsp);font-weight:400;font-size:clamp(22px,3.4vw,40px);
+  color:var(--kagiz);letter-spacing:-.01em;line-height:1
+}
+.acilis-ipucu{
+  display:flex;flex-direction:column;align-items:center;gap:13px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(251,250,248,.4)
+}
+.acilis-ox{position:relative;display:block;width:1px;height:44px;background:rgba(251,250,248,.16);overflow:hidden}
+.acilis-ox i{
+  position:absolute;left:0;top:0;width:1px;height:14px;background:var(--kagiz);
+  animation:acAxin 1.9s var(--yum) infinite
+}
+@keyframes acAxin{0%{transform:translateY(-16px);opacity:0}22%{opacity:1}80%{opacity:1}100%{transform:translateY(46px);opacity:0}}
+
+.flas{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9700;display:none}
+.flas.partla{display:block;animation:flasPartla .62s var(--yum) forwards}
+@keyframes flasPartla{
+  0%{opacity:0}
+  11%{opacity:1}
+  100%{opacity:0}
+}
+
+/* hero açılışın altından çıxır */
+.acilis ~ .hero{margin-top:-100svh;position:relative;z-index:1}
+
+/* açılış görünəndə naviqasiya işıqlı olsun */
+body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
+body.acilis-var .nav-ad{color:var(--kagiz)}
+body.acilis-var .nav-links a{color:rgba(251,250,248,.5)}
+body.acilis-var .nav-links a:hover,body.acilis-var .nav-links a.aktiv{color:var(--kagiz)}
+body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
+body.acilis-var .xett-ust{background:var(--kagiz)}
+
+@media (max-width:640px){
+  .kam{width:84vw}
+  .acilis{height:138vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .acilis,.flas{display:none}
+  .acilis ~ .hero{margin-top:0}
+  .acilis-ox i,.acilis-rec i{animation:none}
+}
+
 /* ============ HERO ============ */
 .hero{
   min-height:100svh;display:flex;flex-direction:column;justify-content:center;
@@ -218,11 +325,16 @@ p{max-width:46ch}
 .hero-ic{will-change:transform,opacity}
 .hero h1{max-width:15ch}
 .hero h1 .st{display:block;overflow:hidden}
-.hero h1 .st i{display:block;font-style:normal;transform:translateY(102%);animation:qalx 1.15s var(--yum) forwards}
-.hero h1 .st:nth-child(2) i{animation-delay:.08s}
+.hero h1 .st i{display:block;font-style:normal;transform:translateY(102%)}
+body.hero-acildi .hero h1 .st i{animation:qalx 1.05s var(--yum) forwards}
+body.hero-acildi .hero h1 .st:nth-child(2) i{animation-delay:.09s}
 @keyframes qalx{to{transform:translateY(0)}}
-.hero-alt{margin-top:clamp(20px,3vh,34px);opacity:0;animation:ac 1s .5s var(--yum) forwards}
+.hero-alt{margin-top:clamp(20px,3vh,34px);opacity:0;transform:translateY(20px)}
+body.hero-acildi .hero-alt{animation:qalxSol .95s .34s var(--yum) forwards}
 @keyframes ac{to{opacity:1}}
+@keyframes qalxSol{to{opacity:1;transform:none}}
+.hero .kicik{opacity:0;transform:translateY(14px)}
+body.hero-acildi .hero .kicik{animation:qalxSol .8s .06s var(--yum) forwards}
 .hero-alt p{font-size:clamp(15px,1.4vw,18px);color:var(--sus);max-width:38ch}
 .dugmeler{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
 .dgm{
@@ -237,8 +349,9 @@ p{max-width:46ch}
 .hero-etek{
   position:absolute;left:var(--kenar);right:var(--kenar);bottom:clamp(18px,4vh,34px);
   display:flex;justify-content:space-between;align-items:flex-end;gap:16px;
-  opacity:0;animation:ac 1s .8s var(--yum) forwards;
+  opacity:0;transform:translateY(16px);
 }
+body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
 .rec{display:flex;align-items:center;gap:7px}
 .rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);animation:nabz 2s infinite}
 @keyframes nabz{0%,42%{opacity:1}52%,100%{opacity:.18}}
@@ -408,13 +521,7 @@ details[open] summary::after{transform:rotate(-135deg);margin-top:-2px}
 details p{padding:0 0 22px;color:var(--sus);font-size:14.5px;max-width:62ch}
 
 /* ============ ƏLAQƏ ============ */
-.elaqe-mail{
-  font-family:var(--dsp);font-size:clamp(24px,5.4vw,72px);line-height:1.05;display:inline-block;
-  margin-top:22px;border-bottom:1px solid var(--xett-ag);padding-bottom:8px;transition:opacity .4s;word-break:break-word;
-}
 .elaqe-mail:hover{opacity:.65}
-.elaqe-tor{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:20px;margin-top:clamp(36px,6vh,64px);font-size:13.5px}
-.elaqe-tor b{display:block;font-weight:400;margin-bottom:6px}
 footer{
   background:var(--murekkeb);color:rgba(251,250,248,.42);padding:26px var(--kenar) 34px;
   display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:11.5px;
@@ -444,6 +551,532 @@ footer{
    palitra əlavə etmir. Vurğu rəngi: sayt boyu artıq tanış olan
    REC qırmızısı (var(--rec)).
    ============================================================ */
+
+
+
+
+
+/* ================= FOOTER / ƏLAQƏ ================= */
+#elaqe{padding-bottom:clamp(48px,7vh,80px)}
+.ft-tor{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:clamp(30px,4vw,64px)
+}
+.ft-xana{position:relative;display:flex;flex-direction:column;min-width:0}
+.ft-xana--esas{padding-right:clamp(0px,2vw,32px)}
+.ft-hale{
+  position:absolute;right:-10%;top:-24%;width:190px;height:190px;border-radius:50%;
+  background:radial-gradient(circle,rgba(217,58,30,.28),transparent 68%);filter:blur(46px);
+  pointer-events:none
+}
+.ft-bas{
+  font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
+  font-size:clamp(30px,3.6vw,52px);margin-top:16px
+}
+.ft-izah{margin-top:16px;font-size:13.5px;line-height:1.66;color:rgba(251,250,248,.56);max-width:38ch}
+
+.ft-form{position:relative;margin-top:26px;max-width:440px}
+.ft-form input{
+  width:100%;height:48px;padding:0 56px 0 18px;border-radius:999px;
+  background:rgba(251,250,248,.06);border:1px solid var(--xett-ag);color:var(--kagiz);
+  font-family:var(--metn);font-size:13.5px;
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  transition:border-color .35s var(--yum),background .35s var(--yum)
+}
+.ft-form input::placeholder{color:rgba(251,250,248,.36)}
+.ft-form input:focus{outline:none;border-color:rgba(251,250,248,.5);background:rgba(251,250,248,.1)}
+.ft-form button{
+  position:absolute;right:5px;top:5px;width:38px;height:38px;border-radius:50%;cursor:pointer;
+  background:var(--kagiz);border:0;display:flex;align-items:center;justify-content:center;
+  transition:transform .35s var(--yum),background .35s var(--yum)
+}
+.ft-form button svg{width:15px;height:15px;fill:var(--murekkeb);stroke:none;margin-left:1px}
+.ft-form button:hover{transform:scale(1.08);background:var(--rec)}
+.ft-form button:hover svg{fill:var(--kagiz)}
+
+.ft-secim{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.ft-kicik-dgm{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  padding:8px 15px;border-radius:999px;border:1px solid var(--xett-ag);color:rgba(251,250,248,.6);
+  transition:color .3s var(--yum),border-color .3s var(--yum),background .3s var(--yum)
+}
+.ft-kicik-dgm:hover{color:var(--murekkeb);background:var(--kagiz);border-color:var(--kagiz)}
+
+.ft-basliq{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(251,250,248,.4);font-weight:400;margin-bottom:20px
+}
+.ft-xana nav,.ft-xana a{min-width:0}
+.ft-xana > a,.ft-unvan a,.ft-unvan span{
+  display:block;font-size:13.5px;line-height:2.15;color:rgba(251,250,248,.6);
+  transition:color .3s var(--yum),transform .3s var(--yum)
+}
+.ft-xana > a:hover,.ft-unvan a:hover{color:var(--kagiz);transform:translateX(4px)}
+.ft-unvan{font-style:normal}
+.ft-status{
+  display:flex !important;align-items:center;gap:8px;margin-top:14px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(251,250,248,.45) !important;line-height:1.4 !important
+}
+.ft-status i{width:6px;height:6px;border-radius:50%;background:#4a9d8f;box-shadow:0 0 9px #4a9d8f;flex:none;animation:nabz 2.4s infinite}
+
+.ft-sosial{display:flex;gap:10px;flex-wrap:wrap}
+.ft-sosial a{
+  position:relative;width:40px;height:40px;border-radius:50%;
+  border:1px solid var(--xett-ag);display:flex;align-items:center;justify-content:center;
+  color:rgba(251,250,248,.62);
+  transition:background .35s var(--yum),color .35s var(--yum),border-color .35s var(--yum),transform .35s var(--yum)
+}
+.ft-sosial a svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.5}
+.ft-sosial a:hover{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);transform:translateY(-3px)}
+/* ipucu */
+.ft-sosial a::after{
+  content:attr(data-ipucu);position:absolute;bottom:calc(100% + 10px);left:50%;
+  transform:translateX(-50%) translateY(4px);white-space:nowrap;
+  background:var(--kagiz);color:var(--murekkeb);border-radius:7px;padding:6px 10px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:0;pointer-events:none;transition:opacity .28s var(--yum),transform .28s var(--yum);z-index:5
+}
+.ft-sosial a:hover::after,.ft-sosial a:focus-visible::after{opacity:1;transform:translateX(-50%) translateY(0)}
+
+.ft-saat{margin-top:22px;display:flex;flex-direction:column;gap:5px}
+.ft-saat span{font-family:var(--mono);font-size:19px;letter-spacing:.06em;color:rgba(251,250,248,.82)}
+.ft-saat em{font-family:var(--mono);font-style:normal;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,250,248,.34)}
+
+.ft-alt{
+  margin-top:clamp(44px,6vh,72px);padding-top:26px;border-top:1px solid var(--xett-ag);
+  display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;
+  font-size:12.5px;color:rgba(251,250,248,.42)
+}
+.ft-alt-link{display:flex;gap:22px;align-items:center}
+.ft-alt-link a{color:rgba(251,250,248,.42);transition:color .3s var(--yum)}
+.ft-alt-link a:hover{color:var(--kagiz)}
+.ft-yuxari i{font-style:normal;display:inline-block;transition:transform .35s var(--yum)}
+.ft-yuxari:hover i{transform:translateY(-3px)}
+
+@media (max-width:1040px){ .ft-tor{grid-template-columns:1fr 1fr} .ft-xana--esas{grid-column:1 / -1} }
+@media (max-width:600px){ .ft-tor{grid-template-columns:1fr} .ft-alt{flex-direction:column;align-items:flex-start} }
+@media (prefers-reduced-motion:reduce){ .ft-status i{animation:none} }
+
+
+/* ================= XİDMƏTLƏR (tünd kartlar) ================= */
+.xd-tor{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,1.5vw,20px);margin-top:clamp(36px,6vh,64px)
+}
+.xd{
+  --aksR:217;--aksG:58;--aksB:30;
+  --aks:rgb(var(--aksR),var(--aksG),var(--aksB));
+  position:relative;overflow:hidden;isolation:isolate;text-decoration:none;
+  background:var(--murekkeb);color:var(--kagiz);
+  border:1px solid rgba(251,250,248,.08);
+  border-radius:clamp(18px,1.8vw,26px);
+  padding:clamp(26px,2.6vw,38px);
+  box-shadow:0 20px 54px -34px rgba(11,11,12,.7);
+  opacity:0;transform:translateY(24px);
+  transform-style:preserve-3d;
+  transition:opacity .8s var(--yum),transform .28s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
+  will-change:transform
+}
+
+
+/* hər kartın öz hover tonu */
+.xd--t1,.xd--t3,.xd--t5{--aksR:217;--aksG:58; --aksB:30 }   /* qırmızı */
+.xd--t2,.xd--t4          {--aksR:56; --aksG:118;--aksB:206}  /* mavi    */
+.xd.gorunur{opacity:1;transform:none}
+.xd.gorunur:hover{
+  border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.4);
+  box-shadow:
+    0 34px 80px -34px rgba(11,11,12,.75),
+    0 0 36px -20px rgba(var(--aksR),var(--aksG),var(--aksB),.6)
+}
+/* kursoru izləyən aksent parıltısı */
+.xd-parilti{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  transition:opacity .35s var(--yum);
+  background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--aksR),var(--aksG),var(--aksB),.4) 0%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),.16) 34%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),0) 66%)
+}
+
+.xd:hover .xd-parilti{opacity:1}
+
+.xd-ic{position:relative;display:flex;flex-direction:column;height:100%}
+.xd-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.xd-nisan{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;
+  background:var(--kagiz);color:var(--murekkeb);padding:6px 13px;border-radius:999px;
+  transition:background .45s var(--yum),color .45s var(--yum)
+}
+.xd:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd-no{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(251,250,248,.42);transition:color .45s var(--yum)
+}
+.xd:hover .xd-no{color:rgba(251,250,248,.72)}
+
+.xd-orta{display:flex;align-items:center;gap:14px;margin-top:clamp(42px,6vw,72px)}
+.xd-ikon{
+  width:40px;height:40px;border-radius:50%;flex:none;
+  border:1px solid rgba(251,250,248,.18);display:flex;align-items:center;justify-content:center;
+  transition:transform .5s var(--yum),background .5s var(--yum),border-color .5s var(--yum)
+}
+.xd-ikon svg{width:17px;height:17px;fill:none;stroke:rgba(251,250,248,.8);stroke-width:1.5;transition:stroke .5s var(--yum)}
+.xd:hover .xd-ikon{transform:translateY(-3px) rotate(-6deg);background:var(--aks);border-color:var(--aks)}
+.xd:hover .xd-ikon svg{stroke:#fff}
+.xd-ad{
+  font-family:var(--dsp);font-weight:400;letter-spacing:-.015em;line-height:1;
+  font-size:clamp(24px,2.4vw,34px);
+  transition:transform .5s var(--yum)
+}
+.xd:hover .xd-ad{transform:translateX(4px)}
+
+.xd-izah{
+  margin-top:16px;font-size:13px;line-height:1.66;color:rgba(251,250,248,.58);max-width:38ch;
+  transition:color .5s var(--yum)
+}
+.xd:hover .xd-izah{color:rgba(251,250,248,.75)}
+
+.xd-siyahi{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.xd-siyahi li{
+  position:relative;padding-left:18px;font-size:12.5px;line-height:1.5;
+  color:rgba(251,250,248,.66);
+  transition:transform .5s var(--yum),color .5s var(--yum),padding-left .5s var(--yum)
+}
+.xd-siyahi li::before{
+  content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--aks);
+  transform:scaleX(.4);transform-origin:left;transition:transform .45s var(--yum),width .45s var(--yum)
+}
+.xd:hover .xd-siyahi li{transform:translateX(4px);color:rgba(251,250,248,.88);padding-left:21px}
+.xd:hover .xd-siyahi li::before{transform:scaleX(1);width:12px}
+.xd:hover .xd-siyahi li:nth-child(2),.xd:hover .xd-siyahi li:nth-child(2)::before{transition-delay:.05s}
+.xd:hover .xd-siyahi li:nth-child(3),.xd:hover .xd-siyahi li:nth-child(3)::before{transition-delay:.1s}
+.xd:hover .xd-siyahi li:nth-child(4),.xd:hover .xd-siyahi li:nth-child(4)::before{transition-delay:.15s}
+.xd:hover .xd-siyahi li:nth-child(5),.xd:hover .xd-siyahi li:nth-child(5)::before{transition-delay:.2s}
+
+.xd-alt{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:auto;padding-top:22px;border-top:1px solid rgba(251,250,248,.12)
+}
+.xd-cta{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(251,250,248,.62);transition:color .45s var(--yum)
+}
+.xd:hover .xd-cta{color:var(--kagiz)}
+.xd-ox{font-size:18px;color:rgba(251,250,248,.62);transition:transform .45s var(--yum),color .45s var(--yum);display:inline-block}
+.xd:hover .xd-ox{transform:translateX(7px);color:var(--aks)}
+
+/* kalkulyator xanası — açıq, seçilsin */
+.xd--cta{
+  --aksR:217;--aksG:58;--aksB:30;
+  background:var(--kagiz);color:var(--murekkeb);border-color:rgba(11,11,12,.1);
+  box-shadow:0 20px 54px -34px rgba(11,11,12,.45)
+}
+.xd--cta .xd-nisan{background:var(--murekkeb);color:var(--kagiz)}
+.xd--cta:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd--cta .xd-no,.xd--cta .xd-cta,.xd--cta .xd-ox{color:var(--sus)}
+.xd--cta:hover .xd-no{color:var(--murekkeb)}
+.xd--cta .xd-izah{color:var(--sus)}
+.xd--cta:hover .xd-izah{color:rgba(11,11,12,.75)}
+.xd--cta .xd-alt{border-top-color:var(--xett)}
+.xd--cta:hover .xd-cta{color:var(--murekkeb)}
+.xd--cta .xd-parilti{background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.2) 0%,rgba(217,58,30,.07) 36%,rgba(217,58,30,0) 66%)}
+
+/* daxili elementlərin pilləli açılışı */
+.xd-ic > *{opacity:0;transform:translateY(12px)}
+.xd.gorunur .xd-ic > *{animation:xdQalx .72s var(--yum) forwards}
+.xd.gorunur .xd-ic > *:nth-child(1){animation-delay:.06s}
+.xd.gorunur .xd-ic > *:nth-child(2){animation-delay:.14s}
+.xd.gorunur .xd-ic > *:nth-child(3){animation-delay:.2s}
+.xd.gorunur .xd-ic > *:nth-child(4){animation-delay:.26s}
+.xd.gorunur .xd-ic > *:nth-child(5){animation-delay:.32s}
+@keyframes xdQalx{to{opacity:1;transform:none}}
+
+@media (max-width:980px){ .xd-tor{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:620px){ .xd-tor{grid-template-columns:1fr} .xd-izah{max-width:none} .xd-orta{margin-top:44px} }
+@media (prefers-reduced-motion:reduce){
+  .xd{opacity:1;transform:none;transition:none}
+  .xd-ic > *{opacity:1;transform:none;animation:none !important}
+}
+
+/* ================= KADR ARXASI (parallaks) ================= */
+.karx{height:300vh;position:relative;background:var(--kagiz)}
+.karx-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
+/* yuxarı və aşağı kəsikləri yumşaldan keçidlər */
+.karx-yapisqan::before,.karx-yapisqan::after{
+  content:"";position:absolute;left:0;right:0;z-index:7;pointer-events:none
+}
+.karx-yapisqan::before{
+  top:0;height:22vh;
+  background:linear-gradient(to bottom,var(--kagiz) 0%,rgba(251,250,248,.86) 34%,rgba(251,250,248,.44) 64%,transparent 100%)
+}
+.karx-yapisqan::after{
+  bottom:0;height:30vh;
+  background:linear-gradient(to top,var(--kagiz) 0%,rgba(251,250,248,.9) 32%,rgba(251,250,248,.5) 62%,transparent 100%)
+}
+.karx-sehne{position:absolute;inset:0;display:flex;align-items:flex-end;justify-content:center}
+.karx-qat{position:absolute;inset:-40% -20%;will-change:transform;pointer-events:none}
+
+.qzt{position:absolute;display:block;height:auto;transform-origin:center;user-select:none;will-change:transform}
+.karx-qat[data-qat="1"]{z-index:1}
+.karx-qat[data-qat="2"]{z-index:3}
+.karx-qat[data-qat="3"]{z-index:5}
+.karx-qat[data-qat="1"] .qzt{opacity:.3;filter:blur(2.4px)}
+.karx-qat[data-qat="2"] .qzt{opacity:.66;filter:blur(.7px)}
+.karx-qat[data-qat="3"] .qzt{opacity:.96;filter:drop-shadow(0 26px 40px rgba(11,11,12,.16))}
+
+.karx-foto{
+  position:relative;z-index:2;height:94%;display:flex;align-items:flex-end;
+  will-change:transform;pointer-events:none
+}
+.karx-foto img{height:100%;width:auto;object-fit:contain;display:block}
+
+.karx-mtn{
+  position:absolute;left:var(--kenar);top:clamp(96px,15vh,170px);z-index:8;
+  max-width:min(40ch,42vw);pointer-events:none;will-change:transform
+}
+.karx-bas{
+  font-family:var(--dsp);font-weight:400;line-height:1.02;letter-spacing:-.012em;
+  font-size:clamp(28px,4.4vw,62px);margin-top:16px
+}
+@media (max-width:820px){
+  .karx{height:230vh}
+  .karx-foto{height:64%}
+  .karx-mtn{max-width:none;right:var(--kenar);top:clamp(84px,12vh,120px)}
+}
+@media (prefers-reduced-motion:reduce){
+  .karx{height:auto;min-height:100svh}
+  .karx-yapisqan{position:relative}
+}
+
+/* ================= LENT KARUSELİ ================= */
+.lnt{
+  display:grid;grid-template-columns:minmax(0,38%) minmax(0,62%);
+  margin-top:clamp(34px,5vh,58px);border:1px solid var(--xett-ag);border-radius:clamp(22px,3vw,40px);
+  overflow:hidden;min-height:min(74vh,620px)
+}
+.lnt-sol{
+  position:relative;overflow:hidden;display:flex;align-items:center;
+  padding:clamp(26px,3.4vw,52px);background:rgba(251,250,248,.035)
+}
+.lnt-sol::before,.lnt-sol::after{
+  content:"";position:absolute;left:0;right:0;height:34%;z-index:3;pointer-events:none
+}
+.lnt-sol::before{top:0;background:linear-gradient(to bottom,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
+.lnt-sol::after{bottom:0;background:linear-gradient(to top,var(--murekkeb) 6%,rgba(11,11,12,.72) 48%,transparent)}
+.lnt-cipler{position:relative;width:100%;height:100%;min-height:480px}
+.lnt-cip{
+  position:absolute;left:0;top:50%;display:flex;align-items:center;gap:13px;
+  padding:15px 27px;border-radius:999px;border:1px solid var(--xett-ag);
+  background:transparent;color:rgba(251,250,248,.5);cursor:pointer;white-space:nowrap;
+  font-family:var(--mono);font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;
+  transition:background .55s var(--yum),color .55s var(--yum),border-color .55s var(--yum),transform .75s var(--yum),opacity .75s var(--yum);
+  will-change:transform,opacity
+}
+.lnt-cip:hover{color:rgba(251,250,248,.86);border-color:rgba(251,250,248,.4)}
+.lnt-cip.aktiv{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);z-index:4}
+.lnt-cip svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.5}
+.lnt-sag{
+  position:relative;display:flex;align-items:center;justify-content:center;
+  padding:clamp(22px,2.4vw,38px);border-left:1px solid var(--xett-ag);
+  background:rgba(251,250,248,.02);overflow:hidden
+}
+.lnt-sehne{position:relative;width:100%;max-width:min(430px,42vw);aspect-ratio:4/5}
+.lnt-kart{
+  position:absolute;inset:0;border-radius:clamp(18px,2.2vw,30px);overflow:hidden;
+  border:0;background:var(--murekkeb);
+  transition:transform .8s var(--yum),opacity .8s var(--yum),filter .8s var(--yum);
+  will-change:transform,opacity;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.14),
+    0 34px 70px -34px rgba(0,0,0,.95)
+}
+.lnt-kart img{width:100%;height:100%;object-fit:cover;display:block}
+.lnt-kart.pas img{filter:grayscale(1) brightness(.62) blur(1.5px)}
+.lnt-kart.yan{cursor:pointer;pointer-events:auto}
+.lnt-kart.yan img{transition:filter .6s var(--yum),transform .8s var(--yum)}
+.lnt-kart.yan:hover img,.lnt-kart.yan:focus-visible img{
+  filter:grayscale(.15) brightness(.95) blur(0);transform:scale(1.05)
+}
+.lnt-kart.yan:focus-visible{outline:2px solid var(--kagiz);outline-offset:4px}
+.lnt-yan-isare{
+  position:absolute;inset:0;z-index:4;display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .45s var(--yum);pointer-events:none
+}
+.lnt-kart.yan:hover .lnt-yan-isare,.lnt-kart.yan:focus-visible .lnt-yan-isare{opacity:1}
+.lnt-yan-isare span{
+  display:flex;align-items:center;gap:8px;
+  background:rgba(251,250,248,.94);color:var(--murekkeb);
+  padding:10px 17px;border-radius:999px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;
+  transform:scale(.86);transition:transform .45s var(--yum);
+  box-shadow:0 10px 30px -12px rgba(0,0,0,.7)
+}
+.lnt-kart.yan:hover .lnt-yan-isare span,.lnt-kart.yan:focus-visible .lnt-yan-isare span{transform:scale(1)}
+.lnt-yan-isare svg{width:12px;height:12px;fill:currentColor;stroke:none}
+.lnt-kart:not(.yan){pointer-events:none}
+@media (prefers-reduced-motion:reduce){
+  .lnt-kart.yan img,.lnt-yan-isare,.lnt-yan-isare span{transition:none !important}
+}
+.lnt-mtn{
+  position:absolute;left:0;right:0;bottom:0;padding:clamp(16px,2.2vw,24px);padding-top:90px;
+  background:linear-gradient(to top,rgba(0,0,0,.92),rgba(0,0,0,.35) 46%,transparent);
+  opacity:0;transform:translateY(14px);transition:opacity .6s var(--yum),transform .6s var(--yum);
+  pointer-events:none
+}
+.lnt-kart.aktiv .lnt-mtn{opacity:1;transform:none}
+.lnt-rozet{
+  display:inline-block;background:var(--kagiz);color:var(--murekkeb);
+  padding:4px 10px;border-radius:999px;margin-bottom:9px;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase
+}
+.lnt-mtn p{font-size:clamp(12px,1vw,14px);line-height:1.45;color:rgba(255,255,255,.92);letter-spacing:0;margin:0}
+.lnt-canli{
+  position:absolute;top:clamp(16px,2vw,24px);left:clamp(16px,2vw,24px);z-index:3;
+  display:flex;align-items:center;gap:9px;opacity:0;transition:opacity .5s var(--yum)
+}
+.lnt-kart.aktiv .lnt-canli{opacity:1}
+.lnt-canli i{
+  width:7px;height:7px;border-radius:50%;background:var(--rec);
+  box-shadow:0 0 11px var(--rec);animation:lntNebz 2s infinite
+}
+.lnt-canli span{font-family:var(--mono);font-size:9px;letter-spacing:.26em;text-transform:uppercase;color:rgba(251,250,248,.72)}
+@keyframes lntNebz{0%,100%{opacity:1}50%{opacity:.32}}
+
+/* ---- Lent: oynat düyməsi + video modalı ---- */
+.lnt-kart.aktiv .lnt-oynat{opacity:1;transform:scale(1)}
+.lnt-oynat{
+  position:absolute;top:50%;left:50%;z-index:5;
+  width:74px;height:74px;margin:-37px 0 0 -37px;border-radius:50%;
+  border:1px solid rgba(251,250,248,.5);background:rgba(11,11,12,.42);
+  backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  opacity:0;transform:scale(.76);
+  transition:opacity .5s var(--yum),transform .5s var(--yum),background .4s var(--yum),border-color .4s var(--yum)
+}
+.lnt-oynat::after{
+  content:"";position:absolute;inset:-1px;border-radius:50%;
+  border:1px solid rgba(251,250,248,.32);animation:lntDalga 2.6s var(--yum) infinite
+}
+.lnt-oynat svg{width:19px;height:19px;fill:var(--kagiz);stroke:none;margin-left:3px;transition:fill .35s var(--yum)}
+.lnt-kart.aktiv:hover .lnt-oynat{background:var(--kagiz);border-color:var(--kagiz);transform:scale(1.1)}
+.lnt-kart.aktiv:hover .lnt-oynat svg{fill:var(--murekkeb)}
+.lnt-kart.aktiv{cursor:pointer;pointer-events:auto}
+@keyframes lntDalga{0%{transform:scale(1);opacity:.65}70%{transform:scale(1.42);opacity:0}100%{opacity:0}}
+
+.lnt-modal{position:fixed;inset:0;z-index:9800;display:flex;align-items:center;justify-content:center;
+  opacity:0;pointer-events:none;transition:opacity .38s var(--yum);padding:clamp(16px,4vw,54px)}
+.lnt-modal.aciq{opacity:1;pointer-events:auto}
+.lnt-modal-fon{position:absolute;inset:0;background:rgba(6,6,7,.9);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.lnt-modal-qutu{
+  position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:14px;
+  max-width:100%;max-height:100%;
+  transform:translateY(22px) scale(.965);transition:transform .48s var(--yum)
+}
+.lnt-modal.aciq .lnt-modal-qutu{transform:none}
+.lnt-modal-bas{
+  font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(251,250,248,.62);order:2
+}
+.lnt-cerceve{
+  position:relative;order:1;width:min(92vw,1080px);aspect-ratio:16/9;
+  border-radius:clamp(12px,1.6vw,20px);overflow:hidden;background:#000;
+  box-shadow:0 40px 90px -40px rgba(0,0,0,.9)
+}
+.lnt-cerceve.saqulu{width:auto;height:min(78vh,860px);aspect-ratio:9/16;max-width:92vw}
+.lnt-cerceve iframe{position:absolute;inset:0;width:100%;height:100%;border:0;display:block}
+.lnt-bagla{
+  position:fixed;top:clamp(14px,2.4vw,28px);right:clamp(14px,2.4vw,28px);z-index:3;
+  width:42px;height:42px;border-radius:50%;cursor:pointer;
+  border:1px solid var(--xett-ag);background:rgba(11,11,12,.6);color:var(--kagiz);
+  font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;
+  transition:background .3s var(--yum),border-color .3s var(--yum),transform .3s var(--yum)
+}
+.lnt-bagla:hover{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);transform:rotate(90deg)}
+@media (prefers-reduced-motion:reduce){
+  .lnt-oynat,.lnt-modal,.lnt-modal-qutu,.lnt-bagla{transition:none !important}
+  .lnt-oynat::after{animation:none}
+}
+@media (max-width:900px){
+  .lnt{grid-template-columns:1fr;min-height:0}
+  .lnt-sol{order:2;min-height:330px;padding:24px}
+  .lnt-cipler{min-height:300px}
+  .lnt-sag{order:1;border-left:0;border-bottom:1px solid var(--xett-ag);padding:34px 24px}
+  .lnt-sehne{max-width:290px}
+}
+@media (prefers-reduced-motion:reduce){
+  .lnt-cip,.lnt-kart,.lnt-mtn{transition:none !important}
+  .lnt-canli i{animation:none}
+}
+
+/* ================= KALKULYATOR TİZERİ ================= */
+.kt-tor{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:clamp(16px,2.2vw,26px);margin-top:clamp(36px,6vh,64px);max-width:1000px
+}
+.kt-kart{
+  display:block;position:relative;overflow:hidden;text-decoration:none;color:inherit;border:1px solid var(--xett);border-radius:22px;
+  background:var(--murekkeb);color:var(--kagiz);
+  padding:clamp(24px,3.4vw,38px);
+  transform:perspective(1200px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1);
+  transition:transform .25s var(--yum),border-color .4s var(--yum),box-shadow .4s var(--yum);
+  will-change:transform;transform-style:preserve-3d;
+  box-shadow:0 18px 50px -30px rgba(11,11,12,.55)
+}
+.kt-kart:hover{box-shadow:0 34px 80px -34px rgba(11,11,12,.75)}
+.kt-parilti{
+  position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;
+  transition:opacity .35s var(--yum);overflow:hidden;border-radius:inherit
+}
+.kt-kart:hover .kt-parilti{opacity:1}
+.kt-parilti::after{
+  content:"";position:absolute;width:200%;height:200%;border-radius:50%;
+  left:var(--px,50%);top:var(--py,50%);transform:translate(-50%,-50%);
+  background:radial-gradient(circle,rgba(217,58,30,.34) 0%,rgba(251,250,248,.08) 26%,transparent 46%)
+}
+.kt-ic{position:relative;z-index:2;display:block}
+.kt-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.kt-nisan{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  background:var(--kagiz);color:var(--murekkeb);padding:5px 11px;border-radius:999px
+}
+.kt-saniye{font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(251,250,248,.5);text-transform:uppercase}
+.kt-orta{display:block;margin-top:clamp(46px,7vw,76px)}
+.kt-reqem{display:flex;align-items:baseline;gap:9px}
+.kt-reqem b{font-family:var(--dsp);font-weight:400;font-size:clamp(42px,6.4vw,68px);line-height:1;letter-spacing:-.015em}
+.kt-reqem i{font-family:var(--dsp);font-style:normal;font-size:clamp(19px,2.6vw,26px);color:var(--rec)}
+.kt-etiket{display:block;margin-top:10px;font-size:13.5px;color:rgba(251,250,248,.62)}
+.kt-alt{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:clamp(28px,4vw,40px);padding-top:20px;border-top:1px solid var(--xett-ag)
+}
+.kt-cta{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+.kt-ox{font-size:19px;transition:transform .4s var(--yum);display:inline-block}
+.kt-kart:hover .kt-ox{transform:translateX(7px)}
+.kt-siyahi{display:block;margin-top:clamp(22px,3vw,30px)}
+.kt-siyahi span{
+  display:block;position:relative;padding-left:17px;font-size:13px;line-height:2.05;
+  color:rgba(251,250,248,.58)
+}
+.kt-siyahi span::before{
+  content:"";position:absolute;left:0;top:.92em;width:7px;height:1px;background:var(--kt-aksent,var(--rec))
+}
+.kt-kart--video{--kt-aksent:#4a9d8f}
+.kt-kart--video .kt-reqem i{color:var(--kt-aksent)}
+.kt-kart--video .kt-parilti::after{
+  background:radial-gradient(circle,rgba(74,157,143,.34) 0%,rgba(251,250,248,.08) 26%,transparent 46%)
+}
+@media (max-width:640px){
+  .kt-tor{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  .kt-orta{margin-top:40px}
+}
+@media (prefers-reduced-motion:reduce){
+  .kt-kart{transition:none !important}
+  .kt-parilti{display:none}
+}
 #kalkulyator{ --pk-vurgu: var(--rec); }
 #kalkulyator #k-bas{font-size:clamp(22px,3.2vw,38px)}
 
@@ -705,29 +1338,321 @@ footer{
   #kalkulyator *{transition-duration:.01ms !important}
 }
 
+
+/* ================= TÜND BÖLMƏLƏR ÜÇÜN ŞÜŞƏ SƏTHLƏR ================= */
+@property --bucaq{ syntax:"<angle>"; inherits:false; initial-value:-75deg }
+
+/* tünd bölmələrin arxasında yumşaq işıq zəmini — şüşənin sındıracağı fon */
+.blok--tund{position:relative;isolation:isolate}
+.blok--tund > *{position:relative;z-index:1}
+.blok--tund{overflow:hidden}
+/* iki hərəkətli rəng qatı — üst-üstə düşəndə qarışır (screen) */
+.blok--tund::before,.blok--tund::after{
+  content:"";position:absolute;inset:-35%;z-index:0;pointer-events:none;
+  will-change:transform;filter:blur(64px);mix-blend-mode:screen;opacity:.62
+}
+.blok--tund::before{
+  background:
+    radial-gradient(24% 28% at 26% 30%, rgba(232,64,32,.72), transparent 66%),
+    radial-gradient(20% 24% at 68% 74%, rgba(255,96,58,.56), transparent 68%),
+    radial-gradient(17% 20% at 48% 14%, rgba(206,40,18,.5), transparent 70%);
+  animation:tundAxin1 15s ease-in-out infinite alternate
+}
+.blok--tund::after{
+  background:
+    radial-gradient(25% 29% at 70% 26%, rgba(48,124,224,.7), transparent 66%),
+    radial-gradient(21% 25% at 28% 72%, rgba(78,166,248,.58), transparent 68%),
+    radial-gradient(18% 22% at 54% 50%, rgba(104,120,236,.48), transparent 70%);
+  animation:tundAxin2 19s ease-in-out infinite alternate-reverse
+}
+@keyframes tundAxin1{
+  0%  {transform:translate3d(-16%,-10%,0) scale(1)    rotate(0deg)}
+  35% {transform:translate3d(12%,8%,0)   scale(1.22) rotate(28deg)}
+  70% {transform:translate3d(-6%,16%,0)  scale(.9)   rotate(-18deg)}
+  100%{transform:translate3d(18%,-6%,0)  scale(1.14) rotate(12deg)}
+}
+@keyframes tundAxin2{
+  0%  {transform:translate3d(16%,12%,0)  scale(1.1)  rotate(0deg)}
+  35% {transform:translate3d(-14%,-8%,0) scale(.88)  rotate(-24deg)}
+  70% {transform:translate3d(8%,-16%,0)  scale(1.24) rotate(20deg)}
+  100%{transform:translate3d(-12%,6%,0)  scale(.96)  rotate(-10deg)}
+}
+@media (prefers-reduced-motion:reduce){
+  .blok--tund::before,.blok--tund::after{animation:none}
+}
+
+/* ---- ümumi şüşə səth ---- */
+.suse{
+  position:relative;isolation:isolate;
+  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.16),rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);
+  backdrop-filter:blur(14px) saturate(160%);
+  border:0;
+  box-shadow:
+    inset 0 1px 1px rgba(251,250,248,.22),
+    inset 0 -1px 1px rgba(11,11,12,.4),
+    0 6px 14px -8px rgba(0,0,0,.7);
+  transition:background .45s var(--yum),box-shadow .45s var(--yum),transform .45s var(--yum)
+}
+/* konik işıq haşiyəsi */
+.suse::after{
+  content:"";position:absolute;inset:-1px;z-index:2;pointer-events:none;
+  border-radius:inherit;padding:1px;box-sizing:border-box;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.55) 0%, transparent 6% 40%,
+    rgba(251,250,248,.5) 50%, transparent 60% 94%,
+    rgba(251,250,248,.55) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum),opacity .45s var(--yum)
+}
+.suse:hover,.suse:focus-within{
+  background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.22),rgba(251,250,248,.08));
+  box-shadow:
+    inset 0 1px 1px rgba(251,250,248,.3),
+    inset 0 -1px 1px rgba(11,11,12,.42),
+    0 12px 26px -12px rgba(0,0,0,.75)
+}
+.suse:hover::after,.suse:focus-within::after{--bucaq:-125deg}
+@supports not (mask-composite: exclude){
+  .suse::after{display:none}
+  .suse{border:1px solid rgba(251,250,248,.22)}
+}
+
+/* ---- Portfolio: şüşə həblər (işıq düşən səth) ---- */
+.lnt-cip{
+  border:0;color:rgba(251,250,248,.72);
+  background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03) 42%,rgba(0,0,0,.16));
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.4),
+    inset 0 -1px 1px rgba(0,0,0,.4),
+    inset 0 0 14px rgba(255,255,255,.06),
+    0 6px 18px -8px rgba(0,0,0,.75),
+    0 0 0 .5px rgba(255,255,255,.1),
+    0 0 22px -6px rgba(255,255,255,.12);
+  transition:
+    color .5s var(--yum),
+    box-shadow .5s var(--yum),
+    background .5s var(--yum),
+    transform .75s var(--yum),
+    opacity .75s var(--yum)
+}
+/* kursoru izləyən işıq ləkəsi */
+.lnt-cip::before{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:0;
+  background:radial-gradient(120px circle at var(--mx,50%) var(--my,0%),
+    rgba(255,255,255,.55),rgba(255,255,255,.14) 34%,transparent 62%);
+  opacity:0;transition:opacity .45s var(--yum)
+}
+/* parlaq kənar halqası */
+.lnt-cip::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;box-sizing:border-box;
+  pointer-events:none;z-index:1;
+  background:linear-gradient(var(--isiq,150deg),
+    rgba(255,255,255,.85) 0%,
+    rgba(255,255,255,.24) 26%,
+    rgba(255,255,255,.06) 52%,
+    rgba(255,255,255,.3) 78%,
+    rgba(255,255,255,.7) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  opacity:.55;transition:opacity .5s var(--yum)
+}
+.lnt-cip > *{position:relative;z-index:2}
+
+.lnt-cip:hover{
+  color:#fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.62),
+    inset 0 -1px 1px rgba(0,0,0,.42),
+    inset 0 0 22px rgba(255,255,255,.12),
+    0 10px 26px -10px rgba(0,0,0,.8),
+    0 0 0 .5px rgba(255,255,255,.2),
+    0 0 34px -4px rgba(255,255,255,.26)
+}
+.lnt-cip:hover::before{opacity:1}
+.lnt-cip:hover::after{opacity:1}
+
+/* seçili həb — ağ şüşə */
+.lnt-cip.aktiv{
+  background:linear-gradient(180deg,rgba(255,255,255,.98),rgba(244,243,240,.9));
+  color:var(--murekkeb);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    inset 0 -1px 2px rgba(0,0,0,.12),
+    0 12px 30px -12px rgba(0,0,0,.7),
+    0 0 38px -8px rgba(255,255,255,.4)
+}
+.lnt-cip.aktiv::after{opacity:0}
+.lnt-cip.aktiv::before{
+  background:radial-gradient(110px circle at var(--mx,50%) var(--my,0%),
+    rgba(255,255,255,.9),rgba(255,255,255,.2) 40%,transparent 66%);
+  mix-blend-mode:overlay
+}
+@supports not (mask-composite: exclude){
+  .lnt-cip::after{display:none}
+  .lnt-cip{border:1px solid rgba(255,255,255,.22)}
+}
+
+/* ---- Portfolio qabı: şüşə panel ---- */
+.lnt{
+  border:1px solid rgba(251,250,248,.2);
+  background:linear-gradient(150deg,rgba(251,250,248,.16),rgba(251,250,248,.085) 48%,rgba(251,250,248,.14));
+  -webkit-backdrop-filter:blur(40px) saturate(150%) brightness(1.05);
+  backdrop-filter:blur(40px) saturate(150%) brightness(1.05);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.34),
+    inset 0 -1px 0 rgba(0,0,0,.3),
+    0 40px 90px -55px rgba(0,0,0,.95)
+}
+.lnt-sol{background:rgba(251,250,248,.05)}
+.lnt-sag{background:rgba(251,250,248,.03)}
+
+/* ---- Footer: input, düymələr, sosial ---- */
+.ft-form input{
+  border:0;
+  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.15),rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);
+  box-shadow:inset 0 1px 1px rgba(251,250,248,.22),inset 0 -1px 1px rgba(11,11,12,.4)
+}
+.ft-form{position:relative}
+.ft-form::after{
+  content:"";position:absolute;inset:-1px;height:50px;border-radius:999px;padding:1px;box-sizing:border-box;
+  pointer-events:none;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.5) 0%, transparent 6% 40%,
+    rgba(251,250,248,.45) 50%, transparent 60% 94%,
+    rgba(251,250,248,.5) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum)
+}
+.ft-form:focus-within::after{--bucaq:-125deg}
+.ft-form input:focus{background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.2),rgba(251,250,248,.08))}
+
+.ft-kicik-dgm,.ft-sosial a{
+  border:0;position:relative;
+  background:linear-gradient(-75deg,rgba(251,250,248,.04),rgba(251,250,248,.13),rgba(251,250,248,.04));
+  -webkit-backdrop-filter:blur(12px) saturate(150%);backdrop-filter:blur(12px) saturate(150%);
+  box-shadow:inset 0 1px 1px rgba(251,250,248,.2),inset 0 -1px 1px rgba(11,11,12,.35)
+}
+.ft-kicik-dgm::before,.ft-sosial a::before{
+  content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;box-sizing:border-box;
+  pointer-events:none;
+  background:conic-gradient(from var(--bucaq) at 50% 50%,
+    rgba(251,250,248,.5) 0%, transparent 6% 40%,
+    rgba(251,250,248,.45) 50%, transparent 60% 94%,
+    rgba(251,250,248,.5) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  transition:--bucaq .6s var(--yum),opacity .4s var(--yum)
+}
+.ft-kicik-dgm:hover::before,.ft-sosial a:hover::before{--bucaq:-125deg;opacity:0}
+
+@media (prefers-reduced-motion:reduce){
+  .suse,.suse::after,.lnt-cip::after,.ft-kicik-dgm::before,.ft-sosial a::before,.ft-form::after{transition:none !important}
+}
+
+
+
+/* ---- Portfolio kartları: qalın şüşə çərçivə, rəng çərçivə boyunca gəzir ---- */
+@property --cerBucaq{ syntax:"<angle>"; inherits:false; initial-value:0deg }
+
+.lnt-kart::before,.lnt-kart::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;
+  box-sizing:border-box;pointer-events:none
+}
+/* 1) hərəkət edən rəngli işıq — çərçivə boyunca dolanır */
+.lnt-kart::before{
+  z-index:6;padding:10px;
+  background:conic-gradient(from var(--cerBucaq) at 50% 50%,
+    rgba(255,255,255,.92)   0deg,
+    rgba(232,64,32,.95)    46deg,
+    rgba(255,146,64,.8)    88deg,
+    rgba(255,255,255,.22) 138deg,
+    rgba(48,124,224,.92)  206deg,
+    rgba(126,178,255,.72) 252deg,
+    rgba(255,255,255,.26) 306deg,
+    rgba(255,255,255,.92) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  filter:blur(.4px);
+  animation:cerDolan 11s linear infinite
+}
+/* 2) şüşənin öz qalınlığı — sabit ağ işıq və daxili kölgə */
+.lnt-kart::after{
+  z-index:7;padding:10px;
+  background:linear-gradient(150deg,
+    rgba(255,255,255,.5) 0%,
+    rgba(255,255,255,.08) 30%,
+    rgba(255,255,255,.02) 55%,
+    rgba(255,255,255,.16) 78%,
+    rgba(255,255,255,.42) 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,.3),
+    inset 0 0 18px rgba(0,0,0,.55)
+}
+@keyframes cerDolan{ to{ --cerBucaq:360deg } }
+
+/* yan kartlarda daha sakit */
+.lnt-kart.yan::before{opacity:.5;animation-duration:16s}
+.lnt-kart.yan::after{opacity:.55}
+.lnt-kart.aktiv::before{opacity:1}
+
+/* mətn və düymələr çərçivənin altında qalmasın */
+.lnt-mtn{z-index:8}
+.lnt-oynat{z-index:9}
+.lnt-canli{z-index:8}
+.lnt-yan-isare{z-index:9}
+
+@supports not (mask-composite: exclude){
+  .lnt-kart::before,.lnt-kart::after{display:none}
+  .lnt-kart{border:9px solid rgba(255,255,255,.14)}
+}
+@media (prefers-reduced-motion:reduce){
+  .lnt-kart::before{animation:none}
+}
+
+/* ---- Kadr arxası: arxada bir anlıq görünən böyük "X" ---- */
+.karx-x{
+  position:absolute;left:50%;top:46%;z-index:1;
+  transform:translate(-50%,-50%) scale(1);
+  font-family:var(--dsp);font-weight:400;line-height:.78;
+  font-size:min(78vh,64vw);
+  color:rgba(11,11,12,.16);
+  opacity:0;filter:blur(26px);
+  pointer-events:none;user-select:none;will-change:opacity,transform,filter
+}
+@media (prefers-reduced-motion:reduce){ .karx-x{display:none} }
 </style>
 <style>
-/* --- yalnız kalkulyator səhifəsi --- */
-.hero,.reel,#xidmetler,#isler,#paketler,#faq{display:none !important}
-#kalkulyator{padding-top:clamp(104px,16vh,180px)}
-.klk-geri{
+/* --- yalnız paket seçimi səhifəsi --- */
+.acilis,.flas,.hero,.karx,#xidmetler,#isler,#paketler,#faq,.perf{display:none !important}
+#kalkulyator-tizer{padding-top:clamp(104px,16vh,180px)}
+.pk-geri{
   display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;
   letter-spacing:.22em;text-transform:uppercase;color:var(--sus);text-decoration:none;
-  transition:color .3s var(--yum)
+  margin-bottom:26px;transition:color .3s var(--yum)
 }
-.klk-geri:hover{color:var(--murekkeb)}
-.klk-geri span{transition:transform .3s var(--yum);display:inline-block}
-.klk-geri:hover span{transform:translateX(-4px)}
-</style>
-<style>
-.klk-secim{display:flex;gap:8px;flex-wrap:wrap;margin-top:22px}
-.klk-secim a{
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
-  text-decoration:none;color:var(--sus);border:1px solid var(--xett);border-radius:999px;
-  padding:9px 16px;transition:color .3s var(--yum),border-color .3s var(--yum),background .3s var(--yum)
-}
-.klk-secim a:hover{color:var(--murekkeb);border-color:var(--murekkeb)}
-.klk-secim a.aktiv{background:var(--murekkeb);border-color:var(--murekkeb);color:var(--kagiz)}
+.pk-geri:hover{color:var(--murekkeb)}
+.pk-geri span{display:inline-block;transition:transform .3s var(--yum)}
+.pk-geri:hover span{transform:translateX(-4px)}
 </style>
 </head>
 <body>
@@ -741,10 +1666,40 @@ footer{
     <a href="/#xidmetler">Xidmətlər</a>
     <a href="/#isler">İşlər</a>
     <a href="/#paketler">Paketlər</a>
+    <a href="/paket" class="aktiv">Kalkulyator</a>
     <a href="/#elaqe">Əlaqə</a>
   </div>
   <span class="rec-ust kicik" aria-label="Yazılır"><i aria-hidden="true"></i> Rec</span>
 </nav>
+
+<!-- ================= AÇILIŞ: KAMERA + FLAŞ ================= -->
+<div class="acilis" id="acilis" aria-hidden="true">
+  <div class="acilis-yapisqan">
+    <div class="acilis-sehne" id="acilis-sehne">
+
+      <div class="acilis-rec"><i></i>REC</div>
+
+      <div class="kam" id="kam">
+        <picture>
+          <source srcset="/media/kamera.webp" type="image/webp">
+          <img src="/media/kamera.png" alt="" aria-hidden="true" fetchpriority="high" decoding="async">
+        </picture>
+        <span class="kam-parlaq" id="kam-parlaq"></span>
+        <span class="kam-sua" aria-hidden="true"></span>
+      </div>
+
+      <div class="acilis-mtn" id="acilis-mtn">
+        <div class="acilis-bas">Kadr hazırdır</div>
+        <div class="acilis-ipucu">
+          <span>Aşağı sürüşdür</span>
+          <span class="acilis-ox" aria-hidden="true"><i></i></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<div class="flas" id="flas" aria-hidden="true"></div>
 
 <!-- ================= HERO ================= -->
 <header class="hero" id="bas">
@@ -771,17 +1726,25 @@ footer{
 
 <div class="perf" aria-hidden="true"></div>
 
-<!-- ================= SHOWREEL ================= -->
-<section class="reel" id="reel" aria-label="Showreel">
-  <div class="reel-yapisqan">
-    <div class="reel-mətn" data-ac>
-      <h2 class="dsp">Bir dəqiqədə<br>bir il</h2>
-    </div>
-    <div class="reel-cerceve" id="reel-cerceve">
-      <!-- Öz showreel videonu bura qoy:
-           <video src="/showreel.mp4" autoplay muted loop playsinline></video> -->
-      <div class="plaseholder"></div>
-      <div class="reel-etiket kicik"><span>Showreel 2026</span><span id="reel-tc">00:00:00:00</span></div>
+<!-- ================= KADR ARXASI (parallaks) ================= -->
+<section class="karx" id="karx" aria-label="Kadr arxası">
+  <div class="karx-yapisqan">
+    <div class="karx-sehne" id="karx-sehne">
+      <div class="karx-qat" data-qat="1" aria-hidden="true"></div>
+      <div class="karx-qat" data-qat="2" aria-hidden="true"></div>
+
+      <span class="karx-x" id="karx-x" aria-hidden="true">X</span>
+
+      <div class="karx-foto" data-qat="foto">
+        <img src="/media/rahman.png" alt="Rəhman Məlikzadə — gimbal ilə çəkiliş zamanı" loading="lazy" decoding="async">
+      </div>
+
+      <div class="karx-qat" data-qat="3" aria-hidden="true"></div>
+
+      <div class="karx-mtn">
+        <div class="kicik">Kadr arxası</div>
+        <h2 class="karx-bas">Kadrın arxasında<br>bir adam var</h2>
+      </div>
     </div>
   </div>
 </section>
@@ -790,28 +1753,137 @@ footer{
 <section class="blok" id="xidmetler" aria-labelledby="x-bas">
   <div class="kicik">Xidmətlər</div>
   <h2 id="x-bas" data-ac style="margin-top:16px">Nə çəkirəm</h2>
+  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:56ch;font-size:14.5px">
+    Beş istiqamətdə işləyirəm — hər biri üçün çəkilişdən montaja qədər bütün prosesi özüm idarə edirəm.
+  </p>
 
-  <div class="setirler">
-    <article class="setir" data-ac><h3>Reklam</h3><p>Məhsulu satan qısa çarx.</p><span class="nomre">01</span></article>
-    <article class="setir" data-ac data-gec="1"><h3>Brend filmi</h3><p>Şirkətin hekayəsi, bir nəfəsdə.</p><span class="nomre">02</span></article>
-    <article class="setir" data-ac data-gec="2"><h3>Food &amp; Drinks</h3><p>Restoran, bar və kafelər üçün.</p><span class="nomre">03</span></article>
-    <article class="setir" data-ac data-gec="3"><h3>Love Story</h3><p>Toy və nişan filmləri.</p><span class="nomre">04</span></article>
-    <article class="setir" data-ac data-gec="4"><h3>Şəhər filmi</h3><p>Bakı və regionlar.</p><span class="nomre">05</span></article>
+  <div class="xd-tor">
+    <article class="xd xd--t1" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Brand &amp; Commercial</span>
+          <span class="xd-no">01</span>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></svg></span>
+          <h3 class="xd-ad">Brend & Reklam</h3>
+        </span>
+        <p class="xd-izah">Məhsul, xidmət və brendlər üçün kinematik reklam videoları — məqsəd gözəl görüntü deyil, məhsulu satmaqdır.</p>
+        <ul class="xd-siyahi"><li>Məhsul və mağaza reklamları</li><li>Fashion çəkilişləri</li><li>Kampaniya videoları</li><li>Startap və şirkət təqdimatları</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Detallı danışaq</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </article>
+    <article class="xd xd--t2" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Food &amp; Restaurant</span>
+          <span class="xd-no">02</span>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3 class="xd-ad">Food & Restoran</h3>
+        </span>
+        <p class="xd-izah">Restoran və kafelər üçün yeməyin hazırlanmasından məkanın atmosferinə qədər tam vizual kontent.</p>
+        <ul class="xd-siyahi"><li>Reklam videosu</li><li>Hazırlanma prosesi</li><li>Restoran atmosferi</li><li>Reels</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Food Photography və aylıq kontent</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </article>
+    <article class="xd xd--t3" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Personal Brand</span>
+          <span class="xd-no">03</span>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9.5" y="3" width="5" height="10" rx="2.5"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span>
+          <h3 class="xd-ad">Şəxsi brend</h3>
+        </span>
+        <p class="xd-izah">Ekspertlər üçün professional danışıq videoları — işıq və səsdən montaj və motion elementlərinə qədər.</p>
+        <ul class="xd-siyahi"><li>Studio, ofis və outdoor</li><li>Çoxbucaqlı kadrlar və B-roll</li><li>Subtitr və sound design</li><li>Motion graphics</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Aylıq kontent planı və ssenari</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </article>
+    <article class="xd xd--t4" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Event Coverage</span>
+          <span class="xd-no">04</span>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/></svg></span>
+          <h3 class="xd-ad">Tədbir & Forum</h3>
+        </span>
+        <p class="xd-izah">Forum və korporativ tədbirlərin əsas anları — həm arxiv üçün, həm sosial mediada dərhal istifadəyə hazır.</p>
+        <ul class="xd-siyahi"><li>Ümumi tədbir videosu</li><li>Müsahibələr və Reels</li><li>Səhnə və auditoriya</li><li>Networking görüntüləri</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Event Photography və sürətli təhvil</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </article>
+    <article class="xd xd--t5" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Food &amp; Event Photo</span>
+          <span class="xd-no">05</span>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2.5"/><circle cx="12" cy="13" r="4.2"/><path d="M8.5 6l1.4-2.2h4.2L15.5 6"/></svg></span>
+          <h3 class="xd-ad">Fotoqrafiya</h3>
+        </span>
+        <p class="xd-izah">Food və tədbir çəkilişlərində detala fokus — kadrlar seçilir, rəng işlənir, formatlar hazır təhvil verilir.</p>
+        <ul class="xd-siyahi"><li>Food Photography</li><li>Event Photography</li><li>Rəng korreksiyası</li><li>Sosial media formatları</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Detallı danışaq</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </article>
+    <a class="xd xd--cta" href="/kalkulyator">
+      <span class="xd-parilti" aria-hidden="true"></span>
+      <div class="xd-ic">
+        <span class="xd-ust">
+          <span class="xd-nisan">Kalkulyator</span>
+          <span class="xd-no">~60 san</span>
+        </span>
+        <span class="xd-orta">
+          <h3 class="xd-ad">Öz paketini qur</h3>
+        </span>
+        <p class="xd-izah">Çəkiliş növünü seç, detalları öz ehtiyacına uyğunlaşdır — təxmini qiymət canlı formalaşsın.</p>
+        <span class="xd-alt">
+          <span class="xd-cta">Kalkulyatoru aç</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </div>
+    </a>
   </div>
 </section>
 
 <!-- ================= İŞLƏR ================= -->
 <section class="blok blok--tund" id="isler" aria-labelledby="i-bas">
   <div class="kicik">Seçilmiş işlər</div>
-  <h2 id="i-bas" data-ac style="margin-top:16px">Lent</h2>
+  <h2 id="i-bas" data-ac style="margin-top:16px">Portfolio</h2>
 
-  <div class="lent" id="lent" tabindex="0" role="region" aria-label="İşlər lenti"></div>
-
-  <div class="lent-idare">
-    <span class="lent-say"><b id="lent-indi">01</b> / <span id="lent-cem">06</span></span>
-    <div class="oxlar">
-      <button class="ox" id="ox-sol" type="button" aria-label="Əvvəlki">←</button>
-      <button class="ox" id="ox-sag" type="button" aria-label="Növbəti">→</button>
+  <div class="lnt" data-ac data-gec="1">
+    <div class="lnt-sol">
+      <div class="lnt-cipler" id="lnt-cipler" role="tablist" aria-label="İş kateqoriyaları"></div>
+    </div>
+    <div class="lnt-sag">
+      <div class="lnt-sehne" id="lnt-sehne"></div>
     </div>
   </div>
 </section>
@@ -872,33 +1944,63 @@ footer{
 <div class="perf" aria-hidden="true"></div>
 
 <!-- ================= FAQ ================= -->
-<!-- ================= KALKULYATOR ================= -->
-<section class="blok" id="kalkulyator" aria-labelledby="k-bas">
-  <a class="klk-geri" href="/paket"><span>&larr;</span> Paket seçimi</a>
-  <div class="kicik" style="margin-top:26px">Kalkulyator</div>
-  <h2 id="k-bas" data-ac style="margin-top:16px">Paketini özün qur</h2>
-  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:56ch;font-size:14.5px">
-    Aşağıdakı sualları bir-bir seç — hər bölmə cavab veriləndə özü bağlanır, növbəti sual açılır. Qiymət sağda (mobil versiyada aşağıda) canlı hesablanır.
+<!-- ================= KALKULYATOR TİZERLƏRİ ================= -->
+<section class="blok" id="kalkulyator-tizer" aria-labelledby="kt-bas">
+  <a class="pk-geri" href="/"><span>&larr;</span> Ana səhifə</a>
+  <div class="kicik">Kalkulyator</div>
+  <h2 id="kt-bas" data-ac style="margin-top:16px;font-size:clamp(26px,4vw,52px)">Paketini özün qur</h2>
+  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:54ch;font-size:14.5px">
+    Foto, yoxsa video? Aşağıdan işinə uyğun olanı seç — detalları özün tənzimlə, qiymət addım-addım gözünün qarşısında formalaşsın.
   </p>
 
-  <div class="klk-secim"><a href="/kalkulyator" class="aktiv">Foto çəkilişi</a><a href="/video-kalkulyator">Video çəkilişi</a></div>
+  <div class="kt-tor" data-ac data-gec="2">
 
-  <div class="pk-lay" data-ac data-gec="2">
-    <div class="pk-sutun">
-      <div id="pk-akkordeon"></div>
-    </div>
-    <aside class="pk-yan" aria-label="Təxmini qiymət">
-      <div class="pk-panel" id="pk-panel-daxil"></div>
-    </aside>
-  </div>
+    <a class="kt-kart" href="/kalkulyator" aria-label="Foto kalkulyatorunu aç">
+      <span class="kt-parilti" aria-hidden="true"></span>
+      <span class="kt-ic">
+        <span class="kt-ust">
+          <span class="kt-nisan">Foto çəkilişi</span>
+          <span class="kt-saniye">~60 saniyə</span>
+        </span>
+        <span class="kt-orta">
+          <span class="kt-reqem"><b data-kt-say>140</b><i>AZN</i></span>
+          <span class="kt-etiket">-dən başlayan foto paketləri</span>
+        </span>
+        <span class="kt-siyahi">
+          <span>Food, məhsul və e-commerce</span>
+          <span>Portret, model və moda</span>
+          <span>Məkan, tədbir və sosial media</span>
+        </span>
+        <span class="kt-alt">
+          <span class="kt-cta">Foto kalkulyatoru</span>
+          <span class="kt-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </span>
+    </a>
 
-  <div class="pk-mobil-panel" id="pk-mobil-panel">
-    <div class="pk-mobil-tutac" id="pk-mobil-tutac">
-      <span class="pk-cubuq" aria-hidden="true"></span>
-      <div class="pk-mobil-qiymet" id="pk-mobil-qiymet">— <span>AZN</span></div>
-      <span class="pk-mobil-ox" aria-hidden="true">↑</span>
-    </div>
-    <div class="pk-mobil-icerik" id="pk-mobil-icerik"></div>
+    <a class="kt-kart kt-kart--video" href="/video-kalkulyator" aria-label="Video kalkulyatorunu aç">
+      <span class="kt-parilti" aria-hidden="true"></span>
+      <span class="kt-ic">
+        <span class="kt-ust">
+          <span class="kt-nisan">Video çəkilişi</span>
+          <span class="kt-saniye">~60 saniyə</span>
+        </span>
+        <span class="kt-orta">
+          <span class="kt-reqem"><b data-kt-say>320</b><i>AZN</i></span>
+          <span class="kt-etiket">-dən başlayan video paketləri</span>
+        </span>
+        <span class="kt-siyahi">
+          <span>Reklam çarxı və brend filmi</span>
+          <span>Reels / TikTok kontenti</span>
+          <span>Toy, love story və tədbir</span>
+        </span>
+        <span class="kt-alt">
+          <span class="kt-cta">Video kalkulyatoru</span>
+          <span class="kt-ox" aria-hidden="true">&rarr;</span>
+        </span>
+      </span>
+    </a>
+
   </div>
 </section>
 
@@ -918,15 +2020,77 @@ footer{
 
 <!-- ================= ƏLAQƏ ================= -->
 <section class="blok blok--tund" id="elaqe" aria-labelledby="e-bas">
-  <div class="kicik">Əlaqə</div>
-  <h2 id="e-bas" data-ac style="margin-top:16px">Layihəniz var?</h2>
-  <a class="elaqe-mail" href="mailto:malikzadarahman@gmail.com" data-ac data-gec="1">malikzadarahman@gmail.com</a>
+  <div class="ft-tor">
 
-  <div class="elaqe-tor" data-ac data-gec="2">
-    <div><b>Telefon</b><a href="tel:+994705205885" class="solğun">+994 70 520 58 85</a></div>
-    <div><b>Instagram</b><a href="https://www.instagram.com/rahmanmalikzade/" target="_blank" rel="me noopener" class="solğun">@rahmanmalikzade</a></div>
-    <div><b>Studiya</b><a href="https://www.instagram.com/nexcineart" target="_blank" rel="noopener" class="solğun">@nexcineart</a></div>
-    <div><b>Yer</b><span class="solğun">Bakı, Azərbaycan</span></div>
+    <!-- 1 · sürətli mesaj -->
+    <div class="ft-xana ft-xana--esas">
+      <span class="ft-hale" aria-hidden="true"></span>
+      <div class="kicik">Əlaqə</div>
+      <h2 id="e-bas" class="ft-bas">Layihən var?</h2>
+      <p class="ft-izah">Qısaca yaz — nə çəkmək istədiyini, təxmini vaxtı və büdcəni. Adətən bir neçə saat ərzində cavab verirəm.</p>
+
+      <form class="ft-form" id="ft-form" novalidate>
+        <input type="text" id="ft-mesaj" placeholder="Məsələn: restoran üçün Reels çəkilişi…" aria-label="Mesajın">
+        <button type="submit" aria-label="Göndər">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12l16-8-6 8 6 8z"/></svg>
+        </button>
+      </form>
+      <div class="ft-secim">
+        <a class="ft-kicik-dgm" href="mailto:malikzadarahman@gmail.com">E-poçt</a>
+        <a class="ft-kicik-dgm" href="https://wa.me/994705205885" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- 2 · keçidlər -->
+    <nav class="ft-xana" aria-label="Sürətli keçidlər">
+      <h3 class="ft-basliq">Keçidlər</h3>
+      <a href="#bas">Ana səhifə</a>
+      <a href="/#xidmetler">Xidmətlər</a>
+      <a href="/#isler">Portfolio</a>
+      <a href="/#paketler">Paketlər</a>
+      <a href="/kalkulyator">Foto kalkulyator</a>
+      <a href="/video-kalkulyator">Video kalkulyator</a>
+    </nav>
+
+    <!-- 3 · əlaqə -->
+    <div class="ft-xana">
+      <h3 class="ft-basliq">Rekvizitlər</h3>
+      <address class="ft-unvan">
+        <a href="mailto:malikzadarahman@gmail.com">malikzadarahman@gmail.com</a>
+        <a href="tel:+994705205885">+994 70 520 58 85</a>
+        <span>Bakı, Azərbaycan</span>
+        <span class="ft-status"><i aria-hidden="true"></i>Yeni layihələrə açığam</span>
+      </address>
+    </div>
+
+    <!-- 4 · sosial -->
+    <div class="ft-xana">
+      <h3 class="ft-basliq">İzlə</h3>
+      <div class="ft-sosial">
+        <a href="https://www.instagram.com/rahmanmalikzade/" target="_blank" rel="me noopener" data-ipucu="@rahmanmalikzade" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://www.instagram.com/nexcineart" target="_blank" rel="noopener" data-ipucu="Studiya — @nexcineart" aria-label="Nexcineart studiyası">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></svg>
+        </a>
+        <a href="https://wa.me/994705205885" target="_blank" rel="noopener" data-ipucu="WhatsApp ilə yaz" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.6-4A8 8 0 1 1 20 11.5z"/><path d="M9 9.5c.6 2.4 3.1 4.9 5.5 5.5l1.2-1.4 1.8.9c-.3 1.2-1.6 1.6-2.6 1.4-3.2-.6-6.2-3.6-6.8-6.8-.2-1 .2-2.3 1.4-2.6l.9 1.8z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="mailto:malikzadarahman@gmail.com" data-ipucu="malikzadarahman@gmail.com" aria-label="E-poçt">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+        </a>
+      </div>
+      <div class="ft-saat"><span id="ft-saat">—</span><em>Bakı · GMT+4</em></div>
+    </div>
+  </div>
+
+  <div class="ft-alt">
+    <span>© <span id="il">2026</span> Rəhman Məlikzadə — bütün hüquqlar qorunur</span>
+    <div class="ft-alt-link">
+      <a href="/#xidmetler">Xidmətlər</a>
+      <a href="/kalkulyator">Qiymət</a>
+      <a href="#bas" class="ft-yuxari">Yuxarı <i aria-hidden="true">&uarr;</i></a>
+    </div>
   </div>
 </section>
 
@@ -944,102 +2108,13 @@ footer{
   </div>
 </div>
 
-<footer>
-  <span>© <span id="il">2026</span> Rəhman Məlikzadə</span>
-  <span>Videoqraf &amp; Filmmaker — Bakı</span>
-</footer>
+
 
 
 <script>
 (function(){
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.getElementById('il').textContent = new Date().getFullYear();
-
-  /* ---------- İşlər ---------- */
-  var isler = [
-    {ad:'Şəms & Cavidan', tip:'Love Story', tc:'00:03:12:04', a:'#2a2a2e', b:'#6b6257'},
-    {ad:'Food Shot', tip:'Restoran', tc:'00:00:42:18', a:'#1a1a1c', b:'#4d4038'},
-    {ad:'Drinks', tip:'Bar / Reklam', tc:'00:00:28:00', a:'#101014', b:'#3c4a4f'},
-    {ad:'Neo Team Lab', tip:'Backstage', tc:'00:01:36:12', a:'#15171a', b:'#2f3f36'},
-    {ad:'Lənkəran', tip:'Şəhər filmi', tc:'00:02:04:06', a:'#1c1a18', b:'#57493c'},
-    {ad:'Dilman şəlaləsi', tip:'Təbiət', tc:'00:01:12:20', a:'#0f1412', b:'#31463a'}
-  ];
-  var lent = document.getElementById('lent');
-  isler.forEach(function(o){
-    var k = '';
-    for(var i=0;i<6;i++){
-      k += '<div class="kadr'+(i===0?' aktiv':'')+'" style="background:linear-gradient('
-        + (150 + i*14) + 'deg,' + o.a + ' ' + (8+i*8) + '%,' + o.b + ' 100%)"></div>';
-    }
-    var el = document.createElement('article');
-    el.className = 'is';
-    el.innerHTML = '<div class="is-kadr">'+k+'<span class="is-tc">'+o.tc+'</span><span class="is-cizgi"></span></div>'
-      + '<div class="is-alt"><h3>'+o.ad+'</h3><small>'+o.tip+'</small></div>';
-    lent.appendChild(el);
-  });
-
-  var kartlar = [].slice.call(lent.querySelectorAll('.is'));
-  var oxSol = document.getElementById('ox-sol'), oxSag = document.getElementById('ox-sag');
-  var indi = document.getElementById('lent-indi');
-  document.getElementById('lent-cem').textContent = String(kartlar.length).padStart(2,'0');
-  function addim(){ return kartlar.length ? kartlar[0].offsetWidth + 14 : lent.clientWidth; }
-
-  function lentYenile(){
-    var r = lent.getBoundingClientRect(), merkez = r.left + r.width/2;
-    var yaxin = 0, qisa = Infinity;
-    kartlar.forEach(function(k,i){
-      var kr = k.getBoundingClientRect(), km = kr.left + kr.width/2, f = Math.abs(km - merkez);
-      if(f < qisa){ qisa = f; yaxin = i; }
-      k.classList.toggle('yaxin', kr.left < r.right - 30 && kr.right > r.left + 30);
-      var kadrlar = k.querySelectorAll('.kadr');
-      var p = Math.max(0, Math.min(.999, (merkez - kr.left) / kr.width));
-      var idx = Math.floor(p * kadrlar.length);
-      kadrlar.forEach(function(c,j){ c.classList.toggle('aktiv', j === idx); });
-      var cizgi = k.querySelector('.is-cizgi');
-      if(cizgi) cizgi.style.width = (p*100)+'%';
-    });
-    indi.textContent = String(yaxin+1).padStart(2,'0');
-    var maks = lent.scrollWidth - lent.clientWidth;
-    oxSol.disabled = lent.scrollLeft <= 4;
-    oxSag.disabled = lent.scrollLeft >= maks - 4;
-  }
-  var lIs = false;
-  lent.addEventListener('scroll', function(){
-    if(!lIs){ lIs = true; requestAnimationFrame(function(){ lentYenile(); lIs = false; }); }
-  }, {passive:true});
-  oxSag.onclick = function(){ lent.scrollBy({left: addim(), behavior: azalt?'auto':'smooth'}); };
-  oxSol.onclick = function(){ lent.scrollBy({left:-addim(), behavior: azalt?'auto':'smooth'}); };
-  lent.addEventListener('keydown', function(e){
-    if(e.key==='ArrowRight'){ e.preventDefault(); oxSag.click(); }
-    if(e.key==='ArrowLeft'){ e.preventDefault(); oxSol.click(); }
-  });
-
-  var bx=0, bs=0, dart=false, hrk=false;
-  lent.addEventListener('pointerdown', function(e){
-    if(e.pointerType === 'touch') return;
-    dart = true; hrk = false; bx = e.clientX; bs = lent.scrollLeft;
-    lent.classList.add('dart'); lent.setPointerCapture(e.pointerId);
-  });
-  lent.addEventListener('pointermove', function(e){
-    if(!dart) return;
-    var d = e.clientX - bx;
-    if(Math.abs(d) > 4) hrk = true;
-    lent.scrollLeft = bs - d;
-  });
-  function bitir(){
-    if(!dart) return;
-    dart = false; lent.classList.remove('dart');
-    var a = addim();
-    lent.scrollTo({left: Math.round(lent.scrollLeft/a)*a, behavior: azalt?'auto':'smooth'});
-  }
-  ['pointerup','pointercancel','pointerleave'].forEach(function(ev){ lent.addEventListener(ev, bitir); });
-  lent.addEventListener('click', function(e){ if(hrk){ e.preventDefault(); e.stopPropagation(); } }, true);
-  lent.addEventListener('wheel', function(e){
-    if(Math.abs(e.deltaX) > Math.abs(e.deltaY)) return;
-    var maks = lent.scrollWidth - lent.clientWidth;
-    if((e.deltaY < 0 && lent.scrollLeft <= 0) || (e.deltaY > 0 && lent.scrollLeft >= maks)) return;
-    e.preventDefault(); lent.scrollLeft += e.deltaY;
-  }, {passive:false});
 
   /* ---------- Qiymət rulonu ---------- */
   var reqemler = [].slice.call(document.querySelectorAll('.reqemler'));
@@ -1114,7 +2189,7 @@ footer{
     return '00:'+p(d)+':'+p(sn)+':'+p(k);
   }
 
-  var isleyir = false;
+  var isleyir = false, partladi = false;
   function scrollYenile(){
     var y = window.scrollY;
     var hs = document.documentElement.scrollHeight - innerHeight;
@@ -1128,9 +2203,15 @@ footer{
     xanaBolme.forEach(function(b,i){ if(b && b.offsetTop <= xOrta) xAktiv = i; });
     xanalar.forEach(function(a,i){ a.classList.toggle('aktiv', i === xAktiv); });
 
-    if(!azalt && heroIc && y < innerHeight){
-      heroIc.style.transform = 'translateY('+(y*0.14)+'px)';
-      heroIc.style.opacity = String(Math.max(0, 1 - y/(innerHeight*0.72)));
+    if(!azalt && heroIc){
+      var heroEl = document.getElementById('bas');
+      var heroBas = heroEl ? heroEl.offsetTop : 0;
+      var hy = y - heroBas;                       /* hero-nun öz sürüşməsi */
+      if(hy < 0) hy = 0;
+      if(hy < innerHeight){
+        heroIc.style.transform = 'translateY('+(hy*0.12)+'px)';
+      }
+      heroIc.style.opacity = '1';
     }
 
     if(cerceve && reel){
@@ -1152,9 +2233,8 @@ footer{
   addEventListener('scroll', function(){
     if(!isleyir){ isleyir = true; requestAnimationFrame(scrollYenile); }
   }, {passive:true});
-  addEventListener('resize', function(){ surguYer(cari); lentYenile(); scrollYenile(); });
+  addEventListener('resize', function(){ surguYer(cari); scrollYenile(); });
   scrollYenile();
-  lentYenile();
 })();
 </script>
 <script>
@@ -2299,6 +3379,553 @@ function pkRenderMobilQiymet(hesab){
   pkYenile();
   if(state.tip && /^\/paket\//.test(location.pathname)){
     setTimeout(function(){ kok.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
+  }
+})();
+
+/* ---------- Kalkulyator tizeri: 3D tilt + parıltı ---------- */
+(function(){
+  var kartlar = [].slice.call(document.querySelectorAll('.kt-kart'));
+  if(!kartlar.length) return;
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  kartlar.forEach(function(kart){
+  var parilti = kart.querySelector('.kt-parilti');
+  var LIMIT = 9, MIQYAS = 1.022, PERSPEKTIV = 1200;
+
+  function sifirla(){
+    kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+  }
+  if(!azalt && matchMedia('(hover: hover)').matches){
+    kart.addEventListener('pointermove', function(e){
+      var r = kart.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+      var xRot = (py - 0.5) * (LIMIT * 2) * -1;
+      var yRot = (px - 0.5) * (LIMIT * 2);
+      kart.style.transform = 'perspective(' + PERSPEKTIV + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
+      if(parilti){ parilti.style.setProperty('--px', (px*100).toFixed(1) + '%'); parilti.style.setProperty('--py', (py*100).toFixed(1) + '%'); }
+    });
+    kart.addEventListener('pointerleave', sifirla);
+  }
+
+  /* rəqəm sayğacı — kart ekrana girəndə bir dəfə */
+  var sayEl = kart.querySelector('[data-kt-say]');
+  if(sayEl && !azalt && 'IntersectionObserver' in window){
+    var hedef = parseInt(sayEl.textContent, 10) || 140, oynadi = false;
+    var io = new IntersectionObserver(function(girisler){
+      girisler.forEach(function(g){
+        if(!g.isIntersecting || oynadi) return;
+        oynadi = true; io.disconnect();
+        var basla = performance.now(), muddet = 900;
+        (function addim(indi){
+          var p = Math.min(1, (indi - basla) / muddet);
+          var yum = 1 - Math.pow(1 - p, 3);
+          sayEl.textContent = Math.round(hedef * yum);
+          if(p < 1) requestAnimationFrame(addim);
+        })(basla);
+      });
+    }, {threshold:.4});
+    io.observe(kart);
+  }
+  });
+})();
+
+/* ---------- LENT KARUSELİ ---------- */
+(function(){
+  var cipQab = document.getElementById('lnt-cipler');
+  var sehne  = document.getElementById('lnt-sehne');
+  if(!cipQab || !sehne) return;
+
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ADDIM = 72, INTERVAL = 3600;
+
+  var IKON = {
+    kalb:  '<path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7C19 15.4 12 20 12 20z"/>',
+    boshqab:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+    kamera:'<rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/>',
+    teqvim:'<rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+    dag:   '<path d="M3 19l6-9 4 5.5 2.5-3.5L21 19z"/>',
+    bina:  '<rect x="5" y="4" width="14" height="16"/><path d="M9 8h1M14 8h1M9 12h1M14 12h1"/>',
+    telefon:'<rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/>',
+    ulduz: '<path d="M12 4l2.4 5 5.6.8-4 3.9 1 5.5-5-2.7-5 2.7 1-5.5-4-3.9 5.6-.8z"/>',
+    ssenari:'<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/>',
+    qutu:  '<path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/>',
+    acar:  '<path d="M15.5 4.5a5 5 0 0 0-6.4 6.4L4 16v4h4l5.1-5.1a5 5 0 0 0 6.4-6.4l-3 3-2.9-2.9z"/>',
+    forum: '<rect x="9.5" y="3" width="5" height="10" rx="2.5"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/>',
+    dad:   '<path d="M6 3v8a2 2 0 0 0 4 0V3"/><path d="M8 11v10"/><path d="M17 3c-1.6 1.4-2.4 3.2-2.4 5.4 0 1.8.8 2.9 2.4 3.2V21"/>',
+    kitab: '<path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20v3H6.5"/>',
+    moda:  '<path d="M8 4l4 2 4-2 3 3-2 3-2-1v10H7V9l-2 1-2-3z"/>',
+    insan: '<circle cx="9" cy="8" r="3"/><path d="M3 20c.9-3.4 3.2-5 6-5s5.1 1.6 6 5"/><path d="M16 6.5a3 3 0 0 1 0 5.6"/><path d="M17.5 15c2 .7 3.4 2.3 4 5"/>',
+    damla: '<path d="M12 3s6 6.6 6 10.5A6 6 0 0 1 6 13.5C6 9.6 12 3 12 3z"/>',
+    alov:  '<path d="M12 3c3 3.5 5 6.2 5 9a5 5 0 0 1-10 0c0-2 1-3.6 2.5-5.2C10.6 5.6 12 3 12 3z"/><path d="M12 21v-5"/>',
+    fincan:'<path d="M4 7h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 9h2a2.5 2.5 0 0 1 0 5h-2"/><path d="M4 21h13"/>',
+    gunes: '<circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/>',
+    masin: '<path d="M4 15h16v3H4z"/><path d="M6 15l1.8-4.6A2 2 0 0 1 9.7 9h4.6a2 2 0 0 1 1.9 1.4L18 15"/><circle cx="7.5" cy="18.5" r="1.6"/><circle cx="16.5" cy="18.5" r="1.6"/>'
+  };
+
+  var ISLER = [
+    { ad:'Korporativ tədbir', ikon:'teqvim', sekil:'https://vz-d125fae9-c0e.b-cdn.net/f0e2fee4-424e-4062-8691-8bf734b4ee0d/thumbnail_ea7b3433.jpg',
+      video:'738448/f0e2fee4-424e-4062-8691-8bf734b4ee0d', saqulu:true,
+      metn:'UBOC üçün iki günlük korporativ tədbirin dinamik reels çəkilişi — müzakirələr, xarici qonaqlar və interaktiv komanda fəaliyyəti.' },
+    { ad:'Storytelling', ikon:'kitab', sekil:'https://vz-d125fae9-c0e.b-cdn.net/20b448a5-ea2f-4e8f-902b-f15633280335/thumbnail_05febfdc.jpg',
+      video:'738448/20b448a5-ea2f-4e8f-902b-f15633280335',
+      metn:'İnsayt Psixoloji Mərkəzi üçün kitab müzakirəsi və məktub yazma anlarını əks etdirən sakit, atmosferik çəkiliş.' },
+    { ad:'Fashion film', ikon:'moda', sekil:'https://vz-d125fae9-c0e.b-cdn.net/9cdd1345-5a1b-4c4d-be9c-0def042deb23/thumbnail.jpg',
+      video:'738448/9cdd1345-5a1b-4c4d-be9c-0def042deb23',
+      metn:'Mercedes-Benz Fashion Week — Belskaya üçün backstage, model hazırlığı və podium anlarını birləşdirən dark fashion filmi.' },
+    { ad:'Food reels', ikon:'boshqab', sekil:'https://vz-d125fae9-c0e.b-cdn.net/808184b6-75f4-481e-b48b-be483b7cba1e/thumbnail.jpg',
+      video:'738448/808184b6-75f4-481e-b48b-be483b7cba1e', saqulu:true,
+      metn:'Rovshan Chef — üç fərqli yeməyin hazırlanması və təqdimatını göstərən dinamik food reels çəkilişi.' },
+    { ad:'Məhsul reels', ikon:'qutu', sekil:'https://vz-d125fae9-c0e.b-cdn.net/5ab5231d-8af1-4805-b159-64584f4c7e06/thumbnail_0ad5185b.jpg',
+      video:'738448/5ab5231d-8af1-4805-b159-64584f4c7e06', saqulu:true,
+      metn:'Titibon uşaq arabasının qurulması, istifadəsi və funksiyalarını göstərən model iştiraklı məhsul reels-i.' },
+    { ad:'Tədbir reels', ikon:'insan', sekil:'https://vz-d125fae9-c0e.b-cdn.net/59899261-8f2a-4005-8824-2afbe2864d1c/thumbnail_f8f2efa2.jpg',
+      video:'738448/59899261-8f2a-4005-8824-2afbe2864d1c', saqulu:true,
+      metn:'Yapı Kredi-nin 8 Mart tədbirinin enerjisini və səmimi anlarını əks etdirən dinamik reels.' },
+    { ad:'Məhsul reklamı', ikon:'damla', sekil:'https://vz-d125fae9-c0e.b-cdn.net/033ab501-a9ed-4bbf-82c3-cc4f17bdf4cd/thumbnail_185bef12.jpg',
+      video:'738448/033ab501-a9ed-4bbf-82c3-cc4f17bdf4cd', saqulu:true,
+      metn:'Su filtri üçün Kamil Zeynallının iştirakı ilə ev şəraitində hazırlanmış təbii və professional məhsul təqdimatı.' },
+    { ad:'Novruz tədbiri', ikon:'alov', sekil:'https://vz-d125fae9-c0e.b-cdn.net/ca3d9558-9721-4883-9a95-49e762dca952/thumbnail_2fc5bf35.jpg',
+      video:'738448/ca3d9558-9721-4883-9a95-49e762dca952',
+      metn:'MİHİ — Novruz tədbirinin milli ənənələrini, muğamı və səmimi anlarını əks etdirən yatay event filmi.' },
+    { ad:'Katerinq prosesi', ikon:'dad', sekil:'https://vz-d125fae9-c0e.b-cdn.net/8bca7563-d3d5-4761-aa3f-2c051d8d12c3/thumbnail_8d684cc1.jpg',
+      video:'738448/8bca7563-d3d5-4761-aa3f-2c051d8d12c3', saqulu:true,
+      metn:'PFM Catering-in qida hazırlığı və çatdırılma prosesini göstərən dinamik korporativ reels.' },
+    { ad:'Məkan atmosferi', ikon:'fincan', sekil:'https://vz-d125fae9-c0e.b-cdn.net/512c44dc-8477-4b7e-9d0a-d4261116e787/thumbnail.jpg',
+      video:'738448/512c44dc-8477-4b7e-9d0a-d4261116e787', saqulu:true,
+      metn:'Hi Coffee-nin interyerini, atmosferini və brend hissini ön plana çıxaran reklam reels-i.' },
+    { ad:'Korporativ danışıq', ikon:'bina', sekil:'https://vz-d125fae9-c0e.b-cdn.net/cfd4beb9-9a6b-4e83-97c4-d45295933ddd/thumbnail.jpg',
+      video:'738448/cfd4beb9-9a6b-4e83-97c4-d45295933ddd', saqulu:true,
+      metn:'Formcond rəhbərinin şirkəti təqdim etdiyi professional korporativ danışıq reels-i.' },
+    { ad:'Biznes tədbiri', ikon:'forum', sekil:'https://vz-d125fae9-c0e.b-cdn.net/8884668f-a219-4313-977d-08ca55145280/thumbnail.jpg',
+      video:'738448/8884668f-a219-4313-977d-08ca55145280', saqulu:true,
+      metn:'Fayda — sahibkarların görüşü, çıxışlar və networking anlarını əks etdirən rəsmi event çəkilişi.' },
+    { ad:'Uşaq düşərgəsi', ikon:'gunes', sekil:'https://vz-d125fae9-c0e.b-cdn.net/706a0960-83df-41eb-85a7-a4ff0dc29816/thumbnail_ea4b5a1e.jpg',
+      video:'738448/706a0960-83df-41eb-85a7-a4ff0dc29816',
+      metn:'MİHİ yay düşərgəsi — uşaqların yaradıcılıq və əyləncə anlarını əks etdirən rəngarəng film.' },
+    { ad:'Brend hekayəsi', ikon:'masin', sekil:'https://vz-d125fae9-c0e.b-cdn.net/e9cf3c31-b3bb-4be0-bc33-362a122e71e0/thumbnail_13a39400.jpg',
+      video:'738448/e9cf3c31-b3bb-4be0-bc33-362a122e71e0', saqulu:true,
+      metn:'Volvo-nun hekayəsini danışıq və avtomobil görüntüləri ilə birləşdirən yaradıcı reels.' },
+    { ad:'Studio reels', ikon:'kamera', sekil:'https://vz-d125fae9-c0e.b-cdn.net/33eff7ca-bdaf-48a1-b6d5-826a4fb38223/thumbnail_e123b6cf.jpg',
+      video:'738448/33eff7ca-bdaf-48a1-b6d5-826a4fb38223', saqulu:true,
+      metn:'Baku Growth Academy — konsepti və vizual quruluşu tərəfimdən hazırlanmış professional studio çəkilişi.' },
+    { ad:'Forum çarxı', ikon:'ulduz', sekil:'https://vz-d125fae9-c0e.b-cdn.net/55aac2ce-544f-41de-a50a-12d993e93804/thumbnail_2bef3fd3.jpg',
+      video:'738448/55aac2ce-544f-41de-a50a-12d993e93804', saqulu:true,
+      metn:'Strateji Marketinq Forumu üçün dinamik reels çarxı — tədbirin enerjisi qısa formatda.' },
+    { ad:'Yemək təqdimatı', ikon:'boshqab', sekil:'https://vz-d125fae9-c0e.b-cdn.net/d8671361-0648-4089-b526-2fd32026f156/thumbnail_2cdb18e9.jpg',
+      video:'738448/d8671361-0648-4089-b526-2fd32026f156', saqulu:true,
+      metn:'Fitbox üçün korporativ yemək təqdimatı — dequstasiya anları və reaksiyalar şaquli formatda.' },
+    { ad:'Ssenarili reels', ikon:'ssenari', sekil:'https://vz-d125fae9-c0e.b-cdn.net/cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf/thumbnail_4116516b.jpg',
+      video:'738448/cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf', saqulu:true,
+      metn:'İngilis dili müəllimi haqqında ssenarili qısa hekayə — maşın, çöl və dərs otağı kadrları bir fragmentdə.' },
+    { ad:'Məhsul prosesi', ikon:'qutu', sekil:'https://vz-d125fae9-c0e.b-cdn.net/107326c0-c4a6-4599-8d0d-4a77120447eb/thumbnail_d78bbaa5.jpg',
+      video:'738448/107326c0-c4a6-4599-8d0d-4a77120447eb',
+      metn:'Fit yemək şirkəti üçün hazırlanma və qablaşdırılma prosesi — dinamik montajlı yatay çəkiliş.' },
+    { ad:'Açılış çəkilişi', ikon:'acar', sekil:'https://vz-d125fae9-c0e.b-cdn.net/e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71/thumbnail_7d6903b6.jpg',
+      video:'738448/e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71', saqulu:true,
+      metn:'Avto atelye açılışı — yuxarıda kofe shop, aşağıda təmir sahəsi, hamısı bir hekayədə.' },
+    { ad:'Love Story', ikon:'kalb', sekil:'/media/lovestory.jpg',
+      video:'738448/fea7fd8f-619b-47c8-9674-7b0d5af3339c', saqulu:true,
+      metn:'Şəms &amp; Cavidan — təbiətdə çəkilmiş hekayə əsaslı love story filmi.' }
+  ];
+
+  var N = ISLER.length, addim = 0, dayandi = false, taymer = null;
+
+  ISLER.forEach(function(o, i){
+    var b = document.createElement('button');
+    b.type = 'button'; b.className = 'lnt-cip'; b.setAttribute('role','tab');
+    b.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true" stroke-linecap="round" stroke-linejoin="round">' + IKON[o.ikon] + '</svg><span>' + o.ad + '</span>';
+    b.addEventListener('click', function(){ kecid(i); });
+    b.addEventListener('mouseenter', function(){ dayandi = true; });
+    b.addEventListener('mouseleave', function(){
+      dayandi = false;
+      b.style.setProperty('--mx','50%'); b.style.setProperty('--my','0%');
+      b.style.setProperty('--isiq','150deg');
+    });
+    /* kursorun mövqeyi → şüşənin üstündəki işıq */
+    b.addEventListener('pointermove', function(e){
+      var r = b.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      b.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+      b.style.setProperty('--my', (py*100).toFixed(1) + '%');
+      /* kənar işığı da kursora görə fırlansın */
+      var bucaq = Math.atan2(py - 0.5, px - 0.5) * 180 / Math.PI + 90;
+      b.style.setProperty('--isiq', bucaq.toFixed(1) + 'deg');
+    });
+    cipQab.appendChild(b);
+
+    var k = document.createElement('div');
+    k.className = 'lnt-kart';
+    k.innerHTML =
+      '<span class="lnt-canli"><i></i><span>Portfolio</span></span>' +
+      '<img src="' + o.sekil + '" alt="' + o.ad.replace(/&amp;/g,'&') + ' — Rəhman Məlikzadə" loading="lazy" decoding="async">' +
+      '<span class="lnt-yan-isare"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg>' + o.ad + '</span></span>' +
+      (o.video ? '<button type="button" class="lnt-oynat" aria-label="' + o.ad.replace(/&amp;/g,'&') + ' videosunu izlə"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l12 7-12 7z"/></svg></button>' : '') +
+      '<span class="lnt-mtn"><span class="lnt-rozet">' + String(i+1).padStart(2,'0') + ' &bull; ' + o.ad + '</span><p>' + o.metn + '</p></span>';
+    k.addEventListener('click', function(){
+      if(k.classList.contains('yan')){ kecid(i); return; }
+      if(o.video) videoAc(o);
+    });
+    k.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter' && e.key !== ' ') return;
+      if(k.classList.contains('yan')){ e.preventDefault(); kecid(i); }
+      else if(o.video){ e.preventDefault(); videoAc(o); }
+    });
+    k.addEventListener('mouseenter', function(){ dayandi = true; });
+    k.addEventListener('mouseleave', function(){ dayandi = false; });
+    sehne.appendChild(k);
+  });
+
+  var cipler = [].slice.call(cipQab.children);
+  var kartlar = [].slice.call(sehne.children);
+
+  function cari(){ return ((addim % N) + N) % N; }
+  function kecid(hedef){
+    var d = sar(hedef - cari());
+    if(d === 0) return;
+    addim += d;
+    ciz();
+  }
+  function sar(v){ var yari = N/2; var d = v; if(d > yari) d -= N; if(d < -yari) d += N; return d; }
+
+  function ciz(){
+    var c = cari();
+    cipler.forEach(function(el, i){
+      var d = sar(i - c);
+      el.style.transform = 'translateY(calc(-50% + ' + (d * ADDIM) + 'px))';
+      el.style.opacity = Math.max(0, 1 - Math.abs(d) * 0.26);
+      el.classList.toggle('aktiv', d === 0);
+      el.setAttribute('aria-selected', d === 0 ? 'true' : 'false');
+      el.tabIndex = d === 0 ? 0 : -1;
+    });
+    kartlar.forEach(function(el, i){
+      var d = sar(i - c);
+      var x = d === 0 ? 0 : (d === -1 ? -92 : (d === 1 ? 92 : 0));
+      var s = d === 0 ? 1 : (Math.abs(d) === 1 ? .86 : .72);
+      var o = d === 0 ? 1 : (Math.abs(d) === 1 ? .38 : 0);
+      var r = d === -1 ? -3 : (d === 1 ? 3 : 0);
+      el.style.transform = 'translateX(' + x + 'px) scale(' + s + ') rotate(' + r + 'deg)';
+      el.style.opacity = o;
+      el.style.zIndex = d === 0 ? 20 : (Math.abs(d) === 1 ? 10 : 0);
+      el.classList.toggle('aktiv', d === 0);
+      el.classList.toggle('pas', d !== 0);
+      var yanMi = Math.abs(d) === 1;
+      el.classList.toggle('yan', yanMi);
+      if(yanMi){
+        el.setAttribute('role','button');
+        el.setAttribute('tabindex','0');
+        el.setAttribute('aria-label', ISLER[i].ad.replace(/&amp;/g,'&') + ' işinə keç');
+      } else {
+        el.removeAttribute('role'); el.removeAttribute('tabindex'); el.removeAttribute('aria-label');
+      }
+    });
+  }
+
+  function basla(){
+    if(azalt || taymer) return;
+    taymer = setInterval(function(){ if(!dayandi && !document.hidden){ addim++; ciz(); } }, INTERVAL);
+  }
+  sehne.addEventListener('mouseenter', function(){ dayandi = true; });
+  sehne.addEventListener('mouseleave', function(){ dayandi = false; });
+
+  /* ---- video modalı ---- */
+  var modal = null, sonFokus = null;
+  function modalQur(){
+    modal = document.createElement('div');
+    modal.className = 'lnt-modal';
+    modal.setAttribute('role','dialog');
+    modal.setAttribute('aria-modal','true');
+    modal.innerHTML =
+      '<div class="lnt-modal-fon" data-lnt-bagla></div>' +
+      '<div class="lnt-modal-qutu">' +
+        '<button type="button" class="lnt-bagla" data-lnt-bagla aria-label="Bağla">&times;</button>' +
+        '<div class="lnt-modal-bas"></div>' +
+        '<div class="lnt-cerceve"></div>' +
+      '</div>';
+    document.body.appendChild(modal);
+    modal.addEventListener('click', function(e){ if(e.target.closest('[data-lnt-bagla]')) videoBagla(); });
+  }
+  function videoAc(o){
+    if(!modal) modalQur();
+    sonFokus = document.activeElement;
+    modal.querySelector('.lnt-modal-bas').textContent = o.ad.replace(/&amp;/g,'&');
+    var cer = modal.querySelector('.lnt-cerceve');
+    cer.className = 'lnt-cerceve' + (o.saqulu ? ' saqulu' : '');
+    cer.innerHTML = '<iframe src="https://iframe.mediadelivery.net/embed/' + o.video +
+      '?autoplay=true&loop=false&muted=false&preload=true&responsive=true" ' +
+      'loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen" ' +
+      'allowfullscreen title="' + o.ad.replace(/&amp;/g,'&') + '"></iframe>';
+    document.body.style.overflow = 'hidden';
+    requestAnimationFrame(function(){ modal.classList.add('aciq'); });
+    dayandi = true;
+    var b = modal.querySelector('.lnt-bagla'); if(b) b.focus();
+  }
+  function videoBagla(){
+    if(!modal) return;
+    modal.classList.remove('aciq');
+    document.body.style.overflow = '';
+    dayandi = false;
+    setTimeout(function(){ var cer = modal.querySelector('.lnt-cerceve'); if(cer) cer.innerHTML = ''; }, 380);
+    if(sonFokus && sonFokus.focus) sonFokus.focus();
+  }
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape' && modal && modal.classList.contains('aciq')) videoBagla();
+  });
+
+  ciz();
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(g){
+      g.forEach(function(x){ if(x.isIntersecting){ basla(); io.disconnect(); } });
+    }, {threshold:.25});
+    io.observe(cipQab);
+  } else { basla(); }
+})();
+
+/* ---------- AÇILIŞ: kamera → flaş → ağ səhifə ---------- */
+(function(){
+  var acilis = document.getElementById('acilis');
+  var flas   = document.getElementById('flas');
+  if(!acilis || !flas) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){
+    acilis.remove(); flas.remove(); document.body.classList.add('hero-acildi'); return;
+  }
+
+  var sehne  = document.getElementById('acilis-sehne');
+  var kam    = document.getElementById('kam');
+  var parlaq = document.getElementById('kam-parlaq');
+  var sua    = acilis.querySelector('.kam-sua');
+  var mtn    = document.getElementById('acilis-mtn');
+
+  var ESIK = 0.80;      /* flaşın partladığı nöqtə */
+  var PARTLAMA = 0.03;  /* səhnənin sönmə zolağı */
+  var isleyir = false, partladi = false;
+
+  function kilid(v){ return v < 0 ? 0 : (v > 1 ? 1 : v); }
+
+  function yenile(){
+    isleyir = false;
+    var h = acilis.offsetHeight - innerHeight;
+    var p = h > 0 ? kilid(window.scrollY / h) : 1;
+
+    /* kamera irəliləyir, mətn solur */
+    kam.style.transform = 'scale(' + (1 + p * 0.42).toFixed(3) + ')';
+
+    mtn.style.opacity = kilid(1 - p * 2.4).toFixed(3);
+
+    /* lensdə işıq toplanır, sonra partlayır */
+    var yig = kilid((p - 0.12) / (ESIK - 0.12));
+    var partOp, partOlcu;
+    if(p < ESIK){
+      partOp = yig * 0.8;
+      partOlcu = 0.2 + yig * 1.0;
+    } else {
+      var q = kilid((p - ESIK) / PARTLAMA);
+      partOp = 1;
+      partOlcu = 1.2 + q * 2.6;
+    }
+    parlaq.style.opacity = partOp.toFixed(3);
+    parlaq.style.transform = 'translate(-50%,-50%) scale(' + partOlcu.toFixed(3) + ')';
+    if(sua){
+      sua.style.opacity = (partOp * 0.9).toFixed(3);
+      sua.style.transform = 'translate(-50%,-50%) scale(' + (0.3 + partOlcu * 0.9).toFixed(3) +
+        ') rotate(' + (p * 26).toFixed(1) + 'deg)';
+    }
+
+    /* ağ flaş */
+    /* ağ flaş — bir dəfə partlayır və özü tam sönür */
+    if(p >= ESIK && !partladi){
+      partladi = true;
+      flas.classList.remove('partla');
+      void flas.offsetWidth;
+      flas.classList.add('partla');
+    } else if(p < ESIK - 0.05 && partladi){
+      partladi = false;
+      flas.classList.remove('partla');
+    }
+
+    /* səhnə flaşın zirvəsində yox olur — altından ağ səhifə çıxır */
+    var sehneOp = p < ESIK ? 1 : kilid(1 - (p - ESIK) / (PARTLAMA * 1.15));
+    sehne.style.opacity = sehneOp.toFixed(3);
+    sehne.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
+    acilis.style.background = sehneOp < 0.01 ? 'transparent' : 'var(--murekkeb)';
+
+    document.body.classList.toggle('acilis-var', p < ESIK);
+    document.body.classList.toggle('hero-acildi', p >= ESIK - 0.02);
+  }
+
+  addEventListener('scroll', function(){
+    if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
+  }, {passive:true});
+  addEventListener('resize', yenile);
+  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
+  yenile();
+})();
+/* ---------- KADR ARXASI: uçuşan qəzetlər (parallaks) ---------- */
+(function(){
+  var kadr = document.getElementById('karx');
+  var sehne = document.getElementById('karx-sehne');
+  if(!kadr || !sehne) return;
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* q: qat (1 ən arxa … 3 ən ön) | x,y: % | d: fırlanma | w: en (vw) */
+  var QEZETLER = [
+    /* --- 1: uzaq fon, kiçik və bulanıq --- */
+    {q:1,f:'q08',x:11,y:10,d:-16,w:7},  {q:1,f:'q13',x:31,y:4, d:9, w:5},
+    {q:1,f:'q09',x:62,y:8, d:14, w:6},  {q:1,f:'q11',x:86,y:14,d:-11,w:6},
+    {q:1,f:'q14',x:5, y:34,d:12, w:5},  {q:1,f:'q12',x:44,y:26,d:-7, w:5},
+    {q:1,f:'q15',x:74,y:31,d:17, w:6},  {q:1,f:'q10',x:94,y:42,d:-13,w:7},
+    {q:1,f:'q07',x:20,y:52,d:6,  w:6},  {q:1,f:'q06',x:56,y:47,d:-15,w:6},
+    {q:1,f:'q13',x:82,y:60,d:10, w:5},  {q:1,f:'q09',x:36,y:68,d:-9, w:6},
+
+    /* --- 2: orta dərinlik, adlı qəzetlər --- */
+    {q:2,f:'q03',x:15,y:22,d:-12,w:14}, {q:2,f:'q04',x:84,y:24,d:13, w:13},
+    {q:2,f:'q05',x:27,y:62,d:8,  w:14}, {q:2,f:'q01',x:73,y:56,d:-10,w:14},
+    {q:2,f:'q10',x:4, y:78,d:15, w:9},  {q:2,f:'q07',x:96,y:70,d:-8, w:9},
+
+    /* --- 3: ön plan, iri, adamın qarşısından uçur --- */
+    {q:3,f:'q02',x:7, y:88,d:-11,w:24}, {q:3,f:'q01',x:91,y:86,d:12, w:22},
+    {q:3,f:'q05',x:33,y:104,d:7, w:20}, {q:3,f:'q04',x:66,y:108,d:-14,w:21},
+    {q:3,f:'q03',x:99,y:40,d:-9, w:17}, {q:3,f:'q02',x:-2,y:46,d:10, w:16}
+  ];
+
+  var qatlar = {};
+  [1,2,3].forEach(function(n){ qatlar[n] = sehne.querySelector('[data-qat="'+n+'"]'); });
+
+  QEZETLER.forEach(function(k){
+    var qat = qatlar[k.q];
+    if(!qat) return;
+    var im = document.createElement('img');
+    im.className = 'qzt';
+    im.src = '/media/qzt/' + k.f + '.png';
+    im.alt = ''; im.loading = 'lazy'; im.decoding = 'async';
+    im.style.left = k.x + '%';
+    im.style.top  = k.y + '%';
+    im.style.width = k.w + 'vw';
+    im.style.transform = 'translate(-50%,-50%) rotate(' + k.d + 'deg)';
+    qat.appendChild(im);
+  });
+
+  if(azalt) return;
+
+  var foto = sehne.querySelector('.karx-foto');
+  var mtn  = sehne.querySelector('.karx-mtn');
+  var xHerf = document.getElementById('karx-x');
+
+  /* qat: [şaquli vh, üfüqi vw, fırlanma dərəcə] */
+  var HRK = { 1:[ 34,  3,  5], 2:[-26, -4, -6], 3:[-78,  6,  9] };
+  var isleyir = false;
+
+  function yenile(){
+    isleyir = false;
+    var r = kadr.getBoundingClientRect();
+    var uzun = kadr.offsetHeight - innerHeight;
+    if(uzun <= 0) return;
+    var p = Math.min(1, Math.max(0, -r.top / uzun));
+    var vh = innerHeight / 100, vw = innerWidth / 100;
+
+    [1,2,3].forEach(function(n){
+      var q = qatlar[n], h = HRK[n];
+      if(!q) return;
+      q.style.transform =
+        'translate3d(' + (p*h[1]*vw).toFixed(1) + 'px,' + (p*h[0]*vh).toFixed(1) + 'px,0)' +
+        ' rotate(' + (p*h[2]).toFixed(2) + 'deg)';
+    });
+    if(foto) foto.style.transform = 'translate3d(0,' + (p * 7 * vh).toFixed(1) + 'px,0) scale(' + (1 + p*0.07).toFixed(3) + ')';
+    if(mtn)  mtn.style.transform  = 'translate3d(0,' + (p * -11 * vh).toFixed(1) + 'px,0)';
+
+    /* bir-iki kadrlıq bulanıq "X" — görünüb yenidən əriyir */
+    if(xHerf){
+      var BAS = 0.30, ZIRVE = 0.42, SON = 0.56;
+      var g = 0;
+      if(p > BAS && p < SON){
+        g = p < ZIRVE ? (p - BAS) / (ZIRVE - BAS) : 1 - (p - ZIRVE) / (SON - ZIRVE);
+        g = Math.max(0, Math.min(1, g));
+        g = g * g * (3 - 2 * g);           /* yumşaq giriş-çıxış */
+      }
+      xHerf.style.opacity = g.toFixed(3);
+      xHerf.style.filter  = 'blur(' + (30 - g * 16).toFixed(1) + 'px)';
+      xHerf.style.transform =
+        'translate(-50%,-50%) scale(' + (0.82 + g * 0.3).toFixed(3) + ') rotate(' + ((1 - g) * -7).toFixed(1) + 'deg)';
+    }
+  }
+
+  addEventListener('scroll', function(){
+    if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
+  }, {passive:true});
+  addEventListener('resize', yenile);
+  yenile();
+})();
+/* ---------- Xidmət xanaları: pilləli görünmə ---------- */
+(function(){
+  var xanalar = [].slice.call(document.querySelectorAll('.xd-tor .xd'));
+  if(!xanalar.length) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)){
+    xanalar.forEach(function(x){ x.classList.add('gorunur'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(girisler){
+    girisler.forEach(function(g){
+      if(!g.isIntersecting) return;
+      var i = Math.max(0, xanalar.indexOf(g.target));
+      var gec = i * 90;
+      g.target.style.transitionDelay = gec + 'ms';
+      g.target.classList.add('gorunur');
+      io.unobserve(g.target);
+      /* giriş bitəndən sonra gecikməni sil — yoxsa 3D hərəkət ləng olur */
+      setTimeout(function(){ g.target.style.transitionDelay = '0ms'; }, gec + 900);
+    });
+  }, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
+  xanalar.forEach(function(x){ io.observe(x); });
+
+  /* kursoru izləyən parıltı + 3D əyilmə */
+  var azalt2 = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!azalt2 && matchMedia('(hover: hover)').matches){
+    var LIMIT = 7, MIQYAS = 1.015, PERS = 1400;
+    xanalar.forEach(function(x){
+      x.addEventListener('pointermove', function(e){
+        var r = x.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        x.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+        x.style.setProperty('--my', (py*100).toFixed(1) + '%');
+        if(!x.classList.contains('gorunur')) return;
+        var xRot = (py - 0.5) * (LIMIT * 2) * -1;
+        var yRot = (px - 0.5) * (LIMIT * 2);
+        x.style.transform =
+          'perspective(' + PERS + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg)' +
+          ' translateY(-5px) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
+      });
+      x.addEventListener('pointerleave', function(){
+        x.style.transform = '';
+        x.style.setProperty('--mx','50%');
+        x.style.setProperty('--my','50%');
+      });
+    });
+  }
+})();
+
+/* ---------- Footer: sürətli mesaj + Bakı saatı ---------- */
+(function(){
+  var form = document.getElementById('ft-form');
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var m = (document.getElementById('ft-mesaj').value || '').trim();
+      if(!m){ document.getElementById('ft-mesaj').focus(); return; }
+      location.href = 'mailto:malikzadarahman@gmail.com'
+        + '?subject=' + encodeURIComponent('Sayt üzərindən sorğu')
+        + '&body=' + encodeURIComponent(m);
+    });
+  }
+  var saatEl = document.getElementById('ft-saat');
+  if(saatEl){
+    function saatYaz(){
+      try{
+        saatEl.textContent = new Date().toLocaleTimeString('az-AZ', {
+          timeZone:'Asia/Baku', hour:'2-digit', minute:'2-digit', hour12:false
+        });
+      }catch(e){ saatEl.textContent = ''; }
+    }
+    saatYaz(); setInterval(saatYaz, 30000);
   }
 })();
 
