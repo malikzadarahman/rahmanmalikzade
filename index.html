@@ -681,11 +681,8 @@ footer{
 
 
 /* hər kartın öz hover tonu */
-.xd--t1{--aksR:217;--aksG:58; --aksB:30 }   /* qırmızı  */
-.xd--t2{--aksR:56; --aksG:118;--aksB:206}   /* mavi     */
-.xd--t3{--aksR:47; --aksG:158;--aksB:130}   /* yaşıl    */
-.xd--t4{--aksR:198;--aksG:140;--aksB:56 }   /* kəhrəba  */
-.xd--t5{--aksR:126;--aksG:106;--aksB:196}   /* bənövşəyi */
+.xd--t1,.xd--t3,.xd--t5{--aksR:217;--aksG:58; --aksB:30 }   /* qırmızı */
+.xd--t2,.xd--t4          {--aksR:56; --aksG:118;--aksB:206}  /* mavi    */
 .xd.gorunur{opacity:1;transform:none}
 .xd.gorunur:hover{
   border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.4);
@@ -697,8 +694,10 @@ footer{
 .xd-parilti{
   position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
   transition:opacity .35s var(--yum);
-  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
-    rgba(var(--aksR),var(--aksG),var(--aksB),.34),rgba(251,250,248,.07) 30%,transparent 58%)
+  background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--aksR),var(--aksG),var(--aksB),.4) 0%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),.16) 34%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),0) 66%)
 }
 
 .xd:hover .xd-parilti{opacity:1}
@@ -782,7 +781,7 @@ footer{
 .xd--cta:hover .xd-izah{color:rgba(11,11,12,.75)}
 .xd--cta .xd-alt{border-top-color:var(--xett)}
 .xd--cta:hover .xd-cta{color:var(--murekkeb)}
-.xd--cta .xd-parilti{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.16),transparent 60%)}
+.xd--cta .xd-parilti{background:radial-gradient(440px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.2) 0%,rgba(217,58,30,.07) 36%,rgba(217,58,30,0) 66%)}
 
 /* daxili elementlərin pilləli açılışı */
 .xd-ic > *{opacity:0;transform:translateY(12px)}
