@@ -1796,6 +1796,53 @@ footer{
   .sual-govde,.sual-sar,.sual-ic p{transition:none !important}
   .sual-xett{animation:none !important}
 }
+
+/* gizli suallar + "hamısını göstər" düyməsi */
+.sual.gizli{
+  display:none;opacity:0;transform:translateY(14px);
+  transition:opacity .55s var(--yum),transform .55s var(--yum)
+}
+.sual-siyahi.acilib .sual.gizli{display:block}
+.sual-siyahi.acilib.gorunsun .sual.gizli{opacity:1;transform:none}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(4){transition-delay:.04s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(5){transition-delay:.08s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(6){transition-delay:.12s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(7){transition-delay:.16s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(8){transition-delay:.2s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(9){transition-delay:.24s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(10){transition-delay:.28s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(11){transition-delay:.32s}
+.sual-siyahi.acilib.gorunsun .sual.gizli:nth-of-type(12){transition-delay:.36s}
+
+.sual-dgm{
+  align-self:flex-start;margin-top:8px;padding:0;border:0;background:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent
+}
+.sual-dgm-ic{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:13px 22px;border-radius:999px;
+  border:1px solid var(--xett);background:rgba(11,11,12,.022);
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--murekkeb);
+  transition:background .4s var(--yum),border-color .4s var(--yum),transform .4s var(--yum),box-shadow .4s var(--yum)
+}
+.sual-dgm:hover .sual-dgm-ic{
+  background:var(--murekkeb);border-color:var(--murekkeb);color:var(--kagiz);
+  transform:translateY(-2px);box-shadow:0 16px 30px -18px rgba(11,11,12,.6)
+}
+.sual-dgm-say{
+  font-size:9.5px;padding:3px 8px;border-radius:999px;
+  background:rgba(11,11,12,.08);color:var(--sus);transition:background .4s var(--yum),color .4s var(--yum)
+}
+.sual-dgm:hover .sual-dgm-say{background:rgba(251,250,248,.16);color:var(--kagiz)}
+.sual-dgm-ox{font-size:13px;transition:transform .45s var(--yum);display:inline-block}
+.sual-dgm:hover .sual-dgm-ox{transform:translateY(3px)}
+.sual-dgm[aria-expanded="true"] .sual-dgm-ox{transform:rotate(180deg)}
+.sual-dgm[aria-expanded="true"]:hover .sual-dgm-ox{transform:rotate(180deg) translateY(3px)}
+
+@media (prefers-reduced-motion:reduce){
+  .sual.gizli{transition:none !important}
+}
 </style>
 </head>
 <body>
@@ -2126,7 +2173,7 @@ footer{
     Ən çox verilən suallar. Cavabı görmək üçün üstünə toxun.
   </p>
 
-  <div class="sual-siyahi" data-ac data-gec="2">
+  <div class="sual-siyahi" id="sual-siyahi" data-ac data-gec="2">
     <div class="sual" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
@@ -2169,7 +2216,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-04" aria-controls="s-ic-04">
@@ -2183,7 +2230,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-05" aria-controls="s-ic-05">
@@ -2197,7 +2244,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-06" aria-controls="s-ic-06">
@@ -2211,7 +2258,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-07" aria-controls="s-ic-07">
@@ -2225,7 +2272,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-08" aria-controls="s-ic-08">
@@ -2239,7 +2286,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-09" aria-controls="s-ic-09">
@@ -2253,7 +2300,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-10" aria-controls="s-ic-10">
@@ -2267,7 +2314,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-11" aria-controls="s-ic-11">
@@ -2281,7 +2328,7 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-    <div class="sual" data-sual>
+    <div class="sual gizli" data-sual>
       <span class="sual-govde">
         <span class="sual-parilti" aria-hidden="true"></span>
         <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-12" aria-controls="s-ic-12">
@@ -2295,7 +2342,15 @@ footer{
         <span class="sual-xett" aria-hidden="true"></span>
       </span>
     </div>
-  </div>
+
+    <button type="button" class="sual-dgm" id="sual-dgm" aria-expanded="false" aria-controls="sual-siyahi">
+      <span class="sual-dgm-ic">
+        <span class="sual-dgm-mtn">Bütün sualları göstər</span>
+        <span class="sual-dgm-say">+9</span>
+        <span class="sual-dgm-ox" aria-hidden="true">&darr;</span>
+      </span>
+    </button>
+</div>
 </section>
 
 <!-- ================= ƏLAQƏ ================= -->
@@ -4292,6 +4347,48 @@ function pkRenderMobilQiymet(hesab){
       s.classList.remove('isiq');
       govde.style.transform = '';
     });
+  });
+})();
+
+/* ---------- Suallar: "hamısını göstər" ---------- */
+(function(){
+  var dgm = document.getElementById('sual-dgm');
+  var siyahi = document.getElementById('sual-siyahi');
+  if(!dgm || !siyahi) return;
+  var mtn = dgm.querySelector('.sual-dgm-mtn');
+  var say = dgm.querySelector('.sual-dgm-say');
+  var gizliSay = siyahi.querySelectorAll('.sual.gizli').length;
+  if(say) say.textContent = '+' + gizliSay;
+
+  dgm.addEventListener('click', function(){
+    var acilib = siyahi.classList.contains('acilib');
+    if(!acilib){
+      siyahi.classList.add('acilib');
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ siyahi.classList.add('gorunsun'); });
+      });
+      dgm.setAttribute('aria-expanded','true');
+      if(mtn) mtn.textContent = 'Sualları gizlət';
+      if(say) say.textContent = '−' + gizliSay;
+    } else {
+      siyahi.classList.remove('gorunsun');
+      dgm.setAttribute('aria-expanded','false');
+      if(mtn) mtn.textContent = 'Bütün sualları göstər';
+      if(say) say.textContent = '+' + gizliSay;
+      setTimeout(function(){
+        siyahi.classList.remove('acilib');
+        /* bağlananda açıq qalmış gizli sualları da yığ */
+        siyahi.querySelectorAll('.sual.gizli.aciq').forEach(function(s){
+          s.classList.remove('aciq');
+          var b = s.querySelector('.sual-bas');
+          if(b) b.setAttribute('aria-expanded','false');
+        });
+        var ust = document.getElementById('faq');
+        if(ust && ust.getBoundingClientRect().top < -40){
+          ust.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+      }, 420);
+    }
   });
 })();
 
