@@ -491,17 +491,30 @@ body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
   transition:border-color .5s var(--yum)
 }
 .xana::before{
-  content:"";position:absolute;inset:0;background:var(--murekkeb);
-  transform:scaleX(0);transform-origin:left;opacity:.1;
-  transition:transform .55s var(--yum),opacity .4s var(--yum)
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(11,11,12,.035),rgba(11,11,12,.07),rgba(11,11,12,.035));
+  transform:scaleX(0);transform-origin:left;opacity:0;
+  transition:transform .6s var(--yum),opacity .45s var(--yum)
 }
-.xana:hover::before{transform:scaleX(1);opacity:.06}
-.xana.aktiv{border-color:rgba(11,11,12,.4)}
-.xana.aktiv::before{transform:scaleX(1);opacity:.14}
+.xana:hover::before{transform:scaleX(1);opacity:.7}
+.xana.aktiv{border-color:rgba(11,11,12,.2)}
+.xana.aktiv::before{transform:scaleX(1);opacity:1}
+
+.xana-ad{
+  position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
+  height:100%;white-space:nowrap;overflow:hidden;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--murekkeb);
+  opacity:0;transform:translateY(4px);
+  transition:opacity .3s var(--yum),transform .3s var(--yum)
+}
+.xana.aktiv .xana-ad{opacity:.75;transform:none;transition-delay:.14s}
+.xana:hover .xana-ad{opacity:.5}
+.xana.aktiv:hover .xana-ad{opacity:.9}
 /* aktiv xanada axan işıq */
 .xana::after{
-  content:"";position:absolute;top:0;bottom:0;width:34%;
-  background:linear-gradient(90deg,transparent,rgba(11,11,12,.16),transparent);
+  content:"";position:absolute;top:0;bottom:0;width:34%;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(11,11,12,.075),transparent);
   transform:translateX(-140%);opacity:0
 }
 .xana.aktiv::after{opacity:1;animation:xanaAxin 2.6s var(--yum) infinite}
@@ -510,15 +523,6 @@ body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
   60%,100%{transform:translateX(340%)}
 }
 
-.serit-ad{
-  flex:none;min-width:11ch;text-align:right;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--murekkeb);
-  opacity:0;transform:translateY(5px);
-  transition:opacity .34s var(--yum),transform .34s var(--yum)
-}
-.serit-ad.gorunur{opacity:1;transform:none}
-@media (max-width:720px){ .serit-ad{display:none} }
 @media (prefers-reduced-motion:reduce){ .xana.aktiv::after{animation:none;opacity:0} }
 .oxbas{
   position:absolute;top:-7px;bottom:-7px;left:0;width:1px;background:var(--murekkeb);z-index:4;pointer-events:none;
@@ -2077,15 +2081,14 @@ footer{
 <div class="serit-bar" role="navigation" aria-label="Səhifə mövqeyi">
   <span class="serit-tc" id="serit-tc">00:00:00:00</span>
   <div class="serit" id="serit">
-    <a class="xana" href="#bas" data-ad="Başlanğıc" aria-label="Başlanğıc"></a>
-    <a class="xana" href="#xidmetler" data-ad="Xidmətlər" aria-label="Xidmətlər"></a>
-    <a class="xana" href="#isler" data-ad="Portfolio" aria-label="Portfolio"></a>
-    <a class="xana" href="#paketler" data-ad="Paketlər" aria-label="Paketlər"></a>
-    <a class="xana" href="#faq" data-ad="Suallar" aria-label="Suallar"></a>
-    <a class="xana" href="#elaqe" data-ad="Əlaqə" aria-label="Əlaqə"></a>
+    <a class="xana" href="#bas" data-ad="Başlanğıc" aria-label="Başlanğıc"><span class="xana-ad">Başlanğıc</span></a>
+    <a class="xana" href="#xidmetler" data-ad="Xidmətlər" aria-label="Xidmətlər"><span class="xana-ad">Xidmətlər</span></a>
+    <a class="xana" href="#isler" data-ad="Portfolio" aria-label="Portfolio"><span class="xana-ad">Portfolio</span></a>
+    <a class="xana" href="#paketler" data-ad="Paketlər" aria-label="Paketlər"><span class="xana-ad">Paketlər</span></a>
+    <a class="xana" href="#faq" data-ad="Suallar" aria-label="Suallar"><span class="xana-ad">Suallar</span></a>
+    <a class="xana" href="#elaqe" data-ad="Əlaqə" aria-label="Əlaqə"><span class="xana-ad">Əlaqə</span></a>
     <span class="oxbas" id="oxbas" aria-hidden="true"></span>
   </div>
-  <span class="serit-ad" id="serit-ad" aria-live="polite"></span>
 </div>
 
 
@@ -2158,7 +2161,7 @@ footer{
   var reel = document.getElementById('reel'), cerceve = document.getElementById('reel-cerceve');
   var reelTc = document.getElementById('reel-tc');
   var seritTc = document.getElementById('serit-tc'), oxbas = document.getElementById('oxbas');
-  var seritAd = document.getElementById('serit-ad'), sonXana = -1;
+  var sonXana = -1;
   var xanalar = [].slice.call(document.querySelectorAll('.xana'));
   function bolmeTap(a){
     var h = a.getAttribute('href') || '';
@@ -2189,14 +2192,6 @@ footer{
     xanaBolme.forEach(function(b,i){ if(b && b.offsetTop <= xOrta) xAktiv = i; });
     if(xAktiv !== sonXana){
       xanalar.forEach(function(a,i){ a.classList.toggle('aktiv', i === xAktiv); });
-      if(seritAd){
-        seritAd.classList.remove('gorunur');
-        var ad = xanalar[xAktiv] ? (xanalar[xAktiv].getAttribute('data-ad') || '') : '';
-        setTimeout(function(){
-          seritAd.textContent = ad;
-          seritAd.classList.add('gorunur');
-        }, 180);
-      }
       sonXana = xAktiv;
     }
 
