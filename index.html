@@ -1684,6 +1684,106 @@ footer{
 .karx-x g{opacity:.62}
 @media (max-width:820px){ .karx-x{width:96vw;height:96vw} }
 @media (prefers-reduced-motion:reduce){ .karx-x{display:none} }
+
+/* ================= SUALLAR (şüşə akkordeon) ================= */
+.sual-siyahi{
+  display:flex;flex-direction:column;gap:10px;
+  margin-top:clamp(34px,5vh,58px);max-width:1000px
+}
+.sual{position:relative;border-radius:16px;perspective:1400px}
+.sual-govde{
+  position:relative;display:block;overflow:hidden;border-radius:inherit;isolation:isolate;
+  background:linear-gradient(-75deg,rgba(251,250,248,.05),rgba(251,250,248,.13),rgba(251,250,248,.05));
+  -webkit-backdrop-filter:blur(18px) saturate(160%);
+  backdrop-filter:blur(18px) saturate(160%);
+  box-shadow:
+    inset 0 1px 0 rgba(251,250,248,.22),
+    inset 0 -1px 0 rgba(11,11,12,.4),
+    0 12px 30px -20px rgba(0,0,0,.8);
+  transform-style:preserve-3d;
+  transition:transform .3s var(--yum),box-shadow .5s var(--yum),background .5s var(--yum)
+}
+/* kursoru izləyən parıltı */
+.sual-parilti{
+  position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+  transition:opacity .18s linear;
+  background:radial-gradient(360px circle at var(--mx,50%) var(--my,50%),
+    rgba(251,250,248,.14) 0%,rgba(251,250,248,.05) 36%,transparent 66%)
+}
+.sual.isiq .sual-parilti{opacity:1;transition:opacity .4s var(--yum)}
+.sual.isiq .sual-govde{
+  background:linear-gradient(-75deg,rgba(251,250,248,.08),rgba(251,250,248,.19),rgba(251,250,248,.08));
+  box-shadow:
+    inset 0 1px 0 rgba(251,250,248,.32),
+    inset 0 -1px 0 rgba(11,11,12,.42),
+    0 22px 46px -24px rgba(0,0,0,.85)
+}
+
+/* altdan axan parlaq işıq */
+.sual-xett{
+  position:absolute;left:0;right:0;bottom:0;height:1px;z-index:2;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(251,250,248,.5),transparent);
+  background-size:42% 100%;background-repeat:no-repeat;background-position:-45% 0;
+  opacity:.35
+}
+.sual.isiq .sual-xett,.sual.aciq .sual-xett{opacity:1;animation:sualAxin 2.4s var(--yum) infinite}
+@keyframes sualAxin{
+  0%{background-position:-45% 0}
+  100%{background-position:145% 0}
+}
+
+.sual-bas{
+  position:relative;z-index:1;width:100%;display:flex;align-items:center;gap:clamp(14px,2vw,26px);
+  padding:clamp(18px,2vw,24px) clamp(20px,2.4vw,30px);
+  background:none;border:0;cursor:pointer;text-align:left;color:var(--kagiz);
+  font-family:var(--metn)
+}
+.sual-no{
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:rgba(251,250,248,.4);
+  flex:none;transition:color .4s var(--yum)
+}
+.sual.isiq .sual-no,.sual.aciq .sual-no{color:var(--rec)}
+.sual-mtn{
+  flex:1;font-size:clamp(14px,1.35vw,16.5px);line-height:1.4;letter-spacing:-.005em;
+  color:rgba(251,250,248,.82);transition:color .4s var(--yum),transform .4s var(--yum)
+}
+.sual.isiq .sual-mtn{color:var(--kagiz);transform:translateX(3px)}
+.sual-ox{
+  position:relative;flex:none;width:16px;height:16px;
+  transition:transform .45s var(--yum)
+}
+.sual-ox i{
+  position:absolute;top:50%;left:50%;width:13px;height:1.4px;border-radius:2px;
+  background:rgba(251,250,248,.6);transform:translate(-50%,-50%);
+  transition:transform .45s var(--yum),background .4s var(--yum)
+}
+.sual-ox i:last-child{transform:translate(-50%,-50%) rotate(90deg)}
+.sual.isiq .sual-ox i{background:var(--kagiz)}
+.sual.aciq .sual-ox i:last-child{transform:translate(-50%,-50%) rotate(0deg)}
+.sual.aciq .sual-ox{transform:rotate(180deg)}
+
+.sual-sar{
+  position:relative;z-index:1;display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .5s var(--yum)
+}
+.sual.aciq .sual-sar{grid-template-rows:1fr}
+.sual-ic{overflow:hidden}
+.sual-ic p{
+  margin:0;padding:0 clamp(20px,2.4vw,30px) clamp(20px,2.2vw,26px) calc(clamp(20px,2.4vw,30px) + 34px);
+  font-size:13.5px;line-height:1.72;color:rgba(251,250,248,.6);max-width:78ch;
+  opacity:0;transform:translateY(8px);
+  transition:opacity .45s var(--yum) .1s,transform .45s var(--yum) .1s
+}
+.sual.aciq .sual-ic p{opacity:1;transform:none}
+
+@media (max-width:640px){
+  .sual-bas{gap:12px;padding:16px 18px}
+  .sual-ic p{padding-left:18px;padding-right:18px}
+}
+@media (prefers-reduced-motion:reduce){
+  .sual-govde,.sual-sar,.sual-ic p{transition:none !important}
+  .sual-xett{animation:none !important}
+}
 </style>
 </head>
 <body>
@@ -2007,15 +2107,182 @@ footer{
 
 <div class="perf" aria-hidden="true"></div>
 
-<section class="blok" id="faq" aria-labelledby="f-bas">
+<section class="blok blok--tund" id="faq" aria-labelledby="f-bas">
   <div class="kicik">Suallar</div>
   <h2 id="f-bas" data-ac style="margin-top:16px">Qısa cavablar</h2>
-  <div class="faq" data-ac data-gec="1">
-    <details><summary>Bakıda video çəkiliş neçəyə başa gəlir?</summary><p>Qiymət çəkiliş günü, komanda və montajın həcmindən asılıdır. Brifi göndərin — 24 saat ərzində konkret təklif hazırlayım.</p></details>
-    <details><summary>Layihə nə vaxta hazır olur?</summary><p>Sosial media formatları 3–5 iş günü, brend filmi 7–14 iş günü.</p></details>
-    <details><summary>Paketlərə foto daxildir?</summary><p>Bəli — hər paketdə video ilə birlikdə redaktə olunmuş fotolar var.</p></details>
-    <details><summary>Bakıdan kənarda çəkiliş edirsiniz?</summary><p>Bəli, bütün Azərbaycan üzrə. Yol xərci ayrıca hesablanır.</p></details>
-    <details><summary>Azərbaycan dilində altyazı əlavə edirsiniz?</summary><p>Bəli. Azərbaycan dili üçün hazırladığım AI subtitr aləti ilə — sürətli və dəqiq.</p></details>
+  <p class="solğun" data-ac data-gec="1" style="margin-top:16px;max-width:52ch;font-size:14.5px">
+    Ən çox verilən suallar. Cavabı görmək üçün üstünə toxun.
+  </p>
+
+  <div class="sual-siyahi" data-ac data-gec="2">
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-01" aria-controls="s-ic-01">
+          <span class="sual-no">01</span>
+          <span class="sual-mtn">Çəkiliş qiyməti necə hesablanır?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-01" role="region" aria-labelledby="s-bas-01">
+          <div class="sual-ic"><p>Qiymət layihənin növü, çəkiliş müddəti, komanda, lokasiya və tələb olunan final materiallara görə dəyişir. Layihə haqqında qısa məlumat göndərdikdən sonra uyğun təklif hazırlayıram.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-02" aria-controls="s-ic-02">
+          <span class="sual-no">02</span>
+          <span class="sual-mtn">Layihə nə vaxt hazır olur?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-02" role="region" aria-labelledby="s-bas-02">
+          <div class="sual-ic"><p>Reels adətən 2–3 gün, reklam və event videoları 3–5 gün, daha böyük layihələr isə 5–10 gün ərzində təhvil verilir. Təcili təhvil ayrıca razılaşdırıla bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-03" aria-controls="s-ic-03">
+          <span class="sual-no">03</span>
+          <span class="sual-mtn">Çəkiliş və montaj birlikdədir?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-03" role="region" aria-labelledby="s-bas-03">
+          <div class="sual-ic"><p>Standart olaraq layihəni çəkilişdən final montaja qədər idarə edirəm. İstəyə görə yalnız çəkiliş və ya yalnız post-production xidməti də mümkündür.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-04" aria-controls="s-ic-04">
+          <span class="sual-no">04</span>
+          <span class="sual-mtn">İdeya və ssenarini də hazırlayırsınız?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-04" role="region" aria-labelledby="s-bas-04">
+          <div class="sual-ic"><p>Bəli. Hazır referenslə işləyə bilərəm və ya layihəyə uyğun ideya, kreativ konsept, ssenari və shot list ayrıca hazırlana bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-05" aria-controls="s-ic-05">
+          <span class="sual-no">05</span>
+          <span class="sual-mtn">Neçə düzəliş etmək mümkündür?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-05" role="region" aria-labelledby="s-bas-05">
+          <div class="sual-ic"><p>Layihəyə 3 revision raundu daxildir. Hər raundda düzəlişlərin bir yerdə göndərilməsi prosesi daha sürətli və sistemli saxlayır.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-06" aria-controls="s-ic-06">
+          <span class="sual-no">06</span>
+          <span class="sual-mtn">Bakıdan kənarda çəkiliş edirsiniz?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-06" role="region" aria-labelledby="s-bas-06">
+          <div class="sual-ic"><p>Bəli. Əsas fəaliyyət Bakıdadır, amma Azərbaycanın bölgələrində və xaricdə də layihələr mümkündür. Səfər və logistika xərcləri ayrıca hesablanır.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-07" aria-controls="s-ic-07">
+          <span class="sual-no">07</span>
+          <span class="sual-mtn">Foto çəkiliş də mümkündür?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-07" role="region" aria-labelledby="s-bas-07">
+          <div class="sual-ic"><p>Bəli. Food Photography və Event Photography həm ayrıca, həm də video çəkilişinə əlavə xidmət kimi sifariş edilə bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-08" aria-controls="s-ic-08">
+          <span class="sual-no">08</span>
+          <span class="sual-mtn">Reels və sosial media üçün hazır format verilir?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-08" role="region" aria-labelledby="s-bas-08">
+          <div class="sual-ic"><p>Bəli. Reels üçün 9:16, sayt və YouTube üçün 16:9 formatında Full HD materiallar hazırlaya bilirəm. Layihəyə görə bir neçə fərqli formatda təhvil də mümkündür.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-09" aria-controls="s-ic-09">
+          <span class="sual-no">09</span>
+          <span class="sual-mtn">Raw footage əldə etmək mümkündür?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-09" role="region" aria-labelledby="s-bas-09">
+          <div class="sual-ic"><p>Bəli. Müştərinin istəyi ilə çəkiliş zamanı əldə olunan xam materiallar da təhvil verilə bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-10" aria-controls="s-ic-10">
+          <span class="sual-no">10</span>
+          <span class="sual-mtn">Böyük layihələrdə komanda ilə işləyirsiniz?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-10" role="region" aria-labelledby="s-bas-10">
+          <div class="sual-ic"><p>Bəli. Layihənin miqyasına görə ikinci kamera operatoru, işıq assistenti və digər komanda üzvləri cəlb edə bilirəm. Model və aktyor seçiminə də kömək etmək mümkündür.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-11" aria-controls="s-ic-11">
+          <span class="sual-no">11</span>
+          <span class="sual-mtn">Aylıq kontent əməkdaşlığı mümkündür?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-11" role="region" aria-labelledby="s-bas-11">
+          <div class="sual-ic"><p>Bəli. Restoranlar, şəxsi brendlər və bizneslər üçün davamlı Reels və video kontent əməkdaşlığı qurmaq mümkündür. İstəyə görə kontent planı və çəkiliş planlaması da hazırlana bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
+    <div class="sual" data-sual>
+      <span class="sual-govde">
+        <span class="sual-parilti" aria-hidden="true"></span>
+        <button type="button" class="sual-bas" aria-expanded="false" id="s-bas-12" aria-controls="s-ic-12">
+          <span class="sual-no">12</span>
+          <span class="sual-mtn">Subtitr, motion graphics və sound design edirsiniz?</span>
+          <span class="sual-ox" aria-hidden="true"><i></i><i></i></span>
+        </button>
+        <div class="sual-sar" id="s-ic-12" role="region" aria-labelledby="s-bas-12">
+          <div class="sual-ic"><p>Bəli. Montaj zamanı subtitr, sound design, color grading, motion graphics və text/logo animasiyaları istifadə edə bilirəm. Layihəyə uyğun AI ilə xüsusi musiqi və vizual elementlər də hazırlana bilər.</p></div>
+        </div>
+        <span class="sual-xett" aria-hidden="true"></span>
+      </span>
+    </div>
   </div>
 </section>
 
@@ -3971,6 +4238,49 @@ function pkRenderMobilQiymet(hesab){
     }
     saatYaz(); setInterval(saatYaz, 30000);
   }
+})();
+
+/* ---------- Suallar: açılan şüşə paneller ---------- */
+(function(){
+  var suallar = [].slice.call(document.querySelectorAll('.sual'));
+  if(!suallar.length) return;
+  var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hoverVar = matchMedia('(hover: hover)').matches;
+
+  suallar.forEach(function(s){
+    var bas = s.querySelector('.sual-bas');
+    var govde = s.querySelector('.sual-govde');
+    if(!bas || !govde) return;
+
+    bas.addEventListener('click', function(){
+      var aciq = s.classList.toggle('aciq');
+      bas.setAttribute('aria-expanded', aciq ? 'true' : 'false');
+    });
+
+    if(azalt || !hoverVar) return;
+
+    s.addEventListener('pointerenter', function(e){
+      var r = s.getBoundingClientRect();
+      s.style.setProperty('--mx', (((e.clientX-r.left)/r.width)*100).toFixed(1) + '%');
+      s.style.setProperty('--my', (((e.clientY-r.top)/r.height)*100).toFixed(1) + '%');
+      requestAnimationFrame(function(){ s.classList.add('isiq'); });
+    });
+    s.addEventListener('pointermove', function(e){
+      var r = s.getBoundingClientRect();
+      var px = (e.clientX - r.left) / r.width;
+      var py = (e.clientY - r.top) / r.height;
+      s.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+      s.style.setProperty('--my', (py*100).toFixed(1) + '%');
+      var xRot = (py - 0.5) * -5;
+      var yRot = (px - 0.5) * 5;
+      govde.style.transform =
+        'perspective(1400px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) translateY(-2px)';
+    });
+    s.addEventListener('pointerleave', function(){
+      s.classList.remove('isiq');
+      govde.style.transform = '';
+    });
+  });
 })();
 
 </script>
