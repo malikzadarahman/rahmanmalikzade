@@ -501,7 +501,7 @@ body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
 .xana.aktiv::before{transform:scaleX(1);opacity:1}
 
 .xana-ad{
-  position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;
   height:100%;white-space:nowrap;overflow:hidden;
   font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--murekkeb);
@@ -525,8 +525,8 @@ body.hero-acildi .hero-etek{animation:qalxSol .9s .62s var(--yum) forwards}
 
 @media (prefers-reduced-motion:reduce){ .xana.aktiv::after{animation:none;opacity:0} }
 .oxbas{
-  position:absolute;top:-7px;bottom:-7px;left:0;width:1px;background:var(--murekkeb);z-index:4;pointer-events:none;
-  will-change:transform;transition:transform .12s linear
+  position:absolute;top:-7px;bottom:-7px;left:0;width:1px;background:var(--murekkeb);z-index:6;pointer-events:none;
+  will-change:transform;transition:transform .14s linear
 }
 .oxbas::before{
   content:"";position:absolute;top:0;left:-4.5px;width:10px;height:7px;background:var(--murekkeb);
@@ -2187,13 +2187,24 @@ footer{
     xettUst.style.width = (p*100)+'%';
     nav.classList.toggle('enib', y > 12);
     seritTc.textContent = kadrMetni(Math.round(p * 25*60*4));
-    oxbas.style.transform = 'translateX(' + (p * document.getElementById('serit').clientWidth).toFixed(1) + 'px)';
+
+    /* aktiv bölmə */
     var xOrta = y + innerHeight*0.35, xAktiv = 0;
     xanaBolme.forEach(function(b,i){ if(b && b.offsetTop <= xOrta) xAktiv = i; });
     if(xAktiv !== sonXana){
       xanalar.forEach(function(a,i){ a.classList.toggle('aktiv', i === xAktiv); });
       sonXana = xAktiv;
     }
+
+    /* kursor aktiv xananın öz içində gəzsin — ad ilə tam sinxron */
+    var cariB = xanaBolme[xAktiv], novbB = null;
+    for(var j = xAktiv + 1; j < xanaBolme.length; j++){ if(xanaBolme[j]){ novbB = xanaBolme[j]; break; } }
+    var bBas = cariB ? cariB.offsetTop : 0;
+    var bSon = novbB ? novbB.offsetTop : document.documentElement.scrollHeight;
+    var ic = (xOrta - bBas) / Math.max(1, bSon - bBas);
+    ic = ic < 0 ? 0 : (ic > 1 ? 1 : ic);
+    var xEl = xanalar[xAktiv];
+    if(xEl) oxbas.style.transform = 'translateX(' + (xEl.offsetLeft + xEl.offsetWidth * ic).toFixed(1) + 'px)';
 
     if(!azalt && heroIc){
       var heroEl = document.getElementById('bas');
