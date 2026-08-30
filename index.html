@@ -672,8 +672,9 @@ footer{
   border-radius:clamp(18px,1.8vw,26px);
   padding:clamp(26px,2.6vw,38px);
   box-shadow:0 20px 54px -34px rgba(11,11,12,.7);
-  opacity:0;transform:translateY(24px) perspective(1200px);
-  transition:opacity .8s var(--yum),transform .5s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
+  opacity:0;transform:translateY(24px);
+  transform-style:preserve-3d;
+  transition:opacity .8s var(--yum),transform .28s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
   will-change:transform
 }
 .xd--yasil{--aks:#4a9d8f}
@@ -3851,13 +3852,28 @@ function pkRenderMobilQiymet(hesab){
   }, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
   xanalar.forEach(function(x){ io.observe(x); });
 
-  /* kursoru izləyən şüşə parıltısı */
-  if(matchMedia('(hover: hover)').matches){
+  /* kursoru izləyən parıltı + 3D əyilmə */
+  var azalt2 = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!azalt2 && matchMedia('(hover: hover)').matches){
+    var LIMIT = 7, MIQYAS = 1.015, PERS = 1400;
     xanalar.forEach(function(x){
       x.addEventListener('pointermove', function(e){
         var r = x.getBoundingClientRect();
-        x.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-        x.style.setProperty('--my', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+        var px = (e.clientX - r.left) / r.width;
+        var py = (e.clientY - r.top) / r.height;
+        x.style.setProperty('--mx', (px*100).toFixed(1) + '%');
+        x.style.setProperty('--my', (py*100).toFixed(1) + '%');
+        if(!x.classList.contains('gorunur')) return;
+        var xRot = (py - 0.5) * (LIMIT * 2) * -1;
+        var yRot = (px - 0.5) * (LIMIT * 2);
+        x.style.transform =
+          'perspective(' + PERS + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg)' +
+          ' translateY(-5px) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
+      });
+      x.addEventListener('pointerleave', function(){
+        x.style.transform = '';
+        x.style.setProperty('--mx','50%');
+        x.style.setProperty('--my','50%');
       });
     });
   }
