@@ -659,142 +659,123 @@ footer{
 @media (prefers-reduced-motion:reduce){ .ft-status i{animation:none} }
 
 
-/* ================= XİDMƏTLƏR (şüşə xanalar) ================= */
-.xd-sahne{position:relative;margin-top:clamp(36px,6vh,64px)}
-
-/* arxa fonda üzən yumşaq işıq ləkələri — şüşənin bulandıracağı zəmin */
-.xd-ambient{position:absolute;inset:-8% -4%;z-index:0;pointer-events:none;overflow:hidden;border-radius:36px}
-.xd-lek{position:absolute;display:block;border-radius:50%;filter:blur(72px);opacity:.5}
-.xd-lek1{width:46%;padding-bottom:46%;left:-6%;top:-10%;background:radial-gradient(circle,rgba(217,58,30,.22),transparent 68%);animation:xdSuz 26s var(--yum) infinite alternate}
-.xd-lek2{width:52%;padding-bottom:52%;right:-8%;top:18%;background:radial-gradient(circle,rgba(74,110,157,.2),transparent 68%);animation:xdSuz 32s var(--yum) infinite alternate-reverse}
-.xd-lek3{width:40%;padding-bottom:40%;left:32%;bottom:-14%;background:radial-gradient(circle,rgba(140,120,95,.24),transparent 68%);animation:xdSuz 38s var(--yum) infinite alternate}
-@keyframes xdSuz{
-  0%{transform:translate3d(0,0,0) scale(1)}
-  50%{transform:translate3d(6%,-5%,0) scale(1.12)}
-  100%{transform:translate3d(-5%,6%,0) scale(.94)}
+/* ================= XİDMƏTLƏR (tünd kartlar) ================= */
+.xd-tor{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(14px,1.5vw,20px);margin-top:clamp(36px,6vh,64px)
 }
-
-.xd-tor{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.3vw,18px)}
-
 .xd{
-  position:relative;overflow:hidden;isolation:isolate;text-decoration:none;color:inherit;
-  padding:clamp(26px,2.6vw,40px);border-radius:clamp(18px,1.6vw,26px);
-  background:rgba(255,255,255,.5);
-  -webkit-backdrop-filter:blur(20px) saturate(170%);
-  backdrop-filter:blur(20px) saturate(170%);
-  border:1px solid rgba(255,255,255,.7);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.9),
-    inset 0 -1px 0 rgba(11,11,12,.04),
-    0 16px 40px -30px rgba(11,11,12,.5);
-  opacity:0;transform:translateY(22px);
-  transition:opacity .8s var(--yum),transform .55s var(--yum),box-shadow .55s var(--yum),background .55s var(--yum)
+  --aks:var(--rec);
+  position:relative;overflow:hidden;isolation:isolate;text-decoration:none;
+  background:var(--murekkeb);color:var(--kagiz);
+  border:1px solid rgba(251,250,248,.08);
+  border-radius:clamp(18px,1.8vw,26px);
+  padding:clamp(26px,2.6vw,38px);
+  box-shadow:0 20px 54px -34px rgba(11,11,12,.7);
+  opacity:0;transform:translateY(24px) perspective(1200px);
+  transition:opacity .8s var(--yum),transform .5s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
+  will-change:transform
 }
+.xd--yasil{--aks:#4a9d8f}
 .xd.gorunur{opacity:1;transform:none}
 .xd.gorunur:hover{
-  transform:translateY(-6px);
-  background:linear-gradient(150deg,rgba(228,240,252,.72),rgba(255,255,255,.5) 46%,rgba(206,228,248,.6));
-  border-color:rgba(168,205,240,.75);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,1),
-    inset 0 -1px 0 rgba(56,110,168,.09),
-    0 30px 62px -32px rgba(38,86,140,.5),
-    0 0 0 1px rgba(150,193,235,.24)
+  border-color:rgba(251,250,248,.16);
+  box-shadow:0 36px 78px -38px rgba(11,11,12,.85)
 }
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
-  .xd{background:rgba(255,255,255,.9)}
+/* kursoru izləyən aksent parıltısı */
+.xd-parilti{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  transition:opacity .45s var(--yum);
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+    color-mix(in srgb,var(--aks) 26%,transparent),transparent 62%)
 }
-
-/* kursoru izləyən parıltı */
-.xd-fon{
-  position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .45s var(--yum);
-  background:
-    radial-gradient(300px circle at var(--mx,50%) var(--my,50%),rgba(255,255,255,.9),transparent 58%),
-    radial-gradient(460px circle at var(--mx,50%) var(--my,50%),rgba(96,155,220,.34),transparent 66%)
+@supports not (color: color-mix(in srgb,red,blue)){
+  .xd-parilti{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.24),transparent 62%)}
 }
-.xd:hover .xd-fon{opacity:1}
-
-/* üst kənarda gəzən işıq zolağı */
-.xd-cizgi{
-  position:absolute;left:14%;right:14%;top:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,.98) 40%,rgba(146,192,238,.9) 60%,transparent);
-  opacity:0;transform:scaleX(.4);transform-origin:center;
-  transition:opacity .5s var(--yum),transform .7s var(--yum)
-}
-.xd:hover .xd-cizgi{opacity:1;transform:scaleX(1)}
+.xd:hover .xd-parilti{opacity:1}
 
 .xd-ic{position:relative;display:flex;flex-direction:column;height:100%}
-.xd-ust{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.xd-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.xd-nisan{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;
+  background:var(--kagiz);color:var(--murekkeb);padding:6px 13px;border-radius:999px;
+  transition:background .45s var(--yum),color .45s var(--yum)
+}
+.xd:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd-no{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(251,250,248,.42);transition:color .45s var(--yum)
+}
+.xd:hover .xd-no{color:rgba(251,250,248,.72)}
+
+.xd-orta{display:flex;align-items:center;gap:14px;margin-top:clamp(42px,6vw,72px)}
 .xd-ikon{
-  width:40px;height:40px;border-radius:50%;
-  background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.8);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.9),0 6px 14px -10px rgba(11,11,12,.5);
-  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;flex:none;
+  border:1px solid rgba(251,250,248,.18);display:flex;align-items:center;justify-content:center;
   transition:transform .5s var(--yum),background .5s var(--yum),border-color .5s var(--yum)
 }
-.xd-ikon svg{width:17px;height:17px;fill:none;stroke:var(--murekkeb);stroke-width:1.5;transition:stroke .5s var(--yum)}
-.xd:hover .xd-ikon{
-  transform:translateY(-4px) scale(1.08) rotate(-6deg);
-  background:linear-gradient(150deg,#3f7fbf,#1f4e80);
-  border-color:rgba(255,255,255,.7);
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 10px 22px -12px rgba(31,78,128,.9)
-}
+.xd-ikon svg{width:17px;height:17px;fill:none;stroke:rgba(251,250,248,.8);stroke-width:1.5;transition:stroke .5s var(--yum)}
+.xd:hover .xd-ikon{transform:translateY(-3px) rotate(-6deg);background:var(--aks);border-color:var(--aks)}
 .xd:hover .xd-ikon svg{stroke:#fff}
-.xd-no{
-  font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--sus);
-  transition:color .45s var(--yum),transform .55s var(--yum),letter-spacing .55s var(--yum)
-}
-.xd:hover .xd-no{color:#3f7fbf;transform:translateY(-2px);letter-spacing:.3em}
-
 .xd-ad{
-  font-family:var(--dsp);font-weight:400;letter-spacing:-.01em;line-height:1.05;
-  font-size:clamp(21px,2vw,28px);margin-top:clamp(28px,3.4vw,44px);
+  font-family:var(--dsp);font-weight:400;letter-spacing:-.015em;line-height:1;
+  font-size:clamp(24px,2.4vw,34px);
   transition:transform .5s var(--yum)
 }
-.xd-ad{position:relative;width:fit-content}
-.xd-ad::after{
-  content:"";position:absolute;left:0;bottom:-6px;height:1px;width:100%;
-  background:linear-gradient(90deg,#4a8ac4,rgba(74,138,196,0));
-  transform:scaleX(0);transform-origin:left;transition:transform .6s var(--yum)
-}
-.xd:hover .xd-ad{transform:translateX(5px)}
-.xd:hover .xd-ad::after{transform:scaleX(1)}
-.xd-en{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--sus);margin-top:9px;
-  transition:letter-spacing .55s var(--yum),color .45s var(--yum),transform .55s var(--yum)
-}
-.xd:hover .xd-en{letter-spacing:.26em;color:#3f7fbf;transform:translateX(5px)}
+.xd:hover .xd-ad{transform:translateX(4px)}
+
 .xd-izah{
-  font-size:13.5px;line-height:1.66;color:var(--sus);margin-top:16px;max-width:40ch;
+  margin-top:16px;font-size:13px;line-height:1.66;color:rgba(251,250,248,.58);max-width:38ch;
   transition:color .5s var(--yum)
 }
-.xd:hover .xd-izah{color:rgba(11,11,12,.72)}
-.xd-siyahi{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:7px}
+.xd:hover .xd-izah{color:rgba(251,250,248,.75)}
+
+.xd-siyahi{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-direction:column;gap:8px}
 .xd-siyahi li{
-  position:relative;padding-left:16px;font-size:12.5px;line-height:1.5;color:var(--murekkeb);opacity:.74;
-  transition:transform .5s var(--yum),opacity .5s var(--yum),padding-left .5s var(--yum)
+  position:relative;padding-left:18px;font-size:12.5px;line-height:1.5;
+  color:rgba(251,250,248,.66);
+  transition:transform .5s var(--yum),color .5s var(--yum),padding-left .5s var(--yum)
 }
 .xd-siyahi li::before{
-  content:"";position:absolute;left:0;top:.72em;width:7px;height:1px;background:#4a8ac4;
-  transform:scaleX(0);transform-origin:left;transition:transform .45s var(--yum),width .45s var(--yum)
+  content:"";position:absolute;left:0;top:.72em;width:8px;height:1px;background:var(--aks);
+  transform:scaleX(.4);transform-origin:left;transition:transform .45s var(--yum),width .45s var(--yum)
 }
-.xd:hover .xd-siyahi li{transform:translateX(4px);opacity:.94;padding-left:19px}
-.xd:hover .xd-siyahi li::before{transform:scaleX(1);width:11px}
+.xd:hover .xd-siyahi li{transform:translateX(4px);color:rgba(251,250,248,.88);padding-left:21px}
+.xd:hover .xd-siyahi li::before{transform:scaleX(1);width:12px}
 .xd:hover .xd-siyahi li:nth-child(2),.xd:hover .xd-siyahi li:nth-child(2)::before{transition-delay:.05s}
 .xd:hover .xd-siyahi li:nth-child(3),.xd:hover .xd-siyahi li:nth-child(3)::before{transition-delay:.1s}
 .xd:hover .xd-siyahi li:nth-child(4),.xd:hover .xd-siyahi li:nth-child(4)::before{transition-delay:.15s}
 .xd:hover .xd-siyahi li:nth-child(5),.xd:hover .xd-siyahi li:nth-child(5)::before{transition-delay:.2s}
-.xd:hover .xd-siyahi li:nth-child(6),.xd:hover .xd-siyahi li:nth-child(6)::before{transition-delay:.25s}
-.xd-elave{margin-top:auto;padding-top:20px;font-size:12px;line-height:1.55;color:var(--sus)}
-.xd-elave span{
-  display:inline-block;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
-  color:var(--rec);border:1px solid rgba(217,58,30,.32);border-radius:999px;padding:3px 9px;margin-right:9px;
-  background:rgba(255,255,255,.5)
+
+.xd-alt{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  margin-top:auto;padding-top:22px;border-top:1px solid rgba(251,250,248,.12)
 }
+.xd-cta{
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(251,250,248,.62);transition:color .45s var(--yum)
+}
+.xd:hover .xd-cta{color:var(--kagiz)}
+.xd-ox{font-size:18px;color:rgba(251,250,248,.62);transition:transform .45s var(--yum),color .45s var(--yum);display:inline-block}
+.xd:hover .xd-ox{transform:translateX(7px);color:var(--aks)}
 
+/* kalkulyator xanası — açıq, seçilsin */
+.xd--cta{
+  --aks:var(--rec);
+  background:var(--kagiz);color:var(--murekkeb);border-color:rgba(11,11,12,.1);
+  box-shadow:0 20px 54px -34px rgba(11,11,12,.45)
+}
+.xd--cta .xd-nisan{background:var(--murekkeb);color:var(--kagiz)}
+.xd--cta:hover .xd-nisan{background:var(--aks);color:#fff}
+.xd--cta .xd-no,.xd--cta .xd-cta,.xd--cta .xd-ox{color:var(--sus)}
+.xd--cta:hover .xd-no{color:var(--murekkeb)}
+.xd--cta .xd-izah{color:var(--sus)}
+.xd--cta:hover .xd-izah{color:rgba(11,11,12,.75)}
+.xd--cta .xd-alt{border-top-color:var(--xett)}
+.xd--cta:hover .xd-cta{color:var(--murekkeb)}
+.xd--cta .xd-parilti{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(217,58,30,.14),transparent 62%)}
 
-/* xana içindəki elementlərin pilləli açılışı */
+/* daxili elementlərin pilləli açılışı */
 .xd-ic > *{opacity:0;transform:translateY(12px)}
 .xd.gorunur .xd-ic > *{animation:xdQalx .72s var(--yum) forwards}
 .xd.gorunur .xd-ic > *:nth-child(1){animation-delay:.06s}
@@ -802,48 +783,13 @@ footer{
 .xd.gorunur .xd-ic > *:nth-child(3){animation-delay:.2s}
 .xd.gorunur .xd-ic > *:nth-child(4){animation-delay:.26s}
 .xd.gorunur .xd-ic > *:nth-child(5){animation-delay:.32s}
-.xd.gorunur .xd-ic > *:nth-child(6){animation-delay:.38s}
 @keyframes xdQalx{to{opacity:1;transform:none}}
 
-/* mavi şüşə üzərindən keçən işıq */
-.xd::after{
-  content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:linear-gradient(112deg,transparent 34%,rgba(255,255,255,.5) 48%,rgba(163,205,245,.35) 54%,transparent 66%);
-  transform:translateX(-120%);opacity:0
-}
-.xd.gorunur:hover::after{animation:xdSuzus 1.15s var(--yum) forwards}
-@keyframes xdSuzus{
-  0%{transform:translateX(-120%);opacity:0}
-  22%{opacity:1}
-  100%{transform:translateX(120%);opacity:0}
-}
-
-/* tünd şüşə CTA xanası */
-.xd--cta{
-  display:flex;color:var(--kagiz);
-  background:rgba(11,11,12,.78);border-color:rgba(251,250,248,.16);
-  box-shadow:inset 0 1px 0 rgba(251,250,248,.14),0 20px 46px -30px rgba(11,11,12,.85)
-}
-.xd--cta.gorunur:hover{background:rgba(11,11,12,.86);box-shadow:inset 0 1px 0 rgba(251,250,248,.2),0 32px 64px -32px rgba(11,11,12,.9)}
-.xd--cta .xd-no{color:rgba(251,250,248,.45)}
-.xd--cta .xd-izah{color:rgba(251,250,248,.62)}
-.xd--cta .xd-fon{background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(251,250,248,.16),transparent 62%)}
-.xd--cta .xd-cizgi{background:linear-gradient(90deg,transparent,rgba(251,250,248,.5),transparent)}
-.xd-cta{
-  margin-top:auto;padding-top:26px;display:inline-flex;align-items:center;gap:9px;
-  font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase
-}
-.xd-cta i{font-style:normal;transition:transform .4s var(--yum);display:inline-block}
-.xd--cta:hover .xd-cta i{transform:translateX(7px)}
-
 @media (max-width:980px){ .xd-tor{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:620px){ .xd-tor{grid-template-columns:1fr} .xd-izah{max-width:none} }
+@media (max-width:620px){ .xd-tor{grid-template-columns:1fr} .xd-izah{max-width:none} .xd-orta{margin-top:44px} }
 @media (prefers-reduced-motion:reduce){
   .xd{opacity:1;transform:none;transition:none}
   .xd-ic > *{opacity:1;transform:none;animation:none !important}
-  .xd::after{display:none}
-  .xd-lek{animation:none}
-  .xd-ad,.xd-ikon,.xd-siyahi li::before,.xd-cta i{transition:none !important}
 }
 
 /* ================= KADR ARXASI (parallaks) ================= */
@@ -1790,99 +1736,119 @@ footer{
     Beş istiqamətdə işləyirəm — hər biri üçün çəkilişdən montaja qədər bütün prosesi özüm idarə edirəm.
   </p>
 
-  <div class="xd-sahne">
-    <div class="xd-ambient" aria-hidden="true">
-      <span class="xd-lek xd-lek1"></span>
-      <span class="xd-lek xd-lek2"></span>
-      <span class="xd-lek xd-lek3"></span>
-    </div>
   <div class="xd-tor">
-    <article class="xd" data-xd>
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+    <article class="xd xd--rec" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust">
-          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></svg></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Brand &amp; Commercial</span>
           <span class="xd-no">01</span>
-        </div>
-        <h3 class="xd-ad">Brend & Reklam</h3>
-        <div class="xd-en">Brand &amp; Commercial</div>
-        <p class="xd-izah">Məhsul, xidmət və brendlər üçün kinematik və dinamik reklam videoları. Məqsəd sadəcə gözəl görüntü deyil — məhsulu tanıtmaq, brendi güclü göstərmək və izləyicinin diqqətini saxlamaqdır.</p>
-        <ul class="xd-siyahi"><li>Məhsul və mağaza reklamları</li><li>Fashion çəkilişləri</li><li>Kampaniya videoları</li><li>Model ilə çəkiliş</li><li>Startap və şirkət təqdimatları</li><li>Sosial media reklamları</li></ul>
-        
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/></svg></span>
+          <h3 class="xd-ad">Brend & Reklam</h3>
+        </span>
+        <p class="xd-izah">Məhsul, xidmət və brendlər üçün kinematik reklam videoları — məqsəd gözəl görüntü deyil, məhsulu satmaqdır.</p>
+        <ul class="xd-siyahi"><li>Məhsul və mağaza reklamları</li><li>Fashion çəkilişləri</li><li>Kampaniya videoları</li><li>Startap və şirkət təqdimatları</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Detallı danışaq</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </article>
-    <article class="xd" data-xd>
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+    <article class="xd xd--yasil" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust">
-          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Food &amp; Restaurant</span>
           <span class="xd-no">02</span>
-        </div>
-        <h3 class="xd-ad">Food & Restoran</h3>
-        <div class="xd-en">Food &amp; Restaurant Content</div>
-        <p class="xd-izah">Restoran və kafelər üçün yeməyin hazırlanmasından məkanın atmosferinə qədər vizual kontent. Dinamik Reels və reklam videoları ilə məhsulu iştahaçan və premium təqdim edirəm.</p>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <h3 class="xd-ad">Food & Restoran</h3>
+        </span>
+        <p class="xd-izah">Restoran və kafelər üçün yeməyin hazırlanmasından məkanın atmosferinə qədər tam vizual kontent.</p>
         <ul class="xd-siyahi"><li>Reklam videosu</li><li>Hazırlanma prosesi</li><li>Restoran atmosferi</li><li>Reels</li></ul>
-        <div class="xd-elave"><span>Əlavə</span>Food Photography və aylıq kontent əməkdaşlığı</div>
+        <span class="xd-alt">
+          <span class="xd-cta">Food Photography və aylıq kontent</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </article>
-    <article class="xd" data-xd>
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+    <article class="xd xd--rec" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust">
-          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9.5" y="3" width="5" height="10" rx="2.5"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Personal Brand</span>
           <span class="xd-no">03</span>
-        </div>
-        <h3 class="xd-ad">Şəxsi brend</h3>
-        <div class="xd-en">Personal Brand Content</div>
-        <p class="xd-izah">Ekspert və şəxsi brendlər üçün professional danışıq videoları. Çəkilişdən işıq və səs quruluşuna, B-roll və montajdan motion elementlərinə qədər bütün prosesi idarə edirəm.</p>
-        <ul class="xd-siyahi"><li>Studio, ofis və outdoor çəkiliş</li><li>Çoxbucaqlı kadrlar və B-roll</li><li>Subtitr və sound design</li><li>Motion graphics və montaj</li></ul>
-        <div class="xd-elave"><span>Əlavə</span>Aylıq kontent planı, ideya və ssenari hazırlanması</div>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="9.5" y="3" width="5" height="10" rx="2.5"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/></svg></span>
+          <h3 class="xd-ad">Şəxsi brend</h3>
+        </span>
+        <p class="xd-izah">Ekspertlər üçün professional danışıq videoları — işıq və səsdən montaj və motion elementlərinə qədər.</p>
+        <ul class="xd-siyahi"><li>Studio, ofis və outdoor</li><li>Çoxbucaqlı kadrlar və B-roll</li><li>Subtitr və sound design</li><li>Motion graphics</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Aylıq kontent planı və ssenari</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </article>
-    <article class="xd" data-xd>
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+    <article class="xd xd--yasil" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust">
-          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/></svg></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Event Coverage</span>
           <span class="xd-no">04</span>
-        </div>
-        <h3 class="xd-ad">Tədbir & Forum</h3>
-        <div class="xd-en">Event Coverage</div>
-        <p class="xd-izah">Forum, korporativ tədbir və digər tədbirlərin əsas anlarını həm sənədləşdirən, həm də sosial media üçün hazır formada çəkirəm. Səhnədən networking anlarına qədər atmosferi dinamik çatdırıram.</p>
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/></svg></span>
+          <h3 class="xd-ad">Tədbir & Forum</h3>
+        </span>
+        <p class="xd-izah">Forum və korporativ tədbirlərin əsas anları — həm arxiv üçün, həm sosial mediada dərhal istifadəyə hazır.</p>
         <ul class="xd-siyahi"><li>Ümumi tədbir videosu</li><li>Müsahibələr və Reels</li><li>Səhnə və auditoriya</li><li>Networking görüntüləri</li></ul>
-        <div class="xd-elave"><span>Əlavə</span>Event Photography və razılaşma ilə sürətli təhvil</div>
+        <span class="xd-alt">
+          <span class="xd-cta">Event Photography və sürətli təhvil</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </article>
-    <article class="xd" data-xd>
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+    <article class="xd xd--rec" data-xd>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust">
-          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2.5"/><circle cx="12" cy="13" r="4.2"/><path d="M8.5 6l1.4-2.2h4.2L15.5 6"/></svg></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Food &amp; Event Photo</span>
           <span class="xd-no">05</span>
-        </div>
-        <h3 class="xd-ad">Fotoqrafiya</h3>
-        <div class="xd-en">Food &amp; Event Photography</div>
-        <p class="xd-izah">Food və tədbir çəkilişlərində həm vizual keyfiyyətə, həm detallara fokuslanıram. Fotolar seçilir, rəng işlənməsi aparılır və istifadəyə uyğun formatlarda hazırlanır.</p>
-        <ul class="xd-siyahi"><li>Food Photography</li><li>Event Photography</li><li>Kadr seçimi və rəng korreksiyası</li><li>Detal işləmələri</li><li>Sosial media formatları</li></ul>
-        
+        </span>
+        <span class="xd-orta">
+          <span class="xd-ikon" aria-hidden="true"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="14" rx="2.5"/><circle cx="12" cy="13" r="4.2"/><path d="M8.5 6l1.4-2.2h4.2L15.5 6"/></svg></span>
+          <h3 class="xd-ad">Fotoqrafiya</h3>
+        </span>
+        <p class="xd-izah">Food və tədbir çəkilişlərində detala fokus — kadrlar seçilir, rəng işlənir, formatlar hazır təhvil verilir.</p>
+        <ul class="xd-siyahi"><li>Food Photography</li><li>Event Photography</li><li>Rəng korreksiyası</li><li>Sosial media formatları</li></ul>
+        <span class="xd-alt">
+          <span class="xd-cta">Detallı danışaq</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </article>
     <a class="xd xd--cta" href="/kalkulyator">
-      <span class="xd-fon" aria-hidden="true"></span>
-      <span class="xd-cizgi" aria-hidden="true"></span>
+      <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
-        <div class="xd-ust"><span class="xd-no">—</span></div>
-        <h3 class="xd-ad">Öz paketini qur</h3>
-        <p class="xd-izah">Ehtiyacını addım-addım seç, təxmini qiyməti dərhal gör.</p>
-        <span class="xd-cta">Kalkulyatoru aç <i aria-hidden="true">&rarr;</i></span>
+        <span class="xd-ust">
+          <span class="xd-nisan">Kalkulyator</span>
+          <span class="xd-no">~60 san</span>
+        </span>
+        <span class="xd-orta">
+          <h3 class="xd-ad">Öz paketini qur</h3>
+        </span>
+        <p class="xd-izah">Çəkiliş növünü seç, detalları öz ehtiyacına uyğunlaşdır — təxmini qiymət canlı formalaşsın.</p>
+        <span class="xd-alt">
+          <span class="xd-cta">Kalkulyatoru aç</span>
+          <span class="xd-ox" aria-hidden="true">&rarr;</span>
+        </span>
       </div>
     </a>
-  </div>
   </div>
 </section>
 
