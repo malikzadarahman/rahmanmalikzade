@@ -1675,15 +1675,20 @@ footer{
 .karx-x{
   position:absolute;left:50%;top:48%;z-index:1;
   transform:translate(-50%,-50%) scale(1);
-  display:flex;align-items:center;justify-content:center;
-  width:min(92vh,80vw);height:min(92vh,80vw);
-  font-family:var(--dsp);font-weight:400;line-height:1;
-  font-size:min(92vh,80vw);
-  color:rgba(11,11,12,.5);
+  display:block;
+  width:min(86vh,72vw);height:min(86vh,72vw);
   opacity:0;filter:blur(22px);
   pointer-events:none;user-select:none;will-change:opacity,transform,filter
 }
-@media (max-width:820px){ .karx-x{width:104vw;height:104vw;font-size:104vw} }
+.karx-x svg{width:100%;height:100%;display:block;overflow:visible}
+.karx-x path{
+  stroke:rgba(11,11,12,.5);
+  stroke-width:13;
+  stroke-linecap:butt;
+  fill:none;
+  vector-effect:non-scaling-stroke
+}
+@media (max-width:820px){ .karx-x{width:96vw;height:96vw} }
 @media (prefers-reduced-motion:reduce){ .karx-x{display:none} }
 </style>
 </head>
@@ -1765,7 +1770,11 @@ footer{
       <div class="karx-qat" data-qat="1" aria-hidden="true"></div>
       <div class="karx-qat" data-qat="2" aria-hidden="true"></div>
 
-      <span class="karx-x" id="karx-x" aria-hidden="true">X</span>
+      <span class="karx-x" id="karx-x" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <path d="M14 10 L86 90 M86 10 L14 90"/>
+        </svg>
+      </span>
 
       <div class="karx-foto" data-qat="foto">
         <img src="/media/rahman.png" alt="Rəhman Məlikzadə — gimbal ilə çəkiliş zamanı" loading="lazy" decoding="async">
@@ -3815,6 +3824,14 @@ function pkRenderMobilQiymet(hesab){
   var foto = sehne.querySelector('.karx-foto');
   var mtn  = sehne.querySelector('.karx-mtn');
   var xHerf = document.getElementById('karx-x');
+  /* X-in üfüqi mövqeyini şəkildəki bədən mərkəzinə bağla */
+  function xYerlesdir(){
+    if(!xHerf || !foto) return;
+    var fr = foto.getBoundingClientRect(), sr = sehne.getBoundingClientRect();
+    if(!fr.width || !sr.width) return;
+    var bedenX = fr.left + fr.width * 0.552;      /* şəkildə bədənin mərkəzi */
+    xHerf.style.left = (((bedenX - sr.left) / sr.width) * 100).toFixed(2) + '%';
+  }
 
   /* qat: [şaquli vh, üfüqi vw, fırlanma dərəcə] */
   var HRK = { 1:[ 34,  3,  5], 2:[-26, -4, -6], 3:[-78,  6,  9] };
@@ -3857,7 +3874,9 @@ function pkRenderMobilQiymet(hesab){
   addEventListener('scroll', function(){
     if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
   }, {passive:true});
-  addEventListener('resize', yenile);
+  addEventListener('resize', function(){ xYerlesdir(); yenile(); });
+  addEventListener('load', function(){ xYerlesdir(); yenile(); });
+  xYerlesdir();
   yenile();
 })();
 /* ---------- Xidmət xanaları: pilləli görünmə ---------- */
