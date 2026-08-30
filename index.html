@@ -1843,6 +1843,76 @@ footer{
 @media (prefers-reduced-motion:reduce){
   .sual.gizli{transition:none !important}
 }
+
+/* ================= PORTFOLIO: açıq bölmə, tünd panel ================= */
+.lnt{
+  position:relative;overflow:hidden;
+  background:#0d0d0f;
+  border:1px solid rgba(11,11,12,.1);
+  box-shadow:0 40px 90px -55px rgba(11,11,12,.6);
+  -webkit-backdrop-filter:none;backdrop-filter:none
+}
+/* rəng axını yalnız panelin içində */
+.lnt::before,.lnt::after{
+  content:"";position:absolute;inset:-35%;z-index:0;pointer-events:none;
+  will-change:transform;filter:blur(62px);mix-blend-mode:screen;opacity:.5
+}
+.lnt::before{
+  background:
+    radial-gradient(24% 28% at 26% 30%, rgba(232,64,32,.7), transparent 66%),
+    radial-gradient(20% 24% at 68% 74%, rgba(255,96,58,.55), transparent 68%);
+  animation:tundAxin1 17s ease-in-out infinite alternate
+}
+.lnt::after{
+  background:
+    radial-gradient(25% 29% at 70% 26%, rgba(48,124,224,.68), transparent 66%),
+    radial-gradient(21% 25% at 28% 72%, rgba(78,166,248,.56), transparent 68%);
+  animation:tundAxin2 21s ease-in-out infinite alternate-reverse
+}
+.lnt-sol,.lnt-sag{position:relative;z-index:1;background:transparent}
+.lnt-sag{border-left:1px solid rgba(251,250,248,.1)}
+.lnt-sol{flex-direction:column;justify-content:center;gap:22px}
+
+/* ---- kateqoriya həbləri: Poppins, daha iri ---- */
+.lnt-cip{
+  font-family:var(--metn);font-size:14px;font-weight:400;
+  letter-spacing:-.005em;text-transform:none;
+  padding:14px 26px;gap:12px
+}
+.lnt-cip svg{width:16px;height:16px}
+.lnt-cip.aktiv{font-weight:500}
+
+/* ---- yuxarı/aşağı naviqasiya ---- */
+.lnt-nav{
+  position:relative;z-index:3;display:flex;align-items:center;gap:14px;
+  padding-left:2px
+}
+.lnt-nav-dgm{
+  width:40px;height:40px;border-radius:50%;cursor:pointer;flex:none;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(251,250,248,.2);
+  background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.02));
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 16px -10px rgba(0,0,0,.8);
+  color:rgba(251,250,248,.75);
+  transition:background .4s var(--yum),color .4s var(--yum),border-color .4s var(--yum),transform .4s var(--yum)
+}
+.lnt-nav-dgm svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.lnt-nav-dgm:hover{
+  background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz);transform:translateY(-2px)
+}
+.lnt-nav-dgm:active{transform:translateY(0) scale(.94)}
+.lnt-nav-say{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:rgba(251,250,248,.4);
+  display:flex;align-items:center;gap:6px
+}
+.lnt-nav-say b{font-weight:400;color:var(--kagiz)}
+.lnt-nav-say i{font-style:normal;opacity:.4}
+
+@media (max-width:900px){
+  .lnt-sol{padding:26px 24px 30px}
+  .lnt-nav{justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -2092,13 +2162,22 @@ footer{
 </section>
 
 <!-- ================= İŞLƏR ================= -->
-<section class="blok blok--tund" id="isler" aria-labelledby="i-bas">
+<section class="blok" id="isler" aria-labelledby="i-bas">
   <div class="kicik">Seçilmiş işlər</div>
   <h2 id="i-bas" data-ac style="margin-top:16px">Portfolio</h2>
 
   <div class="lnt" data-ac data-gec="1">
     <div class="lnt-sol">
       <div class="lnt-cipler" id="lnt-cipler" role="tablist" aria-label="İş kateqoriyaları"></div>
+      <div class="lnt-nav">
+        <button type="button" class="lnt-nav-dgm" data-yon="-1" aria-label="Əvvəlki iş">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6"/></svg>
+        </button>
+        <span class="lnt-nav-say"><b id="lnt-indi">01</b><i>/</i><span id="lnt-cem">06</span></span>
+        <button type="button" class="lnt-nav-dgm" data-yon="1" aria-label="Növbəti iş">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </button>
+      </div>
     </div>
     <div class="lnt-sag">
       <div class="lnt-sehne" id="lnt-sehne"></div>
@@ -3944,6 +4023,7 @@ function pkRenderMobilQiymet(hesab){
 
   function ciz(){
     var c = cari();
+    if(indiEl) indiEl.textContent = String(c+1).padStart(2,'0');
     cipler.forEach(function(el, i){
       var d = sar(i - c);
       el.style.transform = 'translateY(calc(-50% + ' + (d * ADDIM) + 'px))';
@@ -4024,6 +4104,18 @@ function pkRenderMobilQiymet(hesab){
   }
   document.addEventListener('keydown', function(e){
     if(e.key === 'Escape' && modal && modal.classList.contains('aciq')) videoBagla();
+  });
+
+  /* yuxarı/aşağı düymələr */
+  var indiEl = document.getElementById('lnt-indi');
+  var cemEl  = document.getElementById('lnt-cem');
+  if(cemEl) cemEl.textContent = String(N).padStart(2,'0');
+  [].slice.call(document.querySelectorAll('.lnt-nav-dgm')).forEach(function(d){
+    d.addEventListener('click', function(){
+      var yon = parseInt(d.getAttribute('data-yon'), 10) || 1;
+      addim += yon;
+      ciz();
+    });
   });
 
   ciz();
