@@ -1916,6 +1916,55 @@ footer{
   .lnt-sol{padding:26px 24px 30px}
   .lnt-nav{justify-content:center}
 }
+
+/* ---- Portfolio paneli: fon ayrı qatda, kart kənara çıxa bilir ---- */
+.lnt{overflow:visible}
+.lnt-fon{
+  position:absolute;inset:0;z-index:0;overflow:hidden;border-radius:inherit;pointer-events:none
+}
+.lnt::before,.lnt::after{display:none}
+.lnt-fon::before,.lnt-fon::after{
+  content:"";position:absolute;inset:-35%;
+  will-change:transform;filter:blur(62px);mix-blend-mode:screen;opacity:.5
+}
+.lnt-fon::before{
+  background:
+    radial-gradient(24% 28% at 26% 30%, rgba(232,64,32,.7), transparent 66%),
+    radial-gradient(20% 24% at 68% 74%, rgba(255,96,58,.55), transparent 68%);
+  animation:tundAxin1 17s ease-in-out infinite alternate
+}
+.lnt-fon::after{
+  background:
+    radial-gradient(25% 29% at 70% 26%, rgba(48,124,224,.68), transparent 66%),
+    radial-gradient(21% 25% at 28% 72%, rgba(78,166,248,.56), transparent 68%);
+  animation:tundAxin2 21s ease-in-out infinite alternate-reverse
+}
+.lnt-sol{overflow:hidden;border-radius:inherit}
+.lnt-sag{overflow:visible}
+
+/* ---- naviqasiya düymələri keçid qatının üstündə ---- */
+.lnt-nav{z-index:6}
+.lnt-nav-dgm{
+  border-color:rgba(251,250,248,.34);
+  background:linear-gradient(180deg,rgba(255,255,255,.16),rgba(255,255,255,.05));
+  color:var(--kagiz);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 8px 20px -10px rgba(0,0,0,.85)
+}
+.lnt-nav-say{color:rgba(251,250,248,.6)}
+
+/* ---- kart daha iri və panelin üstünə çıxır ---- */
+.lnt-sehne{
+  max-width:min(500px,44vw);
+  transform:translateY(-7%);
+  transform-style:preserve-3d;
+  transition:transform .35s var(--yum)
+}
+.lnt-kart{box-shadow:0 0 0 1px rgba(255,255,255,.16),0 50px 90px -40px rgba(0,0,0,.9)}
+
+@media (max-width:900px){
+  .lnt-sehne{max-width:300px;transform:none}
+  .lnt-sol{overflow:visible}
+}
 </style>
 </head>
 <body>
@@ -2172,6 +2221,7 @@ footer{
   <h2 id="i-bas" data-ac style="margin-top:16px">Portfolio</h2>
 
   <div class="lnt" data-ac data-gec="1">
+    <span class="lnt-fon" aria-hidden="true"></span>
     <div class="lnt-sol">
       <div class="lnt-cipler" id="lnt-cipler" role="tablist" aria-label="İş kateqoriyaları"></div>
       <div class="lnt-nav">
@@ -4480,6 +4530,28 @@ function pkRenderMobilQiymet(hesab){
         }
       }, 420);
     }
+  });
+})();
+
+/* ---------- Portfolio kartına 3D əyilmə ---------- */
+(function(){
+  var sag = document.querySelector('.lnt-sag');
+  var sehne = document.getElementById('lnt-sehne');
+  if(!sag || !sehne) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!matchMedia('(hover: hover)').matches) return;
+
+  sag.addEventListener('pointermove', function(e){
+    var r = sag.getBoundingClientRect();
+    var px = (e.clientX - r.left) / r.width;
+    var py = (e.clientY - r.top) / r.height;
+    var xRot = (py - 0.5) * -11;
+    var yRot = (px - 0.5) * 13;
+    sehne.style.transform =
+      'perspective(1500px) translateY(-7%) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale(1.02)';
+  });
+  sag.addEventListener('pointerleave', function(){
+    sehne.style.transform = '';
   });
 })();
 
