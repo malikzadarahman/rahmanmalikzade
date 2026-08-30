@@ -667,15 +667,22 @@ footer{
 .xd{
   --aksR:217;--aksG:58;--aksB:30;
   --aks:rgb(var(--aksR),var(--aksG),var(--aksB));
-  position:relative;overflow:hidden;isolation:isolate;text-decoration:none;
-  background:var(--murekkeb);color:var(--kagiz);
-  border:1px solid rgba(251,250,248,.08);
+  position:relative;text-decoration:none;color:var(--kagiz);
   border-radius:clamp(18px,1.8vw,26px);
+  opacity:0;
+  transition:opacity .8s var(--yum)
+}
+/* görünən gövdə — hərəkət edən yalnız budur, hədəf sahə sabit qalır */
+.xd-govde{
+  position:relative;display:block;height:100%;overflow:hidden;isolation:isolate;
+  background:var(--murekkeb);
+  border:1px solid rgba(251,250,248,.08);
+  border-radius:inherit;
   padding:clamp(26px,2.6vw,38px);
   box-shadow:0 20px 54px -34px rgba(11,11,12,.7);
-  opacity:0;transform:translateY(24px);
+  transform:translateY(24px);
   transform-style:preserve-3d;
-  transition:opacity .8s var(--yum),transform .28s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
+  transition:transform .3s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
   will-change:transform
 }
 
@@ -683,8 +690,9 @@ footer{
 /* hər kartın öz hover tonu */
 .xd--t1,.xd--t3,.xd--t5{--aksR:217;--aksG:58; --aksB:30 }   /* qırmızı */
 .xd--t2,.xd--t4          {--aksR:56; --aksG:118;--aksB:206}  /* mavi    */
-.xd.gorunur{opacity:1;transform:none}
-.xd.gorunur:hover{
+.xd.gorunur{opacity:1}
+.xd.gorunur .xd-govde{transform:none}
+.xd.gorunur:hover .xd-govde{
   border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.4);
   box-shadow:
     0 34px 80px -34px rgba(11,11,12,.75),
@@ -703,6 +711,7 @@ footer{
 .xd:hover .xd-parilti{opacity:1}
 
 .xd-ic{position:relative;display:flex;flex-direction:column;height:100%}
+.xd-tor{align-items:stretch}
 .xd-ust{display:flex;align-items:center;justify-content:space-between;gap:14px}
 .xd-nisan{
   font-family:var(--mono);font-size:9.5px;letter-spacing:.19em;text-transform:uppercase;
@@ -768,9 +777,9 @@ footer{
 .xd:hover .xd-ox{transform:translateX(7px);color:var(--aks)}
 
 /* kalkulyator xanası — açıq, seçilsin */
-.xd--cta{
-  --aksR:217;--aksG:58;--aksB:30;
-  background:var(--kagiz);color:var(--murekkeb);border-color:rgba(11,11,12,.1);
+.xd--cta{--aksR:217;--aksG:58;--aksB:30;color:var(--murekkeb)}
+.xd--cta .xd-govde{
+  background:var(--kagiz);border-color:rgba(11,11,12,.1);
   box-shadow:0 20px 54px -34px rgba(11,11,12,.45)
 }
 .xd--cta .xd-nisan{background:var(--murekkeb);color:var(--kagiz)}
@@ -1746,7 +1755,8 @@ footer{
 
   <div class="xd-tor">
     <article class="xd xd--t1" data-xd>
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Brand &amp; Commercial</span>
@@ -1763,9 +1773,11 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </article>
     <article class="xd xd--t2" data-xd>
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Food &amp; Restaurant</span>
@@ -1782,9 +1794,11 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </article>
     <article class="xd xd--t3" data-xd>
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Personal Brand</span>
@@ -1801,9 +1815,11 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </article>
     <article class="xd xd--t4" data-xd>
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Event Coverage</span>
@@ -1820,9 +1836,11 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </article>
     <article class="xd xd--t5" data-xd>
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Food &amp; Event Photo</span>
@@ -1839,9 +1857,11 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </article>
     <a class="xd xd--cta" href="/paket">
-      <span class="xd-parilti" aria-hidden="true"></span>
+      <span class="xd-govde">
+        <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
           <span class="xd-nisan">Kalkulyator</span>
@@ -1856,6 +1876,7 @@ footer{
           <span class="xd-ox" aria-hidden="true">&rarr;</span>
         </span>
       </div>
+      </span>
     </a>
   </div>
 </section>
@@ -3797,11 +3818,16 @@ function pkRenderMobilQiymet(hesab){
       if(!g.isIntersecting) return;
       var i = Math.max(0, xanalar.indexOf(g.target));
       var gec = i * 90;
+      var gv = g.target.querySelector('.xd-govde');
       g.target.style.transitionDelay = gec + 'ms';
+      if(gv) gv.style.transitionDelay = gec + 'ms';
       g.target.classList.add('gorunur');
       io.unobserve(g.target);
       /* giriş bitəndən sonra gecikməni sil — yoxsa 3D hərəkət ləng olur */
-      setTimeout(function(){ g.target.style.transitionDelay = '0ms'; }, gec + 900);
+      setTimeout(function(){
+        g.target.style.transitionDelay = '0ms';
+        if(gv) gv.style.transitionDelay = '0ms';
+      }, gec + 900);
     });
   }, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
   xanalar.forEach(function(x){ io.observe(x); });
@@ -3811,6 +3837,8 @@ function pkRenderMobilQiymet(hesab){
   if(!azalt2 && matchMedia('(hover: hover)').matches){
     var LIMIT = 7, MIQYAS = 1.015, PERS = 1400;
     xanalar.forEach(function(x){
+      var govde = x.querySelector('.xd-govde');
+      if(!govde) return;
       x.addEventListener('pointermove', function(e){
         var r = x.getBoundingClientRect();
         var px = (e.clientX - r.left) / r.width;
@@ -3820,12 +3848,12 @@ function pkRenderMobilQiymet(hesab){
         if(!x.classList.contains('gorunur')) return;
         var xRot = (py - 0.5) * (LIMIT * 2) * -1;
         var yRot = (px - 0.5) * (LIMIT * 2);
-        x.style.transform =
+        govde.style.transform =
           'perspective(' + PERS + 'px) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg)' +
           ' translateY(-5px) scale3d(' + MIQYAS + ',' + MIQYAS + ',' + MIQYAS + ')';
       });
       x.addEventListener('pointerleave', function(){
-        x.style.transform = '';
+        govde.style.transform = '';
         x.style.setProperty('--mx','50%');
         x.style.setProperty('--my','50%');
       });
