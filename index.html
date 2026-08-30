@@ -1940,7 +1940,7 @@ footer{
   animation:tundAxin2 21s ease-in-out infinite alternate-reverse
 }
 .lnt-sol{overflow:hidden;border-radius:inherit}
-.lnt-sag{overflow:visible}
+.lnt-sag{overflow:visible;align-items:center}
 
 /* ---- naviqasiya düymələri keçid qatının üstündə ---- */
 .lnt-nav{z-index:6}
@@ -1954,15 +1954,16 @@ footer{
 
 /* ---- kart daha iri və panelin üstünə çıxır ---- */
 .lnt-sehne{
-  max-width:min(500px,44vw);
-  transform:translateY(-7%);
+  max-width:min(560px,46vw);
+  transform:translateY(-16%);
   transform-style:preserve-3d;
-  transition:transform .35s var(--yum)
+  transition:transform .35s var(--yum);
+  filter:drop-shadow(0 46px 70px rgba(11,11,12,.45))
 }
 .lnt-kart{box-shadow:0 0 0 1px rgba(255,255,255,.16),0 50px 90px -40px rgba(0,0,0,.9)}
 
 @media (max-width:900px){
-  .lnt-sehne{max-width:300px;transform:none}
+  .lnt-sehne{max-width:300px;transform:none;filter:none}
   .lnt-sol{overflow:visible}
 }
 </style>
@@ -4548,7 +4549,7 @@ function pkRenderMobilQiymet(hesab){
     var xRot = (py - 0.5) * -11;
     var yRot = (px - 0.5) * 13;
     sehne.style.transform =
-      'perspective(1500px) translateY(-7%) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale(1.02)';
+      'perspective(1500px) translateY(-16%) rotateX(' + xRot.toFixed(2) + 'deg) rotateY(' + yRot.toFixed(2) + 'deg) scale(1.02)';
   });
   sag.addEventListener('pointerleave', function(){
     sehne.style.transform = '';
