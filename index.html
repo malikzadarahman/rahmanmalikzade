@@ -297,9 +297,9 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
 }
 
 /* hero açılışın altından çıxır */
-.hero-qab{position:relative;z-index:1;height:190svh;margin-top:-100svh}
+.hero-qab{position:relative;z-index:1;height:148svh;margin-top:-100svh}
 .hero-qab .hero{position:sticky;top:0;height:100svh;min-height:100svh}
-@media (max-width:640px){ .hero-qab{height:165svh} }
+@media (max-width:640px){ .hero-qab{height:132svh} }
 
 /* açılış görünəndə naviqasiya işıqlı olsun */
 body.acilis-var .nav{background:rgba(11,11,12,.55);border-bottom-color:transparent}
@@ -2642,14 +2642,8 @@ footer{
     var xEl = xanalar[xAktiv];
     if(xEl) oxbas.style.transform = 'translateX(' + (xEl.offsetLeft + xEl.offsetWidth * ic).toFixed(1) + 'px)';
 
-    if(!azalt && heroIc){
-      var heroQab = document.querySelector('.hero-qab');
-      var heroBas = heroQab ? heroQab.offsetTop : 0;
-      var hy = y - heroBas;                       /* hero-nun öz sürüşməsi */
-      if(hy < 0) hy = 0;
-      if(hy < innerHeight){
-        heroIc.style.transform = 'translateY('+(hy*0.12)+'px)';
-      }
+    if(heroIc){
+      heroIc.style.transform = '';
       heroIc.style.opacity = '1';
     }
 
