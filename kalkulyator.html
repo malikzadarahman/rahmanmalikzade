@@ -2002,7 +2002,7 @@ function pkRenderMobilQiymet(hesab){
   function pkTipSec(yeniTip){
     var eskiTip = state.tip;
     state.tip = yeniTip;
-    try{ if(yeniTip){ history.pushState({pkTip:yeniTip}, "", "/paket/" + yeniTip); } }catch(e){}
+    try{ if(yeniTip){ history.pushState({pkTip:yeniTip}, "", "/foto-paket/" + yeniTip); } }catch(e){}
     var tipObj = pkTipTap(PK_CFG, yeniTip);
     if(tipObj && yeniTip !== "diger"){
       state.foto = Math.max(PK_CFG.fotoMin, tipObj.daxilFoto || PK_CFG.fotoMin);
@@ -2272,7 +2272,7 @@ function pkRenderMobilQiymet(hesab){
 
   /* ---------- URL-dən paket növü təyini (/paket/<id>) ---------- */
   (function(){
-    var urlMatch = location.pathname.match(/^\/paket\/([a-z0-9-]+)\/?$/i);
+    var urlMatch = location.pathname.match(/^\/foto-paket\/([a-z0-9-]+)\/?$/i);
     if(urlMatch && !state.tip){
       var pathTip = urlMatch[1];
       var tipObj = pkTipTap(PK_CFG, pathTip);
@@ -2297,7 +2297,7 @@ function pkRenderMobilQiymet(hesab){
   /* ---------- Başlanğıc ---------- */
   pkStrukturuYenidenQur(state.acigBolme);
   pkYenile();
-  if(state.tip && /^\/paket\//.test(location.pathname)){
+  if(state.tip && /^\/foto-paket\//.test(location.pathname)){
     setTimeout(function(){ kok.scrollIntoView({behavior:"smooth", block:"start"}); }, 60);
   }
 })();
