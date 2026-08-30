@@ -677,32 +677,20 @@ footer{
   transition:opacity .8s var(--yum),transform .28s var(--yum),box-shadow .5s var(--yum),border-color .5s var(--yum);
   will-change:transform
 }
-.xd--a1{--aks:#e8452a}   /* qırmızı  */
-.xd--a2{--aks:#e8963c}   /* kəhrəba  */
-.xd--a3{--aks:#8b6ee0}   /* bənövşəyi */
-.xd--a4{--aks:#3f8ae0}   /* mavi     */
-.xd--a5{--aks:#2fb39c}   /* firuzəyi */
+
 .xd.gorunur{opacity:1;transform:none}
 .xd.gorunur:hover{
-  border-color:color-mix(in srgb,var(--aks) 45%,transparent);
-  box-shadow:
-    0 36px 78px -38px rgba(11,11,12,.85),
-    0 0 44px -18px color-mix(in srgb,var(--aks) 70%,transparent)
+  border-color:rgba(251,250,248,.16);
+  box-shadow:0 34px 80px -34px rgba(11,11,12,.75)
 }
 /* kursoru izləyən aksent parıltısı */
 .xd-parilti{
   position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
-  transition:opacity .45s var(--yum);
-  background:
-    radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
-      color-mix(in srgb,var(--aks) 62%,transparent),transparent 60%),
-    radial-gradient(520px circle at var(--mx,50%) var(--my,50%),
-      color-mix(in srgb,var(--aks) 30%,transparent),transparent 68%)
+  transition:opacity .35s var(--yum);
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),
+    rgba(217,58,30,.34),rgba(251,250,248,.07) 30%,transparent 58%)
 }
-@supports not (color: color-mix(in srgb,red,blue)){
-  .xd-parilti{background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(232,69,42,.42),transparent 62%)}
-  .xd.gorunur:hover{border-color:rgba(251,250,248,.2)}
-}
+
 .xd:hover .xd-parilti{opacity:1}
 
 .xd-ic{position:relative;display:flex;flex-direction:column;height:100%}
@@ -1748,7 +1736,7 @@ footer{
   </p>
 
   <div class="xd-tor">
-    <article class="xd xd--a1" data-xd>
+    <article class="xd" data-xd>
       <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
@@ -1767,7 +1755,7 @@ footer{
         </span>
       </div>
     </article>
-    <article class="xd xd--a2" data-xd>
+    <article class="xd" data-xd>
       <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
@@ -1786,7 +1774,7 @@ footer{
         </span>
       </div>
     </article>
-    <article class="xd xd--a3" data-xd>
+    <article class="xd" data-xd>
       <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
@@ -1805,7 +1793,7 @@ footer{
         </span>
       </div>
     </article>
-    <article class="xd xd--a4" data-xd>
+    <article class="xd" data-xd>
       <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
@@ -1824,7 +1812,7 @@ footer{
         </span>
       </div>
     </article>
-    <article class="xd xd--a5" data-xd>
+    <article class="xd" data-xd>
       <span class="xd-parilti" aria-hidden="true"></span>
       <div class="xd-ic">
         <span class="xd-ust">
@@ -3854,10 +3842,13 @@ function pkRenderMobilQiymet(hesab){
   var io = new IntersectionObserver(function(girisler){
     girisler.forEach(function(g){
       if(!g.isIntersecting) return;
-      var i = xanalar.indexOf(g.target);
-      g.target.style.transitionDelay = (Math.max(0,i) * 90) + 'ms';
+      var i = Math.max(0, xanalar.indexOf(g.target));
+      var gec = i * 90;
+      g.target.style.transitionDelay = gec + 'ms';
       g.target.classList.add('gorunur');
       io.unobserve(g.target);
+      /* giriş bitəndən sonra gecikməni sil — yoxsa 3D hərəkət ləng olur */
+      setTimeout(function(){ g.target.style.transitionDelay = '0ms'; }, gec + 900);
     });
   }, {threshold:.18, rootMargin:'0px 0px -8% 0px'});
   xanalar.forEach(function(x){ io.observe(x); });
