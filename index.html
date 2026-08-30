@@ -1681,7 +1681,7 @@ footer{
   pointer-events:none;user-select:none;will-change:opacity,transform,filter
 }
 .karx-x svg{width:100%;height:100%;display:block;overflow:visible}
-.karx-x g{opacity:.5}
+.karx-x g{opacity:.62}
 @media (max-width:820px){ .karx-x{width:96vw;height:96vw} }
 @media (prefers-reduced-motion:reduce){ .karx-x{display:none} }
 </style>
@@ -1768,11 +1768,11 @@ footer{
         <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           <defs>
             <linearGradient id="xQrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stop-color="#6b6b70"/>
-              <stop offset="26%"  stop-color="#2a2a2e"/>
-              <stop offset="52%"  stop-color="#8d8d93"/>
-              <stop offset="74%"  stop-color="#232327"/>
-              <stop offset="100%" stop-color="#5c5c62"/>
+              <stop offset="0%"   stop-color="#9a9aa0"/>
+              <stop offset="26%"  stop-color="#5a5a60"/>
+              <stop offset="52%"  stop-color="#b8b8be"/>
+              <stop offset="74%"  stop-color="#525258"/>
+              <stop offset="100%" stop-color="#8e8e94"/>
             </linearGradient>
           </defs>
           <g fill="url(#xQrad)">
@@ -3835,7 +3835,7 @@ function pkRenderMobilQiymet(hesab){
     if(!xHerf || !foto) return;
     var fr = foto.getBoundingClientRect(), sr = sehne.getBoundingClientRect();
     if(!fr.width || !sr.width) return;
-    var bedenX = fr.left + fr.width * 0.552;      /* şəkildə bədənin mərkəzi */
+    var bedenX = fr.left + fr.width * 0.63;       /* şəkildə bədənin mərkəzi */
     xHerf.style.left = (((bedenX - sr.left) / sr.width) * 100).toFixed(2) + '%';
   }
 
