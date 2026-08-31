@@ -1376,9 +1376,14 @@ body.menyu-aciq .xett-ust{opacity:0}
   var reelTc = document.getElementById('reel-tc');
   var seritTc = document.getElementById('serit-tc'), oxbas = document.getElementById('oxbas');
   var xanalar = [].slice.call(document.querySelectorAll('.xana'));
-  var xanaBolme = xanalar.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function bolmeTap(a){
+    var h = a.getAttribute('href') || '';
+    if(h.charAt(0) !== '#' || h.length < 2) return null;
+    try{ return document.querySelector(h); }catch(e){ return null; }
+  }
+  var xanaBolme = xanalar.map(bolmeTap);
   var navLinks = [].slice.call(document.querySelectorAll('.nav-links a'));
-  var bolmeler = navLinks.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var bolmeler = navLinks.map(bolmeTap);
 
   function kadrMetni(f){
     var s = Math.floor(f/25), k = f%25, d = Math.floor(s/60), sn = s%60;
