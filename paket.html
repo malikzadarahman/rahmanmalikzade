@@ -1913,8 +1913,8 @@ body.menyu-aciq .xett-ust{opacity:0}
 
 /* ---------- MOBİL: açılış yapışqan deyil ---------- */
 @media (max-width:900px){
-  .acilis{height:100svh;min-height:100svh;position:relative;z-index:5}
-  .acilis-yapisqan{position:relative;top:auto;height:100svh}
+  .acilis{height:168svh;min-height:168svh;position:relative;z-index:5;background:transparent}
+  .acilis-yapisqan{position:fixed;top:0;left:0;right:0;height:100svh;z-index:5}
   .acilis-sehne{position:absolute;inset:0}
   .hero-qab{height:auto;min-height:0;margin-top:0;position:relative;z-index:1}
   .hero-qab .hero{position:relative;top:auto;height:auto;min-height:100svh}
@@ -4004,13 +4004,8 @@ function pkRenderMobilQiymet(hesab){
 
   function yenile(){
     isleyir = false;
-    var p;
-    if(mobSorgu.matches){
-      p = kilid(window.scrollY / (innerHeight * 0.55));
-    } else {
-      var h = acilis.offsetHeight - innerHeight;
-      p = h > 0 ? kilid(window.scrollY / h) : 0;
-    }
+    var h = acilis.offsetHeight - innerHeight;
+    var p = h > 0 ? kilid(window.scrollY / h) : 0;
 
     /* kamera irəliləyir, mətn solur */
     kam.style.transform = 'scale(' + (1 + p * 0.42).toFixed(3) + ')';
@@ -4052,6 +4047,8 @@ function pkRenderMobilQiymet(hesab){
     var sehneOp = p < ESIK ? 1 : kilid(1 - (p - ESIK) / (PARTLAMA * 1.15));
     sehne.style.opacity = sehneOp.toFixed(3);
     sehne.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
+    var yap = acilis.querySelector('.acilis-yapisqan');
+    if(yap) yap.style.visibility = sehneOp < 0.01 ? 'hidden' : 'visible';
     acilis.style.background = sehneOp < 0.01 ? 'transparent' : 'var(--murekkeb)';
 
     document.body.classList.toggle('acilis-var', p < ESIK);
