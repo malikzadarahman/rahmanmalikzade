@@ -1910,33 +1910,15 @@ body.menyu-aciq .xett-ust{opacity:0}
   .karx-foto{height:74%}
   .hero h1{font-size:clamp(40px,7.2vw,62px)}
 }
-/* ==========================================================================
-   MOBİL / PLANŞET (≤900px) — YAPIŞQAN QURULUŞ TAMAMİLƏ LƏĞV OLUNUR
-   Sadə, axıcı və qırılmayan quruluş: mənfi kənar yoxdur, sticky yoxdur.
-   ========================================================================== */
+
+/* ---------- MOBİL: açılış yapışqan deyil ---------- */
 @media (max-width:900px){
-  /* --- açılış: sadə tam ekran --- */
   .acilis{height:100svh;min-height:100svh;position:relative;z-index:5}
   .acilis-yapisqan{position:relative;top:auto;height:100svh}
   .acilis-sehne{position:absolute;inset:0}
-
-  /* --- hero: adi axın, mənfi kənar yoxdur --- */
   .hero-qab{height:auto;min-height:0;margin-top:0;position:relative;z-index:1}
   .hero-qab .hero{position:relative;top:auto;height:auto;min-height:100svh}
-
-  /* --- kadr arxası: adi bölmə --- */
-  .karx{height:auto;min-height:112svh}
-  .karx-yapisqan{position:relative;top:auto;height:auto;min-height:112svh;overflow:hidden}
-  .karx-sehne{position:relative;inset:auto;height:auto;min-height:112svh}
-  .karx-mtn{position:relative;left:auto;right:auto;top:auto;
-    padding:clamp(76px,12vh,110px) var(--kenar) 0;max-width:none;transform:none !important}
-  .karx-foto{
-    position:absolute;left:50%;bottom:0;transform:translateX(-50%) !important;
-    height:74%;z-index:2
-  }
-  .karx-foto img{max-width:92vw;width:auto;height:100%;object-fit:contain}
-  .karx-yapisqan::before{height:12vh}
-  .karx-yapisqan::after{height:18vh}
+}
 </style>
 <style>
 /* --- yalnız paket seçimi səhifəsi --- */
