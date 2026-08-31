@@ -1640,6 +1640,222 @@ footer{
   pointer-events:none;user-select:none;will-change:opacity,transform,filter
 }
 @media (prefers-reduced-motion:reduce){ .karx-x{display:none} }
+
+/* ================= MOBİL MENYU ================= */
+.nav-dgm{
+  display:none;width:38px;height:38px;border-radius:50%;flex:none;cursor:pointer;
+  border:1px solid var(--xett);background:rgba(251,250,248,.6);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;gap:4px;flex-direction:column;
+  transition:background .3s var(--yum),border-color .3s var(--yum)
+}
+.nav-dgm span{
+  display:block;width:15px;height:1.4px;border-radius:2px;background:var(--murekkeb);
+  transition:transform .4s var(--yum),opacity .3s var(--yum)
+}
+body.menyu-aciq .nav-dgm span:nth-child(1){transform:translateY(2.7px) rotate(45deg)}
+body.menyu-aciq .nav-dgm span:nth-child(2){transform:translateY(-2.7px) rotate(-45deg)}
+body.acilis-var .nav-dgm{border-color:rgba(251,250,248,.28);background:rgba(11,11,12,.4)}
+body.acilis-var .nav-dgm span{background:var(--kagiz)}
+
+.menyu{
+  position:fixed;inset:0;z-index:9400;display:flex;flex-direction:column;
+  justify-content:center;gap:6px;padding:0 var(--kenar);
+  background:rgba(251,250,248,.94);
+  -webkit-backdrop-filter:blur(24px) saturate(180%);backdrop-filter:blur(24px) saturate(180%);
+  opacity:0;pointer-events:none;transition:opacity .35s var(--yum)
+}
+body.menyu-aciq .menyu{opacity:1;pointer-events:auto}
+.menyu a{
+  font-family:var(--dsp);font-weight:400;font-size:clamp(30px,9vw,44px);line-height:1.14;
+  letter-spacing:-.015em;color:var(--murekkeb);text-decoration:none;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .5s var(--yum),transform .5s var(--yum)
+}
+body.menyu-aciq .menyu a{opacity:1;transform:none}
+body.menyu-aciq .menyu a:nth-child(1){transition-delay:.06s}
+body.menyu-aciq .menyu a:nth-child(2){transition-delay:.11s}
+body.menyu-aciq .menyu a:nth-child(3){transition-delay:.16s}
+body.menyu-aciq .menyu a:nth-child(4){transition-delay:.21s}
+body.menyu-aciq .menyu a:nth-child(5){transition-delay:.26s}
+body.menyu-aciq .menyu a:nth-child(6){transition-delay:.31s}
+.menyu-alt{
+  margin-top:34px;display:flex;flex-direction:column;gap:6px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sus);
+  opacity:0;transform:translateY(12px);transition:opacity .5s var(--yum) .36s,transform .5s var(--yum) .36s
+}
+body.menyu-aciq .menyu-alt{opacity:1;transform:none}
+.menyu-alt a{font-family:inherit;font-size:inherit;letter-spacing:inherit;color:var(--murekkeb);opacity:1;transform:none}
+
+/* ==========================================================================
+   RESPONSİV QAT — planşet, mobil və toxunma cihazları
+   (stil blokunun ən sonunda dayanır ki, əvvəlki qaydaları üstələsin)
+   ========================================================================== */
+
+/* ---------- 1. TOXUNMA CİHAZLARI: kursor effektlərini söndür ---------- */
+@media (hover: none), (pointer: coarse){
+  .xd-parilti,.sual-parilti,.kt-parilti{display:none !important}
+  .xd-govde,.sual-govde,.kt-kart,.lnt-sehne{transform:none !important}
+  .xd:active .xd-govde{transform:scale(.985) !important;transition:transform .18s ease}
+  .sual:active .sual-govde{transform:scale(.99) !important;transition:transform .18s ease}
+  .lnt-cip::before{display:none}
+  .karx-x{display:none}
+  .xd-ad,.xd-en,.xd-no,.xd-izah,.xd-siyahi li,.xd-siyahi li::before,
+  .xd-cta,.xd-ox,.xd-ikon,.xd-nisan{transition:none}
+  .xd-siyahi li::before{transform:scaleX(1);width:11px}
+}
+
+/* ---------- 2. PLANŞET (≤1180px) ---------- */
+@media (max-width:1180px){
+  .xd-tor{grid-template-columns:repeat(2,1fr)}
+  .lnt{grid-template-columns:minmax(0,42%) minmax(0,58%)}
+  .lnt-sehne{max-width:min(360px,40vw);transform:translateY(-9%)}
+  .ft-tor{grid-template-columns:1fr 1fr}
+  .ft-xana--esas{grid-column:1 / -1}
+}
+
+/* ---------- 3. PLANŞET / KİÇİK EKRAN (≤1024px) ---------- */
+@media (max-width:1024px){
+  .nav-links{gap:clamp(12px,2vw,20px);font-size:12px}
+  .karx{height:230vh}
+  .karx-foto{height:78%}
+  .sual-siyahi{max-width:none}
+}
+
+/* ---------- 4. MENYU DÜYMƏSİ (≤900px) ---------- */
+@media (max-width:900px){
+  .nav{height:58px}
+  .nav-links{display:none}
+  .rec-ust{display:none}
+  .nav-dgm{display:flex}
+  .nav-ad{font-size:14.5px;white-space:nowrap}
+
+  /* --- PORTFOLIO: şaquli quruluş --- */
+  .lnt{
+    display:flex;flex-direction:column;min-height:0;overflow:hidden;
+    border-radius:clamp(18px,4vw,26px)
+  }
+  .lnt-sag{
+    order:1;border-left:0;overflow:hidden;
+    padding:clamp(22px,5vw,34px) clamp(18px,5vw,28px) clamp(14px,3vw,20px)
+  }
+  .lnt-sehne{
+    max-width:min(300px,68vw);transform:none;filter:none;margin:0 auto
+  }
+  .lnt-sol{
+    order:2;display:block;padding:0 0 clamp(20px,5vw,28px);
+    overflow:visible;border-radius:0
+  }
+  .lnt-sol::before,.lnt-sol::after{display:none}
+  /* çiplər: üfüqi sürüşən sətir */
+  .lnt-cipler{
+    position:static;display:flex;gap:8px;height:auto;min-height:0;
+    overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;
+    padding:2px clamp(18px,5vw,28px) 12px;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none
+  }
+  .lnt-cipler::-webkit-scrollbar{display:none}
+  .lnt-cip{
+    position:static;transform:none !important;opacity:1 !important;
+    flex:0 0 auto;scroll-snap-align:center;
+    padding:11px 18px;font-size:13px
+  }
+  .lnt-cip svg{width:14px;height:14px}
+  .lnt-nav{justify-content:center;padding:0 clamp(18px,5vw,28px)}
+  /* arxa kartlar mobil quruluşda gizlənsin */
+  .lnt-kart.yan{opacity:0 !important;pointer-events:none}
+  .lnt-kart::before{animation-duration:16s}
+  .lnt-mtn p{font-size:12.5px}
+
+  /* --- FAQ / footer --- */
+  .ft-tor{grid-template-columns:1fr}
+  .ft-xana--esas{padding-right:0}
+}
+
+/* ---------- 5. MOBİL (≤640px) ---------- */
+@media (max-width:640px){
+  :root{--kenar:20px}
+
+  /* açılış */
+  .acilis{height:118vh}
+  .kam{width:78vw}
+  .acilis-bas{font-size:clamp(20px,6.5vw,28px)}
+  .acilis-rec{top:76px}
+
+  /* hero */
+  .hero-qab{height:126svh}
+  .hero{padding:88px var(--kenar) clamp(66px,12vh,86px)}
+  .hero h1{max-width:none;font-size:clamp(34px,10.5vw,52px)}
+  .hero-alt p{font-size:14.5px;max-width:none}
+  .dugmeler{gap:8px;margin-top:22px}
+  .dgm{padding:12px 20px;font-size:12.5px}
+  .hero-etek{bottom:clamp(52px,9vh,64px)}
+
+  /* kadr arxası */
+  .karx{height:175vh}
+  .karx-foto{height:62%}
+  .karx-foto img{max-width:88vw;width:auto;height:100%;object-fit:contain}
+  .karx-mtn{left:var(--kenar);right:var(--kenar);top:clamp(78px,11vh,104px);max-width:none}
+  .karx-bas{font-size:clamp(26px,8vw,38px)}
+  .karx-yapisqan::before{height:16vh}
+  .karx-yapisqan::after{height:22vh}
+
+  /* xidmətlər */
+  .xd-tor{grid-template-columns:1fr;gap:12px}
+  .xd{border-radius:20px}
+  .xd-govde{padding:24px 22px}
+  .xd-orta{margin-top:30px;gap:12px}
+  .xd-ad{font-size:23px}
+  .xd-izah{max-width:none;font-size:13px}
+  .xd-siyahi{gap:7px}
+
+  /* portfolio */
+  .lnt-sehne{max-width:min(268px,72vw)}
+  .lnt-nav-dgm{width:44px;height:44px}
+  .lnt-rozet{font-size:8px}
+
+  /* suallar */
+  .sual-siyahi{gap:8px}
+  .sual-bas{padding:15px 16px;gap:11px}
+  .sual-mtn{font-size:14px}
+  .sual-ic p{padding-left:16px;padding-right:16px;font-size:13px}
+  .sual-dgm-ic{padding:12px 18px;font-size:10px}
+
+  /* footer */
+  .ft-bas{font-size:clamp(28px,9vw,38px)}
+  .ft-form{max-width:none}
+  .ft-form input{height:52px;font-size:15px}
+  .ft-form button{width:42px;height:42px;top:5px;right:5px}
+  .ft-sosial a{width:44px;height:44px}
+  .ft-sosial a::after{display:none}
+  .ft-alt{font-size:11.5px;gap:14px}
+
+  /* lent barı — sadə variant */
+  .serit-bar{height:38px;gap:10px}
+  .xana-ad{display:none}
+  .serit{height:18px}
+  .serit-tc{font-size:8.5px;letter-spacing:.1em}
+}
+
+/* ---------- 6. ÇOX DAR EKRAN (≤380px) ---------- */
+@media (max-width:380px){
+  .hero h1{font-size:clamp(30px,10vw,40px)}
+  .lnt-sehne{max-width:74vw}
+  .xd-govde{padding:22px 18px}
+  .serit-bar{display:none}
+}
+
+/* ---------- 7. ALÇAQ EKRAN (landscape telefon) ---------- */
+@media (max-height:520px) and (orientation:landscape){
+  .acilis{height:150vh}
+  .hero-qab{height:150svh}
+  .menyu a{font-size:clamp(20px,5vh,28px)}
+  .menyu{gap:2px}
+}
+
+/* ---------- 8. ÜFÜQİ DAŞMANIN QARŞISI ---------- */
+html,body{max-width:100%;overflow-x:hidden}
+img,svg,video,iframe{max-width:100%}
 </style>
 <style>
 /* --- yalnız paket seçimi səhifəsi --- */
@@ -1670,7 +1886,23 @@ footer{
     <a href="/#elaqe">Əlaqə</a>
   </div>
   <span class="rec-ust kicik" aria-label="Yazılır"><i aria-hidden="true"></i> Rec</span>
+  <button type="button" class="nav-dgm" id="nav-dgm" aria-label="Menyu" aria-expanded="false" aria-controls="menyu">
+    <span></span><span></span>
+  </button>
 </nav>
+
+<div class="menyu" id="menyu" role="dialog" aria-modal="true" aria-label="Menyu">
+  <a href="/">Ana səhifə</a>
+  <a href="/#xidmetler">Xidmətlər</a>
+  <a href="/#isler">Portfolio</a>
+  <a href="/#paketler">Paketlər</a>
+  <a href="/paket">Kalkulyator</a>
+  <a href="/#elaqe">Əlaqə</a>
+  <div class="menyu-alt">
+    <a href="tel:+994705205885">+994 70 520 58 85</a>
+    <a href="mailto:malikzadarahman@gmail.com">malikzadarahman@gmail.com</a>
+  </div>
+</div>
 
 <!-- ================= AÇILIŞ: KAMERA + FLAŞ ================= -->
 <div class="acilis" id="acilis" aria-hidden="true">
@@ -3927,6 +4159,26 @@ function pkRenderMobilQiymet(hesab){
     }
     saatYaz(); setInterval(saatYaz, 30000);
   }
+})();
+
+/* ---------- Mobil menyu ---------- */
+(function(){
+  var dgm = document.getElementById('nav-dgm');
+  var menyu = document.getElementById('menyu');
+  if(!dgm || !menyu) return;
+  function bagla(){
+    document.body.classList.remove('menyu-aciq');
+    dgm.setAttribute('aria-expanded','false');
+    document.body.style.overflow = '';
+  }
+  dgm.addEventListener('click', function(){
+    var aciq = document.body.classList.toggle('menyu-aciq');
+    dgm.setAttribute('aria-expanded', aciq ? 'true' : 'false');
+    document.body.style.overflow = aciq ? 'hidden' : '';
+  });
+  menyu.addEventListener('click', function(e){ if(e.target.tagName === 'A') bagla(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') bagla(); });
+  addEventListener('resize', function(){ if(innerWidth > 900) bagla(); });
 })();
 
 </script>
