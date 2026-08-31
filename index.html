@@ -2189,6 +2189,36 @@ body.menyu-aciq .nav-ad{color:var(--murekkeb)}
 body.menyu-aciq .nav-dgm{background:rgba(11,11,12,.06);border-color:var(--xett)}
 body.menyu-aciq .nav-dgm span{background:var(--murekkeb)}
 body.menyu-aciq .xett-ust{opacity:0}
+
+/* ---------- 9. MOBİL PERFORMANS ---------- */
+@media (max-width:640px){
+  /* ağır fon animasiyalarını yüngülləşdir */
+  .blok--tund::before,.blok--tund::after,.lnt-fon::before,.lnt-fon::after{
+    filter:blur(46px);animation-duration:28s
+  }
+  /* şüşə bulanıqlıqlarını azalt (mobil GPU üçün) */
+  .lnt{-webkit-backdrop-filter:blur(22px);backdrop-filter:blur(22px)}
+  .lnt-cip,.ft-form input,.ft-kicik-dgm,.ft-sosial a,.sual-govde{
+    -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)
+  }
+  .nav{-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+  /* uçuşan qəzetlərin sayını azalt */
+  .karx-qat[data-qat="1"] .qzt:nth-child(n+7){display:none}
+  .karx-qat[data-qat="2"] .qzt:nth-child(n+5){display:none}
+  .karx-qat[data-qat="3"] .qzt:nth-child(n+4){display:none}
+  .qzt{filter:none !important}
+  /* kart çərçivəsinin fırlanan işığı — yalnız aktivdə */
+  .lnt-kart:not(.aktiv)::before{animation:none}
+}
+
+/* ---------- 10. TOXUNMA HƏDƏFLƏRİ (əlçatanlıq) ---------- */
+@media (pointer: coarse){
+  .lnt-cip,.ft-kicik-dgm,.sual-dgm-ic,.dgm{min-height:44px}
+  .lnt-nav-dgm,.ft-sosial a,.nav-dgm{min-width:44px;min-height:44px}
+  .sual-bas{min-height:52px}
+  .lnt-oynat{width:76px;height:76px;margin:-38px 0 0 -38px}
+  .lnt-bagla{width:46px;height:46px}
+}
 </style>
 </head>
 <body>
