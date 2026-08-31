@@ -163,8 +163,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{
   background:var(--kagiz);color:var(--murekkeb);font-family:var(--metn);font-weight:300;
   font-size:clamp(15px,1.05vw,17px);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:46px;
-  /* clip — hidden-dən fərqli olaraq sürüşmə qabı yaratmır, position:sticky işləyir */
-  overflow-x:clip;
+  /* DİQQƏT: body-yə overflow verilməməlidir — mobil brauzerlərdə position:sticky sınır */
 }
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
