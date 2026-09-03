@@ -2022,9 +2022,10 @@ body.menyu-aciq .menyu-alt{opacity:1;transform:none}
 /* ---------- 1. TOXUNMA CİHAZLARI: kursor effektlərini söndür ---------- */
 @media (hover: none), (pointer: coarse){
   .xd-parilti,.sual-parilti,.kt-parilti{display:none !important}
-  .xd-govde,.sual-govde,.kt-kart,.lnt-sehne{transform:none !important}
-  .xd:active .xd-govde{transform:scale(.985) !important;transition:transform .18s ease}
-  .sual:active .sual-govde{transform:scale(.99) !important;transition:transform .18s ease}
+  /* DİQQƏT: transform-a toxunma — giriş animasiyaları ondan asılıdır.
+     3D əyilmə onsuz da JS-də (hover:hover) yoxlanışı ilə söndürülür. */
+  .xd:active .xd-govde{transform:scale(.985);transition:transform .18s ease}
+  .sual:active .sual-govde{transform:scale(.99);transition:transform .18s ease}
   .lnt-cip::before{display:none}
   .xd-ad,.xd-en,.xd-no,.xd-izah,.xd-siyahi li,.xd-siyahi li::before,
   .xd-cta,.xd-ox,.xd-ikon,.xd-nisan{transition:none}
@@ -2261,6 +2262,81 @@ body.menyu-aciq .xett-ust{opacity:0}
   .karx-foto img{max-width:92vw;width:auto;height:100%;object-fit:contain}
   .karx-yapisqan::before{height:12vh}
   .karx-yapisqan::after{height:18vh}
+}
+
+/* ==========================================================================
+   MOBİL ANİMASİYA SİSTEMİ (≤900px) — masaüstünə toxunmur
+   Prinsip: yalnız transform + opacity (GPU), 300–600ms, pilləli açılış,
+   sürüşmə hesabı yox — IntersectionObserver (iOS-da etibarlıdır).
+   ========================================================================== */
+@media (max-width:900px){
+  .mb{
+    opacity:0;
+    transform:translate3d(0,26px,0);
+    transition:
+      opacity .5s cubic-bezier(.22,.61,.36,1),
+      transform .55s cubic-bezier(.34,1.28,.64,1);
+    will-change:transform,opacity
+  }
+  .mb.gor{opacity:1;transform:none}
+
+  .mb--olcu{transform:scale(.9)}
+  .mb--sol{transform:translate3d(-30px,0,0)}
+  .mb--sag{transform:translate3d(30px,0,0)}
+  .mb--boyuk{transform:translate3d(0,40px,0) scale(.97)}
+
+  .mb[data-g="1"]{transition-delay:.06s}
+  .mb[data-g="2"]{transition-delay:.12s}
+  .mb[data-g="3"]{transition-delay:.18s}
+  .mb[data-g="4"]{transition-delay:.24s}
+  .mb[data-g="5"]{transition-delay:.30s}
+  .mb[data-g="6"]{transition-delay:.36s}
+
+  /* --- başlıq sətirlərinin maskalı açılışı --- */
+  .hero h1 .st{overflow:hidden}
+  .hero h1 .st i{
+    transform:translate3d(0,105%,0);
+    transition:transform .72s cubic-bezier(.22,.61,.36,1);
+    animation:none !important
+  }
+  body.hero-acildi .hero h1 .st i{transform:none}
+  body.hero-acildi .hero h1 .st:nth-child(2) i{transition-delay:.1s}
+
+  /* --- qəzetlər: daimi yumşaq üzmə (sürüşmədən asılı deyil) --- */
+  .qzt{animation:mbUz 7s ease-in-out infinite alternate}
+  .karx-qat[data-qat="2"] .qzt{animation-duration:9s;animation-delay:-2s}
+  .karx-qat[data-qat="3"] .qzt{animation-duration:11s;animation-delay:-4s}
+  .qzt:nth-child(2n){animation-duration:8.5s;animation-delay:-1.5s}
+  .qzt:nth-child(3n){animation-duration:10s;animation-delay:-3s}
+  @keyframes mbUz{
+    0%  {transform:translate3d(-50%,-50%,0) rotate(var(--d,0deg)) translate3d(0,0,0)}
+    100%{transform:translate3d(-50%,-50%,0) rotate(var(--d,0deg)) translate3d(6px,-14px,0)}
+  }
+
+  /* --- portfolio kartının nəfəs alması --- */
+  .lnt-kart.aktiv{animation:mbNefes 6s ease-in-out infinite alternate}
+  @keyframes mbNefes{0%{transform:scale(1)}100%{transform:scale(1.014)}}
+
+  /* --- toxunma cavabı --- */
+  .lnt-cip:active,.ft-kicik-dgm:active,.sual-dgm:active .sual-dgm-ic,
+  .lnt-nav-dgm:active,.dgm:active{transform:scale(.95);transition:transform .12s ease}
+  .xd:active,.sual:active{transition:none}
+
+  /* --- açılış oxunun daha canlı olması --- */
+  .acilis-ox i{animation-duration:1.5s}
+}
+@media (max-width:900px) and (prefers-reduced-motion:reduce){
+  .mb{opacity:1 !important;transform:none !important;transition:none !important}
+  .qzt,.lnt-kart.aktiv{animation:none !important}
+  .hero h1 .st i{transform:none !important}
+}
+
+@media (max-width:900px){
+  /* xidmət kartları: mobil üçün daha cəld pilləli giriş */
+  .xd-govde{transition:transform .34s cubic-bezier(.34,1.28,.64,1),box-shadow .5s var(--yum),border-color .5s var(--yum)}
+  .xd{transition:opacity .55s var(--yum)}
+  .xd-ic > *{transform:translateY(14px)}
+  .xd.gorunur .xd-ic > *{animation-duration:.58s}
 }
 </style>
 </head>
@@ -4914,6 +4990,99 @@ function pkRenderMobilQiymet(hesab){
   menyu.addEventListener('click', function(e){ if(e.target.tagName === 'A') bagla(); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape') bagla(); });
   addEventListener('resize', function(){ if(innerWidth > 900) bagla(); });
+})();
+
+/* ---------- MOBİL ANİMASİYA MOTORU (yalnız ≤900px) ---------- */
+(function(){
+  var mob = matchMedia('(max-width: 900px)');
+  if(!mob.matches) return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  /* 1) hansı elementlər canlanacaq — masaüstü markupuna toxunmadan, JS ilə işarələyirik */
+  function isarele(){
+    var qrup = [
+      /* hero */
+      ['.hero .kicik', 0, ''],
+      ['.hero-alt p', 2, ''],
+      ['.hero .dugmeler', 3, ''],
+      ['.hero-etek', 4, ''],
+      /* bölmə başlıqları */
+      ['.blok > .kicik', 0, ''],
+      ['.blok > h2', 1, ''],
+      ['.blok > .solğun', 2, ''],
+      /* kadr arxası */
+      ['.karx-mtn .kicik', 0, ''],
+      ['.karx-bas', 1, ''],
+      ['.karx-foto', 2, 'mb--boyuk'],
+      /* portfolio */
+      ['.lnt', 1, 'mb--boyuk'],
+      /* suallar */
+      ['.sual', 0, ''],
+      ['.sual-dgm', 0, ''],
+      /* footer */
+      ['.ft-xana', 0, ''],
+      ['.ft-alt', 0, '']
+    ];
+    qrup.forEach(function(q){
+      [].slice.call(document.querySelectorAll(q[0])).forEach(function(el, i){
+        if(el.classList.contains('mb')) return;
+        el.classList.add('mb');
+        if(q[2]) el.classList.add(q[2]);
+        var g = q[1] || 0;
+        /* eyni tipdən bir neçəsi varsa pilləli olsun */
+        if(q[0] === '.sual' || q[0] === '.ft-xana') g = Math.min(4, i);
+        if(g) el.setAttribute('data-g', String(g));
+      });
+    });
+  }
+
+  /* 2) IntersectionObserver — iOS-da sürüşmə hesabından qat-qat etibarlıdır */
+  function qur(){
+    var hedefler = [].slice.call(document.querySelectorAll('.mb'));
+    if(!hedefler.length) return;
+    if(!('IntersectionObserver' in window)){
+      hedefler.forEach(function(el){ el.classList.add('gor'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(girisler){
+      girisler.forEach(function(g){
+        if(!g.isIntersecting) return;
+        g.target.classList.add('gor');
+        io.unobserve(g.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+    hedefler.forEach(function(el){
+      /* onsuz da ekranda olanlar dərhal açılsın */
+      var r = el.getBoundingClientRect();
+      if(r.top < innerHeight * 0.92 && r.bottom > 0){
+        requestAnimationFrame(function(){ el.classList.add('gor'); });
+        return;
+      }
+      io.observe(el);
+    });
+  }
+
+  /* 3) qəzetlərin fırlanma bucağını CSS dəyişəninə köçür (üzmə animasiyası pozmasın) */
+  function qezetler(){
+    [].slice.call(document.querySelectorAll('.qzt')).forEach(function(im){
+      var t = im.style.transform || '';
+      var m = t.match(/rotate\(([-\d.]+)deg\)/);
+      if(m) im.style.setProperty('--d', m[1] + 'deg');
+      im.style.transform = '';
+    });
+  }
+
+  function basla(){ isarele(); qezetler(); qur(); }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', basla);
+  } else {
+    basla();
+  }
+  /* qəzetlər JS ilə sonradan yaradılır — bir az gec təkrar et */
+  setTimeout(function(){ qezetler(); }, 400);
+  setTimeout(function(){ isarele(); qur(); }, 900);
 })();
 
 </script>
