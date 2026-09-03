@@ -1,0 +1,1006 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
+<title>Rəhman Məlikzadə — Videoqraf &amp; Filmmaker | Bakı</title>
+<meta name="description" content="Bakıda videoqraf və filmmaker Rəhman Məlikzadə. Reklam, Reels, food və event çəkilişləri — çəkilişdən post-production-a qədər.">
+<link rel="canonical" href="https://rahmanmalikzade.com/">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://vz-d125fae9-c0e.b-cdn.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/font.css">
+<script>
+/* masaüstü ölçüdə açılıbsa — web versiyaya qaytar */
+(function(){
+  try{
+    if(innerWidth > 900 && !location.search.includes('mob=1')){
+      location.replace('/?web=1');
+    }
+  }catch(e){}
+})();
+</script>
+<style>
+/* ==========================================================================
+   MOBİL VERSİYA — sıfırdan, yalnız telefon üçün
+   sticky yoxdur · mənfi kənar yoxdur · svh hesabı yoxdur
+   Animasiyalar: yüklənəndə oynayan keyframe-lər + IntersectionObserver
+   Yalnız transform/opacity → GPU, 60fps
+   ========================================================================== */
+:root{
+  --murekkeb:#0b0b0c; --kagiz:#fbfaf8; --sus:#86868b;
+  --xett:rgba(11,11,12,.12); --xett-ag:rgba(251,250,248,.16);
+  --rec:#d93a1e; --mavi:#3b7fd4;
+  --dsp:"Boruna","Poppins",serif;
+  --metn:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --kenar:20px;
+  --yum:cubic-bezier(.22,.61,.36,1);
+  --yay:cubic-bezier(.34,1.30,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--kagiz);color:var(--murekkeb);
+  font-family:var(--metn);font-weight:300;font-size:15.5px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(74px + env(safe-area-inset-bottom));
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
+::selection{background:var(--murekkeb);color:var(--kagiz)}
+
+.kicik{font-family:var(--mono);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sus)}
+.blok{padding:64px var(--kenar)}
+.blok--tund{background:var(--murekkeb);color:var(--kagiz);position:relative;overflow:hidden}
+.blok--tund .kicik{color:rgba(251,250,248,.5)}
+h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,9vw,42px);line-height:1.06;letter-spacing:-.012em;margin-top:14px}
+.izah{margin-top:14px;color:var(--sus);font-size:14.5px}
+.blok--tund .izah{color:rgba(251,250,248,.58)}
+
+/* ==================== AÇILIŞ ==================== */
+#giris{
+  position:fixed;inset:0;z-index:9999;background:var(--murekkeb);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;
+  transition:opacity .6s var(--yum),visibility .6s
+}
+body.bitdi #giris{opacity:0;visibility:hidden;pointer-events:none}
+.giris-rec{
+  position:absolute;top:calc(66px + env(safe-area-inset-top));
+  display:flex;align-items:center;gap:8px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(251,250,248,.45);opacity:0;animation:gYaz .5s .15s var(--yum) forwards
+}
+.giris-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:nebz 1.6s infinite}
+.giris-kam{position:relative;width:74vw;max-width:330px;opacity:0;transform:scale(.86);animation:gKam 1s .2s var(--yay) forwards}
+.giris-kam img{width:100%;height:auto}
+.giris-parlaq{
+  position:absolute;left:66.5%;top:9.5%;width:34%;aspect-ratio:1;
+  transform:translate(-50%,-50%) scale(.2);border-radius:50%;opacity:0;
+  background:radial-gradient(circle,#fff 0%,rgba(255,255,255,.7) 28%,transparent 68%);
+  animation:gIsiq 1.4s 1.15s var(--yum) forwards
+}
+.giris-mtn{text-align:center;opacity:0;animation:gYaz .6s .8s var(--yum) forwards}
+.giris-bas{font-family:var(--dsp);font-size:26px;color:var(--kagiz);line-height:1}
+.giris-alt{margin-top:12px;font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:rgba(251,250,248,.42)}
+#flas{position:fixed;inset:0;z-index:10000;background:#fff;opacity:0;pointer-events:none}
+#flas.partla{animation:flas .8s var(--yum) forwards}
+@keyframes gYaz{to{opacity:1}}
+@keyframes gKam{0%{opacity:0;transform:scale(.86)}60%{opacity:1}100%{opacity:1;transform:scale(1)}}
+@keyframes gIsiq{0%{opacity:0;transform:translate(-50%,-50%) scale(.2)}55%{opacity:.9;transform:translate(-50%,-50%) scale(1.1)}100%{opacity:1;transform:translate(-50%,-50%) scale(3.4)}}
+@keyframes flas{0%{opacity:0}13%{opacity:1}100%{opacity:0}}
+@keyframes nebz{0%,100%{opacity:1}50%{opacity:.25}}
+
+/* ==================== NAVİQASİYA ==================== */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:900;
+  height:calc(56px + env(safe-area-inset-top));padding:env(safe-area-inset-top) var(--kenar) 0;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(251,250,248,.82);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
+  border-bottom:1px solid transparent;
+  transform:translateY(-100%);transition:transform .5s var(--yum),border-color .35s
+}
+body.bitdi .nav{transform:none}
+.nav.enib{border-bottom-color:var(--xett)}
+.nav-ad{font-family:var(--dsp);font-size:15px}
+.nav-dgm{
+  width:42px;height:42px;border-radius:50%;border:1px solid var(--xett);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4.5px;
+  background:rgba(251,250,248,.6);transition:transform .3s var(--yay)
+}
+.nav-dgm:active{transform:scale(.9)}
+.nav-dgm span{width:15px;height:1.4px;border-radius:2px;background:var(--murekkeb);transition:transform .4s var(--yay)}
+body.menyu .nav-dgm span:nth-child(1){transform:translateY(3px) rotate(45deg)}
+body.menyu .nav-dgm span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+.menyu{
+  position:fixed;inset:0;z-index:890;padding:0 var(--kenar);
+  display:flex;flex-direction:column;justify-content:center;gap:2px;
+  background:rgba(251,250,248,.97);
+  -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
+  opacity:0;pointer-events:none;transition:opacity .35s var(--yum)
+}
+body.menyu .menyu{opacity:1;pointer-events:auto}
+.menyu a{
+  font-family:var(--dsp);font-size:34px;line-height:1.34;letter-spacing:-.015em;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .5s var(--yum),transform .5s var(--yay)
+}
+body.menyu .menyu a{opacity:1;transform:none}
+body.menyu .menyu a:nth-child(1){transition-delay:.05s}
+body.menyu .menyu a:nth-child(2){transition-delay:.1s}
+body.menyu .menyu a:nth-child(3){transition-delay:.15s}
+body.menyu .menyu a:nth-child(4){transition-delay:.2s}
+body.menyu .menyu a:nth-child(5){transition-delay:.25s}
+.menyu-alt{
+  margin-top:30px;display:flex;flex-direction:column;gap:5px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--sus);
+  opacity:0;transform:translateY(12px);transition:opacity .5s .3s var(--yum),transform .5s .3s var(--yum)
+}
+body.menyu .menyu-alt{opacity:1;transform:none}
+
+/* ==================== ORTAQ GİRİŞ ANİMASİYASI ==================== */
+.an{opacity:0;transform:translate3d(0,28px,0);
+  transition:opacity .55s var(--yum),transform .6s var(--yay);
+  will-change:transform,opacity}
+.an.gor{opacity:1;transform:none}
+.an--sol{transform:translate3d(-30px,0,0)}
+.an--sag{transform:translate3d(30px,0,0)}
+.an--olcu{transform:scale(.92)}
+.an[data-g="1"]{transition-delay:.07s}
+.an[data-g="2"]{transition-delay:.14s}
+.an[data-g="3"]{transition-delay:.21s}
+.an[data-g="4"]{transition-delay:.28s}
+.an[data-g="5"]{transition-delay:.35s}
+
+/* ==================== HERO ==================== */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  padding:calc(96px + env(safe-area-inset-top)) var(--kenar) 90px;position:relative
+}
+.hero h1{
+  font-family:var(--dsp);font-weight:400;font-size:clamp(38px,11.5vw,54px);
+  line-height:1.04;letter-spacing:-.015em;margin-top:18px;max-width:14ch
+}
+.hero h1 span{display:block;overflow:hidden}
+.hero h1 i{
+  display:block;font-style:normal;transform:translateY(108%);
+  transition:transform .8s var(--yum)
+}
+body.bitdi .hero h1 i{transform:none}
+body.bitdi .hero h1 span:nth-child(2) i{transition-delay:.09s}
+.hero p{margin-top:22px;color:var(--sus);font-size:15px;max-width:34ch;
+  opacity:0;transform:translateY(16px);transition:opacity .6s .35s var(--yum),transform .6s .35s var(--yay)}
+body.bitdi .hero p{opacity:1;transform:none}
+.dgm-sira{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;
+  opacity:0;transform:translateY(16px);transition:opacity .6s .48s var(--yum),transform .6s .48s var(--yay)}
+body.bitdi .dgm-sira{opacity:1;transform:none}
+.dgm{
+  font-size:14px;padding:14px 24px;border-radius:100px;border:1px solid var(--xett);
+  transition:transform .25s var(--yay),background .3s,color .3s;min-height:48px;
+  display:inline-flex;align-items:center
+}
+.dgm:active{transform:scale(.94)}
+.dgm.dolu{background:var(--murekkeb);color:var(--kagiz);border-color:var(--murekkeb)}
+.hero-etek{
+  position:absolute;left:var(--kenar);right:var(--kenar);bottom:34px;
+  display:flex;justify-content:space-between;align-items:center;
+  opacity:0;transition:opacity .6s .7s var(--yum)
+}
+body.bitdi .hero-etek{opacity:1}
+.asagi-ox{width:1px;height:30px;background:var(--xett);position:relative;overflow:hidden}
+.asagi-ox::after{content:"";position:absolute;inset:0;background:var(--murekkeb);animation:axin 1.9s var(--yum) infinite}
+@keyframes axin{0%{transform:translateY(-100%)}60%,100%{transform:translateY(100%)}}
+
+/* ==================== XİDMƏTLƏR ==================== */
+.xid{display:flex;flex-direction:column;gap:12px;margin-top:34px}
+.xid-kart{
+  position:relative;overflow:hidden;border-radius:22px;padding:26px 22px;
+  background:var(--murekkeb);color:var(--kagiz);
+  border:1px solid rgba(251,250,248,.08);
+  box-shadow:0 18px 40px -28px rgba(11,11,12,.6);
+  transition:transform .28s var(--yay)
+}
+.xid-kart:active{transform:scale(.982)}
+.xid-ust{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.xid-nisan{
+  font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--kagiz);color:var(--murekkeb);padding:6px 12px;border-radius:999px
+}
+.xid-no{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:rgba(251,250,248,.4)}
+.xid-orta{display:flex;align-items:center;gap:13px;margin-top:34px}
+.xid-ikon{
+  width:40px;height:40px;border-radius:50%;flex:none;border:1px solid rgba(251,250,248,.2);
+  display:flex;align-items:center;justify-content:center
+}
+.xid-ikon svg{width:17px;height:17px;fill:none;stroke:rgba(251,250,248,.85);stroke-width:1.5}
+.xid-ad{font-family:var(--dsp);font-weight:400;font-size:25px;line-height:1;letter-spacing:-.015em}
+.xid-izah{margin-top:15px;font-size:13.5px;line-height:1.66;color:rgba(251,250,248,.6)}
+.xid-siyahi{list-style:none;margin:20px 0 0;display:flex;flex-direction:column;gap:8px}
+.xid-siyahi li{
+  position:relative;padding-left:18px;font-size:13px;color:rgba(251,250,248,.72);
+  opacity:0;transform:translateX(-8px);
+  transition:opacity .45s var(--yum),transform .45s var(--yum)
+}
+.gor .xid-siyahi li{opacity:1;transform:none}
+.gor .xid-siyahi li:nth-child(1){transition-delay:.16s}
+.gor .xid-siyahi li:nth-child(2){transition-delay:.23s}
+.gor .xid-siyahi li:nth-child(3){transition-delay:.30s}
+.gor .xid-siyahi li:nth-child(4){transition-delay:.37s}
+.xid-siyahi li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--aks,var(--rec))}
+.xid-alt{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:24px;padding-top:20px;border-top:1px solid rgba(251,250,248,.12);
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  color:rgba(251,250,248,.6)
+}
+.xid-alt i{font-style:normal;font-size:17px}
+/* kartın arxasında yavaş üzən rəng */
+.xid-hale{
+  position:absolute;width:78%;aspect-ratio:1;border-radius:50%;pointer-events:none;
+  filter:blur(48px);opacity:.5;left:-14%;top:-30%;
+  background:radial-gradient(circle,var(--aks,var(--rec)),transparent 68%);
+  animation:haleUz 13s ease-in-out infinite alternate
+}
+@keyframes haleUz{
+  0%{transform:translate3d(0,0,0) scale(1)}
+  100%{transform:translate3d(38%,26%,0) scale(1.22)}
+}
+.xid-kart--acig{background:var(--kagiz);color:var(--murekkeb);border-color:var(--xett)}
+.xid-kart--acig .xid-nisan{background:var(--murekkeb);color:var(--kagiz)}
+.xid-kart--acig .xid-no{color:var(--sus)}
+.xid-kart--acig .xid-izah{color:var(--sus)}
+.xid-kart--acig .xid-alt{border-top-color:var(--xett);color:var(--sus)}
+.xid-kart--acig .xid-hale{opacity:.22}
+
+/* ==================== PORTFOLIO (üfüqi sürüşən) ==================== */
+#portfolio{padding-bottom:52px}
+.pf-fon{position:absolute;inset:-30%;z-index:0;pointer-events:none;filter:blur(58px);mix-blend-mode:screen;opacity:.5}
+.pf-fon--q{background:radial-gradient(26% 30% at 28% 32%,rgba(232,64,32,.75),transparent 66%);animation:fonA 16s ease-in-out infinite alternate}
+.pf-fon--m{background:radial-gradient(27% 31% at 70% 26%,rgba(48,124,224,.7),transparent 66%);animation:fonB 20s ease-in-out infinite alternate-reverse}
+@keyframes fonA{0%{transform:translate3d(-12%,-8%,0) scale(1)}100%{transform:translate3d(14%,10%,0) scale(1.22)}}
+@keyframes fonB{0%{transform:translate3d(12%,10%,0) scale(1.1)}100%{transform:translate3d(-14%,-8%,0) scale(.9)}}
+#portfolio > *{position:relative;z-index:1}
+
+.pf-lent{
+  display:flex;gap:14px;margin:30px calc(var(--kenar) * -1) 0;
+  padding:6px var(--kenar) 22px;
+  overflow-x:auto;scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none
+}
+.pf-lent::-webkit-scrollbar{display:none}
+.pf-kart{
+  flex:0 0 76%;max-width:300px;scroll-snap-align:center;
+  position:relative;border-radius:22px;overflow:hidden;background:#111;
+  aspect-ratio:9/14;
+  box-shadow:0 0 0 1px rgba(255,255,255,.14),0 26px 50px -26px rgba(0,0,0,.9);
+  transition:transform .35s var(--yay)
+}
+.pf-kart:active{transform:scale(.97)}
+.pf-kart img{width:100%;height:100%;object-fit:cover}
+.pf-kart::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;padding:6px;pointer-events:none;
+  background:conic-gradient(from var(--bc,0deg),
+    rgba(255,255,255,.85) 0deg, rgba(232,64,32,.9) 60deg,
+    rgba(255,255,255,.2) 140deg, rgba(48,124,224,.9) 220deg,
+    rgba(255,255,255,.25) 300deg, rgba(255,255,255,.85) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  mask-composite:exclude;
+  animation:cerDon 9s linear infinite;opacity:.85
+}
+@property --bc{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes cerDon{to{--bc:360deg}}
+.pf-oynat{
+  position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.55);background:rgba(11,11,12,.4);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;z-index:3
+}
+.pf-oynat::after{content:"";position:absolute;inset:-1px;border-radius:50%;border:1px solid rgba(255,255,255,.35);animation:dalga 2.4s var(--yum) infinite}
+@keyframes dalga{0%{transform:scale(1);opacity:.7}70%{transform:scale(1.4);opacity:0}100%{opacity:0}}
+.pf-oynat svg{width:17px;height:17px;fill:#fff;margin-left:3px}
+.pf-mtn{
+  position:absolute;left:0;right:0;bottom:0;padding:60px 16px 16px;z-index:2;
+  background:linear-gradient(to top,rgba(0,0,0,.92),transparent)
+}
+.pf-rozet{
+  display:inline-block;background:var(--kagiz);color:var(--murekkeb);
+  padding:4px 10px;border-radius:999px;margin-bottom:8px;
+  font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase
+}
+.pf-mtn p{font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.92)}
+.pf-say{
+  display:flex;align-items:center;gap:8px;margin-top:4px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;color:rgba(251,250,248,.45)
+}
+.pf-say b{font-weight:400;color:var(--kagiz)}
+
+/* video modalı */
+.vmodal{
+  position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;
+  padding:16px;opacity:0;pointer-events:none;transition:opacity .35s var(--yum)
+}
+.vmodal.aciq{opacity:1;pointer-events:auto}
+.vmodal-fon{position:absolute;inset:0;background:rgba(6,6,7,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.vmodal-qab{
+  position:relative;z-index:2;width:100%;max-width:520px;
+  transform:scale(.94) translateY(18px);transition:transform .4s var(--yay)
+}
+.vmodal.aciq .vmodal-qab{transform:none}
+.vmodal-cer{position:relative;width:100%;aspect-ratio:9/16;border-radius:16px;overflow:hidden;background:#000}
+.vmodal-cer.yatay{aspect-ratio:16/9}
+.vmodal-cer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vmodal-bagla{
+  position:absolute;top:calc(-52px - env(safe-area-inset-top,0px));right:0;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--xett-ag);
+  background:rgba(11,11,12,.6);color:var(--kagiz);font-size:22px;line-height:1;
+  display:flex;align-items:center;justify-content:center
+}
+
+/* ==================== KADR ARXASI ==================== */
+#kadr{position:relative;overflow:hidden;padding-bottom:0}
+.kadr-sehne{position:relative;height:78vh;min-height:420px;margin-top:26px}
+.kadr-foto{
+  position:absolute;left:50%;bottom:0;height:100%;
+  transform:translateX(-50%);z-index:2;
+  opacity:0;transition:opacity .8s var(--yum),transform .9s var(--yay)
+}
+.kadr-sehne.gor .kadr-foto{opacity:1;transform:translateX(-50%)}
+.kadr-foto img{height:100%;width:auto;max-width:none;object-fit:contain}
+.qzt{
+  position:absolute;z-index:1;opacity:0;
+  transition:opacity .7s var(--yum)
+}
+.kadr-sehne.gor .qzt{opacity:var(--o,.75);animation:qztUz var(--s,8s) ease-in-out infinite alternate}
+@keyframes qztUz{
+  0%  {transform:translate(-50%,-50%) rotate(var(--d,0deg)) translate3d(0,0,0)}
+  100%{transform:translate(-50%,-50%) rotate(calc(var(--d,0deg) + 6deg)) translate3d(8px,-18px,0)}
+}
+
+/* ==================== PAKET / KALKULYATOR ==================== */
+.pkt{display:flex;flex-direction:column;gap:12px;margin-top:32px}
+.pkt-kart{
+  position:relative;overflow:hidden;border-radius:22px;padding:26px 22px;
+  background:var(--murekkeb);color:var(--kagiz);
+  border:1px solid rgba(251,250,248,.08);
+  transition:transform .28s var(--yay)
+}
+.pkt-kart:active{transform:scale(.982)}
+.pkt-ust{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.pkt-qiymet{display:flex;align-items:baseline;gap:8px;margin-top:38px}
+.pkt-qiymet b{font-family:var(--dsp);font-weight:400;font-size:46px;line-height:1;letter-spacing:-.015em}
+.pkt-qiymet i{font-family:var(--dsp);font-style:normal;font-size:19px;color:var(--aks,var(--rec))}
+.pkt-etiket{margin-top:9px;font-size:13px;color:rgba(251,250,248,.6)}
+.pkt-siyahi{list-style:none;margin:20px 0 0;display:flex;flex-direction:column;gap:8px}
+.pkt-siyahi li{position:relative;padding-left:18px;font-size:13px;color:rgba(251,250,248,.7)}
+.pkt-siyahi li::before{content:"";position:absolute;left:0;top:.72em;width:10px;height:1px;background:var(--aks,var(--rec))}
+.pkt-alt{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-top:24px;padding-top:20px;border-top:1px solid rgba(251,250,248,.12);
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase
+}
+.pkt-alt i{font-style:normal;font-size:17px}
+
+/* ==================== SUALLAR ==================== */
+.sual-siyahi{display:flex;flex-direction:column;gap:9px;margin-top:32px}
+.sual{border-radius:16px;overflow:hidden;border:1px solid var(--xett);background:rgba(11,11,12,.02);
+  transition:background .45s var(--yum),border-color .45s var(--yum)}
+.sual.aciq{
+  background:linear-gradient(160deg,#141417,#0b0b0c 60%);border-color:rgba(251,250,248,.14);
+  box-shadow:0 20px 44px -26px rgba(11,11,12,.7)
+}
+.sual-bas{
+  width:100%;display:flex;align-items:center;gap:13px;padding:17px 16px;text-align:left;
+  min-height:56px;transition:color .4s var(--yum)
+}
+.sual.aciq .sual-bas{color:var(--kagiz)}
+.sual-no{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--sus);flex:none;transition:color .4s}
+.sual.aciq .sual-no{color:var(--rec)}
+.sual-mtn{flex:1;font-size:14.5px;line-height:1.38}
+.sual-ox{position:relative;width:15px;height:15px;flex:none;transition:transform .45s var(--yay)}
+.sual-ox i{position:absolute;top:50%;left:50%;width:13px;height:1.4px;border-radius:2px;background:rgba(11,11,12,.5);
+  transform:translate(-50%,-50%);transition:transform .45s var(--yay),background .4s}
+.sual-ox i:last-child{transform:translate(-50%,-50%) rotate(90deg)}
+.sual.aciq .sual-ox{transform:rotate(180deg)}
+.sual.aciq .sual-ox i{background:var(--kagiz)}
+.sual.aciq .sual-ox i:last-child{transform:translate(-50%,-50%)}
+.sual-sar{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s var(--yum)}
+.sual.aciq .sual-sar{grid-template-rows:1fr}
+.sual-ic{overflow:hidden}
+.sual-ic p{
+  padding:0 16px 20px 47px;font-size:13.5px;line-height:1.7;color:rgba(251,250,248,.62);
+  opacity:0;transform:translateY(8px);transition:opacity .4s .1s var(--yum),transform .4s .1s var(--yum)
+}
+.sual.aciq .sual-ic p{opacity:1;transform:none}
+.sual-xett{
+  position:absolute;left:0;right:0;bottom:0;height:1px;opacity:0;
+  background:linear-gradient(90deg,transparent,rgba(251,250,248,.7),transparent);
+  background-size:40% 100%;background-repeat:no-repeat
+}
+.sual.aciq .sual-xett{opacity:1;animation:sualAx 2.6s var(--yum) infinite}
+@keyframes sualAx{0%{background-position:-45% 0}100%{background-position:145% 0}}
+.hamsi-dgm{
+  align-self:flex-start;margin-top:6px;padding:14px 20px;border-radius:999px;border:1px solid var(--xett);
+  font-family:var(--mono);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:11px;min-height:46px;
+  transition:transform .25s var(--yay),background .3s,color .3s
+}
+.hamsi-dgm:active{transform:scale(.95)}
+.hamsi-say{font-size:9px;padding:3px 8px;border-radius:999px;background:rgba(11,11,12,.07);color:var(--sus)}
+.sual.gizli{display:none}
+.sual-siyahi.acilib .sual.gizli{display:block;animation:sualGel .5s var(--yay) forwards}
+@keyframes sualGel{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ==================== ƏLAQƏ ==================== */
+#elaqe{padding-bottom:80px}
+.el-fon{position:absolute;inset:-30%;z-index:0;pointer-events:none;filter:blur(58px);mix-blend-mode:screen;opacity:.45}
+.el-fon--q{background:radial-gradient(26% 30% at 24% 30%,rgba(232,64,32,.7),transparent 66%);animation:fonA 18s ease-in-out infinite alternate}
+.el-fon--m{background:radial-gradient(27% 31% at 74% 70%,rgba(48,124,224,.66),transparent 66%);animation:fonB 22s ease-in-out infinite alternate-reverse}
+#elaqe > *{position:relative;z-index:1}
+.el-form{position:relative;margin-top:26px}
+.el-form input{
+  width:100%;height:54px;padding:0 58px 0 20px;border-radius:999px;border:1px solid var(--xett-ag);
+  background:rgba(251,250,248,.06);color:var(--kagiz);font-family:var(--metn);font-size:15px
+}
+.el-form input::placeholder{color:rgba(251,250,248,.36)}
+.el-form button{
+  position:absolute;right:6px;top:6px;width:42px;height:42px;border-radius:50%;
+  background:var(--kagiz);display:flex;align-items:center;justify-content:center;
+  transition:transform .25s var(--yay)
+}
+.el-form button:active{transform:scale(.9)}
+.el-form button svg{width:16px;height:16px;fill:var(--murekkeb)}
+.el-hebler{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.el-heb{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  padding:12px 18px;border-radius:999px;border:1px solid var(--xett-ag);color:rgba(251,250,248,.72);
+  min-height:44px;display:inline-flex;align-items:center;transition:transform .25s var(--yay)
+}
+.el-heb:active{transform:scale(.94)}
+.el-mel{margin-top:34px;display:flex;flex-direction:column;gap:11px}
+.el-mel a,.el-mel span{font-size:15px;color:rgba(251,250,248,.72)}
+.el-status{
+  display:flex;align-items:center;gap:9px;margin-top:6px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(251,250,248,.5)
+}
+.el-status i{width:7px;height:7px;border-radius:50%;background:#4a9d8f;box-shadow:0 0 9px #4a9d8f;animation:nebz 2.2s infinite}
+.el-sosial{display:flex;gap:11px;margin-top:30px}
+.el-sosial a{
+  width:48px;height:48px;border-radius:50%;border:1px solid var(--xett-ag);
+  display:flex;align-items:center;justify-content:center;color:rgba(251,250,248,.75);
+  transition:transform .25s var(--yay),background .3s,color .3s
+}
+.el-sosial a:active{transform:scale(.9);background:var(--kagiz);color:var(--murekkeb)}
+.el-sosial svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.5}
+.el-alt{margin-top:38px;padding-top:22px;border-top:1px solid var(--xett-ag);
+  font-size:12px;color:rgba(251,250,248,.42);display:flex;flex-direction:column;gap:10px}
+.el-alt a{color:rgba(251,250,248,.6)}
+
+/* ==================== ALT ÇUBUQ ==================== */
+.alt-cubuq{
+  position:fixed;left:0;right:0;bottom:0;z-index:880;
+  padding:10px var(--kenar) calc(10px + env(safe-area-inset-bottom));
+  display:flex;gap:10px;
+  background:rgba(251,250,248,.9);
+  -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
+  border-top:1px solid var(--xett);
+  transform:translateY(110%);transition:transform .5s var(--yay)
+}
+body.bitdi .alt-cubuq{transform:none}
+.alt-cubuq a{
+  flex:1;height:50px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid var(--xett);transition:transform .25s var(--yay)
+}
+.alt-cubuq a:active{transform:scale(.95)}
+.alt-cubuq a.esas{background:var(--murekkeb);color:var(--kagiz);border-color:var(--murekkeb)}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
+  .an{opacity:1 !important;transform:none !important}
+  .hero h1 i{transform:none !important}
+  #giris{display:none}
+}
+
+</style>
+</head>
+<body>
+<!-- ==================== AÇILIŞ ==================== -->
+<div id="giris" aria-hidden="true">
+  <span class="giris-rec"><i></i>REC</span>
+  <div class="giris-kam">
+    <picture>
+      <source srcset="/media/kamera.webp" type="image/webp">
+      <img src="/media/kamera.png" alt="" fetchpriority="high" decoding="async">
+    </picture>
+    <span class="giris-parlaq"></span>
+  </div>
+  <div class="giris-mtn">
+    <div class="giris-bas">Kadr hazırdır</div>
+    <div class="giris-alt">Rəhman Məlikzadə</div>
+  </div>
+</div>
+<div id="flas" aria-hidden="true"></div>
+
+<!-- ==================== NAVİQASİYA ==================== -->
+<nav class="nav" id="nav">
+  <a href="#bas" class="nav-ad">Rəhman Məlikzadə</a>
+  <button type="button" class="nav-dgm" id="nav-dgm" aria-label="Menyu" aria-expanded="false">
+    <span></span><span></span>
+  </button>
+</nav>
+<div class="menyu" id="menyu">
+  <a href="#xidmetler">Xidmətlər</a>
+  <a href="#portfolio">Portfolio</a>
+  <a href="#paketler">Paketlər</a>
+  <a href="#suallar">Suallar</a>
+  <a href="#elaqe">Əlaqə</a>
+  <div class="menyu-alt">
+    <a href="tel:+994705205885">+994 70 520 58 85</a>
+    <a href="mailto:malikzadarahman@gmail.com">malikzadarahman@gmail.com</a>
+  </div>
+</div>
+
+<!-- ==================== HERO ==================== -->
+<header class="hero" id="bas">
+  <div class="kicik">Videoqraf &amp; Filmmaker — Bakı</div>
+  <h1>
+    <span><i>Brendiniz üçün</i></span>
+    <span><i>diqqət çəkən</i></span>
+    <span><i>videolar</i></span>
+  </h1>
+  <p>Reklam, Reels, food və event çəkilişləri — çəkilişdən post-production-a qədər.</p>
+  <div class="dgm-sira">
+    <a class="dgm dolu" href="#portfolio">İşlərə bax</a>
+    <a class="dgm" href="#elaqe">Əlaqə</a>
+  </div>
+  <div class="hero-etek">
+    <span class="kicik">Bakı · 2026</span>
+    <span class="asagi-ox"></span>
+  </div>
+</header>
+
+<!-- ==================== XİDMƏTLƏR ==================== -->
+<section class="blok" id="xidmetler">
+  <div class="kicik an">Xidmətlər</div>
+  <h2 class="an" data-g="1">Nə çəkirəm</h2>
+  <p class="izah an" data-g="2">Beş istiqamətdə işləyirəm — hər biri üçün çəkilişdən montaja qədər bütün prosesi özüm idarə edirəm.</p>
+  <div class="xid" id="xid"></div>
+</section>
+
+<!-- ==================== PORTFOLIO ==================== -->
+<section class="blok blok--tund" id="portfolio">
+  <span class="pf-fon pf-fon--q" aria-hidden="true"></span>
+  <span class="pf-fon pf-fon--m" aria-hidden="true"></span>
+  <div class="kicik an">Seçilmiş işlər</div>
+  <h2 class="an" data-g="1">Portfolio</h2>
+  <p class="izah an" data-g="2">Yana sürüşdür — videoya toxunanda burada açılır.</p>
+  <div class="pf-lent" id="pf-lent"></div>
+  <div class="pf-say an"><b id="pf-indi">01</b> / <span id="pf-cem">21</span> · yana sürüşdür</div>
+</section>
+
+<!-- ==================== KADR ARXASI ==================== -->
+<section class="blok" id="kadr">
+  <div class="kicik an">Kadr arxası</div>
+  <h2 class="an" data-g="1">Hər kadr bir<br>hekayənin parçasıdır</h2>
+  <div class="kadr-sehne" id="kadr-sehne">
+    <div class="kadr-foto"><img src="/media/rahman.png" alt="Rəhman Məlikzadə çəkiliş zamanı" loading="lazy" decoding="async"></div>
+  </div>
+</section>
+
+<!-- ==================== PAKETLƏR ==================== -->
+<section class="blok" id="paketler">
+  <div class="kicik an">Kalkulyator</div>
+  <h2 class="an" data-g="1">Paketini özün qur</h2>
+  <p class="izah an" data-g="2">Çəkiliş növünü seç, detalları uyğunlaşdır — qiymət addım-addım formalaşsın.</p>
+  <div class="pkt">
+    <a class="pkt-kart an" href="/kalkulyator" style="--aks:#d93a1e">
+      <span class="xid-hale" aria-hidden="true"></span>
+      <span class="pkt-ust"><span class="xid-nisan">Foto çəkilişi</span><span class="xid-no">~60 san</span></span>
+      <span class="pkt-qiymet"><b>140</b><i>AZN</i></span>
+      <span class="pkt-etiket">-dən başlayan foto paketləri</span>
+      <ul class="pkt-siyahi"><li>Food, məhsul və e-commerce</li><li>Portret, model və moda</li><li>Məkan, tədbir və sosial media</li></ul>
+      <span class="pkt-alt"><span>Foto kalkulyatoru</span><i>&rarr;</i></span>
+    </a>
+    <a class="pkt-kart an" data-g="1" href="/video-kalkulyator" style="--aks:#4a9d8f">
+      <span class="xid-hale" aria-hidden="true"></span>
+      <span class="pkt-ust"><span class="xid-nisan">Video çəkilişi</span><span class="xid-no">~60 san</span></span>
+      <span class="pkt-qiymet"><b>320</b><i>AZN</i></span>
+      <span class="pkt-etiket">-dən başlayan video paketləri</span>
+      <ul class="pkt-siyahi"><li>Reklam çarxı və brend filmi</li><li>Reels / TikTok kontenti</li><li>Toy, love story və tədbir</li></ul>
+      <span class="pkt-alt"><span>Video kalkulyatoru</span><i>&rarr;</i></span>
+    </a>
+  </div>
+</section>
+
+<!-- ==================== SUALLAR ==================== -->
+<section class="blok" id="suallar">
+  <div class="kicik an">Suallar</div>
+  <h2 class="an" data-g="1">Qısa cavablar</h2>
+  <p class="izah an" data-g="2">Cavabı görmək üçün üstünə toxun.</p>
+  <div class="sual-siyahi" id="sual-siyahi"></div>
+</section>
+
+<!-- ==================== ƏLAQƏ ==================== -->
+<section class="blok blok--tund" id="elaqe">
+  <span class="el-fon el-fon--q" aria-hidden="true"></span>
+  <span class="el-fon el-fon--m" aria-hidden="true"></span>
+  <div class="kicik an">Əlaqə</div>
+  <h2 class="an" data-g="1">Layihən var?</h2>
+  <p class="izah an" data-g="2">Qısaca yaz — nə çəkmək istədiyini, təxmini vaxtı və büdcəni. Adətən bir neçə saat ərzində cavab verirəm.</p>
+
+  <form class="el-form an" data-g="3" id="el-form" novalidate>
+    <input type="text" id="el-mesaj" placeholder="Məsələn: restoran üçün Reels…" aria-label="Mesajın">
+    <button type="submit" aria-label="Göndər"><svg viewBox="0 0 24 24"><path d="M4 12l16-8-6 8 6 8z"/></svg></button>
+  </form>
+  <div class="el-hebler an" data-g="4">
+    <a class="el-heb" href="mailto:malikzadarahman@gmail.com">E-poçt</a>
+    <a class="el-heb" href="https://wa.me/994705205885" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
+
+  <div class="el-mel an">
+    <a href="mailto:malikzadarahman@gmail.com">malikzadarahman@gmail.com</a>
+    <a href="tel:+994705205885">+994 70 520 58 85</a>
+    <span>Bakı, Azərbaycan</span>
+    <span class="el-status"><i></i>Yeni layihələrə açığam</span>
+  </div>
+
+  <div class="el-sosial an" data-g="1">
+    <a href="https://www.instagram.com/rahmanmalikzade/" target="_blank" rel="me noopener" aria-label="Instagram">
+      <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+    </a>
+    <a href="https://wa.me/994705205885" target="_blank" rel="noopener" aria-label="WhatsApp">
+      <svg viewBox="0 0 24 24"><path d="M20 11.5a8 8 0 0 1-11.9 7L4 20l1.6-4A8 8 0 1 1 20 11.5z"/></svg>
+    </a>
+    <a href="mailto:malikzadarahman@gmail.com" aria-label="E-poçt">
+      <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg>
+    </a>
+    <a href="tel:+994705205885" aria-label="Zəng">
+      <svg viewBox="0 0 24 24"><path d="M6 3h3l2 5-2.5 1.5a12 12 0 0 0 6 6L16 13l5 2v3a2 2 0 0 1-2.2 2A17 17 0 0 1 4 5.2 2 2 0 0 1 6 3z"/></svg>
+    </a>
+  </div>
+
+  <div class="el-alt an">
+    <span>© <span id="il">2026</span> Rəhman Məlikzadə</span>
+    <a href="/?web=1">Masaüstü versiyaya keç &rarr;</a>
+  </div>
+</section>
+
+<!-- ==================== ALT ÇUBUQ ==================== -->
+<div class="alt-cubuq">
+  <a href="https://wa.me/994705205885" target="_blank" rel="noopener">WhatsApp</a>
+  <a class="esas" href="/paket">Paket qur</a>
+</div>
+
+<!-- ==================== VİDEO MODALI ==================== -->
+<div class="vmodal" id="vmodal" role="dialog" aria-modal="true">
+  <div class="vmodal-fon" data-bagla></div>
+  <div class="vmodal-qab">
+    <button type="button" class="vmodal-bagla" data-bagla aria-label="Bağla">&times;</button>
+    <div class="vmodal-cer" id="vmodal-cer"></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var CDN = 'https://vz-d125fae9-c0e.b-cdn.net/';
+var LIB = '738448/';
+var az = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ---------------- MƏLUMAT ---------------- */
+var XIDMET = [
+ {no:'01', en:'Brand & Commercial', ad:'Brend & Reklam', aks:'#d93a1e',
+  ik:'<rect x="3" y="6" width="12" height="12" rx="2"/><path d="M15 10.5l6-3.5v10l-6-3.5z"/>',
+  iz:'Məhsul, xidmət və brendlər üçün kinematik reklam videoları — məqsəd gözəl görüntü deyil, məhsulu satmaqdır.',
+  l:['Məhsul və mağaza reklamları','Fashion çəkilişləri','Kampaniya videoları','Startap təqdimatları'], alt:'Detallı danışaq'},
+ {no:'02', en:'Food & Restaurant', ad:'Food & Restoran', aks:'#3b7fd4',
+  ik:'<circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/>',
+  iz:'Restoran və kafelər üçün yeməyin hazırlanmasından məkanın atmosferinə qədər tam vizual kontent.',
+  l:['Reklam videosu','Hazırlanma prosesi','Restoran atmosferi','Reels'], alt:'Food Photography də var'},
+ {no:'03', en:'Personal Brand', ad:'Şəxsi brend', aks:'#d93a1e',
+  ik:'<rect x="9.5" y="3" width="5" height="10" rx="2.5"/><path d="M6 11a6 6 0 0 0 12 0"/><path d="M12 17v4M9 21h6"/>',
+  iz:'Ekspertlər üçün professional danışıq videoları — işıq və səsdən montaj və motion elementlərinə qədər.',
+  l:['Studio, ofis və outdoor','Çoxbucaqlı kadrlar və B-roll','Subtitr və sound design','Motion graphics'], alt:'Aylıq kontent planı'},
+ {no:'04', en:'Event Coverage', ad:'Tədbir & Forum', aks:'#3b7fd4',
+  ik:'<rect x="4" y="5" width="16" height="15" rx="1.5"/><path d="M4 10h16M8 3v4M16 3v4"/>',
+  iz:'Forum və korporativ tədbirlərin əsas anları — həm arxiv üçün, həm sosial mediada dərhal istifadəyə hazır.',
+  l:['Ümumi tədbir videosu','Müsahibələr və Reels','Səhnə və auditoriya','Networking görüntüləri'], alt:'Event Photography də var'},
+ {no:'05', en:'Food & Event Photo', ad:'Fotoqrafiya', aks:'#d93a1e',
+  ik:'<rect x="3" y="6" width="18" height="14" rx="2.5"/><circle cx="12" cy="13" r="4.2"/><path d="M8.5 6l1.4-2.2h4.2L15.5 6"/>',
+  iz:'Food və tədbir çəkilişlərində detala fokus — kadrlar seçilir, rəng işlənir, formatlar hazır təhvil verilir.',
+  l:['Food Photography','Event Photography','Rəng korreksiyası','Sosial media formatları'], alt:'Detallı danışaq'}
+];
+
+var ISLER = [
+ ['Korporativ tədbir','f0e2fee4-424e-4062-8691-8bf734b4ee0d','thumbnail_ea7b3433.jpg',1,'UBOC üçün iki günlük korporativ tədbirin dinamik reels çəkilişi.'],
+ ['Yemək təqdimatı','d8671361-0648-4089-b526-2fd32026f156','thumbnail_2cdb18e9.jpg',1,'Fitbox üçün korporativ yemək təqdimatı — dequstasiya anları.'],
+ ['Storytelling','20b448a5-ea2f-4e8f-902b-f15633280335','thumbnail_05febfdc.jpg',0,'İnsayt Psixoloji Mərkəzi üçün sakit, atmosferik çəkiliş.'],
+ ['Fashion film','9cdd1345-5a1b-4c4d-be9c-0def042deb23','thumbnail.jpg',0,'Mercedes-Benz Fashion Week — backstage və podium anları.'],
+ ['Food reels','808184b6-75f4-481e-b48b-be483b7cba1e','thumbnail.jpg',1,'Rovshan Chef — üç yeməyin hazırlanması və təqdimatı.'],
+ ['Məhsul reels','5ab5231d-8af1-4805-b159-64584f4c7e06','thumbnail_0ad5185b.jpg',1,'Titibon uşaq arabasının qurulması və funksiyaları.'],
+ ['Tədbir reels','59899261-8f2a-4005-8824-2afbe2864d1c','thumbnail_f8f2efa2.jpg',1,'Yapı Kredi 8 Mart tədbirinin enerjisi və səmimi anları.'],
+ ['Məhsul reklamı','033ab501-a9ed-4bbf-82c3-cc4f17bdf4cd','thumbnail_185bef12.jpg',1,'Su filtri üçün Kamil Zeynallının iştirakı ilə təqdimat.'],
+ ['Novruz tədbiri','ca3d9558-9721-4883-9a95-49e762dca952','thumbnail_2fc5bf35.jpg',0,'MİHİ — Novruz tədbirinin milli ənənələri və muğam.'],
+ ['Katerinq prosesi','8bca7563-d3d5-4761-aa3f-2c051d8d12c3','thumbnail_8d684cc1.jpg',1,'PFM Catering-in qida hazırlığı və çatdırılma prosesi.'],
+ ['Məkan atmosferi','512c44dc-8477-4b7e-9d0a-d4261116e787','thumbnail.jpg',1,'Hi Coffee-nin interyeri, atmosferi və brend hissi.'],
+ ['Korporativ danışıq','cfd4beb9-9a6b-4e83-97c4-d45295933ddd','thumbnail.jpg',1,'Formcond rəhbərinin professional korporativ danışığı.'],
+ ['Biznes tədbiri','8884668f-a219-4313-977d-08ca55145280','thumbnail.jpg',1,'Fayda — sahibkarların görüşü, çıxışlar və networking.'],
+ ['Uşaq düşərgəsi','706a0960-83df-41eb-85a7-a4ff0dc29816','thumbnail_ea4b5a1e.jpg',0,'MİHİ yay düşərgəsi — yaradıcılıq və əyləncə anları.'],
+ ['Brend hekayəsi','e9cf3c31-b3bb-4be0-bc33-362a122e71e0','thumbnail_13a39400.jpg',1,'Volvo-nun hekayəsi danışıq və avtomobil görüntüləri ilə.'],
+ ['Studio reels','33eff7ca-bdaf-48a1-b6d5-826a4fb38223','thumbnail_e123b6cf.jpg',1,'Baku Growth Academy — konsepti tərəfimdən hazırlanmış çəkiliş.'],
+ ['Forum çarxı','55aac2ce-544f-41de-a50a-12d993e93804','thumbnail_2bef3fd3.jpg',1,'Strateji Marketinq Forumu üçün dinamik reels çarxı.'],
+ ['Ssenarili reels','cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf','thumbnail_4116516b.jpg',1,'İngilis dili müəllimi haqqında ssenarili qısa hekayə.'],
+ ['Məhsul prosesi','107326c0-c4a6-4599-8d0d-4a77120447eb','thumbnail_d78bbaa5.jpg',0,'Fit yemək şirkəti üçün hazırlanma və qablaşdırılma prosesi.'],
+ ['Açılış çəkilişi','e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71','thumbnail_7d6903b6.jpg',1,'Avto atelye açılışı — kofe shop və təmir sahəsi bir hekayədə.'],
+ ['Love Story','fea7fd8f-619b-47c8-9674-7b0d5af3339c','/media/lovestory.jpg',1,'Şəms & Cavidan — təbiətdə çəkilmiş love story filmi.']
+];
+
+var SUALLAR = [
+ ['Çəkiliş qiyməti necə hesablanır?','Qiymət layihənin növü, çəkiliş müddəti, komanda, lokasiya və tələb olunan final materiallara görə dəyişir. Layihə haqqında qısa məlumat göndərdikdən sonra uyğun təklif hazırlayıram.'],
+ ['Layihə nə vaxt hazır olur?','Reels adətən 2–3 gün, reklam və event videoları 3–5 gün, daha böyük layihələr isə 5–10 gün ərzində təhvil verilir.'],
+ ['Çəkiliş və montaj birlikdədir?','Standart olaraq layihəni çəkilişdən final montaja qədər idarə edirəm. İstəyə görə yalnız çəkiliş və ya yalnız post-production da mümkündür.'],
+ ['İdeya və ssenarini də hazırlayırsınız?','Bəli. Hazır referenslə işləyə bilərəm və ya layihəyə uyğun ideya, kreativ konsept, ssenari və shot list ayrıca hazırlana bilər.'],
+ ['Neçə düzəliş etmək mümkündür?','Layihəyə 3 revision raundu daxildir. Hər raundda düzəlişlərin bir yerdə göndərilməsi prosesi daha sürətli saxlayır.'],
+ ['Bakıdan kənarda çəkiliş edirsiniz?','Bəli. Azərbaycanın bölgələrində və xaricdə də layihələr mümkündür. Səfər və logistika xərcləri ayrıca hesablanır.'],
+ ['Foto çəkiliş də mümkündür?','Bəli. Food Photography və Event Photography həm ayrıca, həm də video çəkilişinə əlavə xidmət kimi sifariş edilə bilər.'],
+ ['Reels üçün hazır format verilir?','Bəli. Reels üçün 9:16, sayt və YouTube üçün 16:9 formatında Full HD materiallar hazırlayıram.'],
+ ['Raw footage əldə etmək mümkündür?','Bəli. Müştərinin istəyi ilə çəkiliş zamanı əldə olunan xam materiallar da təhvil verilə bilər.'],
+ ['Böyük layihələrdə komanda ilə işləyirsiniz?','Bəli. Miqyasa görə ikinci kamera operatoru, işıq assistenti və digər komanda üzvləri cəlb edə bilirəm.'],
+ ['Aylıq kontent əməkdaşlığı mümkündür?','Bəli. Restoranlar, şəxsi brendlər və bizneslər üçün davamlı Reels və video kontent əməkdaşlığı qurmaq mümkündür.'],
+ ['Subtitr və motion graphics edirsiniz?','Bəli. Montajda subtitr, sound design, color grading, motion graphics və logo animasiyaları istifadə edirəm.']
+];
+
+var QZT = ['q01','q02','q03','q04','q05','q06','q07','q08','q09','q10'];
+
+/* ---------------- QURULUŞ ---------------- */
+function el(t,c,h){var e=document.createElement(t); if(c) e.className=c; if(h!=null) e.innerHTML=h; return e;}
+
+function xidmetQur(){
+  var q=document.getElementById('xid'); if(!q) return;
+  XIDMET.forEach(function(x,i){
+    var k=el('article','xid-kart an');
+    if(i) k.setAttribute('data-g', String(Math.min(2,i)));
+    k.style.setProperty('--aks', x.aks);
+    k.innerHTML =
+      '<span class="xid-hale" aria-hidden="true"></span>'+
+      '<div class="xid-ust"><span class="xid-nisan">'+x.en+'</span><span class="xid-no">'+x.no+'</span></div>'+
+      '<div class="xid-orta"><span class="xid-ikon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">'+x.ik+'</svg></span>'+
+      '<h3 class="xid-ad">'+x.ad+'</h3></div>'+
+      '<p class="xid-izah">'+x.iz+'</p>'+
+      '<ul class="xid-siyahi">'+x.l.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul>'+
+      '<div class="xid-alt"><span>'+x.alt+'</span><i>&rarr;</i></div>';
+    q.appendChild(k);
+  });
+}
+
+function portfolioQur(){
+  var q=document.getElementById('pf-lent'); if(!q) return;
+  document.getElementById('pf-cem').textContent = String(ISLER.length).padStart(2,'0');
+  ISLER.forEach(function(v,i){
+    var sekil = v[2].charAt(0)==='/' ? v[2] : CDN + v[1] + '/' + v[2];
+    var k=el('button','pf-kart');
+    k.type='button';
+    k.setAttribute('data-v', LIB + v[1]);
+    k.setAttribute('data-saq', v[3] ? '1' : '0');
+    k.setAttribute('aria-label', v[0] + ' videosunu izlə');
+    k.innerHTML =
+      '<img src="'+sekil+'" alt="'+v[0]+'" loading="lazy" decoding="async">'+
+      '<span class="pf-oynat"><svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z"/></svg></span>'+
+      '<span class="pf-mtn"><span class="pf-rozet">'+String(i+1).padStart(2,'0')+' &bull; '+v[0]+'</span>'+
+      '<p>'+v[4]+'</p></span>';
+    q.appendChild(k);
+  });
+}
+
+function suallarQur(){
+  var q=document.getElementById('sual-siyahi'); if(!q) return;
+  SUALLAR.forEach(function(s,i){
+    var d=el('div','sual an' + (i>2 ? ' gizli' : ''));
+    if(i && i<3) d.setAttribute('data-g', String(i));
+    d.innerHTML =
+      '<button type="button" class="sual-bas" aria-expanded="false">'+
+        '<span class="sual-no">'+String(i+1).padStart(2,'0')+'</span>'+
+        '<span class="sual-mtn">'+s[0]+'</span>'+
+        '<span class="sual-ox"><i></i><i></i></span>'+
+      '</button>'+
+      '<div class="sual-sar"><div class="sual-ic"><p>'+s[1]+'</p></div></div>'+
+      '<span class="sual-xett" aria-hidden="true"></span>';
+    q.appendChild(d);
+  });
+  var b=el('button','hamsi-dgm an');
+  b.type='button'; b.id='hamsi-dgm';
+  b.innerHTML='<span id="hamsi-mtn">Bütün sualları göstər</span><span class="hamsi-say" id="hamsi-say">+'+(SUALLAR.length-3)+'</span><span>&darr;</span>';
+  q.appendChild(b);
+}
+
+function qezetQur(){
+  var s=document.getElementById('kadr-sehne'); if(!s) return;
+  var yer=[[8,14,-14,17],[86,10,12,15],[16,52,9,13],[90,48,-11,14],[6,80,7,12],[92,78,-9,13],[30,26,14,10],[70,66,-13,11]];
+  yer.forEach(function(y,i){
+    var im=el('img','qzt');
+    im.src='/media/qzt/'+QZT[i % QZT.length]+'.png';
+    im.alt=''; im.loading='lazy'; im.decoding='async';
+    im.style.left=y[0]+'%'; im.style.top=y[1]+'%'; im.style.width=y[3]+'vw';
+    im.style.setProperty('--d', y[2]+'deg');
+    im.style.setProperty('--s', (7 + (i%4)*1.6) + 's');
+    im.style.setProperty('--o', (i%2 ? .55 : .8));
+    im.style.transform='translate(-50%,-50%) rotate('+y[2]+'deg)';
+    im.style.animationDelay = (-i*1.3)+'s';
+    s.appendChild(im);
+  });
+}
+
+/* ---------------- GİRİŞ ANİMASİYASI ---------------- */
+function girisOynat(){
+  var flas=document.getElementById('flas');
+  function bitir(){
+    if(document.body.classList.contains('bitdi')) return;
+    document.body.classList.add('bitdi');
+    document.body.style.overflow='';
+  }
+  if(az){ bitir(); return; }
+  document.body.style.overflow='hidden';
+  setTimeout(function(){ if(flas) flas.classList.add('partla'); }, 2350);
+  setTimeout(bitir, 2560);
+  /* ehtiyat: nə olursa olsun açılsın */
+  setTimeout(bitir, 4200);
+  /* toxunanda ötür */
+  document.getElementById('giris').addEventListener('click', bitir);
+}
+
+/* ---------------- GÖRÜNMƏ ANİMASİYALARI ---------------- */
+function gorunme(){
+  var hedef=[].slice.call(document.querySelectorAll('.an, .kadr-sehne'));
+  if(!hedef.length) return;
+  function ac(e){ e.classList.add('gor'); }
+  if(az || !('IntersectionObserver' in window)){ hedef.forEach(ac); return; }
+
+  var io=new IntersectionObserver(function(g){
+    g.forEach(function(x){ if(x.isIntersecting){ ac(x.target); io.unobserve(x.target); } });
+  },{threshold:.1, rootMargin:'0px 0px -6% 0px'});
+
+  hedef.forEach(function(e){
+    var r=e.getBoundingClientRect();
+    if(r.top < innerHeight*0.95 && r.bottom > 0){ setTimeout(function(){ ac(e); }, 40); }
+    else io.observe(e);
+  });
+
+  /* --- ehtiyat 1: sürüşmə --- */
+  var bekle=false;
+  function yoxla(){
+    bekle=false; var qalan=0;
+    hedef.forEach(function(e){
+      if(e.classList.contains('gor')) return;
+      qalan++;
+      var r=e.getBoundingClientRect();
+      if(r.top < innerHeight*0.92 && r.bottom > 0) ac(e);
+    });
+    if(!qalan) removeEventListener('scroll', sur);
+  }
+  function sur(){ if(!bekle){ bekle=true; requestAnimationFrame(yoxla); } }
+  addEventListener('scroll', sur, {passive:true});
+  /* --- ehtiyat 2: taymer --- */
+  setTimeout(yoxla, 2600);
+  setTimeout(function(){ hedef.forEach(ac); }, 9000);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(yoxla,120); });
+}
+
+/* ---------------- NAVİQASİYA + MENYU ---------------- */
+function naviqasiya(){
+  var nav=document.getElementById('nav'), dgm=document.getElementById('nav-dgm'), menyu=document.getElementById('menyu');
+  addEventListener('scroll', function(){ nav.classList.toggle('enib', scrollY>10); }, {passive:true});
+  function bagla(){ document.body.classList.remove('menyu'); dgm.setAttribute('aria-expanded','false'); document.body.style.overflow=''; }
+  dgm.addEventListener('click', function(){
+    var a=document.body.classList.toggle('menyu');
+    dgm.setAttribute('aria-expanded', a?'true':'false');
+    document.body.style.overflow = a?'hidden':'';
+  });
+  menyu.addEventListener('click', function(e){ if(e.target.tagName==='A') bagla(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape') bagla(); });
+}
+
+/* ---------------- PORTFOLIO ---------------- */
+function portfolio(){
+  var lent=document.getElementById('pf-lent'), indi=document.getElementById('pf-indi');
+  var modal=document.getElementById('vmodal'), cer=document.getElementById('vmodal-cer');
+  if(!lent) return;
+
+  var bekle=false;
+  lent.addEventListener('scroll', function(){
+    if(bekle) return; bekle=true;
+    requestAnimationFrame(function(){
+      bekle=false;
+      var kartlar=lent.children, orta=lent.scrollLeft + lent.clientWidth/2, en=0, fq=Infinity;
+      for(var i=0;i<kartlar.length;i++){
+        var k=kartlar[i], km=k.offsetLeft + k.offsetWidth/2, f=Math.abs(km-orta);
+        if(f<fq){ fq=f; en=i; }
+      }
+      if(indi) indi.textContent=String(en+1).padStart(2,'0');
+    });
+  }, {passive:true});
+
+  lent.addEventListener('click', function(e){
+    var k=e.target.closest('.pf-kart'); if(!k) return;
+    ac(k.getAttribute('data-v'), k.getAttribute('data-saq')==='1');
+  });
+
+  function ac(v, saq){
+    cer.className='vmodal-cer' + (saq?'':' yatay');
+    cer.innerHTML='<iframe src="https://iframe.mediadelivery.net/embed/'+v+
+      '?autoplay=true&loop=false&muted=false&preload=true&responsive=true" '+
+      'allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen" '+
+      'allowfullscreen loading="lazy"></iframe>';
+    modal.classList.add('aciq');
+    document.body.style.overflow='hidden';
+  }
+  function bagla(){
+    modal.classList.remove('aciq');
+    document.body.style.overflow='';
+    setTimeout(function(){ cer.innerHTML=''; }, 380);
+  }
+  modal.addEventListener('click', function(e){ if(e.target.closest('[data-bagla]')) bagla(); });
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && modal.classList.contains('aciq')) bagla(); });
+}
+
+/* ---------------- SUALLAR ---------------- */
+function suallar(){
+  var siyahi=document.getElementById('sual-siyahi'); if(!siyahi) return;
+  siyahi.addEventListener('click', function(e){
+    var b=e.target.closest('.sual-bas');
+    if(b){
+      var s=b.parentElement, a=s.classList.toggle('aciq');
+      b.setAttribute('aria-expanded', a?'true':'false');
+      return;
+    }
+    var d=e.target.closest('#hamsi-dgm');
+    if(d){
+      var acilib=siyahi.classList.toggle('acilib');
+      var mtn=document.getElementById('hamsi-mtn'), say=document.getElementById('hamsi-say');
+      var gizli=SUALLAR.length-3;
+      if(mtn) mtn.textContent = acilib ? 'Sualları gizlət' : 'Bütün sualları göstər';
+      if(say) say.textContent = (acilib?'−':'+') + gizli;
+      if(!acilib){
+        siyahi.querySelectorAll('.sual.gizli.aciq').forEach(function(s){
+          s.classList.remove('aciq');
+          var bb=s.querySelector('.sual-bas'); if(bb) bb.setAttribute('aria-expanded','false');
+        });
+        document.getElementById('suallar').scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    }
+  });
+}
+
+/* ---------------- FORM ---------------- */
+function form(){
+  var f=document.getElementById('el-form'); if(!f) return;
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var m=(document.getElementById('el-mesaj').value||'').trim();
+    if(!m){ document.getElementById('el-mesaj').focus(); return; }
+    location.href='mailto:malikzadarahman@gmail.com?subject='+encodeURIComponent('Sayt üzərindən sorğu')+
+      '&body='+encodeURIComponent(m);
+  });
+}
+
+/* ---------------- BAŞLAT ---------------- */
+function basla(){
+  var y=document.getElementById('il'); if(y) y.textContent=new Date().getFullYear();
+  xidmetQur(); portfolioQur(); suallarQur(); qezetQur();
+  naviqasiya(); portfolio(); suallar(); form();
+  girisOynat();
+  gorunme();
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', basla);
+else basla();
+})();
+
+</script>
+</body>
+</html>
