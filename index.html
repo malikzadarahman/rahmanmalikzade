@@ -5056,11 +5056,38 @@ function pkRenderMobilQiymet(hesab){
       /* onsuz da ekranda olanlar dərhal açılsın */
       var r = el.getBoundingClientRect();
       if(r.top < innerHeight * 0.92 && r.bottom > 0){
-        requestAnimationFrame(function(){ el.classList.add('gor'); });
+        setTimeout(function(){ el.classList.add('gor'); }, 30);
         return;
       }
       io.observe(el);
     });
+
+    /* --- EHTİYAT 1: sürüşmə ilə yoxlama (IO gec işləsə) --- */
+    var isleyir = false;
+    function yoxla(){
+      isleyir = false;
+      var qalan = 0;
+      hedefler.forEach(function(el){
+        if(el.classList.contains('gor')) return;
+        qalan++;
+        var r = el.getBoundingClientRect();
+        if(r.top < innerHeight * 0.9 && r.bottom > 0) el.classList.add('gor');
+      });
+      if(!qalan) removeEventListener('scroll', sur);
+    }
+    function sur(){ if(!isleyir){ isleyir = true; requestAnimationFrame(yoxla); } }
+    addEventListener('scroll', sur, {passive:true});
+
+    /* --- EHTİYAT 2: nə olursa olsun, məzmun gizli qalmasın --- */
+    setTimeout(function(){
+      hedefler.forEach(function(el){
+        var r = el.getBoundingClientRect();
+        if(r.top < innerHeight * 1.2) el.classList.add('gor');
+      });
+    }, 2200);
+    setTimeout(function(){
+      hedefler.forEach(function(el){ el.classList.add('gor'); });
+    }, 9000);
   }
 
   /* 3) qəzetlərin fırlanma bucağını CSS dəyişəninə köçür (üzmə animasiyası pozmasın) */
@@ -5083,6 +5110,36 @@ function pkRenderMobilQiymet(hesab){
   /* qəzetlər JS ilə sonradan yaradılır — bir az gec təkrar et */
   setTimeout(function(){ qezetler(); }, 400);
   setTimeout(function(){ isarele(); qur(); }, 900);
+})();
+
+/* ---------- ÜMUMİ EHTİYAT: heç bir element gizli qalmasın ---------- */
+(function(){
+  function ac(){
+    document.querySelectorAll('[data-ac]:not(.ac)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < innerHeight * 1.15) el.classList.add('ac');
+    });
+    document.querySelectorAll('.xd:not(.gorunur)').forEach(function(el){
+      var r = el.getBoundingClientRect();
+      if(r.top < innerHeight * 1.15){
+        el.classList.add('gorunur');
+        el.style.transitionDelay = '0ms';
+        var g = el.querySelector('.xd-govde');
+        if(g) g.style.transitionDelay = '0ms';
+      }
+    });
+  }
+  var t = false;
+  addEventListener('scroll', function(){
+    if(t) return; t = true;
+    setTimeout(function(){ t = false; ac(); }, 260);
+  }, {passive:true});
+  setTimeout(ac, 2400);
+  setTimeout(function(){
+    document.querySelectorAll('[data-ac]:not(.ac)').forEach(function(e){ e.classList.add('ac'); });
+    document.querySelectorAll('.xd:not(.gorunur)').forEach(function(e){ e.classList.add('gorunur'); });
+  }, 9000);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(ac, 120); });
 })();
 
 </script>
