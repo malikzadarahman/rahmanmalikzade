@@ -23,6 +23,23 @@
   }catch(e){}
 })();
 </script>
+<script>
+/* Animasiya sistemi üçün bayraq.
+   Bayraq varsa — elementlər gizli başlayır və JS onları açır.
+   JS ümumiyyətlə işləməsə və ya 8 saniyə ərzində animasiya sistemi
+   qalxmasa, bayraq götürülür və bütün məzmun tam görünən olur. */
+(function(){
+  try{
+    document.documentElement.classList.add('an-hazir');
+    window.__anNet = setTimeout(function(){
+      document.documentElement.classList.remove('an-hazir');
+    }, 8000);
+    /* refresh-də mövqe bərpası açılış səhnəsi ilə ziddiyyət yaradır —
+       ilk açılış və refresh eyni nəticəni versin */
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+  }catch(e){}
+})();
+</script>
 <style>
 /* ==========================================================================
    MOBİL VERSİYA — sıfırdan, yalnız telefon üçün
@@ -69,6 +86,7 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,9vw,42px);line-he
   transition:opacity .6s var(--yum),visibility .6s
 }
 body.bitdi #giris{opacity:0;visibility:hidden;pointer-events:none}
+html:not(.an-hazir) #giris{display:none}
 .giris-rec{
   position:absolute;top:calc(66px + env(safe-area-inset-top));
   display:flex;align-items:center;gap:8px;
@@ -103,8 +121,9 @@ body.bitdi #giris{opacity:0;visibility:hidden;pointer-events:none}
   background:rgba(251,250,248,.82);
   -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
   border-bottom:1px solid transparent;
-  transform:translateY(-100%);transition:transform .5s var(--yum),border-color .35s
+  transition:transform .5s var(--yum),border-color .35s
 }
+.an-hazir .nav{transform:translateY(-100%)}
 body.bitdi .nav{transform:none}
 .nav.enib{border-bottom-color:var(--xett)}
 .nav-ad{font-family:var(--dsp);font-size:15px}
@@ -145,13 +164,15 @@ body.menyu .menyu a:nth-child(5){transition-delay:.25s}
 body.menyu .menyu-alt{opacity:1;transform:none}
 
 /* ==================== ORTAQ GİRİŞ ANİMASİYASI ==================== */
-.an{opacity:0;transform:translate3d(0,28px,0);
-  transition:opacity .55s var(--yum),transform .6s var(--yay);
-  will-change:transform,opacity}
-.an.gor{opacity:1;transform:none}
-.an--sol{transform:translate3d(-30px,0,0)}
-.an--sag{transform:translate3d(30px,0,0)}
-.an--olcu{transform:scale(.92)}
+/* Gizli başlanğıc vəziyyəti YALNIZ .an-hazir bayrağı olanda tətbiq olunur.
+   will-change qəsdən yoxdur — 40+ elementə daimi kompozisiya qatı
+   zəif telefonlarda yaddaşı doldurur və kadr itkisinə səbəb olur. */
+.an{transition:opacity .55s var(--yum),transform .6s var(--yay)}
+.an-hazir .an{opacity:0;transform:translate3d(0,28px,0)}
+.an-hazir .an--sol{transform:translate3d(-30px,0,0)}
+.an-hazir .an--sag{transform:translate3d(30px,0,0)}
+.an-hazir .an--olcu{transform:scale(.92)}
+.an-hazir .an.gor{opacity:1;transform:none}
 .an[data-g="1"]{transition-delay:.07s}
 .an[data-g="2"]{transition-delay:.14s}
 .an[data-g="3"]{transition-delay:.21s}
@@ -160,7 +181,7 @@ body.menyu .menyu-alt{opacity:1;transform:none}
 
 /* ==================== HERO ==================== */
 .hero{
-  min-height:100svh;display:flex;flex-direction:column;justify-content:center;
+  min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;
   padding:calc(96px + env(safe-area-inset-top)) var(--kenar) 90px;position:relative
 }
 .hero h1{
@@ -169,16 +190,19 @@ body.menyu .menyu-alt{opacity:1;transform:none}
 }
 .hero h1 span{display:block;overflow:hidden}
 .hero h1 i{
-  display:block;font-style:normal;transform:translateY(108%);
+  display:block;font-style:normal;
   transition:transform .8s var(--yum)
 }
+.an-hazir .hero h1 i{transform:translateY(108%)}
 body.bitdi .hero h1 i{transform:none}
 body.bitdi .hero h1 span:nth-child(2) i{transition-delay:.09s}
 .hero p{margin-top:22px;color:var(--sus);font-size:15px;max-width:34ch;
-  opacity:0;transform:translateY(16px);transition:opacity .6s .35s var(--yum),transform .6s .35s var(--yay)}
+  transition:opacity .6s .35s var(--yum),transform .6s .35s var(--yay)}
+.an-hazir .hero p{opacity:0;transform:translateY(16px)}
 body.bitdi .hero p{opacity:1;transform:none}
 .dgm-sira{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap;
-  opacity:0;transform:translateY(16px);transition:opacity .6s .48s var(--yum),transform .6s .48s var(--yay)}
+  transition:opacity .6s .48s var(--yum),transform .6s .48s var(--yay)}
+.an-hazir .dgm-sira{opacity:0;transform:translateY(16px)}
 body.bitdi .dgm-sira{opacity:1;transform:none}
 .dgm{
   font-size:14px;padding:14px 24px;border-radius:100px;border:1px solid var(--xett);
@@ -190,8 +214,9 @@ body.bitdi .dgm-sira{opacity:1;transform:none}
 .hero-etek{
   position:absolute;left:var(--kenar);right:var(--kenar);bottom:34px;
   display:flex;justify-content:space-between;align-items:center;
-  opacity:0;transition:opacity .6s .7s var(--yum)
+  transition:opacity .6s .7s var(--yum)
 }
+.an-hazir .hero-etek{opacity:0}
 body.bitdi .hero-etek{opacity:1}
 .asagi-ox{width:1px;height:30px;background:var(--xett);position:relative;overflow:hidden}
 .asagi-ox::after{content:"";position:absolute;inset:0;background:var(--murekkeb);animation:axin 1.9s var(--yum) infinite}
@@ -224,10 +249,10 @@ body.bitdi .hero-etek{opacity:1}
 .xid-siyahi{list-style:none;margin:20px 0 0;display:flex;flex-direction:column;gap:8px}
 .xid-siyahi li{
   position:relative;padding-left:18px;font-size:13px;color:rgba(251,250,248,.72);
-  opacity:0;transform:translateX(-8px);
   transition:opacity .45s var(--yum),transform .45s var(--yum)
 }
-.gor .xid-siyahi li{opacity:1;transform:none}
+.an-hazir .xid-siyahi li{opacity:0;transform:translateX(-8px)}
+.an-hazir .gor .xid-siyahi li{opacity:1;transform:none}
 .gor .xid-siyahi li:nth-child(1){transition-delay:.16s}
 .gor .xid-siyahi li:nth-child(2){transition-delay:.23s}
 .gor .xid-siyahi li:nth-child(3){transition-delay:.30s}
@@ -244,9 +269,9 @@ body.bitdi .hero-etek{opacity:1}
 .xid-hale{
   position:absolute;width:78%;aspect-ratio:1;border-radius:50%;pointer-events:none;
   filter:blur(48px);opacity:.5;left:-14%;top:-30%;
-  background:radial-gradient(circle,var(--aks,var(--rec)),transparent 68%);
-  animation:haleUz 13s ease-in-out infinite alternate
+  background:radial-gradient(circle,var(--aks,var(--rec)),transparent 68%)
 }
+.gor .xid-hale{animation:haleUz 13s ease-in-out infinite alternate}
 @keyframes haleUz{
   0%{transform:translate3d(0,0,0) scale(1)}
   100%{transform:translate3d(38%,26%,0) scale(1.22)}
@@ -292,8 +317,9 @@ body.bitdi .hero-etek{opacity:1}
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   mask-composite:exclude;
-  animation:cerDon 9s linear infinite;opacity:.85
+  animation:cerDon 9s linear infinite;animation-play-state:paused;opacity:.5
 }
+.pf-kart.aktiv::after{animation-play-state:running;opacity:.85}
 @property --bc{syntax:"<angle>";inherits:false;initial-value:0deg}
 @keyframes cerDon{to{--bc:360deg}}
 .pf-oynat{
@@ -349,15 +375,18 @@ body.bitdi .hero-etek{opacity:1}
 .kadr-foto{
   position:absolute;left:50%;bottom:0;height:100%;
   transform:translateX(-50%);z-index:2;
-  opacity:0;transition:opacity .8s var(--yum),transform .9s var(--yay)
+  transition:opacity .8s var(--yum),transform .9s var(--yay)
 }
-.kadr-sehne.gor .kadr-foto{opacity:1;transform:translateX(-50%)}
+.an-hazir .kadr-foto{opacity:0}
+.an-hazir .kadr-sehne.gor .kadr-foto{opacity:1;transform:translateX(-50%)}
 .kadr-foto img{height:100%;width:auto;max-width:none;object-fit:contain}
 .qzt{
-  position:absolute;z-index:1;opacity:0;
+  position:absolute;z-index:1;
   transition:opacity .7s var(--yum)
 }
-.kadr-sehne.gor .qzt{opacity:var(--o,.75);animation:qztUz var(--s,8s) ease-in-out infinite alternate}
+.an-hazir .qzt{opacity:0}
+.an-hazir .kadr-sehne.gor .qzt{opacity:var(--o,.75)}
+.kadr-sehne.gor .qzt{animation:qztUz var(--s,8s) ease-in-out infinite alternate}
 @keyframes qztUz{
   0%  {transform:translate(-50%,-50%) rotate(var(--d,0deg)) translate3d(0,0,0)}
   100%{transform:translate(-50%,-50%) rotate(calc(var(--d,0deg) + 6deg)) translate3d(8px,-18px,0)}
@@ -490,8 +519,9 @@ body.bitdi .hero-etek{opacity:1}
   background:rgba(251,250,248,.9);
   -webkit-backdrop-filter:blur(16px) saturate(180%);backdrop-filter:blur(16px) saturate(180%);
   border-top:1px solid var(--xett);
-  transform:translateY(110%);transition:transform .5s var(--yay)
+  transition:transform .5s var(--yay)
 }
+.an-hazir .alt-cubuq{transform:translateY(110%)}
 body.bitdi .alt-cubuq{transform:none}
 .alt-cubuq a{
   flex:1;height:50px;border-radius:999px;display:flex;align-items:center;justify-content:center;gap:8px;
@@ -501,10 +531,21 @@ body.bitdi .alt-cubuq{transform:none}
 .alt-cubuq a:active{transform:scale(.95)}
 .alt-cubuq a.esas{background:var(--murekkeb);color:var(--kagiz);border-color:var(--murekkeb)}
 
+/* Kiçik ekranlar: animasiyalar eyni qalır, yalnız blur radiusu azalır —
+   zəif GPU-da kadr itkisi və boş boyama olmasın */
+@media (max-width:430px){
+  .xid-hale{filter:blur(32px)}
+  .pf-fon,.el-fon{filter:blur(40px)}
+}
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
-  .an{opacity:1 !important;transform:none !important}
-  .hero h1 i{transform:none !important}
+  .an,.an-hazir .an{opacity:1 !important;transform:none !important}
+  .an-hazir .hero h1 i,.hero h1 i{transform:none !important}
+  .an-hazir .hero p,.an-hazir .dgm-sira,.an-hazir .hero-etek,
+  .an-hazir .xid-siyahi li,.an-hazir .kadr-foto{opacity:1 !important;transform:none !important}
+  .an-hazir .qzt{opacity:var(--o,.75) !important}
+  .an-hazir .nav,.an-hazir .alt-cubuq{transform:none !important}
   #giris{display:none}
 }
 
@@ -693,6 +734,8 @@ body.bitdi .alt-cubuq{transform:none}
 var CDN = 'https://vz-d125fae9-c0e.b-cdn.net/';
 var LIB = '738448/';
 var az = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* görünmə hesabını xaricdən yenidən işə salmaq üçün */
+var anYoxla = function(){};
 
 /* ---------------- MƏLUMAT ---------------- */
 var XIDMET = [
@@ -802,7 +845,9 @@ function portfolioQur(){
 function suallarQur(){
   var q=document.getElementById('sual-siyahi'); if(!q) return;
   SUALLAR.forEach(function(s,i){
-    var d=el('div','sual an' + (i>2 ? ' gizli' : ''));
+    /* gizli suallar .an almır: display:none elementi heç vaxt kəsişmir və
+       opacity:0 tələsində ilişib qalardı — onların açılışını sualGel edir */
+    var d=el('div','sual' + (i>2 ? ' gizli' : ' an'));
     if(i && i<3) d.setAttribute('data-g', String(i));
     d.innerHTML =
       '<button type="button" class="sual-bas" aria-expanded="false">'+
@@ -855,41 +900,96 @@ function girisOynat(){
   document.getElementById('giris').addEventListener('click', bitir);
 }
 
-/* ---------------- GÖRÜNMƏ ANİMASİYALARI ---------------- */
+/* ---------------- GÖRÜNMƏ ANİMASİYALARI ----------------
+   Yeganə həqiqət mənbəyi elementin real həndəsəsidir (getBoundingClientRect).
+   IntersectionObserver, scroll, resize, load və aşağı tezlikli nəbz —
+   hamısı yalnız həmin yoxlamanı işə salan tətiklərdir.
+   Bilərəkdən HEÇ BİR "hamısını aç" taymeri yoxdur: belə taymer
+   ekrandan kənardakı animasiyaları vaxtından əvvəl yandırırdı. */
 function gorunme(){
   var hedef=[].slice.call(document.querySelectorAll('.an, .kadr-sehne'));
+  /* animasiya sistemi qalxdı — CSS ehtiyat şəbəkəsi artıq lazım deyil */
+  try{ clearTimeout(window.__anNet); }catch(e){}
   if(!hedef.length) return;
-  function ac(e){ e.classList.add('gor'); }
-  if(az || !('IntersectionObserver' in window)){ hedef.forEach(ac); return; }
 
-  var io=new IntersectionObserver(function(g){
-    g.forEach(function(x){ if(x.isIntersecting){ ac(x.target); io.unobserve(x.target); } });
-  },{threshold:.1, rootMargin:'0px 0px -6% 0px'});
+  function ac(e){ if(!e.classList.contains('gor')) e.classList.add('gor'); }
 
-  hedef.forEach(function(e){
-    var r=e.getBoundingClientRect();
-    if(r.top < innerHeight*0.95 && r.bottom > 0){ setTimeout(function(){ ac(e); }, 40); }
-    else io.observe(e);
+  /* hərəkət azaldılıb: animasiya yox, məzmun dərhal və tam görünür */
+  if(az){ hedef.forEach(ac); return; }
+
+  var qalan=hedef.slice();
+  var io=null, nebz=0;
+
+  function dayan(){
+    removeEventListener('scroll', sur);
+    removeEventListener('resize', gec);
+    removeEventListener('orientationchange', gec);
+    removeEventListener('load', gec);
+    if(io){ io.disconnect(); io=null; }
+    if(nebz){ clearInterval(nebz); nebz=0; }
+  }
+
+  function yoxla(){
+    if(!qalan.length) return;
+    var vh = innerHeight || document.documentElement.clientHeight || 0;
+    if(!vh) return;
+    var esik = vh * 0.90;
+    for(var i=qalan.length-1; i>=0; i--){
+      var e=qalan[i], r=e.getBoundingClientRect();
+      /* display:none / hələ ölçüsü olmayan element — açılana qədər gözlə */
+      if(!r.width && !r.height) continue;
+      /* üst kənar hədd xəttini keçibsə aç.
+         r.bottom yoxlanılmır: yuxarıda qalmış elementlər də (anchor keçidi,
+         mövqe bərpası, geri düyməsi) son vəziyyətdə olmalıdır */
+      if(r.top < esik){ ac(e); qalan.splice(i,1); }
+    }
+    if(!qalan.length) dayan();
+  }
+  anYoxla = yoxla;
+
+  /* scroll: rAF varsa onunla, gəlməsə taymerlə təkrarla.
+     iOS-da momentum sürüşmə və ünvan sətri animasiyası zamanı
+     rAF gecikə bilir — sistem yalnız ona güvənməməlidir */
+  var kilid=false, sonVaxt=0;
+  function sur(){
+    var indi=Date.now();
+    if(kilid && indi-sonVaxt<200) return;
+    kilid=true; sonVaxt=indi;
+    if(typeof requestAnimationFrame==='function'){
+      requestAnimationFrame(function(){ kilid=false; yoxla(); });
+      setTimeout(function(){ if(kilid){ kilid=false; yoxla(); } }, 180);
+    }else{ kilid=false; yoxla(); }
+  }
+  /* ölçü/orientasiya dəyişəndə layout oturandan sonra da təkrarla */
+  function gec(){ yoxla(); setTimeout(yoxla,180); setTimeout(yoxla,600); }
+
+  addEventListener('scroll', sur, {passive:true});
+  addEventListener('resize', gec);
+  addEventListener('orientationchange', gec);
+  addEventListener('load', gec);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) gec(); });
+
+  /* şəkillər ölçü aldıqca mövqelər sürüşür — hər biri üçün yenidən hesabla */
+  [].slice.call(document.images).forEach(function(im){
+    if(!im.complete) im.addEventListener('load', gec, {once:true});
   });
 
-  /* --- ehtiyat 1: sürüşmə --- */
-  var bekle=false;
-  function yoxla(){
-    bekle=false; var qalan=0;
-    hedef.forEach(function(e){
-      if(e.classList.contains('gor')) return;
-      qalan++;
-      var r=e.getBoundingClientRect();
-      if(r.top < innerHeight*0.92 && r.bottom > 0) ac(e);
-    });
-    if(!qalan) removeEventListener('scroll', sur);
+  if('IntersectionObserver' in window){
+    try{
+      io=new IntersectionObserver(function(g){
+        for(var i=0;i<g.length;i++) if(g[i].isIntersecting){ yoxla(); return; }
+      },{threshold:0, rootMargin:'0px 0px -10% 0px'});
+      hedef.forEach(function(e){ io.observe(e); });
+    }catch(e){ io=null; }
   }
-  function sur(){ if(!bekle){ bekle=true; requestAnimationFrame(yoxla); } }
-  addEventListener('scroll', sur, {passive:true});
-  /* --- ehtiyat 2: taymer --- */
-  setTimeout(yoxla, 2600);
-  setTimeout(function(){ hedef.forEach(ac); }, 9000);
-  document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(yoxla,120); });
+
+  /* aşağı tezlikli təhlükəsizlik nəbzi: heç bir element gizli ilişib qalmasın.
+     Hər şey açılan kimi özü dayanır və ekrandan kənarı vaxtından əvvəl açmır. */
+  nebz=setInterval(yoxla, 400);
+
+  /* ilk yoxlama bir kadr sonra — sinif ilkin stildən sonra düşsün ki,
+     ekranda olan elementlər həqiqətən animasiya ilə gəlsin */
+  setTimeout(yoxla, 60);
 }
 
 /* ---------------- NAVİQASİYA + MENYU ---------------- */
@@ -912,6 +1012,8 @@ function portfolio(){
   var modal=document.getElementById('vmodal'), cer=document.getElementById('vmodal-cer');
   if(!lent) return;
 
+  if(lent.children[0]) lent.children[0].classList.add('aktiv');
+
   var bekle=false;
   lent.addEventListener('scroll', function(){
     if(bekle) return; bekle=true;
@@ -923,6 +1025,7 @@ function portfolio(){
         if(f<fq){ fq=f; en=i; }
       }
       if(indi) indi.textContent=String(en+1).padStart(2,'0');
+      for(var j=0;j<kartlar.length;j++) kartlar[j].classList.toggle('aktiv', j===en);
     });
   }, {passive:true});
 
@@ -962,6 +1065,7 @@ function suallar(){
     var d=e.target.closest('#hamsi-dgm');
     if(d){
       var acilib=siyahi.classList.toggle('acilib');
+      setTimeout(anYoxla, 30);
       var mtn=document.getElementById('hamsi-mtn'), say=document.getElementById('hamsi-say');
       var gizli=SUALLAR.length-3;
       if(mtn) mtn.textContent = acilib ? 'Sualları gizlət' : 'Bütün sualları göstər';
@@ -991,6 +1095,7 @@ function form(){
 
 /* ---------------- BAŞLAT ---------------- */
 function basla(){
+  try{ if(!location.hash) scrollTo(0,0); }catch(e){}
   var y=document.getElementById('il'); if(y) y.textContent=new Date().getFullYear();
   xidmetQur(); portfolioQur(); suallarQur(); qezetQur();
   naviqasiya(); portfolio(); suallar(); form();
