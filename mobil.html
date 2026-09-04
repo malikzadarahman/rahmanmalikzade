@@ -539,13 +539,27 @@ body.bitdi .alt-cubuq{transform:none}
 }
 
 @media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important}
-  .an,.an-hazir .an{opacity:1 !important;transform:none !important}
-  .an-hazir .hero h1 i,.hero h1 i{transform:none !important}
-  .an-hazir .hero p,.an-hazir .dgm-sira,.an-hazir .hero-etek,
-  .an-hazir .xid-siyahi li,.an-hazir .kadr-foto{opacity:1 !important;transform:none !important}
-  .an-hazir .qzt{opacity:var(--o,.75) !important}
+  /* SADƏLƏŞDİR, SÖNDÜRMƏ.
+     Götürülür: sürüşmə, böyümə, fırlanma, parallaks — yəni vestibulyar
+     narahatlıq yaradan HƏRƏKƏT.
+     Qalır: solğunlaşma və rəng keçidləri — bunlar hərəkət deyil və
+     səhifənin ölü şəkil kimi görünməsinin qarşısını alır. */
+  .an-hazir .an,.an-hazir .an--sol,.an-hazir .an--sag,.an-hazir .an--olcu{transform:none !important}
+  .an-hazir .hero h1 i{transform:none !important}
+  .an-hazir .hero p,.an-hazir .dgm-sira,.an-hazir .xid-siyahi li{transform:none !important}
   .an-hazir .nav,.an-hazir .alt-cubuq{transform:none !important}
+  .an-hazir .kadr-foto{transform:translateX(-50%) !important}
+
+  /* sonsuz hərəkət döngüləri dayanır (opacity nəbzləri qalır) */
+  .xid-hale,.pf-fon,.el-fon,.qzt,
+  .pf-kart::after,.pf-oynat::after,.asagi-ox::after,
+  .sual.aciq .sual-xett,
+  .giris-kam,.giris-parlaq,#flas.partla{animation:none !important}
+  .an-hazir .kadr-sehne.gor .qzt{opacity:var(--o,.75) !important}
+
+  /* gizli suallar hərəkətsiz açılsın */
+  .sual-siyahi.acilib .sual.gizli{animation:none !important;opacity:1 !important;transform:none !important}
+
   #giris{display:none}
 }
 
@@ -914,8 +928,9 @@ function gorunme(){
 
   function ac(e){ if(!e.classList.contains('gor')) e.classList.add('gor'); }
 
-  /* hərəkət azaldılıb: animasiya yox, məzmun dərhal və tam görünür */
-  if(az){ hedef.forEach(ac); return; }
+  /* Hərəkət azaldılıbsa sistem eyni qalır — yalnız CSS hərəkəti götürür,
+     elementlər yerində solğunlaşaraq görünür (prefers-reduced-motion bloku).
+     Beləcə məzmun etibarlı açılır, amma səhifə ölü şəkil kimi görünmür. */
 
   var qalan=hedef.slice();
   var io=null, nebz=0;

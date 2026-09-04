@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Animasiya diaqnostikası</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0b0b0c;color:#fbfaf8;font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+     padding:22px 18px calc(40px + env(safe-area-inset-bottom));-webkit-font-smoothing:antialiased}
+h1{font-size:20px;font-weight:600;margin-bottom:4px}
+.alt{color:#86868b;font-size:13px;margin-bottom:22px}
+
+#verdikt{border-radius:14px;padding:18px;margin-bottom:22px;font-weight:600;font-size:16px;line-height:1.4}
+#verdikt.gozle{background:#1c1c20;color:#86868b}
+#verdikt.pis{background:#3a1410;color:#ff8a70;border:1px solid #d93a1e}
+#verdikt.yaxsi{background:#0f2a22;color:#6fe0be;border:1px solid #2f8f70}
+#verdikt small{display:block;font-weight:400;font-size:13.5px;margin-top:10px;opacity:.85}
+
+.sinaq{background:#141417;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px;margin-bottom:14px}
+.sinaq h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#86868b;font-weight:500;margin-bottom:12px}
+
+.qutu{display:flex;align-items:center;gap:16px}
+#firlanan{width:52px;height:52px;border-radius:11px;background:linear-gradient(135deg,#d93a1e,#3b7fd4);
+          animation:fir 2s linear infinite;flex:none}
+@keyframes fir{to{transform:rotate(360deg)}}
+#nebz{width:16px;height:16px;border-radius:50%;background:#d93a1e;box-shadow:0 0 12px #d93a1e;
+      animation:neb 1.2s ease-in-out infinite;flex:none}
+@keyframes neb{0%,100%{opacity:1}50%{opacity:.15}}
+#reng{width:52px;height:52px;border-radius:11px;background:#3b7fd4;transition:background-color 1.6s linear;flex:none}
+.qeyd{font-size:13px;color:#86868b}
+
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+td{padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+td:first-child{color:#86868b;width:46%;padding-right:12px}
+td:last-child{font-family:ui-monospace,Menlo,monospace;font-size:12.5px;word-break:break-word}
+tr:last-child td{border-bottom:0}
+.ok{color:#6fe0be}
+.xeta{color:#ff8a70}
+
+.addim{background:#141417;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:16px;margin-bottom:14px}
+.addim h2{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#86868b;font-weight:500;margin-bottom:12px}
+.addim ol{margin:0 0 0 18px}
+.addim li{margin-bottom:7px;font-size:14px}
+a.geri{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:50px;
+       border-radius:999px;background:#fbfaf8;color:#0b0b0c;text-decoration:none;font-weight:600;margin-top:8px}
+</style>
+</head>
+<body>
+
+<h1>Animasiya diaqnostikası</h1>
+<div class="alt">Bu səhifə saytdan asılı deyil — birbaşa telefonu ölçür.</div>
+
+<div id="verdikt" class="gozle">Ölçülür… 2 saniyə gözlə.</div>
+
+<div class="sinaq">
+  <h2>1 · Gözlə görünən sınaq</h2>
+  <div class="qutu">
+    <div id="firlanan"></div>
+    <div id="nebz"></div>
+    <div id="reng"></div>
+  </div>
+  <p class="qeyd" style="margin-top:12px">
+    Sol kvadrat <b>fırlanmalı</b>, ortadakı nöqtə <b>yanıb-sönməli</b>,
+    sağ kvadrat <b>mavidən qırmızıya</b> keçməlidir. Tərpənmirsə — animasiyalar telefonda söndürülüb.
+  </p>
+</div>
+
+<div class="sinaq">
+  <h2>2 · Avtomatik ölçmə</h2>
+  <table id="cedvel"><tbody>
+    <tr><td>Ölçülür…</td><td>—</td></tr>
+  </tbody></table>
+</div>
+
+<div class="addim" id="hell" hidden>
+  <h2>Həlli</h2>
+  <ol id="hell-siyahi"></ol>
+</div>
+
+<a class="geri" href="/mobil?mob=1">← Sayta qayıt</a>
+
+<script>
+(function(){
+'use strict';
+var yat = function(ms){ return new Promise(function(r){ setTimeout(r, ms); }); };
+var $ = function(id){ return document.getElementById(id); };
+
+function sətir(ad, deyer, veziyyet){
+  var sinif = veziyyet === true ? 'ok' : (veziyyet === false ? 'xeta' : '');
+  return '<tr><td>' + ad + '</td><td class="' + sinif + '">' + deyer + '</td></tr>';
+}
+
+async function isle(){
+  /* --- OS parametri --- */
+  var mq = null, azOS = false;
+  try{ mq = matchMedia('(prefers-reduced-motion: reduce)'); azOS = mq.matches; }catch(e){}
+
+  /* --- CSS animasiyası həqiqətən irəliləyirmi --- */
+  var f = $('firlanan');
+  var a1 = getComputedStyle(f).transform;
+  /* --- keçid həqiqətən irəliləyirmi --- */
+  var r = $('reng');
+  r.offsetHeight;
+  r.style.backgroundColor = '#d93a1e';
+
+  await yat(650);
+
+  var a2 = getComputedStyle(f).transform;
+  var rengOrta = getComputedStyle(r).backgroundColor;
+  var animIsleyir = (a1 !== a2);
+  /* keçid işləyirsə 650ms-də 1600ms-lik keçid hələ bitməyib → aralıq rəng */
+  var kecidIsleyir = !/^rgba?\(\s*217,\s*58,\s*30/.test(rengOrta);
+
+  /* --- cihaz məlumatları --- */
+  var toxunma = false, kobud = false;
+  try{ toxunma = matchMedia('(any-pointer: coarse)').matches; }catch(e){}
+  try{ kobud = matchMedia('(pointer: coarse)').matches; }catch(e){}
+
+  var sətirlər =
+    sətir('Reduce Motion (OS)', azOS ? 'AÇIQ — animasiyalar söndürülüb' : 'bağlı', !azOS) +
+    sətir('CSS animasiyası irəliləyir', animIsleyir ? 'bəli' : 'XEYR — donub', animIsleyir) +
+    sətir('CSS keçidi irəliləyir', kecidIsleyir ? 'bəli' : 'XEYR — donub', kecidIsleyir) +
+    sətir('Ekran (CSS px)', innerWidth + ' × ' + innerHeight) +
+    sətir('Piksel nisbəti', (window.devicePixelRatio || 1)) +
+    sətir('Toxunma ekranı', kobud ? 'bəli' : 'xeyr') +
+    sətir('IntersectionObserver', ('IntersectionObserver' in window) ? 'var' : 'YOXDUR', ('IntersectionObserver' in window)) +
+    sətir('requestAnimationFrame', (typeof requestAnimationFrame === 'function') ? 'var' : 'YOXDUR', (typeof requestAnimationFrame === 'function')) +
+    sətir('Səhifə görünür', document.hidden ? 'xeyr' : 'bəli', !document.hidden) +
+    sətir('Brauzer', navigator.userAgent);
+
+  $('cedvel').innerHTML = '<tbody>' + sətirlər + '</tbody>';
+
+  /* --- verdikt --- */
+  var v = $('verdikt'), h = $('hell'), hs = $('hell-siyahi');
+
+  if(azOS){
+    v.className = 'pis';
+    v.innerHTML = 'Səbəb tapıldı: telefonda <b>“Hərəkəti azalt”</b> (Reduce Motion) açıqdır.' +
+      '<small>Bu parametr açıq olanda sayt bütün animasiya və rəng keçidlərini qəsdən söndürür — ' +
+      'buna görə səhifə düz şəkil kimi görünür. Sayt kodunda problem yoxdur.</small>';
+    h.hidden = false;
+    hs.innerHTML =
+      '<li><b>Ayarlar</b> → <b>Əlçatanlıq</b> (Accessibility) → <b>Hərəkət</b> (Motion)</li>' +
+      '<li><b>Hərəkəti azalt</b> (Reduce Motion) açarını <b>söndür</b></li>' +
+      '<li>Safari-ni tam bağla və saytı yenidən aç</li>' +
+      '<li>Bu səhifəyə qayıdıb yenidən yoxla — yuxarıdakı sətir “bağlı” olmalıdır</li>';
+  }else if(!animIsleyir || !kecidIsleyir){
+    v.className = 'pis';
+    v.innerHTML = 'Animasiyalar telefonda <b>dondurulub</b>, amma “Hərəkəti azalt” bağlıdır.' +
+      '<small>Ən çox ehtimal olunan səbəb <b>Az Enerji Rejimi</b> (Low Power Mode) və ya ' +
+      'brauzerin enerjiyə qənaət rejimidir. Batareya ikonu sarıdırsa — səbəb odur.</small>';
+    h.hidden = false;
+    hs.innerHTML =
+      '<li>Batareya ikonu <b>sarıdırsa</b>: Ayarlar → Batareya → <b>Az Enerji Rejimi</b>ni söndür</li>' +
+      '<li>Telefonu şarja qoş və ya bir dəfə yenidən başlat</li>' +
+      '<li>Bu səhifəni yenidən aç və nəticəni yoxla</li>';
+  }else{
+    v.className = 'yaxsi';
+    v.innerHTML = 'Telefonda animasiyalar <b>işləyir</b>.' +
+      '<small>Yuxarıdakı kvadrat fırlanır və rəng keçidi görünür. ' +
+      'Bu halda problem saytın öz kodundadır — ekran şəklini göndər.</small>';
+  }
+}
+
+isle().catch(function(e){
+  $('verdikt').className = 'pis';
+  $('verdikt').textContent = 'Ölçmə xətası: ' + (e && e.message ? e.message : e);
+});
+})();
+</script>
+</body>
+</html>
