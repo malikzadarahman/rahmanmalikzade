@@ -1,0 +1,1299 @@
+<!doctype html>
+<html lang="az">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0c">
+<title>Rəhman Məlikzadə — Bir çəkiliş günü</title>
+<meta name="description" content="Bakıda videoqraf və filmmaker Rəhman Məlikzadə. Klaperdən təhvilə qədər bir çəkiliş günü.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://vz-d125fae9-c0e.b-cdn.net" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/font.css">
+<script>
+/* Animasiya bayrağı: JS ölsə 8 saniyə sonra bütün məzmun görünən olur */
+(function(){
+  try{
+    document.documentElement.classList.add('an-hazir');
+    window.__anNet=setTimeout(function(){document.documentElement.classList.remove('an-hazir');},8000);
+    if('scrollRestoration' in history) history.scrollRestoration='manual';
+  }catch(e){}
+})();
+</script>
+<style>
+/* ==========================================================================
+   KONSEPT — "Bu sayt bir çəkiliş günüdür"
+   Bir səhifə, bir ideya: ziyarətçi portfolio gəzmir, bir prodakşndan keçir.
+   Klaper düşür → timecode işləyir → film lenti dolur → təhvil.
+   Tək responsive fayl: ayrıca mobil versiya yoxdur.
+   ========================================================================== */
+:root{
+  --murekkeb:#0b0b0c;
+  --film:#0e0e11;          /* səhnə fonu — qaranlıq zal */
+  --film2:#15151a;
+  --kagiz:#fbfaf8;         /* kağız — yalnız finalda */
+  --sus:#8a8a92;
+  --xett:rgba(251,250,248,.13);
+  --xett-q:rgba(11,11,12,.13);
+  --rec:#d93a1e;
+  --mavi:#3b7fd4;
+  --dsp:"Latino","Boruna","Poppins",serif;
+  --metn:"Poppins",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --kenar:clamp(18px,5vw,72px);
+  --hud:44px;
+  --lent:52px;
+  --yum:cubic-bezier(.22,.61,.36,1);
+  --yay:cubic-bezier(.34,1.28,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--film);color:var(--kagiz);
+  font-family:var(--metn);font-weight:300;font-size:clamp(15px,1.05vw,16.5px);line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  padding-bottom:calc(var(--lent) + env(safe-area-inset-bottom));
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer}
+::selection{background:var(--rec);color:var(--kagiz)}
+:focus-visible{outline:2px solid var(--rec);outline-offset:3px}
+
+.mono{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--sus)}
+.qab{max-width:1400px;margin:0 auto}
+
+/* bölmə: hər biri prodakşnın bir mərhələsidir */
+.pillə{position:relative;padding:clamp(72px,11vh,140px) var(--kenar);scroll-margin-top:var(--hud)}
+.pillə-bas{
+  display:flex;align-items:baseline;gap:clamp(12px,2vw,26px);
+  padding-bottom:20px;margin-bottom:clamp(30px,5vh,58px);
+  border-bottom:1px solid var(--xett)
+}
+.pillə-no{
+  font-family:var(--mono);font-size:clamp(11px,1.4vw,13px);font-weight:500;
+  letter-spacing:.14em;color:var(--rec);flex:none
+}
+.pillə-ad{font-family:var(--mono);font-size:clamp(10px,1.2vw,11.5px);letter-spacing:.24em;text-transform:uppercase;color:var(--sus);flex:none}
+.pillə-tc{margin-left:auto;font-family:var(--mono);font-size:10px;letter-spacing:.12em;color:rgba(251,250,248,.3);flex:none}
+h2{
+  font-family:var(--dsp);font-weight:400;
+  font-size:clamp(30px,5.4vw,68px);line-height:1.03;letter-spacing:-.018em;
+  max-width:18ch
+}
+.izah{margin-top:clamp(16px,2vh,24px);color:var(--sus);font-size:clamp(14px,1.12vw,17px);max-width:52ch}
+
+/* ==================== 00 · KLAPER ==================== */
+#klaper{
+  position:fixed;inset:0;z-index:9999;background:var(--murekkeb);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(20px,4vh,38px);
+  transition:opacity .7s var(--yum),visibility .7s
+}
+body.çəkilir #klaper{opacity:0;visibility:hidden;pointer-events:none}
+.klp{
+  width:min(78vw,420px);
+  transform:scale(.94);opacity:0;
+  animation:klpGel .7s .1s var(--yay) forwards
+}
+@keyframes klpGel{to{opacity:1;transform:scale(1)}}
+/* çubuq */
+.klp-cubuq{
+  height:clamp(26px,5.4vw,40px);border-radius:3px 3px 0 0;
+  background:repeating-linear-gradient(66deg,
+    #f4f3f1 0 8.5%, #f4f3f1 8.5%, #16161a 8.5% 17%);
+  transform-origin:6% 100%;
+  transform:rotate(-24deg);
+  animation:klpVur .62s .95s var(--yum) forwards
+}
+@keyframes klpVur{
+  0%{transform:rotate(-24deg)}
+  62%{transform:rotate(0deg)}
+  76%{transform:rotate(-4.2deg)}
+  88%{transform:rotate(-.8deg)}
+  100%{transform:rotate(0deg)}
+}
+/* lövhə */
+.klp-lovhe{
+  background:#16161a;border:1px solid rgba(251,250,248,.16);border-top:0;
+  border-radius:0 0 4px 4px;padding:clamp(14px,3vw,22px) clamp(14px,3vw,22px) clamp(16px,3.4vw,26px);
+  display:grid;grid-template-columns:1fr auto;gap:6px clamp(12px,3vw,20px)
+}
+.klp-set{font-family:var(--dsp);font-size:clamp(19px,4.4vw,30px);line-height:1.05;grid-column:1/-1}
+.klp-set span{color:var(--sus)}
+.klp-sətir{
+  font-family:var(--mono);font-size:clamp(8.5px,1.9vw,10.5px);letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(251,250,248,.42);display:flex;justify-content:space-between;gap:14px;grid-column:1/-1;
+  padding-top:9px;border-top:1px solid rgba(251,250,248,.1)
+}
+.klp-sətir b{font-weight:400;color:rgba(251,250,248,.82)}
+.klp-alt{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:rgba(251,250,248,.34);text-align:center;
+  opacity:0;animation:klpGel .5s 1.75s var(--yum) forwards
+}
+#flas{position:fixed;inset:0;z-index:10000;background:#fff;opacity:0;pointer-events:none}
+#flas.vur{animation:flasVur .55s var(--yum) forwards}
+@keyframes flasVur{0%{opacity:0}9%{opacity:.92}100%{opacity:0}}
+
+/* ==================== HUD — kamera görüntüsü ==================== */
+.hud{
+  position:fixed;top:0;left:0;right:0;z-index:900;height:calc(var(--hud) + env(safe-area-inset-top));
+  padding:env(safe-area-inset-top) var(--kenar) 0;
+  display:flex;align-items:center;gap:clamp(10px,2vw,22px);
+  background:rgba(14,14,17,.72);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-bottom:1px solid transparent;
+  transform:translateY(-100%);
+  transition:transform .6s var(--yum),border-color .4s,background .4s
+}
+body.çəkilir .hud{transform:none}
+.hud.enib{border-bottom-color:var(--xett)}
+.hud-ad{font-family:var(--dsp);font-size:clamp(14px,1.5vw,17px);white-space:nowrap}
+.hud-rec{display:flex;align-items:center;gap:7px;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;color:rgba(251,250,248,.5)}
+.hud-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 9px var(--rec);animation:nebz 1.7s infinite}
+@keyframes nebz{0%,100%{opacity:1}50%{opacity:.2}}
+.hud-tc{
+  font-family:var(--mono);font-size:clamp(10px,1.2vw,12px);font-weight:500;letter-spacing:.1em;
+  color:rgba(251,250,248,.9);font-variant-numeric:tabular-nums
+}
+.hud-bolme{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--sus);white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.hud-sag{margin-left:auto;display:flex;align-items:center;gap:clamp(10px,2vw,20px)}
+.hud-dgm{
+  padding:9px 18px;border-radius:999px;border:1px solid var(--xett);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  white-space:nowrap;transition:background .3s,color .3s,border-color .3s
+}
+.hud-dgm:hover,.hud-dgm:active{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz)}
+.hud-dgm .dar{display:none}
+@media (max-width:720px){ .hud-rec span,.hud-bolme{display:none} }
+@media (max-width:620px){
+  /* dar ekranda HUD-u sıxlaşdır — düymə kənardan çıxmasın */
+  .hud{gap:9px}
+  .hud-ad{font-size:12.5px}
+  .hud-tc{font-size:10.5px;letter-spacing:.06em}
+  .hud-dgm{padding:8px 13px;font-size:8.5px;letter-spacing:.13em}
+  .hud-dgm .genis{display:none}
+  .hud-dgm .dar{display:inline}
+}
+
+/* ==================== FİLM LENTİ — səhifə mövqeyi ==================== */
+.lent{
+  position:fixed;left:0;right:0;bottom:0;z-index:900;
+  height:calc(var(--lent) + env(safe-area-inset-bottom));
+  padding:0 var(--kenar) env(safe-area-inset-bottom);
+  display:flex;align-items:center;gap:clamp(6px,1vw,10px);
+  background:rgba(14,14,17,.82);
+  -webkit-backdrop-filter:blur(18px) saturate(160%);backdrop-filter:blur(18px) saturate(160%);
+  border-top:1px solid var(--xett);
+  transform:translateY(110%);transition:transform .6s var(--yay)
+}
+body.çəkilir .lent{transform:none}
+.lent-perf{
+  position:absolute;left:0;right:0;height:3px;
+  background:repeating-linear-gradient(90deg,rgba(251,250,248,.22) 0 4px,transparent 4px 12px);
+  pointer-events:none
+}
+.lent-perf.ust{top:5px} .lent-perf.alt{bottom:calc(5px + env(safe-area-inset-bottom))}
+.xana{
+  position:relative;flex:1;height:26px;border:1px solid var(--xett);border-radius:2px;
+  overflow:hidden;transition:border-color .45s var(--yum)
+}
+.xana::before{
+  content:"";position:absolute;inset:0;background:rgba(251,250,248,.1);
+  transform:scaleX(0);transform-origin:left;transition:transform .5s var(--yum)
+}
+.xana.kecdi::before{transform:scaleX(1)}
+.xana.aktiv{border-color:rgba(251,250,248,.45)}
+.xana.aktiv::before{transform:scaleX(1);background:rgba(251,250,248,.2)}
+.xana-ad{
+  position:relative;z-index:1;display:flex;align-items:center;justify-content:center;height:100%;
+  font-family:var(--mono);font-size:8px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(251,250,248,.5);white-space:nowrap;overflow:hidden;
+  opacity:0;transition:opacity .35s var(--yum)
+}
+.xana.aktiv .xana-ad,.xana:hover .xana-ad{opacity:1}
+@media (max-width:620px){ .xana-ad{display:none} .xana{height:18px} }
+
+/* ==================== ORTAQ GİRİŞ ANİMASİYASI ==================== */
+.an{transition:opacity .6s var(--yum),transform .7s var(--yay)}
+.an-hazir .an{opacity:0;transform:translate3d(0,30px,0)}
+.an-hazir .an.gor{opacity:1;transform:none}
+.an[data-g="1"]{transition-delay:.08s}
+.an[data-g="2"]{transition-delay:.16s}
+.an[data-g="3"]{transition-delay:.24s}
+.an[data-g="4"]{transition-delay:.32s}
+
+/* ==================== 01 · BRİF ==================== */
+.brif{
+  min-height:100vh;min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:calc(var(--hud) + 8vh) var(--kenar) 14vh;position:relative;overflow:hidden
+}
+.brif-fon{
+  position:absolute;inset:-20%;z-index:0;pointer-events:none;
+  background:radial-gradient(38% 44% at 72% 26%,rgba(217,58,30,.22),transparent 68%),
+             radial-gradient(34% 40% at 22% 74%,rgba(59,127,212,.18),transparent 68%);
+  filter:blur(60px);
+  animation:fonUz 22s ease-in-out infinite alternate
+}
+@keyframes fonUz{0%{transform:translate3d(-3%,-2%,0) scale(1)}100%{transform:translate3d(4%,3%,0) scale(1.15)}}
+.brif > *{position:relative;z-index:1}
+.brif h1{
+  font-family:var(--dsp);font-weight:400;
+  font-size:clamp(40px,8.6vw,132px);line-height:.98;letter-spacing:-.026em;
+  margin-top:clamp(18px,3vh,32px);max-width:15ch
+}
+.brif h1 span{display:block;overflow:hidden}
+.brif h1 i{display:block;font-style:normal;transition:transform .95s var(--yum)}
+.an-hazir .brif h1 i{transform:translateY(106%)}
+body.çəkilir .brif h1 i{transform:none}
+body.çəkilir .brif h1 span:nth-child(2) i{transition-delay:.1s}
+body.çəkilir .brif h1 span:nth-child(3) i{transition-delay:.2s}
+.brif-alt{
+  display:flex;flex-wrap:wrap;align-items:flex-end;gap:clamp(20px,4vw,60px);
+  margin-top:clamp(26px,4vh,46px);
+  transition:opacity .8s .5s var(--yum),transform .8s .5s var(--yay)
+}
+.an-hazir .brif-alt{opacity:0;transform:translateY(20px)}
+body.çəkilir .brif-alt{opacity:1;transform:none}
+.brif-alt p{color:var(--sus);font-size:clamp(14.5px,1.2vw,18px);max-width:38ch}
+.dgm-sıra{display:flex;gap:10px;flex-wrap:wrap}
+.dgm{
+  display:inline-flex;align-items:center;gap:10px;min-height:52px;
+  padding:15px 28px;border-radius:999px;border:1px solid var(--xett);
+  font-size:14.5px;white-space:nowrap;
+  transition:transform .3s var(--yay),background .35s,color .35s,border-color .35s
+}
+.dgm:active{transform:scale(.95)}
+.dgm.dolu{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz)}
+.dgm.dolu:hover{background:var(--rec);border-color:var(--rec);color:var(--kagiz)}
+.dgm:not(.dolu):hover{border-color:rgba(251,250,248,.45)}
+/* say göstəriciləri */
+.reqemler{display:flex;gap:clamp(24px,5vw,72px);margin-top:clamp(34px,6vh,68px);flex-wrap:wrap}
+.reqem b{display:block;font-family:var(--dsp);font-weight:400;font-size:clamp(30px,4.4vw,56px);line-height:1;letter-spacing:-.02em}
+.reqem span{display:block;margin-top:8px;font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--sus)}
+
+/* ==================== 02 · MÜŞTƏRİLƏR ==================== */
+.mus{padding:clamp(46px,7vh,84px) 0;border-block:1px solid var(--xett);overflow:hidden}
+.mus-bas{padding:0 var(--kenar);margin-bottom:clamp(24px,4vh,44px)}
+.axın{display:flex;gap:0;width:max-content;animation:axın 42s linear infinite}
+.axın.geri{animation-direction:reverse;animation-duration:52s}
+.axın:nth-child(3){margin-top:14px}
+@keyframes axın{to{transform:translate3d(-50%,0,0)}}
+.mus-ad{
+  font-family:var(--dsp);font-size:clamp(21px,3.1vw,40px);line-height:1;
+  padding:0 clamp(16px,2.4vw,34px);color:rgba(251,250,248,.34);white-space:nowrap;
+  transition:color .4s
+}
+.mus-ad::after{content:"·";margin-left:clamp(16px,2.4vw,34px);color:rgba(251,250,248,.16)}
+.mus:hover .mus-ad{color:rgba(251,250,248,.5)}
+
+/* ==================== 03 · KADRAJ (xidmətlər) ==================== */
+.kadraj{display:flex;flex-direction:column}
+.xid{
+  position:relative;display:grid;
+  grid-template-columns:minmax(0,1fr);gap:clamp(14px,2vw,26px);
+  padding:clamp(26px,4vh,44px) 0;border-top:1px solid var(--xett);
+  transition:background .5s var(--yum)
+}
+.xid:last-child{border-bottom:1px solid var(--xett)}
+.xid::before{
+  content:"";position:absolute;left:calc(var(--kenar) * -1);right:calc(var(--kenar) * -1);top:0;bottom:0;
+  background:linear-gradient(90deg,var(--aks,var(--rec)),transparent 62%);
+  opacity:0;transition:opacity .55s var(--yum);pointer-events:none;z-index:0
+}
+.xid.açıq::before{opacity:.09}
+.xid > *{position:relative;z-index:1}
+.xid-ust{display:flex;align-items:baseline;gap:clamp(12px,2vw,24px);cursor:pointer}
+.xid-no{font-family:var(--mono);font-size:11px;letter-spacing:.14em;color:var(--sus);flex:none}
+.xid-ad{
+  font-family:var(--dsp);font-weight:400;font-size:clamp(25px,4.2vw,54px);line-height:1;letter-spacing:-.02em;
+  transition:color .4s var(--yum)
+}
+.xid.açıq .xid-ad{color:var(--aks,var(--rec))}
+.xid-kadr{
+  margin-left:auto;font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--sus);border:1px solid var(--xett);border-radius:999px;padding:6px 12px;flex:none;
+  transition:border-color .4s,color .4s
+}
+.xid.açıq .xid-kadr{color:var(--kagiz);border-color:rgba(251,250,248,.4)}
+.xid-sar{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--yum)}
+.xid.açıq .xid-sar{grid-template-rows:1fr}
+.xid-ic{overflow:hidden}
+.xid-govde{
+  display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+  gap:clamp(16px,3vw,48px);padding-top:clamp(16px,2.4vh,26px)
+}
+.xid-govde p{color:var(--sus);font-size:15px;max-width:46ch}
+.xid-siyahi{list-style:none;display:flex;flex-wrap:wrap;gap:8px;align-content:flex-start}
+.xid-siyahi li{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;
+  padding:9px 14px;border-radius:999px;border:1px solid var(--xett);color:rgba(251,250,248,.7)
+}
+@media (max-width:760px){
+  .xid-govde{grid-template-columns:minmax(0,1fr)}
+  .xid-kadr{display:none}
+}
+
+/* ==================== 04 · ÇƏKİLİŞ (portfolio) ==================== */
+.cip-sıra{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:clamp(22px,3.5vh,38px)}
+.cip{
+  padding:11px 18px;border-radius:999px;border:1px solid var(--xett);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--sus);min-height:42px;display:inline-flex;align-items:center;gap:8px;
+  transition:background .3s,color .3s,border-color .3s,transform .25s var(--yay)
+}
+.cip:active{transform:scale(.94)}
+.cip.aktiv{background:var(--kagiz);color:var(--murekkeb);border-color:var(--kagiz)}
+.cip u{text-decoration:none;opacity:.55;font-size:8.5px}
+.tor{
+  display:grid;gap:clamp(10px,1.4vw,20px);
+  grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr))
+}
+.is{
+  position:relative;display:block;width:100%;border-radius:12px;overflow:hidden;
+  background:#111;aspect-ratio:9/14;border:1px solid rgba(251,250,248,.1);
+  transition:transform .45s var(--yum),border-color .4s,opacity .4s
+}
+.is.yatay{aspect-ratio:16/11}
+.is:hover{transform:translateY(-5px);border-color:rgba(251,250,248,.32)}
+.is:active{transform:scale(.985)}
+.is img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--yum),filter .5s}
+.is:hover img{transform:scale(1.05)}
+.is-ort{
+  position:absolute;inset:0;z-index:2;padding:14px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:6px;
+  background:linear-gradient(to top,rgba(0,0,0,.9) 0%,rgba(0,0,0,.35) 42%,transparent 72%)
+}
+.is-no{
+  position:absolute;top:12px;left:12px;font-family:var(--mono);font-size:9px;letter-spacing:.16em;
+  color:rgba(255,255,255,.66)
+}
+.is-kat{
+  position:absolute;top:12px;right:12px;font-family:var(--mono);font-size:8px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--murekkeb);background:var(--kagiz);padding:4px 9px;border-radius:999px
+}
+.is-ad{font-family:var(--dsp);font-size:clamp(17px,1.5vw,22px);line-height:1.1}
+.is-mus{font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.is-oynat{
+  position:absolute;top:50%;left:50%;width:52px;height:52px;margin:-26px 0 0 -26px;z-index:3;
+  border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(11,11,12,.36);
+  -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transform:scale(.86);transition:opacity .35s var(--yum),transform .4s var(--yay)
+}
+.is:hover .is-oynat{opacity:1;transform:none}
+.is-oynat svg{width:15px;height:15px;fill:#fff;margin-left:3px}
+@media (hover:none){ .is-oynat{opacity:1;transform:none} }
+.is.gizli{display:none}
+
+/* video modalı */
+.vm{
+  position:fixed;inset:0;z-index:9500;display:flex;align-items:center;justify-content:center;padding:clamp(14px,3vw,40px);
+  opacity:0;pointer-events:none;transition:opacity .4s var(--yum)
+}
+.vm.açıq{opacity:1;pointer-events:auto}
+.vm-fon{position:absolute;inset:0;background:rgba(6,6,7,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.vm-qab{position:relative;z-index:2;width:100%;max-width:min(94vw,560px);transform:scale(.95) translateY(16px);transition:transform .45s var(--yay)}
+.vm.açıq .vm-qab{transform:none}
+.vm-qab.yatay{max-width:min(94vw,1060px)}
+.vm-cer{position:relative;width:100%;aspect-ratio:9/16;border-radius:12px;overflow:hidden;background:#000}
+.vm-qab.yatay .vm-cer{aspect-ratio:16/9}
+.vm-cer iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.vm-bas{display:flex;align-items:baseline;gap:12px;margin-top:14px;flex-wrap:wrap}
+.vm-ad{font-family:var(--dsp);font-size:20px}
+.vm-mus{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)}
+.vm-bagla{
+  position:absolute;top:calc(-54px - env(safe-area-inset-top,0px));right:0;
+  width:44px;height:44px;border-radius:50%;border:1px solid var(--xett);
+  background:rgba(11,11,12,.6);font-size:20px;line-height:1;
+  display:flex;align-items:center;justify-content:center
+}
+
+/* ==================== 05 · KADR ARXASI ==================== */
+#karx{overflow:hidden;padding-bottom:0}
+.karx-sehne{position:relative;height:min(82vh,760px);min-height:440px;margin-top:clamp(26px,4vh,50px)}
+.karx-x{
+  position:absolute;left:50%;top:45%;z-index:0;
+  width:min(96vh,104vw);height:min(96vh,104vw);
+  transform:translate(-50%,-50%) scale(.88);
+  opacity:0;filter:blur(32px);pointer-events:none;user-select:none
+}
+.karx-x svg{width:100%;height:100%;display:block;overflow:visible}
+.karx-x g{opacity:.5}
+.qat{position:absolute;inset:0;pointer-events:none}
+.qat[data-qat="1"]{z-index:1}
+.qat[data-qat="2"]{z-index:3}
+.qat[data-qat="2"] .qzt{filter:drop-shadow(0 18px 26px rgba(0,0,0,.5))}
+.qzt{position:absolute;transition:opacity .8s var(--yum)}
+.an-hazir .qzt{opacity:0}
+.an-hazir .karx-sehne.gor .qzt{opacity:var(--o,.7)}
+.karx-sehne.gor .qzt{animation:qztUz var(--s,8s) ease-in-out infinite alternate}
+@keyframes qztUz{
+  0%{transform:translate(-50%,-50%) rotate(var(--d,0deg)) translate3d(0,0,0)}
+  100%{transform:translate(-50%,-50%) rotate(calc(var(--d,0deg) + 6deg)) translate3d(9px,-20px,0)}
+}
+.karx-foto{
+  position:absolute;left:50%;bottom:0;height:100%;z-index:2;
+  transition:opacity 1s var(--yum)
+}
+.an-hazir .karx-foto{opacity:0}
+.an-hazir .karx-sehne.gor .karx-foto{opacity:1}
+.karx-foto img{height:100%;width:auto;max-width:none;object-fit:contain;filter:grayscale(1) contrast(1.06)}
+.karx-söz{
+  position:absolute;left:0;right:0;bottom:clamp(18px,4vh,44px);z-index:4;text-align:center;
+  font-family:var(--dsp);font-size:clamp(19px,2.6vw,34px);line-height:1.2;
+  padding:0 var(--kenar);pointer-events:none;text-shadow:0 4px 30px rgba(0,0,0,.6)
+}
+
+/* ==================== 06 · MONTAJ (proses + paketlər) ==================== */
+.addımlar{
+  display:grid;gap:clamp(12px,1.6vw,20px);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));
+  margin-bottom:clamp(40px,6vh,80px)
+}
+.addım{
+  position:relative;padding:clamp(20px,2.6vw,30px);border-radius:14px;
+  border:1px solid var(--xett);background:var(--film2)
+}
+.addım-no{font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--rec)}
+.addım-ad{font-family:var(--dsp);font-size:clamp(19px,1.9vw,26px);line-height:1.1;margin-top:clamp(20px,3vh,34px)}
+.addım p{margin-top:10px;color:var(--sus);font-size:13.5px}
+.addım-vaxt{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--xett);
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(251,250,248,.5)
+}
+.pkt-tor{display:grid;gap:clamp(12px,1.6vw,20px);grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr))}
+.pkt{
+  position:relative;overflow:hidden;padding:clamp(24px,3vw,38px);border-radius:16px;
+  border:1px solid var(--xett);background:var(--film2);
+  display:flex;flex-direction:column;
+  transition:border-color .4s,transform .4s var(--yum)
+}
+.pkt:hover{border-color:rgba(251,250,248,.3);transform:translateY(-4px)}
+.pkt-hale{
+  position:absolute;width:78%;aspect-ratio:1;border-radius:50%;pointer-events:none;filter:blur(52px);
+  left:-14%;top:-32%;opacity:.32;
+  background:radial-gradient(circle,var(--aks,var(--rec)),transparent 68%)
+}
+.pkt > *{position:relative;z-index:1}
+.pkt-nisan{
+  align-self:flex-start;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  background:var(--kagiz);color:var(--murekkeb);padding:6px 12px;border-radius:999px
+}
+.pkt-qiymet{display:flex;align-items:baseline;gap:8px;margin-top:clamp(26px,4vh,46px)}
+.pkt-qiymet b{font-family:var(--dsp);font-weight:400;font-size:clamp(40px,4.4vw,60px);line-height:1;letter-spacing:-.02em}
+.pkt-qiymet i{font-family:var(--dsp);font-style:normal;font-size:19px;color:var(--aks,var(--rec))}
+.pkt-etiket{margin-top:8px;color:var(--sus);font-size:13.5px}
+.pkt ul{list-style:none;margin:22px 0 0;display:flex;flex-direction:column;gap:9px}
+.pkt li{position:relative;padding-left:18px;font-size:13.5px;color:rgba(251,250,248,.74)}
+.pkt li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:1px;background:var(--aks,var(--rec))}
+.pkt-alt{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:auto;padding-top:24px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase
+}
+.pkt-alt i{font-style:normal;font-size:17px}
+
+/* ==================== 07 · QEYDLƏR (suallar) ==================== */
+.sual-siyahi{display:flex;flex-direction:column;max-width:900px}
+.sual{border-top:1px solid var(--xett)}
+.sual:last-of-type{border-bottom:1px solid var(--xett)}
+.sual-bas{
+  width:100%;display:flex;align-items:center;gap:clamp(12px,2vw,22px);
+  padding:clamp(18px,2.4vh,26px) 0;text-align:left;min-height:60px
+}
+.sual-no{font-family:var(--mono);font-size:10px;letter-spacing:.16em;color:var(--sus);flex:none;transition:color .4s}
+.sual.açıq .sual-no{color:var(--rec)}
+.sual-mtn{flex:1;font-size:clamp(15px,1.4vw,19px);line-height:1.35}
+.sual-ox{position:relative;width:14px;height:14px;flex:none;transition:transform .45s var(--yay)}
+.sual-ox i{position:absolute;top:50%;left:50%;width:13px;height:1.3px;background:rgba(251,250,248,.6);transform:translate(-50%,-50%)}
+.sual-ox i:last-child{transform:translate(-50%,-50%) rotate(90deg);transition:transform .45s var(--yay)}
+.sual.açıq .sual-ox{transform:rotate(180deg)}
+.sual.açıq .sual-ox i:last-child{transform:translate(-50%,-50%)}
+.sual-sar{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--yum)}
+.sual.açıq .sual-sar{grid-template-rows:1fr}
+.sual-ic{overflow:hidden}
+.sual-ic p{
+  padding:0 0 24px clamp(30px,4vw,52px);color:var(--sus);font-size:14.5px;line-height:1.7;max-width:62ch;
+  opacity:0;transform:translateY(8px);transition:opacity .45s .1s var(--yum),transform .45s .1s var(--yum)
+}
+.sual.açıq .sual-ic p{opacity:1;transform:none}
+.hamsi{
+  align-self:flex-start;margin-top:22px;padding:14px 22px;border-radius:999px;border:1px solid var(--xett);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:11px;min-height:46px;transition:background .3s,color .3s
+}
+.hamsi:hover{background:var(--kagiz);color:var(--murekkeb)}
+.sual.gizli{display:none}
+.sual-siyahi.açılıb .sual.gizli{display:block}
+
+/* ==================== 08 · TƏHVİL — işıqlar yanır ==================== */
+.tehvil{
+  background:var(--kagiz);color:var(--murekkeb);
+  padding:clamp(80px,14vh,180px) var(--kenar) clamp(80px,12vh,150px);
+  position:relative;overflow:hidden
+}
+.tehvil .mono,.tehvil .pillə-ad{color:#6b6b72}
+.tehvil .pillə-bas{border-bottom-color:var(--xett-q)}
+.tehvil .pillə-tc{color:rgba(11,11,12,.3)}
+.tehvil h2{font-size:clamp(34px,7vw,96px);letter-spacing:-.026em;max-width:14ch}
+.tehvil-izah{margin-top:22px;color:#5f5f66;font-size:clamp(15px,1.2vw,18px);max-width:46ch}
+.tehvil-dgm{display:flex;gap:10px;flex-wrap:wrap;margin-top:clamp(30px,5vh,52px)}
+.tehvil .dgm{border-color:var(--xett-q)}
+.tehvil .dgm.dolu{background:var(--murekkeb);color:var(--kagiz);border-color:var(--murekkeb)}
+.tehvil .dgm.dolu:hover{background:var(--rec);border-color:var(--rec)}
+.tehvil .dgm:not(.dolu):hover{border-color:rgba(11,11,12,.4)}
+.tehvil-tor{
+  display:grid;gap:clamp(20px,3vw,44px);margin-top:clamp(50px,8vh,96px);
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));
+  padding-top:clamp(28px,4vh,48px);border-top:1px solid var(--xett-q)
+}
+.tehvil-tor h3{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:#6b6b72;font-weight:400;margin-bottom:12px}
+.tehvil-tor a,.tehvil-tor span{display:block;font-size:15.5px;color:#2a2a30;margin-bottom:6px}
+.tehvil-tor a:hover{color:var(--rec)}
+.tehvil-alt{
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  margin-top:clamp(40px,6vh,72px);padding-top:24px;border-top:1px solid var(--xett-q);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:#6b6b72
+}
+.son-kadr{
+  font-family:var(--dsp);font-size:clamp(44px,13vw,190px);line-height:.9;letter-spacing:-.03em;
+  margin-top:clamp(40px,7vh,90px);color:rgba(11,11,12,.07);white-space:nowrap;
+  overflow:hidden;text-overflow:clip
+}
+
+/* ==================== HƏRƏKƏT AZALDILIB ==================== */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  /* sadələşdir, söndürmə: hərəkət gedir, solğunlaşma və rəng qalır */
+  .an-hazir .an{transform:none !important}
+  .an-hazir .brif h1 i{transform:none !important}
+  .an-hazir .brif-alt{transform:none !important}
+  .karx-x{display:none}
+  .qat{transform:none !important}
+  .qzt,.brif-fon,.axın{animation:none !important}
+  .axın{width:auto;flex-wrap:wrap}
+  #klaper{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== 00 · KLAPER ==================== -->
+<div id="klaper" aria-hidden="true">
+  <div class="klp">
+    <div class="klp-cubuq"></div>
+    <div class="klp-lovhe">
+      <div class="klp-set">Rəhman Məlikzadə<br><span>Videoqraf &amp; Filmmaker</span></div>
+      <div class="klp-sətir"><span>SƏHNƏ <b>01</b></span><span>KADR <b>A</b></span><span>DUBL <b>1</b></span></div>
+      <div class="klp-sətir"><span>BAKI · AZ</span><span id="klp-tarix">2026</span></div>
+    </div>
+  </div>
+  <div class="klp-alt">Toxun və ya gözlə</div>
+</div>
+<div id="flas" aria-hidden="true"></div>
+
+<!-- ==================== HUD ==================== -->
+<header class="hud" id="hud">
+  <a href="#brif" class="hud-ad">Rəhman Məlikzadə</a>
+  <span class="hud-rec"><i></i><span>REC</span></span>
+  <span class="hud-tc" id="tc">00:00:00:00</span>
+  <span class="hud-bolme" id="hud-bolme">Brif</span>
+  <span class="hud-sag">
+    <a class="hud-dgm" href="#tehvil"><span class="genis">Çəkilişi başlat</span><span class="dar">Başlat</span></a>
+  </span>
+</header>
+
+<!-- ==================== FİLM LENTİ ==================== -->
+<nav class="lent" id="lent" aria-label="Səhifə mövqeyi">
+  <span class="lent-perf ust" aria-hidden="true"></span>
+  <span class="lent-perf alt" aria-hidden="true"></span>
+</nav>
+
+<!-- ==================== 01 · BRİF ==================== -->
+<header class="brif" id="brif">
+  <span class="brif-fon" aria-hidden="true"></span>
+  <div class="mono an">01 — Brif</div>
+  <h1>
+    <span><i>Bir kadr</i></span>
+    <span><i>hər şeyi</i></span>
+    <span><i>dəyişə bilər</i></span>
+  </h1>
+  <div class="brif-alt">
+    <p>Bakıda videoqraf və filmmaker. Reklamdan love story-yə qədər — brifdən təhvilə bütün prosesi özüm aparıram.</p>
+    <div class="dgm-sıra">
+      <a class="dgm dolu" href="#cekilis">İşlərə bax</a>
+      <a class="dgm" href="#tehvil">Əlaqə</a>
+    </div>
+  </div>
+  <div class="reqemler">
+    <div class="reqem an" data-g="1"><b>21</b><span>Təhvil verilmiş layihə</span></div>
+    <div class="reqem an" data-g="2"><b>16</b><span>Brend və təşkilat</span></div>
+    <div class="reqem an" data-g="3"><b>5</b><span>İstiqamət</span></div>
+    <div class="reqem an" data-g="4"><b>2—5</b><span>Gün ərzində təhvil</span></div>
+  </div>
+</header>
+
+<!-- ==================== 02 · MÜŞTƏRİLƏR ==================== -->
+<section class="mus" id="musteriler" aria-label="Müştərilər">
+  <div class="mus-bas mono an">02 — Kimlərlə işləmişəm</div>
+  <div class="axın" id="axın1" aria-hidden="true"></div>
+  <div class="axın geri" id="axın2" aria-hidden="true"></div>
+</section>
+
+<!-- ==================== 03 · KADRAJ ==================== -->
+<section class="pillə" id="kadraj">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">03</span>
+      <span class="pillə-ad">Kadraj</span>
+      <span class="pillə-tc">00:02:18:00</span>
+    </div>
+    <h2 class="an">Nə çəkirəm</h2>
+    <p class="izah an" data-g="1">Beş istiqamət — hər birinin öz kadr dili, öz ritmi var. Başlığa toxun, açılsın.</p>
+    <div class="kadraj" id="kadraj-siyahi"></div>
+  </div>
+</section>
+
+<!-- ==================== 04 · ÇƏKİLİŞ ==================== -->
+<section class="pillə" id="cekilis">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">04</span>
+      <span class="pillə-ad">Çəkiliş</span>
+      <span class="pillə-tc">00:04:40:00</span>
+    </div>
+    <h2 class="an">Materialın özü</h2>
+    <p class="izah an" data-g="1">21 layihə. Süzgəci seç, kadra toxun — burada açılır.</p>
+    <div class="cip-sıra an" data-g="2" id="ciplar" role="tablist"></div>
+    <div class="tor" id="tor"></div>
+  </div>
+</section>
+
+<!-- ==================== 05 · KADR ARXASI ==================== -->
+<section class="pillə" id="karx">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">05</span>
+      <span class="pillə-ad">Kadr arxası</span>
+      <span class="pillə-tc">00:07:12:00</span>
+    </div>
+    <h2 class="an">Kameranın arxasında<br>bir nəfər var</h2>
+    <div class="karx-sehne" id="karx-sehne">
+      <span class="karx-x" id="karx-x" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="xg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#6e6e76"/><stop offset="26%" stop-color="#2e2e34"/>
+              <stop offset="52%" stop-color="#8c8c95"/><stop offset="74%" stop-color="#2a2a30"/>
+              <stop offset="100%" stop-color="#66666e"/>
+            </linearGradient>
+          </defs>
+          <g fill="url(#xg)">
+            <polygon points="7,5 33,5 93,95 67,95"/>
+            <polygon points="67,5 93,5 33,95 7,95"/>
+          </g>
+        </svg>
+      </span>
+      <div class="qat" data-qat="1"></div>
+      <div class="karx-foto"><img src="/media/rahman.png" alt="Rəhman Məlikzadə çəkiliş zamanı" loading="lazy" decoding="async"></div>
+      <div class="qat" data-qat="2"></div>
+      <p class="karx-söz">Ssenari, işıq, kamera, montaj — hamısı bir nəfərdə.<br>Ona görə hekayə yolda itmir.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 06 · MONTAJ ==================== -->
+<section class="pillə" id="montaj">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">06</span>
+      <span class="pillə-ad">Montaj</span>
+      <span class="pillə-tc">00:08:30:00</span>
+    </div>
+    <h2 class="an">Necə işləyirik</h2>
+    <p class="izah an" data-g="1">Dörd addım. Hər addımın sonunda nə alacağını əvvəlcədən bilirsən.</p>
+    <div class="addımlar" id="addımlar"></div>
+    <h2 class="an" style="margin-bottom:clamp(20px,3vh,34px)">Paketini özün qur</h2>
+    <div class="pkt-tor">
+      <a class="pkt an" href="/video-kalkulyator" style="--aks:#d93a1e">
+        <span class="pkt-hale" aria-hidden="true"></span>
+        <span class="pkt-nisan">Video çəkilişi</span>
+        <span class="pkt-qiymet"><b>320</b><i>AZN</i></span>
+        <span class="pkt-etiket">-dən başlayan video paketləri</span>
+        <ul><li>Reklam çarxı və brend filmi</li><li>Reels / TikTok kontenti</li><li>Toy, love story və tədbir</li></ul>
+        <span class="pkt-alt"><span>Video kalkulyatoru</span><i>&rarr;</i></span>
+      </a>
+      <a class="pkt an" data-g="1" href="/kalkulyator" style="--aks:#3b7fd4">
+        <span class="pkt-hale" aria-hidden="true"></span>
+        <span class="pkt-nisan">Foto çəkilişi</span>
+        <span class="pkt-qiymet"><b>140</b><i>AZN</i></span>
+        <span class="pkt-etiket">-dən başlayan foto paketləri</span>
+        <ul><li>Food, məhsul və e-commerce</li><li>Portret, model və moda</li><li>Məkan, tədbir və sosial media</li></ul>
+        <span class="pkt-alt"><span>Foto kalkulyatoru</span><i>&rarr;</i></span>
+      </a>
+      <div class="pkt an" data-g="2" style="--aks:#4a9d8f">
+        <span class="pkt-hale" aria-hidden="true"></span>
+        <span class="pkt-nisan">Aylıq</span>
+        <span class="pkt-qiymet"><b>Davamlı</b></span>
+        <span class="pkt-etiket">Restoran, şəxsi brend və bizneslər üçün</span>
+        <ul><li>Ayda planlanmış çəkiliş günləri</li><li>Reels axını və kontent planı</li><li>Sabit qiymət, prioritet növbə</li></ul>
+        <span class="pkt-alt"><span>Şərtləri danışaq</span><i>&rarr;</i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 07 · QEYDLƏR ==================== -->
+<section class="pillə" id="qeydler">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">07</span>
+      <span class="pillə-ad">Qeydlər</span>
+      <span class="pillə-tc">00:09:45:00</span>
+    </div>
+    <h2 class="an">Qısa cavablar</h2>
+    <div class="sual-siyahi" id="sual-siyahi"></div>
+  </div>
+</section>
+
+<!-- ==================== 08 · TƏHVİL ==================== -->
+<section class="tehvil" id="tehvil">
+  <div class="qab">
+    <div class="pillə-bas an">
+      <span class="pillə-no">08</span>
+      <span class="pillə-ad">Təhvil</span>
+      <span class="pillə-tc">00:11:00:00</span>
+    </div>
+    <h2 class="an">Növbəti kadr<br>səninkidir</h2>
+    <p class="tehvil-izah an" data-g="1">Qısaca yaz — nə çəkmək istədiyini, təxmini vaxtı və büdcəni. Adətən bir neçə saat ərzində cavab verirəm.</p>
+    <div class="tehvil-dgm an" data-g="2">
+      <a class="dgm dolu" href="https://wa.me/994705205885" target="_blank" rel="noopener">WhatsApp-dan yaz</a>
+      <a class="dgm" href="mailto:malikzadarahman@gmail.com">E-poçt göndər</a>
+    </div>
+    <div class="tehvil-tor an" data-g="3">
+      <div><h3>Əlaqə</h3>
+        <a href="tel:+994705205885">+994 70 520 58 85</a>
+        <a href="mailto:malikzadarahman@gmail.com">malikzadarahman@gmail.com</a></div>
+      <div><h3>Sosial</h3>
+        <a href="https://www.instagram.com/rahmanmalikzade/" target="_blank" rel="me noopener">Instagram</a>
+        <a href="https://www.instagram.com/nexcineart/" target="_blank" rel="noopener">@nexcineart — studiya</a></div>
+      <div><h3>Yer</h3>
+        <span>Bakı, Azərbaycan</span>
+        <span>Bölgələr və xaric — mümkün</span></div>
+      <div><h3>Vəziyyət</h3>
+        <span>Yeni layihələrə açığam</span>
+        <span id="saat">Bakı —:—</span></div>
+    </div>
+    <div class="tehvil-alt">
+      <span>© <span id="il">2026</span> Rəhman Məlikzadə</span>
+      <span>Konsept versiya · <a href="/">əsas sayta qayıt</a></span>
+    </div>
+    <div class="son-kadr" aria-hidden="true">SON KADR</div>
+  </div>
+</section>
+
+<!-- ==================== VİDEO MODALI ==================== -->
+<div class="vm" id="vm" role="dialog" aria-modal="true" aria-label="Video">
+  <div class="vm-fon" data-bagla></div>
+  <div class="vm-qab" id="vm-qab">
+    <button type="button" class="vm-bagla" data-bagla aria-label="Bağla">&times;</button>
+    <div class="vm-cer" id="vm-cer"></div>
+    <div class="vm-bas"><span class="vm-ad" id="vm-ad"></span><span class="vm-mus" id="vm-mus"></span></div>
+  </div>
+</div>
+
+<script>
+(function(){
+'use strict';
+var CDN='https://vz-d125fae9-c0e.b-cdn.net/', LIB='738448/';
+var az=matchMedia('(prefers-reduced-motion: reduce)').matches;
+var anYoxla=function(){};
+
+/* ==================== MƏLUMAT ==================== */
+var KATEQ=[
+  {id:'hamsi', ad:'Hamısı'},
+  {id:'brend', ad:'Brend & Reklam'},
+  {id:'food',  ad:'Food'},
+  {id:'tedbir',ad:'Tədbir & Forum'},
+  {id:'sexsi', ad:'Şəxsi brend'},
+  {id:'love',  ad:'Love story'}
+];
+
+/* [ad, müştəri, video id, thumbnail, şaquli, kateqoriya] */
+var ISLER=[
+ ['Korporativ tədbir','UBOC','f0e2fee4-424e-4062-8691-8bf734b4ee0d','thumbnail_ea7b3433.jpg',1,'tedbir'],
+ ['Yemək təqdimatı','Fitbox','d8671361-0648-4089-b526-2fd32026f156','thumbnail_2cdb18e9.jpg',1,'food'],
+ ['Storytelling','İnsayt','20b448a5-ea2f-4e8f-902b-f15633280335','thumbnail_05febfdc.jpg',0,'brend'],
+ ['Fashion film','Mercedes-Benz FW','9cdd1345-5a1b-4c4d-be9c-0def042deb23','thumbnail.jpg',0,'brend'],
+ ['Food reels','Rovshan Chef','808184b6-75f4-481e-b48b-be483b7cba1e','thumbnail.jpg',1,'food'],
+ ['Məhsul reels','Titibon','5ab5231d-8af1-4805-b159-64584f4c7e06','thumbnail_0ad5185b.jpg',1,'brend'],
+ ['Tədbir reels','Yapı Kredi','59899261-8f2a-4005-8824-2afbe2864d1c','thumbnail_f8f2efa2.jpg',1,'tedbir'],
+ ['Məhsul reklamı','Su filtri','033ab501-a9ed-4bbf-82c3-cc4f17bdf4cd','thumbnail_185bef12.jpg',1,'brend'],
+ ['Novruz tədbiri','MİHİ','ca3d9558-9721-4883-9a95-49e762dca952','thumbnail_2fc5bf35.jpg',0,'tedbir'],
+ ['Katerinq prosesi','PFM Catering','8bca7563-d3d5-4761-aa3f-2c051d8d12c3','thumbnail_8d684cc1.jpg',1,'food'],
+ ['Məkan atmosferi','Hi Coffee','512c44dc-8477-4b7e-9d0a-d4261116e787','thumbnail.jpg',1,'food'],
+ ['Korporativ danışıq','Formcond','cfd4beb9-9a6b-4e83-97c4-d45295933ddd','thumbnail.jpg',1,'sexsi'],
+ ['Biznes tədbiri','Fayda','8884668f-a219-4313-977d-08ca55145280','thumbnail.jpg',1,'tedbir'],
+ ['Uşaq düşərgəsi','MİHİ yay','706a0960-83df-41eb-85a7-a4ff0dc29816','thumbnail_ea4b5a1e.jpg',0,'tedbir'],
+ ['Brend hekayəsi','Volvo','e9cf3c31-b3bb-4be0-bc33-362a122e71e0','thumbnail_13a39400.jpg',1,'brend'],
+ ['Studio reels','Baku Growth Academy','33eff7ca-bdaf-48a1-b6d5-826a4fb38223','thumbnail_e123b6cf.jpg',1,'sexsi'],
+ ['Forum çarxı','SMF','55aac2ce-544f-41de-a50a-12d993e93804','thumbnail_2bef3fd3.jpg',1,'tedbir'],
+ ['Ssenarili reels','İngilis dili müəllimi','cfec3444-f3d9-4cbd-bab4-3aeabbfebdcf','thumbnail_4116516b.jpg',1,'sexsi'],
+ ['Məhsul prosesi','Fitbox','107326c0-c4a6-4599-8d0d-4a77120447eb','thumbnail_d78bbaa5.jpg',0,'food'],
+ ['Açılış çəkilişi','Avto atelye','e5ba5d69-bc89-40f4-9b9a-2ed4802f1f71','thumbnail_7d6903b6.jpg',1,'brend'],
+ ['Love Story','Şəms & Cavidan','fea7fd8f-619b-47c8-9674-7b0d5af3339c','/media/lovestory.jpg',1,'love']
+];
+
+var MUSTERILER=['UBOC','Mercedes-Benz Fashion Week','Volvo','Yapı Kredi','Fitbox','Hi Coffee',
+  'PFM Catering','Titibon','Baku Growth Academy','MİHİ','Rovshan Chef','Formcond',
+  'Strateji Marketinq Forumu','Fayda','İnsayt Psixoloji Mərkəzi','Avto Atelye'];
+
+var XIDMET=[
+ {no:'01', ad:'Brend & Reklam', kadr:'Wide · Tracking', aks:'#d93a1e',
+  iz:'Məhsul, xidmət və brendlər üçün kinematik reklam videoları. Məqsəd gözəl görüntü deyil — məhsulu satmaqdır.',
+  l:['Məhsul və mağaza reklamı','Fashion çəkilişi','Kampaniya videosu','Startap təqdimatı']},
+ {no:'02', ad:'Food & Restoran', kadr:'Macro · Slider', aks:'#3b7fd4',
+  iz:'Restoran və kafelər üçün yeməyin hazırlanmasından məkanın atmosferinə qədər tam vizual kontent.',
+  l:['Reklam videosu','Hazırlanma prosesi','Restoran atmosferi','Reels']},
+ {no:'03', ad:'Şəxsi brend', kadr:'Talking head · 2 kamera', aks:'#d93a1e',
+  iz:'Ekspertlər üçün professional danışıq videoları — işıq və səsdən montaj və motion elementlərinə qədər.',
+  l:['Studio, ofis və outdoor','B-roll və çoxbucaqlı kadr','Subtitr və sound design','Motion graphics']},
+ {no:'04', ad:'Tədbir & Forum', kadr:'Handheld · Gimbal', aks:'#3b7fd4',
+  iz:'Forum və korporativ tədbirlərin əsas anları — həm arxiv üçün, həm sosial mediada dərhal istifadəyə hazır.',
+  l:['Ümumi tədbir videosu','Müsahibə və Reels','Səhnə və auditoriya','Networking anları']},
+ {no:'05', ad:'Fotoqrafiya', kadr:'Stills · Studio işıq', aks:'#4a9d8f',
+  iz:'Food və tədbir çəkilişlərində detala fokus — kadrlar seçilir, rəng işlənir, formatlar hazır təhvil verilir.',
+  l:['Food Photography','Event Photography','Rəng korreksiyası','Sosial media formatları']}
+];
+
+var ADDIMLAR=[
+ ['01','Brif','Nə çəkirik, kimə deyirik, hansı nəticəni gözləyirik — qısa söhbətdə aydınlaşır.','1 gün'],
+ ['02','Ssenari','Kreativ konsept, ssenari və shot list. Çəkiliş günü heç nə təsadüfə qalmır.','1—2 gün'],
+ ['03','Çəkiliş','İşıq, kamera, səs. Lazım olsa ikinci operator və assistent komandası.','1 gün'],
+ ['04','Təhvil','Montaj, rəng, sound design. 3 düzəliş raundu daxildir, formatlar hazır gəlir.','2—5 gün']
+];
+
+var SUALLAR=[
+ ['Çəkiliş qiyməti necə hesablanır?','Qiymət layihənin növü, çəkiliş müddəti, komanda, lokasiya və tələb olunan final materiallara görə dəyişir. Layihə haqqında qısa məlumat göndərdikdən sonra uyğun təklif hazırlayıram.'],
+ ['Layihə nə vaxt hazır olur?','Reels adətən 2–3 gün, reklam və event videoları 3–5 gün, daha böyük layihələr isə 5–10 gün ərzində təhvil verilir.'],
+ ['Çəkiliş və montaj birlikdədir?','Standart olaraq layihəni çəkilişdən final montaja qədər idarə edirəm. İstəyə görə yalnız çəkiliş və ya yalnız post-production da mümkündür.'],
+ ['İdeya və ssenarini də hazırlayırsınız?','Bəli. Hazır referensle işləyə bilərəm və ya layihəyə uyğun ideya, kreativ konsept, ssenari və shot list ayrıca hazırlana bilər.'],
+ ['Neçə düzəliş etmək mümkündür?','Layihəyə 3 revision raundu daxildir. Hər raundda düzəlişlərin bir yerdə göndərilməsi prosesi daha sürətli saxlayır.'],
+ ['Bakıdan kənarda çəkiliş edirsiniz?','Bəli. Azərbaycanın bölgələrində və xaricdə də layihələr mümkündür. Səfər və logistika xərcləri ayrıca hesablanır.'],
+ ['Foto çəkiliş də mümkündür?','Bəli. Food Photography və Event Photography həm ayrıca, həm də video çəkilişinə əlavə xidmət kimi sifariş edilə bilər.'],
+ ['Reels üçün hazır format verilir?','Bəli. Reels üçün 9:16, sayt və YouTube üçün 16:9 formatında Full HD materiallar hazırlayıram.'],
+ ['Raw footage əldə etmək mümkündür?','Bəli. Müştərinin istəyi ilə çəkiliş zamanı əldə olunan xam materiallar da təhvil verilə bilər.'],
+ ['Böyük layihələrdə komanda ilə işləyirsiniz?','Bəli. Miqyasa görə ikinci kamera operatoru, işıq assistenti və digər komanda üzvləri cəlb edə bilirəm.'],
+ ['Aylıq kontent əməkdaşlığı mümkündür?','Bəli. Restoranlar, şəxsi brendlər və bizneslər üçün davamlı Reels və video kontent əməkdaşlığı qurmaq mümkündür.'],
+ ['Subtitr və motion graphics edirsiniz?','Bəli. Montajda subtitr, sound design, color grading, motion graphics və logo animasiyaları istifadə edirəm.']
+];
+
+var PILLELER=[
+ {id:'brif',ad:'Brif'},{id:'musteriler',ad:'Müştərilər'},{id:'kadraj',ad:'Kadraj'},
+ {id:'cekilis',ad:'Çəkiliş'},{id:'karx',ad:'Kadr arxası'},{id:'montaj',ad:'Montaj'},
+ {id:'qeydler',ad:'Qeydlər'},{id:'tehvil',ad:'Təhvil'}
+];
+
+var QZT=['q01','q02','q03','q04','q05','q06','q07','q08','q09','q10'];
+
+/* ==================== KÖMƏKÇİ ==================== */
+function el(t,c,h){var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e;}
+function iki(n){return n<10?'0'+n:''+n;}
+
+/* ==================== QURULUŞ ==================== */
+function musteriQur(){
+  [['axın1',0],['axın2',1]].forEach(function(p){
+    var q=document.getElementById(p[0]); if(!q) return;
+    var siyahi=p[1] ? MUSTERILER.slice().reverse() : MUSTERILER;
+    /* iki dəfə: sonsuz axın üçün */
+    for(var t=0;t<2;t++) siyahi.forEach(function(m){ q.appendChild(el('span','mus-ad',m)); });
+  });
+}
+
+function kadrajQur(){
+  var q=document.getElementById('kadraj-siyahi'); if(!q) return;
+  XIDMET.forEach(function(x,i){
+    var d=el('div','xid an');
+    if(i) d.setAttribute('data-g', String(Math.min(2,i)));
+    d.style.setProperty('--aks', x.aks);
+    d.innerHTML=
+      '<div class="xid-ust" role="button" tabindex="0" aria-expanded="false">'+
+        '<span class="xid-no">'+x.no+'</span>'+
+        '<h3 class="xid-ad">'+x.ad+'</h3>'+
+        '<span class="xid-kadr">'+x.kadr+'</span>'+
+      '</div>'+
+      '<div class="xid-sar"><div class="xid-ic"><div class="xid-govde">'+
+        '<p>'+x.iz+'</p>'+
+        '<ul class="xid-siyahi">'+x.l.map(function(s){return '<li>'+s+'</li>';}).join('')+'</ul>'+
+      '</div></div></div>';
+    q.appendChild(d);
+  });
+  if(q.firstChild) q.firstChild.classList.add('açıq');
+  q.addEventListener('click', function(e){
+    var u=e.target.closest('.xid-ust'); if(!u) return;
+    var x=u.parentElement, a=x.classList.toggle('açıq');
+    u.setAttribute('aria-expanded', a?'true':'false');
+    setTimeout(anYoxla,30);
+  });
+  q.addEventListener('keydown', function(e){
+    if((e.key==='Enter'||e.key===' ') && e.target.classList.contains('xid-ust')){
+      e.preventDefault(); e.target.click();
+    }
+  });
+}
+
+function torQur(){
+  var q=document.getElementById('tor'), c=document.getElementById('ciplar');
+  if(!q||!c) return;
+  KATEQ.forEach(function(k,i){
+    var say = k.id==='hamsi' ? ISLER.length : ISLER.filter(function(v){return v[5]===k.id;}).length;
+    var b=el('button','cip'+(i?'':' aktiv'), k.ad+' <u>'+iki(say)+'</u>');
+    b.type='button'; b.setAttribute('data-k',k.id); b.setAttribute('role','tab');
+    c.appendChild(b);
+  });
+  ISLER.forEach(function(v,i){
+    var sekil = v[3].charAt(0)==='/' ? v[3] : CDN+v[2]+'/'+v[3];
+    var b=el('button','is an'+(v[4]?'':' yatay'));
+    b.type='button';
+    b.setAttribute('data-v', LIB+v[2]);
+    b.setAttribute('data-saq', v[4]?'1':'0');
+    b.setAttribute('data-k', v[5]);
+    b.setAttribute('data-ad', v[0]);
+    b.setAttribute('data-mus', v[1]);
+    b.setAttribute('data-g', String((i%3)+1));
+    b.setAttribute('aria-label', v[0]+' — '+v[1]+' videosunu izlə');
+    var kat=KATEQ.filter(function(k){return k.id===v[5];})[0];
+    b.innerHTML=
+      '<img src="'+sekil+'" alt="'+v[0]+' — '+v[1]+'" loading="lazy" decoding="async">'+
+      '<span class="is-no">'+iki(i+1)+'</span>'+
+      '<span class="is-kat">'+(kat?kat.ad:'')+'</span>'+
+      '<span class="is-oynat"><svg viewBox="0 0 24 24"><path d="M8 5l12 7-12 7z"/></svg></span>'+
+      '<span class="is-ort"><span class="is-ad">'+v[0]+'</span><span class="is-mus">'+v[1]+'</span></span>';
+    q.appendChild(b);
+  });
+}
+
+function qezetQur(){
+  var s=document.getElementById('karx-sehne'); if(!s) return;
+  var qatlar={1:s.querySelector('.qat[data-qat="1"]'), 2:s.querySelector('.qat[data-qat="2"]')};
+  if(!qatlar[1]||!qatlar[2]) return;
+  /* [sol%, üst%, dönmə, en(vw), qat, şəffaflıq] */
+  var yer=[
+    [7,15,-14,15,1,.45],[92,11,12,14,1,.42],[15,47,9,12,1,.5],[93,43,-11,13,1,.42],
+    [31,22,14,10,1,.38],[70,58,-13,11,1,.42],
+    [4,74,8,20,2,.9],[96,78,-9,18,2,.86],[26,94,6,18,2,.88],[73,98,-12,17,2,.84]
+  ];
+  yer.forEach(function(y,i){
+    var im=el('img','qzt');
+    im.src='/media/qzt/'+QZT[i%QZT.length]+'.png';
+    im.alt=''; im.loading='lazy'; im.decoding='async';
+    im.style.left=y[0]+'%'; im.style.top=y[1]+'%'; im.style.width=y[3]+'vw';
+    im.style.setProperty('--d', y[2]+'deg');
+    im.style.setProperty('--s', (7+(i%4)*1.6)+'s');
+    im.style.setProperty('--o', y[5]);
+    im.style.transform='translate(-50%,-50%) rotate('+y[2]+'deg)';
+    im.style.animationDelay=(-i*1.3)+'s';
+    qatlar[y[4]].appendChild(im);
+  });
+}
+
+function addımQur(){
+  var q=document.getElementById('addımlar'); if(!q) return;
+  ADDIMLAR.forEach(function(a,i){
+    var d=el('div','addım an');
+    if(i) d.setAttribute('data-g', String(Math.min(3,i)));
+    d.innerHTML='<div class="addım-no">'+a[0]+'</div><div class="addım-ad">'+a[1]+'</div>'+
+      '<p>'+a[2]+'</p><div class="addım-vaxt">'+a[3]+'</div>';
+    q.appendChild(d);
+  });
+}
+
+function suallarQur(){
+  var q=document.getElementById('sual-siyahi'); if(!q) return;
+  SUALLAR.forEach(function(s,i){
+    var d=el('div','sual'+(i>3?' gizli':' an'));
+    if(i&&i<4) d.setAttribute('data-g', String(i));
+    d.innerHTML=
+      '<button type="button" class="sual-bas" aria-expanded="false">'+
+        '<span class="sual-no">'+iki(i+1)+'</span>'+
+        '<span class="sual-mtn">'+s[0]+'</span>'+
+        '<span class="sual-ox"><i></i><i></i></span>'+
+      '</button>'+
+      '<div class="sual-sar"><div class="sual-ic"><p>'+s[1]+'</p></div></div>';
+    q.appendChild(d);
+  });
+  var b=el('button','hamsi');
+  b.type='button'; b.id='hamsi';
+  b.innerHTML='<span id="hamsi-mtn">Bütün sualları göstər</span><span>+'+(SUALLAR.length-4)+'</span>';
+  q.appendChild(b);
+}
+
+function lentQur(){
+  var q=document.getElementById('lent'); if(!q) return;
+  PILLELER.forEach(function(p){
+    var a=el('a','xana','<span class="xana-ad">'+p.ad+'</span>');
+    a.href='#'+p.id; a.setAttribute('data-id',p.id); a.setAttribute('aria-label',p.ad);
+    q.appendChild(a);
+  });
+}
+
+/* ==================== KLAPER ==================== */
+function klaperOynat(){
+  var flas=document.getElementById('flas'), k=document.getElementById('klaper');
+  function basla(){
+    if(document.body.classList.contains('çəkilir')) return;
+    document.body.classList.add('çəkilir');
+    document.body.style.overflow='';
+  }
+  if(az){ basla(); return; }
+  document.body.style.overflow='hidden';
+  setTimeout(function(){ if(flas) flas.classList.add('vur'); }, 1420);   /* çubuq dəyən an */
+  setTimeout(basla, 2250);
+  setTimeout(basla, 4200);                                              /* ehtiyat */
+  if(k) k.addEventListener('click', basla);
+}
+
+/* ==================== GÖRÜNMƏ ==================== */
+function gorunme(){
+  var hedef=[].slice.call(document.querySelectorAll('.an, .karx-sehne'));
+  try{ clearTimeout(window.__anNet); }catch(e){}
+  if(!hedef.length) return;
+  function ac(e){ if(!e.classList.contains('gor')) e.classList.add('gor'); }
+
+  var qalan=hedef.slice(), io=null, nebz=0;
+  function dayan(){
+    removeEventListener('scroll',sur); removeEventListener('resize',gec);
+    removeEventListener('orientationchange',gec); removeEventListener('load',gec);
+    if(io){io.disconnect();io=null;} if(nebz){clearInterval(nebz);nebz=0;}
+  }
+  function yoxla(){
+    if(!qalan.length) return;
+    var vh=innerHeight||document.documentElement.clientHeight||0; if(!vh) return;
+    var esik=vh*0.90;
+    for(var i=qalan.length-1;i>=0;i--){
+      var e=qalan[i], r=e.getBoundingClientRect();
+      if(!r.width && !r.height) continue;
+      if(r.top<esik){ ac(e); qalan.splice(i,1); }
+    }
+    if(!qalan.length) dayan();
+  }
+  anYoxla=yoxla;
+
+  var kilid=false, son=0;
+  function sur(){
+    var n=Date.now(); if(kilid && n-son<200) return;
+    kilid=true; son=n;
+    if(typeof requestAnimationFrame==='function'){
+      requestAnimationFrame(function(){kilid=false;yoxla();});
+      setTimeout(function(){ if(kilid){kilid=false;yoxla();} },180);
+    } else { kilid=false; yoxla(); }
+  }
+  function gec(){ yoxla(); setTimeout(yoxla,180); setTimeout(yoxla,600); }
+
+  addEventListener('scroll',sur,{passive:true});
+  addEventListener('resize',gec);
+  addEventListener('orientationchange',gec);
+  addEventListener('load',gec);
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) gec(); });
+  [].slice.call(document.images).forEach(function(im){
+    if(!im.complete) im.addEventListener('load',gec,{once:true});
+  });
+  if('IntersectionObserver' in window){
+    try{
+      io=new IntersectionObserver(function(g){
+        for(var i=0;i<g.length;i++) if(g[i].isIntersecting){ yoxla(); return; }
+      },{threshold:0,rootMargin:'0px 0px -10% 0px'});
+      hedef.forEach(function(e){ io.observe(e); });
+    }catch(e){ io=null; }
+  }
+  nebz=setInterval(yoxla,400);
+  setTimeout(yoxla,60);
+}
+
+/* ==================== TIMECODE + LENT + PARALLAKS ==================== */
+function hereketler(){
+  var tc=document.getElementById('tc'), hb=document.getElementById('hud-bolme'),
+      hud=document.getElementById('hud'),
+      xanalar=[].slice.call(document.querySelectorAll('.xana')),
+      karx=document.getElementById('karx'), sehne=document.getElementById('karx-sehne'),
+      xh=document.getElementById('karx-x'),
+      qatlar=sehne?[].slice.call(sehne.querySelectorAll('.qat')):[];
+  var bolmeler=PILLELER.map(function(p){return document.getElementById(p.id);});
+  var isleyir=false, sonAd='';
+  function sax(v){return v<0?0:(v>1?1:v);}
+
+  function yenile(){
+    isleyir=false;
+    var vh=innerHeight||1, y=scrollY||document.documentElement.scrollTop||0;
+    var H=document.documentElement.scrollHeight-vh;
+    var p=sax(H>0 ? y/H : 0);
+
+    /* timecode: bütün səhifə = 12 dəqiqəlik film, 25 kadr/san */
+    if(tc){
+      var cemKadr=Math.round(p*12*60*25);
+      var f=cemKadr%25, s=Math.floor(cemKadr/25)%60, m=Math.floor(cemKadr/(25*60));
+      tc.textContent='00:'+iki(m)+':'+iki(s)+':'+iki(f);
+    }
+    if(hud) hud.classList.toggle('enib', y>10);
+
+    /* aktiv bölmə */
+    var indi=-1;
+    for(var i=0;i<bolmeler.length;i++){
+      var b=bolmeler[i]; if(!b) continue;
+      var r=b.getBoundingClientRect();
+      if(r.top<=vh*0.42 && r.bottom>vh*0.12) indi=i;
+    }
+    if(indi<0) indi=0;
+    for(i=0;i<xanalar.length;i++){
+      xanalar[i].classList.toggle('aktiv', i===indi);
+      xanalar[i].classList.toggle('kecdi', i<indi);
+    }
+    if(hb && PILLELER[indi] && PILLELER[indi].ad!==sonAd){ sonAd=PILLELER[indi].ad; hb.textContent=sonAd; }
+
+    /* kadr arxası parallaks + X */
+    if(karx && !az){
+      var kr=karx.getBoundingClientRect();
+      if(kr.bottom>-140 && kr.top<vh+140){
+        var q=sax((vh-kr.top)/(vh+kr.height)), vhx=vh/100, j;
+        for(j=0;j<qatlar.length;j++){
+          var h=qatlar[j].getAttribute('data-qat')==='1'?20:-28;
+          qatlar[j].style.transform='translate3d(0,'+(q*h*vhx).toFixed(1)+'px,0)';
+        }
+        if(xh){
+          var A=.16,Z=.45,S=.78,g=0;
+          if(q>A&&q<S){ g=q<Z?(q-A)/(Z-A):1-(q-Z)/(S-Z); g=sax(g); g=g*g*(3-2*g); }
+          xh.style.opacity=g.toFixed(3);
+          xh.style.filter='blur('+(32-g*26).toFixed(1)+'px)';
+          xh.style.transform='translate(-50%,-50%) scale('+(.88+g*.18).toFixed(3)+') rotate('+((1-g)*-4).toFixed(1)+'deg)';
+        }
+      }
+    }
+  }
+  function tetik(){
+    if(isleyir) return; isleyir=true;
+    if(typeof requestAnimationFrame==='function'){
+      requestAnimationFrame(yenile);
+      /* rAF gəlməsə də (arxa fon, iOS momentum sürüşmə) timecode donmasın */
+      setTimeout(function(){ if(isleyir) yenile(); },180);
+    } else setTimeout(yenile,16);
+  }
+  addEventListener('scroll',tetik,{passive:true});
+  addEventListener('resize',tetik);
+  addEventListener('orientationchange',tetik);
+  addEventListener('load',tetik);
+  /* tab-a qayıdanda HUD dərhal sinxronlaşsın (nəbz gizli tabda dayanır) */
+  document.addEventListener('visibilitychange',function(){ if(!document.hidden) tetik(); });
+
+  /* Təhlükəsizlik nəbzi: timecode bu səhifənin onurğasıdır — donmamalıdır.
+     Mövqe dəyişməyibsə heç nə hesablanmır, ona görə boşda demək olar pulsuzdur. */
+  var sonY=-1;
+  setInterval(function(){
+    if(document.hidden) return;
+    var y=scrollY||document.documentElement.scrollTop||0;
+    if(y!==sonY){ sonY=y; yenile(); }
+  },250);
+
+  yenile();
+}
+
+/* ==================== PORTFOLIO ==================== */
+function portfolio(){
+  var tor=document.getElementById('tor'), ciplar=document.getElementById('ciplar');
+  var vm=document.getElementById('vm'), cer=document.getElementById('vm-cer'),
+      qab=document.getElementById('vm-qab'), vad=document.getElementById('vm-ad'),
+      vmus=document.getElementById('vm-mus');
+  if(!tor) return;
+
+  ciplar.addEventListener('click', function(e){
+    var c=e.target.closest('.cip'); if(!c) return;
+    var k=c.getAttribute('data-k');
+    [].slice.call(ciplar.children).forEach(function(x){ x.classList.toggle('aktiv', x===c); });
+    [].slice.call(tor.children).forEach(function(x){
+      x.classList.toggle('gizli', k!=='hamsi' && x.getAttribute('data-k')!==k);
+    });
+    setTimeout(anYoxla,40);
+  });
+
+  tor.addEventListener('click', function(e){
+    var k=e.target.closest('.is'); if(!k) return;
+    var saq=k.getAttribute('data-saq')==='1';
+    qab.className='vm-qab'+(saq?'':' yatay');
+    vad.textContent=k.getAttribute('data-ad');
+    vmus.textContent=k.getAttribute('data-mus');
+    cer.innerHTML='<iframe src="https://iframe.mediadelivery.net/embed/'+k.getAttribute('data-v')+
+      '?autoplay=true&loop=false&muted=false&preload=true&responsive=true" '+
+      'allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen" '+
+      'allowfullscreen loading="lazy"></iframe>';
+    vm.classList.add('açıq');
+    document.body.style.overflow='hidden';
+  });
+  function bagla(){
+    vm.classList.remove('açıq');
+    document.body.style.overflow='';
+    setTimeout(function(){ cer.innerHTML=''; },420);
+  }
+  vm.addEventListener('click', function(e){ if(e.target.closest('[data-bagla]')) bagla(); });
+  document.addEventListener('keydown', function(e){
+    if(e.key==='Escape' && vm.classList.contains('açıq')) bagla();
+  });
+}
+
+/* ==================== SUALLAR ==================== */
+function suallar(){
+  var q=document.getElementById('sual-siyahi'); if(!q) return;
+  q.addEventListener('click', function(e){
+    var b=e.target.closest('.sual-bas');
+    if(b){
+      var s=b.parentElement, a=s.classList.toggle('açıq');
+      b.setAttribute('aria-expanded', a?'true':'false');
+      return;
+    }
+    var d=e.target.closest('#hamsi');
+    if(d){
+      var açıq=q.classList.toggle('açılıb');
+      var m=document.getElementById('hamsi-mtn');
+      if(m) m.textContent = açıq ? 'Sualları gizlət' : 'Bütün sualları göstər';
+      setTimeout(anYoxla,30);
+    }
+  });
+}
+
+/* ==================== BAKI SAATI ==================== */
+function saat(){
+  var e=document.getElementById('saat'); if(!e) return;
+  function yaz(){
+    try{
+      var t=new Date().toLocaleTimeString('az-AZ',{timeZone:'Asia/Baku',hour:'2-digit',minute:'2-digit'});
+      e.textContent='Bakı '+t;
+    }catch(x){}
+  }
+  yaz(); setInterval(yaz,30000);
+}
+
+/* ==================== BAŞLAT ==================== */
+function basla(){
+  try{ if(!location.hash) scrollTo(0,0); }catch(e){}
+  var il=new Date().getFullYear();
+  var a=document.getElementById('il'); if(a) a.textContent=il;
+  var b=document.getElementById('klp-tarix'); if(b) b.textContent=il;
+
+  musteriQur(); kadrajQur(); torQur(); qezetQur(); addımQur(); suallarQur(); lentQur();
+  portfolio(); suallar(); saat();
+  klaperOynat();
+  gorunme();
+  hereketler();
+}
+if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', basla);
+else basla();
+})();
+</script>
+</body>
+</html>
