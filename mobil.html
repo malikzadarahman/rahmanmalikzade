@@ -56,6 +56,8 @@
   --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
   --kenar:20px;
   --yum:cubic-bezier(.22,.61,.36,1);
+  --autumn:#B4531F; --sale:#C0342B; --autumn-soft:rgba(180,83,31,.08);
+  --acilma:cubic-bezier(.22,1,.36,1);
   --yay:cubic-bezier(.34,1.30,.64,1);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -601,6 +603,353 @@ body.bitdi .alt-cubuq{transform:none}
 
   #giris{display:none}
 }
+/* ==========================================================================
+   PAYIZ KAMPANİYASI — paketlər bölməsi
+   Bütün adlar kmp- ilə başlayır ki, saytın mövcud sinifləri ilə toqquşmasın.
+   ========================================================================== */
+#paketler{position:relative;overflow:hidden}
+#paketler > *{position:relative;z-index:1}
+
+/* --- payız yarpaqları --- */
+.kmp-yarpaqlar{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.kmp-yarpaq{
+  position:absolute;top:-14%;color:var(--autumn);filter:blur(1px);
+  animation-name:kmpYarpaq;animation-timing-function:linear;animation-iteration-count:infinite
+}
+.kmp-yarpaq svg{width:100%;height:100%;display:block;fill:currentColor}
+@keyframes kmpYarpaq{
+  0%  {transform:translate3d(0,-20vh,0) rotate(0deg)}
+  100%{transform:translate3d(var(--sur,20px),118vh,0) rotate(var(--don,320deg))}
+}
+
+/* --- kampaniya nişanı --- */
+.kmp-pill{
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--autumn-soft);color:var(--autumn);
+  padding:10px 18px;border-radius:100px;border:1px solid rgba(180,83,31,.18);
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase
+}
+.kmp-pill i{
+  width:6px;height:6px;border-radius:50%;background:var(--sale);flex:none;
+  animation:kmpNebz 2.2s ease-out infinite
+}
+@keyframes kmpNebz{
+  0%{box-shadow:0 0 0 0 rgba(192,52,43,.45)}
+  70%{box-shadow:0 0 0 9px rgba(192,52,43,0)}
+  100%{box-shadow:0 0 0 0 rgba(192,52,43,0)}
+}
+.kmp-pill b{font-weight:400;color:var(--sale)}
+.kmp-alt{margin-top:16px;max-width:48ch;color:var(--sus);font-size:14.5px}
+
+/* --- geri sayım (şüşə) --- */
+.kmp-gs{position:relative;margin-top:18px;display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+.kmp-gs::before{
+  content:"";position:absolute;left:-4%;right:-4%;top:-45%;bottom:-45%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(55% 130% at 28% 50%,rgba(180,83,31,.16),transparent 72%),
+    radial-gradient(45% 130% at 78% 50%,rgba(192,52,43,.11),transparent 72%);
+  filter:blur(22px)
+}
+.kmp-gs-bas{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)}
+.kmp-gs-qutular{display:inline-flex;gap:7px;flex-wrap:wrap}
+.kmp-qutu{--aksR:180;--aksG:83;--aksB:31;position:relative;border-radius:13px;perspective:800px}
+.kmp-qutu[data-k="san"]{--aksR:192;--aksG:52;--aksB:43}
+.kmp-govde{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;
+  min-width:58px;padding:9px 10px 7px;border-radius:inherit;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(18px) saturate(185%);backdrop-filter:blur(18px) saturate(185%);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(11,11,12,.035),
+    0 1px 2px rgba(11,11,12,.05),
+    0 8px 22px -14px rgba(11,11,12,.28);
+  overflow:hidden;isolation:isolate;transform-style:preserve-3d;
+  transition:transform .4s var(--yum),border-color .45s var(--yum),
+             box-shadow .45s var(--yum),background .45s var(--yum)
+}
+.kmp-govde::after{
+  content:"";position:absolute;left:12%;right:12%;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent)
+}
+.kmp-parilti{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;transition:opacity .2s linear;
+  background:radial-gradient(170px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--aksR),var(--aksG),var(--aksB),.28) 0%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),.10) 40%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),0) 70%)
+}
+.kmp-qutu.isiq .kmp-parilti{opacity:1}
+.kmp-qutu.isiq .kmp-govde{
+  background:rgba(255,255,255,.66);
+  border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.42);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,1),0 2px 4px rgba(11,11,12,.05),
+             0 16px 34px -18px rgba(var(--aksR),var(--aksG),var(--aksB),.5)
+}
+.kmp-qutu.isiq .kmp-rq{color:rgb(var(--aksR),var(--aksG),var(--aksB))}
+.kmp-qutu.isiq .kmp-etiket{color:rgba(11,11,12,.55)}
+.kmp-req{
+  position:relative;display:block;width:2ch;height:1.06em;overflow:hidden;
+  font-family:var(--mono);font-size:18px;line-height:1.06;font-variant-numeric:tabular-nums
+}
+.kmp-rq{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--murekkeb);
+  transition:transform .34s var(--acilma),opacity .34s var(--acilma),
+             filter .34s var(--acilma),color .45s var(--yum)
+}
+.kmp-qutu[data-k="san"] .kmp-rq{color:var(--sale)}
+.kmp-rq.gelir{transform:translateY(108%);opacity:0;filter:blur(4px)}
+.kmp-rq.gedir{transform:translateY(-108%);opacity:0;filter:blur(4px)}
+.kmp-etiket{
+  font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sus);transition:color .45s var(--yum)
+}
+.kmp-gs.telesik .kmp-gs-bas{color:var(--sale)}
+.kmp-gs.telesik .kmp-qutu{--aksR:192;--aksG:52;--aksB:43}
+.kmp-gs.telesik .kmp-rq{color:var(--sale)}
+.kmp-gs.telesik .kmp-govde{border-color:rgba(192,52,43,.3)}
+.kmp-gs.telesik{animation:kmpGsNebz 2.6s ease-in-out infinite}
+@keyframes kmpGsNebz{0%,100%{opacity:1}50%{opacity:.82}}
+
+/* --- rejim düyməsi --- */
+.kmp-rejim{display:inline-flex;border:1px solid var(--xett);border-radius:100px;padding:4px;position:relative;margin-top:26px}
+.kmp-rejim button{
+  position:relative;z-index:2;border:0;background:none;cursor:pointer;color:var(--sus);
+  font-family:var(--metn);font-size:12.5px;padding:9px 18px;border-radius:100px;
+  transition:color .4s var(--yum)
+}
+.kmp-rejim button.aktiv{color:var(--kagiz)}
+.kmp-surgu{
+  position:absolute;top:4px;left:4px;height:calc(100% - 8px);
+  background:var(--murekkeb);border-radius:100px;
+  transition:transform .55s cubic-bezier(.34,1.4,.5,1),width .55s cubic-bezier(.34,1.4,.5,1)
+}
+
+/* --- kartlar --- */
+.kmp-tor{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));
+  gap:clamp(12px,1.6vw,20px);margin-top:clamp(28px,5vh,48px)
+}
+.kmp-kart{
+  position:relative;border:1px solid var(--xett);border-radius:18px;
+  padding:clamp(22px,2.4vw,30px);display:flex;flex-direction:column;background:var(--kagiz);
+  opacity:0;transform:translateY(16px);
+  transition:transform .3s var(--yum),box-shadow .3s var(--yum),border-color .3s var(--yum),opacity .6s var(--acilma)
+}
+.kmp-kart.gor{
+  opacity:1;transform:none;
+  transition:opacity .6s var(--acilma),transform .6s var(--acilma),
+             border-color .3s var(--yum),box-shadow .3s var(--yum)
+}
+.kmp-kart.gor:hover{transform:translateY(-4px);border-color:var(--autumn);box-shadow:0 18px 50px rgba(11,11,12,.07)}
+.kmp-kart.kmp-esas{border-color:var(--autumn)}
+.kmp-kart::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
+  background:linear-gradient(105deg,transparent 36%,rgba(180,83,31,.13) 50%,transparent 64%);
+  transform:translateX(-125%);opacity:0
+}
+.kmp-kart.parla::after{animation:kmpParla 1.2s var(--acilma) forwards}
+@keyframes kmpParla{0%{transform:translateX(-125%);opacity:1}100%{transform:translateX(125%);opacity:0}}
+
+.kmp-etiket-esas{
+  position:absolute;top:0;left:clamp(22px,2.4vw,30px);transform:translateY(-50%);
+  background:var(--kagiz);color:var(--autumn);padding:0 10px;
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;white-space:nowrap
+}
+.kmp-endirim{
+  position:absolute;top:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);
+  display:inline-flex;align-items:center;justify-content:center;overflow:hidden;
+  min-width:64px;padding:9px 14px;border-radius:100px;
+  background:var(--sale);color:#fff;font-family:var(--mono);font-size:13px;letter-spacing:.02em;
+  box-shadow:0 8px 22px -8px rgba(192,52,43,.55);
+  opacity:0;transform:scale(.8) rotate(-6deg)
+}
+.kmp-endirim.gel{
+  opacity:1;transform:scale(1) rotate(0deg);
+  transition:opacity .4s var(--acilma),transform .45s cubic-bezier(.34,1.5,.5,1)
+}
+.kmp-endirim::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.6) 50%,transparent 62%);
+  transform:translateX(-130%)
+}
+.kmp-endirim.gel::after{animation:kmpNisanParla 1.15s .45s var(--acilma)}
+@keyframes kmpNisanParla{to{transform:translateX(130%)}}
+.kmp-endirim.nebz{animation:kmpEndirimNebz 2.5s ease-in-out infinite}
+@keyframes kmpEndirimNebz{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+
+.kmp-kart .kicik{padding-right:76px}
+.kmp-kart h3{font-family:var(--dsp);font-weight:400;font-size:clamp(22px,2.6vw,30px);margin:14px 0 6px}
+.kmp-qisa{color:var(--sus);font-size:13.5px;min-height:2.8em}
+
+.kmp-qb{margin-top:18px;transition:opacity .35s var(--yum),transform .35s var(--yum)}
+.kmp-qb.cixir{opacity:0;transform:translateY(-6px)}
+.kmp-kohne{
+  display:block;height:26px;line-height:26px;font-size:17px;color:var(--sus);
+  text-decoration:none;position:relative;width:fit-content
+}
+.kmp-kohne::after{
+  content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;
+  background:var(--sale);border-radius:2px;transform:scaleX(0);transform-origin:left;
+  transition:transform .45s var(--acilma)
+}
+.kmp-kohne.cizildi::after{transform:scaleX(1)}
+.kmp-qiymet{
+  display:flex;align-items:baseline;gap:4px;margin-top:4px;
+  font-family:var(--dsp);font-size:clamp(30px,3.4vw,40px);line-height:1
+}
+.kmp-qiymet strong{font-weight:400;font-variant-numeric:tabular-nums;display:inline-block;transition:transform .35s var(--acilma)}
+.kmp-qiymet strong.dusdu{animation:kmpOtur .45s var(--acilma)}
+@keyframes kmpOtur{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
+.kmp-qiymet .val{font-family:var(--metn);font-weight:400;font-size:.5em}
+.kmp-qiymet .vahid{font-family:var(--metn);font-weight:300;font-size:12px;color:var(--sus);margin-left:4px}
+.kmp-qenaet{
+  display:inline-flex;align-items:center;gap:7px;margin-top:10px;padding:6px 12px;border-radius:100px;
+  background:rgba(192,52,43,.09);color:var(--sale);font-size:12.5px;white-space:nowrap;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .45s var(--acilma),transform .45s var(--acilma)
+}
+.kmp-qenaet.gel{opacity:1;transform:none}
+.kmp-qenaet b{font-weight:500;font-variant-numeric:tabular-nums}
+.kmp-qeyd{display:block;margin-top:9px;font-size:12px;color:var(--sus)}
+
+.kmp-kart ul{list-style:none;margin:20px 0 22px;padding-top:18px;border-top:1px solid var(--xett)}
+.kmp-kart li{font-size:13.5px;color:var(--sus);padding:5px 0;display:flex;gap:9px}
+.kmp-kart li::before{content:"—";color:var(--murekkeb);opacity:.35;flex:none}
+.kmp-kart li.kmp-bend1{color:var(--murekkeb);font-size:15px;padding-bottom:9px}
+.kmp-kart li.kmp-bend1::before{color:var(--autumn);opacity:1}
+.kmp-kart .dgm{margin-top:auto;text-align:center}
+
+.kmp-sayim{margin-top:clamp(24px,3.5vh,36px);font-size:13px;max-width:62ch;color:var(--sus)}
+.kmp-sayim b{font-weight:400;color:var(--autumn)}
+
+@media (max-width:820px){
+  .kmp-yarpaqlar{display:none}
+  .kmp-tor{grid-template-columns:minmax(0,1fr)}
+  .kmp-endirim{min-width:58px;padding:8px 12px;font-size:12px}
+  .kmp-kart .kicik{padding-right:76px}
+  .kmp-kohne{font-size:16px}
+  .kmp-govde{min-width:52px;padding:8px 8px 6px}
+  .kmp-req{font-size:16px}
+  .kmp-gs-qutular{gap:6px}
+}
+@media (prefers-reduced-motion:reduce){
+  .kmp-yarpaqlar,.kmp-gs::before{display:none !important}
+  .kmp-kart{opacity:1 !important;transform:none !important;transition:none !important}
+  .kmp-kart:hover{transform:none !important}
+  .kmp-kohne::after{transform:scaleX(1) !important;transition:none !important}
+  .kmp-endirim{opacity:1 !important;transform:none !important;animation:none !important;transition:none !important}
+  .kmp-qenaet{opacity:1 !important;transform:none !important;transition:none !important}
+  .kmp-kart::after,.kmp-endirim::after,.kmp-parilti{display:none !important}
+  .kmp-pill i,.kmp-gs,.kmp-qiymet strong{animation:none !important}
+  .kmp-govde{transform:none !important}
+  .kmp-rq{transition:none !important;filter:none !important}
+  .kmp-qb,.kmp-surgu{transition:none !important}
+}
+
+/* --- kampaniya: sifariş formasi --- */
+.kmp-mdl{position:fixed;inset:0;z-index:9600;display:flex;align-items:center;justify-content:center;padding:18px}
+.kmp-mdl[hidden]{display:none}
+.kmp-mdl-fon{
+  position:absolute;inset:0;background:rgba(11,11,12,.42);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  opacity:0;transition:opacity .35s var(--yum)
+}
+.kmp-mdl.aciq .kmp-mdl-fon{opacity:1}
+.kmp-mdl-panel{
+  position:relative;z-index:2;width:100%;max-width:430px;max-height:92vh;overflow-y:auto;
+  padding:24px 24px 20px;border-radius:20px;
+  background:rgba(251,250,248,.86);
+  -webkit-backdrop-filter:blur(26px) saturate(190%);backdrop-filter:blur(26px) saturate(190%);
+  border:1px solid rgba(255,255,255,.7);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 30px 70px -30px rgba(11,11,12,.5);
+  opacity:0;transform:translateY(14px) scale(.98);
+  transition:opacity .4s var(--acilma),transform .4s var(--acilma)
+}
+.kmp-mdl.aciq .kmp-mdl-panel{opacity:1;transform:none}
+.kmp-mdl-bagla{
+  position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:50%;border:0;background:none;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:17px;line-height:1;
+  color:var(--sus);transition:background .3s,color .3s
+}
+.kmp-mdl-bagla:hover{background:rgba(11,11,12,.06);color:var(--murekkeb)}
+.kmp-mdl-nisan{
+  display:inline-block;padding:5px 11px;border-radius:100px;
+  background:var(--autumn-soft);color:var(--autumn);
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase
+}
+.kmp-mdl-panel h3{font-family:var(--dsp);font-weight:400;font-size:27px;line-height:1.1;margin:11px 0 0}
+.kmp-mdl-qiymet{display:flex;align-items:baseline;gap:8px;margin-top:7px;flex-wrap:wrap}
+.kmp-mdl-qiymet s{font-size:14px;color:var(--sus);text-decoration-color:var(--sale)}
+.kmp-mdl-qiymet strong{font-family:var(--dsp);font-weight:400;font-size:27px;line-height:1}
+.kmp-mdl-qiymet em{font-style:normal;font-size:12px;color:var(--sus)}
+.kmp-mdl-qiymet i{
+  font-style:normal;padding:3px 8px;border-radius:100px;
+  background:var(--sale);color:#fff;font-family:var(--mono);font-size:10px
+}
+.kmp-mdl-ayirici{height:1px;background:var(--xett);margin:18px 0 16px}
+.kmp-mdl-form{display:flex;flex-direction:column;gap:11px}
+.kmp-mdl-form label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--sus)}
+.kmp-mdl-form input,.kmp-mdl-form textarea{
+  font-family:var(--metn);font-weight:300;font-size:14.5px;color:var(--murekkeb);
+  padding:11px 13px;border-radius:11px;border:1px solid var(--xett);
+  background:rgba(255,255,255,.6);transition:border-color .3s,background .3s;width:100%
+}
+.kmp-mdl-form textarea{resize:vertical;min-height:56px}
+.kmp-mdl-form input:focus,.kmp-mdl-form textarea:focus{outline:0;border-color:var(--autumn);background:#fff}
+.kmp-mdl-form input.xeta{border-color:var(--sale)}
+.kmp-mdl-cut{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.kmp-mdl-xeta{font-size:12.5px;color:var(--sale);line-height:1.5}
+.kmp-mdl-xeta:empty{display:none}
+.kmp-mdl-dgm{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:5px}
+.kmp-mdl-btn{
+  padding:13px 14px;border-radius:100px;border:1px solid var(--xett);background:none;cursor:pointer;
+  font-family:var(--metn);font-size:13px;text-align:center;color:var(--murekkeb);
+  transition:background .3s,color .3s,border-color .3s,transform .25s var(--yum)
+}
+.kmp-mdl-btn:hover{transform:translateY(-2px)}
+.kmp-mdl-btn.dolu{background:var(--murekkeb);color:var(--kagiz);border-color:var(--murekkeb)}
+.kmp-mdl-btn.dolu:hover{background:var(--autumn);border-color:var(--autumn)}
+.kmp-mdl-btn.wa:hover{border-color:var(--autumn);color:var(--autumn)}
+.kmp-mdl-btn[disabled]{opacity:.55;pointer-events:none}
+.kmp-mdl-alt{margin-top:11px;font-size:11.5px;color:var(--sus);text-align:center}
+.kmp-mdl-ugur{text-align:center;padding:8px 0 4px}
+.kmp-mdl-ugur[hidden]{display:none}
+.kmp-mdl-ikon{
+  width:44px;height:44px;margin:0 auto 14px;border-radius:50%;
+  background:var(--autumn-soft);color:var(--autumn);
+  display:flex;align-items:center;justify-content:center;font-size:20px
+}
+.kmp-mdl-ugur h4{font-family:var(--dsp);font-weight:400;font-size:22px;margin-bottom:8px}
+.kmp-mdl-ugur p{font-size:13px;color:var(--sus);max-width:34ch;margin:0 auto}
+@media (max-width:420px){
+  .kmp-mdl-cut,.kmp-mdl-dgm{grid-template-columns:1fr}
+  .kmp-mdl-panel{padding:20px 18px 18px;border-radius:18px}
+  .kmp-mdl-panel h3{font-size:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  .kmp-mdl-fon,.kmp-mdl-panel{transition:none !important}
+  .kmp-mdl-panel{opacity:1 !important;transform:none !important}
+  .kmp-mdl-btn:hover{transform:none !important}
+}
+
+/* mobil: giriş vəziyyəti an-hazir bayrağına bağlıdır ki, JS ölsə gizli qalmasın */
+.kmp-kart{opacity:1;transform:none}
+.an-hazir .kmp-kart{opacity:0;transform:translateY(16px)}
+.an-hazir .kmp-kart.gor{opacity:1;transform:none}
+.kmp-endirim{opacity:1;transform:none}
+.an-hazir .kmp-endirim{opacity:0;transform:scale(.8) rotate(-6deg)}
+.kmp-qenaet{opacity:1;transform:none}
+.an-hazir .kmp-qenaet{opacity:0;transform:translateY(6px)}
+.kmp-tor{grid-template-columns:minmax(0,1fr)}
+.kmp-kalk{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  margin-top:22px;padding:16px 18px;border-radius:16px;border:1px solid var(--xett);
+  font-size:13px;color:var(--sus);line-height:1.5
+}
+.kmp-kalk b{font-weight:400;color:var(--murekkeb);font-family:var(--dsp);font-size:16px}
+.kmp-kalk i{font-style:normal;font-size:17px;color:var(--autumn);flex:none}
 
 </style>
 </head>
@@ -709,29 +1058,32 @@ body.bitdi .alt-cubuq{transform:none}
 
 <!-- ==================== PAKETLƏR ==================== -->
 <section class="blok" id="paketler">
-  <div class="kicik an">Kalkulyator</div>
-  <h2 class="an" data-g="1">Paketini özün qur</h2>
-  <p class="izah an" data-g="2">Çəkiliş növünü seç, detalları uyğunlaşdır — qiymət addım-addım formalaşsın.</p>
-  <div class="pkt">
-    <a class="pkt-kart an" href="/kalkulyator" style="--aks:#d93a1e;--aks2:#3b7fd4">
-      <span class="xid-hale" aria-hidden="true"></span>
-      <span class="xid-hale xid-hale--alt" aria-hidden="true"></span>
-      <span class="pkt-ust"><span class="xid-nisan">Foto çəkilişi</span><span class="xid-no">~60 san</span></span>
-      <span class="pkt-qiymet"><b>140</b><i>AZN</i></span>
-      <span class="pkt-etiket">-dən başlayan foto paketləri</span>
-      <ul class="pkt-siyahi"><li>Food, məhsul və e-commerce</li><li>Portret, model və moda</li><li>Məkan, tədbir və sosial media</li></ul>
-      <span class="pkt-alt"><span>Foto kalkulyatoru</span><i>&rarr;</i></span>
-    </a>
-    <a class="pkt-kart an" data-g="1" href="/video-kalkulyator" style="--aks:#4a9d8f;--aks2:#d93a1e">
-      <span class="xid-hale" aria-hidden="true"></span>
-      <span class="xid-hale xid-hale--alt" aria-hidden="true"></span>
-      <span class="pkt-ust"><span class="xid-nisan">Video çəkilişi</span><span class="xid-no">~60 san</span></span>
-      <span class="pkt-qiymet"><b>320</b><i>AZN</i></span>
-      <span class="pkt-etiket">-dən başlayan video paketləri</span>
-      <ul class="pkt-siyahi"><li>Reklam çarxı və brend filmi</li><li>Reels / TikTok kontenti</li><li>Toy, love story və tədbir</li></ul>
-      <span class="pkt-alt"><span>Video kalkulyatoru</span><i>&rarr;</i></span>
-    </a>
+  <div class="kmp-pill an"><i aria-hidden="true"></i>Payız kampaniyası<b id="kmp-pill-endirim">&mdash;</b></div>
+
+  <div class="kmp-gs an" data-g="1" id="kmp-gs">
+    <span class="kmp-gs-bas">Kampaniyanın bitməsinə</span>
+    <span class="kmp-gs-qutular" id="kmp-gs-qutular" aria-live="off"></span>
   </div>
+
+  <div class="kicik an" data-g="1" style="margin-top:20px">Paketlər</div>
+  <h2 class="an" data-g="2">Reels paketləri</h2>
+  <p class="izah an" data-g="2">Danışıq, təqdimat və kiçik reklam videoları üçün — hazır formatda, təhvilə qədər.</p>
+
+  <div class="kmp-rejim" role="tablist" aria-label="Ödəniş rejimi">
+    <div class="kmp-surgu" id="kmp-surgu" aria-hidden="true"></div>
+    <button type="button" class="aktiv" role="tab" aria-selected="true">Tək paket</button>
+    <button type="button" role="tab" aria-selected="false">Aylıq</button>
+  </div>
+
+  <div class="kmp-tor" id="kmp-tor"></div>
+
+  <p class="kmp-sayim">
+    Kampaniya <b>30 sentyabra</b> qədər davam edir. Bitəndən sonra qiymətlər köhnə həddinə qayıdır.
+  </p>
+
+  <a class="kmp-kalk an" href="/paket">
+    <span><b>Öz paketini qur</b><br>Foto və video kalkulyatoru</span><i>&rarr;</i>
+  </a>
 </section>
 
 <!-- ==================== SUALLAR ==================== -->
@@ -1270,6 +1622,633 @@ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded'
 else basla();
 })();
 
+</script>
+<!-- ================= KAMPANİYA: SİFARİŞ FORMASI ================= -->
+<div class="kmp-mdl" id="kmp-mdl" role="dialog" aria-modal="true" aria-labelledby="kmp-mdl-bas" hidden>
+  <div class="kmp-mdl-fon" data-kmp-bagla></div>
+  <div class="kmp-mdl-panel">
+    <button type="button" class="kmp-mdl-bagla" data-kmp-bagla aria-label="Bağla">&times;</button>
+    <div id="kmp-mdl-govde">
+      <span class="kmp-mdl-nisan" id="kmp-mdl-rejim">Tək paket</span>
+      <h3 id="kmp-mdl-bas">—</h3>
+      <div class="kmp-mdl-qiymet">
+        <s id="kmp-mdl-kohne"></s><strong id="kmp-mdl-yeni"></strong>
+        <em id="kmp-mdl-vahid"></em><i id="kmp-mdl-endirim"></i>
+      </div>
+      <div class="kmp-mdl-ayirici"></div>
+      <form class="kmp-mdl-form" id="kmp-mdl-form" novalidate>
+        <label>Ad və soyad *<input type="text" id="kmp-f-ad" autocomplete="name" placeholder="Adınız"></label>
+        <label>Telefon / WhatsApp *<input type="tel" id="kmp-f-tel" inputmode="tel" autocomplete="tel" placeholder="+994 XX XXX XX XX"></label>
+        <div class="kmp-mdl-cut">
+          <label>Təxmini tarix<input type="date" id="kmp-f-tarix"></label>
+          <label>E-poçt<input type="email" id="kmp-f-mail" autocomplete="email" placeholder="istəyə bağlı"></label>
+        </div>
+        <label>Qısa qeyd<textarea id="kmp-f-qeyd" rows="2" placeholder="Nə çəkmək istəyirsən?"></textarea></label>
+        <p class="kmp-mdl-xeta" id="kmp-mdl-xeta" role="alert"></p>
+        <div class="kmp-mdl-dgm">
+          <button type="button" class="kmp-mdl-btn dolu" id="kmp-mdl-mail">E-poçt ilə göndər</button>
+          <button type="button" class="kmp-mdl-btn wa" id="kmp-mdl-wa">WhatsApp-a yaz</button>
+        </div>
+        <p class="kmp-mdl-alt">Seçdiyin paketin bütün detalları mesaja avtomatik əlavə olunur.</p>
+      </form>
+    </div>
+    <div class="kmp-mdl-ugur" id="kmp-mdl-ugur" hidden>
+      <div class="kmp-mdl-ikon" aria-hidden="true">&#10003;</div>
+      <h4>Sorğun göndərildi</h4>
+      <p>Adətən bir neçə saat ərzində cavab verirəm. Tələsirsənsə WhatsApp-a da yaza bilərsən.</p>
+    </div>
+  </div>
+</div>
+<script>
+/* ===== PAYIZ KAMPANİYASI — paketlər bölməsinin məntiqi ===== */
+(function(){
+'use strict';
+
+/* ==========================================================================
+   KONFİQ — bütün qiymət, mətn və tarixlər YALNIZ burada.
+   Kampaniyanı dəyişmək üçün başqa heç bir yerə toxunmaq lazım deyil.
+   ========================================================================== */
+var ELAQE = {
+  eposta:   "malikzadarahman@gmail.com",
+  whatsapp: "994705205885"          /* beynəlxalq format, + və boşluq olmadan */
+};
+
+var KAMPANIYA = {
+  bitis: "2026-09-30T23:59:59+04:00",   /* Bakı vaxtı */
+  bitisMetni: "Kampaniya 30 sentyabra qədər"
+};
+
+var PACKAGES = {
+  single: [
+    { nisan:"Super 8", ad:"Reels Start", qisa:"Danışıq, təqdimat və kiçik reklam videoları üçün başlanğıc.",
+      kohne:350, yeni:250, endirim:29, vahid:"/ paket", esas:false,
+      siyahi:[
+        "4 Reels (15–45 san)",
+        "2–3 saat çəkiliş",
+        "Danışıq, təqdimat və ya kiçik reklam",
+        "Montaj + subtitr",
+        "Color correction"
+      ] },
+
+    { nisan:"16 mm", ad:"Reels Studio", qisa:"Studio şəraiti və brendə özəl musiqi ilə.",
+      kohne:550, yeni:390, endirim:29, vahid:"/ paket", esas:true,
+      siyahi:[
+        "6 Reels (15–60 san)",
+        "Yarım gün çəkiliş",
+        "Studio icarəsi daxil (maksimum 1 saat)",
+        "Brendə özəl musiqi",
+        "Montaj + subtitr + color grading",
+        "2 revizyon raundu"
+      ] },
+
+    { nisan:"35 mm", ad:"Reels Pro", qisa:"Planlı çəkiliş, çöl və studio bir paketdə.",
+      kohne:650, yeni:450, endirim:31, vahid:"/ paket", esas:false,
+      siyahi:[
+        "8 Reels (15–60 san)",
+        "Çöl və studio çəkilişi (studio maksimum 1 saat)",
+        "Öncədən görüş və çəkiliş planı",
+        "Brendə özəl musiqi + sound design",
+        "Motion graphics və subtitr",
+        "4 revizyon raundu",
+        "Prioritet təhvil"
+      ] }
+  ],
+  monthly: [
+    { nisan:"Super 8", ad:"Reels Start", qisa:"Aylıq davamlı Reels axını — sabit ritm.",
+      kohne:550, yeni:390, endirim:29, vahid:"/ ayda", esas:false,
+      qeyd:"Tək-tək alsan 500 ₼ olardı",
+      siyahi:[
+        "Ayda 8 Reels",
+        "Ayda 2 çəkiliş günü (2–3 saat)",
+        "Danışıq və təqdimat kontenti",
+        "Montaj + subtitr",
+        "Aylıq kontent planı"
+      ] },
+
+    { nisan:"16 mm", ad:"Reels Studio", qisa:"Studio və brend musiqisi ilə aylıq kontent.",
+      kohne:850, yeni:590, endirim:31, vahid:"/ ayda", esas:true,
+      qeyd:"Tək-tək alsan 780 ₼ olardı",
+      siyahi:[
+        "Ayda 12 Reels",
+        "Ayda 2 yarım gün çəkiliş",
+        "Studio icarəsi daxil (maksimum 1 saat)",
+        "Brendə özəl musiqi",
+        "Color grading + 2 revizyon raundu",
+        "Aylıq kontent planı"
+      ] },
+
+    { nisan:"35 mm", ad:"Reels Pro", qisa:"Ən geniş aylıq paket — plan, çöl, studio.",
+      kohne:1100, yeni:750, endirim:32, vahid:"/ ayda", esas:false,
+      qeyd:"Tək-tək alsan 900 ₼ olardı",
+      siyahi:[
+        "Ayda 16 Reels",
+        "Çöl və studio çəkilişi (studio maksimum 1 saat)",
+        "Öncədən görüş və aylıq çəkiliş planı",
+        "Brendə özəl musiqi + sound design",
+        "Motion graphics və subtitr",
+        "Sərbəst revizyon",
+        "Prioritet təhvil (48 saat)"
+      ] }
+  ]
+};
+
+/* ========================================================================== */
+var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var tor = document.getElementById('kmp-tor');
+var rejimBtn = [].slice.call(document.querySelectorAll('.kmp-rejim button'));
+var surgu = document.getElementById('kmp-surgu');
+var cari = 0;                 /* 0 = tək layihə, 1 = aylıq */
+var acilib = false;           /* bölmə bir dəfə görünübmü */
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---------------- KARTLARI QUR ---------------- */
+function kartlariQur(rejim){
+  var siyahi = rejim === 1 ? PACKAGES.monthly : PACKAGES.single;
+  tor.innerHTML = siyahi.map(function(p, i){
+    return '' +
+    '<article class="kmp-kart' + (p.esas ? ' kmp-esas' : '') + '" data-i="' + i + '">' +
+      (p.esas ? '<span class="kmp-etiket-esas">Ən çox seçilən</span>' : '') +
+      '<span class="kmp-endirim" role="img" aria-label="' + p.endirim + ' faiz endirim">&minus;' + p.endirim + '%</span>' +
+      '<div class="kicik">' + esc(p.nisan) + '</div>' +
+      '<h3>' + esc(p.ad) + '</h3>' +
+      '<p class="kmp-qisa">' + esc(p.qisa) + '</p>' +
+      '<div class="kmp-qb">' +
+        '<s class="kmp-kohne">' + p.kohne + ' ₼</s>' +
+        '<div class="kmp-qiymet">' +
+          '<strong data-bas="' + p.kohne + '" data-hedef="' + p.yeni + '">' + p.kohne + '</strong>' +
+          '<span class="val">₼</span>' +
+          '<span class="vahid">' + esc(p.vahid) + '</span>' +
+        '</div>' +
+        '<span class="kmp-qenaet"><b>' + (p.kohne - p.yeni) + ' ₼</b> qənaət edirsən</span>' +
+        (p.qeyd ? '<span class="kmp-qeyd">' + esc(p.qeyd) + '</span>' : '') +
+      '</div>' +
+      '<ul>' + p.siyahi.map(function(s, j){
+        return '<li' + (j === 0 ? ' class="kmp-bend1"' : '') + '>' + esc(s) + '</li>';
+      }).join('') + '</ul>' +
+      '<a class="dgm ' + (p.esas ? 'dolu' : 'bos') + '" href="#elaqe" data-sec="' + i + '">Seç</a>' +
+    '</article>';
+  }).join('');
+}
+
+/* ---------------- RƏQƏM SAYIMI ---------------- */
+/* Qiymət KÖHNƏDƏN YENİYƏ enir — endirimin ən aydın göstəricisi budur:
+   istifadəçi rəqəmin düşdüyünü gözü ilə görür. */
+function sayimAnimasiya(el, basDeyer, hedef, muddet, bitdi){
+  if(azalt){ el.textContent = hedef; if(bitdi) bitdi(); return; }
+  var t0 = null;
+  el.textContent = basDeyer;
+  function addim(t){
+    if(t0 === null) t0 = t;
+    var n = Math.min(1, (t - t0) / muddet);
+    var e = 1 - Math.pow(1 - n, 3);                 /* ease-out cubic */
+    el.textContent = Math.round(basDeyer + (hedef - basDeyer) * e);
+    if(n < 1) requestAnimationFrame(addim);
+    else {
+      el.textContent = hedef;
+      el.classList.add('dusdu');
+      setTimeout(function(){ el.classList.remove('dusdu'); }, 500);
+      if(bitdi) bitdi();
+    }
+  }
+  requestAnimationFrame(addim);
+}
+
+/* ---------------- BİR KARTIN ARDICILLIĞI ---------------- */
+function kartOynat(kart, gecikme){
+  var kohne  = kart.querySelector('.kmp-kohne');
+  var reqem  = kart.querySelector('.kmp-qiymet strong');
+  var nisan  = kart.querySelector('.kmp-endirim');
+  var qenaet = kart.querySelector('.kmp-qenaet');
+  var hedef  = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+  var basDeyer = parseInt(reqem.getAttribute('data-bas'), 10) || hedef;
+
+  if(azalt){
+    kart.classList.add('gor');
+    kohne.classList.add('cizildi');
+    reqem.textContent = hedef;
+    nisan.classList.add('gel');
+    if(qenaet) qenaet.classList.add('gel');
+    return;
+  }
+
+  setTimeout(function(){ kart.classList.add('gor', 'parla'); }, gecikme);
+  setTimeout(function(){ kohne.classList.add('cizildi'); }, gecikme + 300);
+  setTimeout(function(){
+    sayimAnimasiya(reqem, basDeyer, hedef, 900, function(){
+      nisan.classList.add('gel');
+      if(qenaet) qenaet.classList.add('gel');
+      setTimeout(function(){ nisan.classList.add('nebz'); }, 500);
+    });
+  }, gecikme + 320);
+}
+
+function hamisiniOynat(){
+  [].slice.call(tor.children).forEach(function(kart, i){
+    kartOynat(kart, i * 60);                       /* 60ms fərq */
+  });
+}
+
+/* ---------------- REJİM DƏYİŞMƏSİ ---------------- */
+function surguYer(i){
+  var b = rejimBtn[i]; if(!b || !surgu) return;
+  surgu.style.width = b.offsetWidth + 'px';
+  surgu.style.transform = 'translateX(' + (b.offsetLeft - 4) + 'px)';
+}
+
+function rejimQoy(i, ilk){
+  cari = i;
+  rejimBtn.forEach(function(b, j){
+    b.classList.toggle('aktiv', j === i);
+    b.setAttribute('aria-selected', j === i ? 'true' : 'false');
+  });
+  surguYer(i);
+
+  if(ilk || azalt){
+    kartlariQur(i);
+    if(!ilk || acilib) hamisiniOynat();
+    return;
+  }
+
+  /* köhnə qiymət bloku çıxsın → yenisi gəlsin */
+  var bloklar = [].slice.call(tor.querySelectorAll('.kmp-qb'));
+  bloklar.forEach(function(b){ b.classList.add('cixir'); });
+  setTimeout(function(){
+    kartlariQur(i);
+    [].slice.call(tor.children).forEach(function(k){ k.classList.add('gor'); });
+    hamisiniOynatQiymet();
+  }, 350);
+}
+
+/* rejim dəyişəndə kartlar yenidən görünmür — yalnız qiymət hissəsi oynayır */
+function hamisiniOynatQiymet(){
+  [].slice.call(tor.children).forEach(function(kart, i){
+    var kohne  = kart.querySelector('.kmp-kohne');
+    var reqem  = kart.querySelector('.kmp-qiymet strong');
+    var nisan  = kart.querySelector('.kmp-endirim');
+    var qenaet = kart.querySelector('.kmp-qenaet');
+    var hedef  = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+    var basDeyer = parseInt(reqem.getAttribute('data-bas'), 10) || hedef;
+    var g = i * 60;
+    if(azalt){
+      kohne.classList.add('cizildi'); reqem.textContent = hedef;
+      nisan.classList.add('gel'); if(qenaet) qenaet.classList.add('gel');
+      return;
+    }
+    setTimeout(function(){ kohne.classList.add('cizildi'); }, g + 60);
+    setTimeout(function(){
+      sayimAnimasiya(reqem, basDeyer, hedef, 900, function(){
+        nisan.classList.add('gel');
+        if(qenaet) qenaet.classList.add('gel');
+        setTimeout(function(){ nisan.classList.add('nebz'); }, 500);
+      });
+    }, g + 60);
+  });
+}
+
+/* ---------------- GERİ SAYIM ---------------- */
+/* Geri sayım: qutular bir dəfə qurulur, sonra yalnız rəqəmlər yenilənir.
+   Saniyə hər dəfə dəyişəndə qısa "tik" vurğusu alır — kampaniyanın
+   həqiqətən işlədiyi hiss olunsun. */
+var gsQutu = {};
+function sayimQur(){
+  var q = document.getElementById('kmp-gs-qutular');
+  if(!q) return;
+  q.innerHTML = [['gun','gün'],['saat','saat'],['deq','dəq'],['san','san']].map(function(k){
+    return '<span class="kmp-qutu" data-k="' + k[0] + '">' +
+             '<span class="kmp-govde">' +
+               '<span class="kmp-parilti" aria-hidden="true"></span>' +
+               '<span class="kmp-req"><span class="kmp-rq">00</span></span>' +
+               '<span class="kmp-etiket">' + k[1] + '</span>' +
+             '</span>' +
+           '</span>';
+  }).join('');
+  ['gun','saat','deq','san'].forEach(function(k){
+    var qab = q.querySelector('[data-k="' + k + '"]');
+    gsQutu[k] = { qab:qab, req:qab.querySelector('.kmp-req'), deyer:'00' };
+  });
+  qutuTilt();
+}
+
+/* rəqəmi dəyişdirir: köhnəsi yuxarı sürüşüb bulanır, yenisi aşağıdan gəlir */
+function reqemYaz(c, yeni){
+  if(c.deyer === yeni) return;
+  c.deyer = yeni;
+  if(azalt){ c.req.innerHTML = '<span class="kmp-rq">' + yeni + '</span>'; return; }
+  var kohne = c.req.querySelector('.kmp-rq:not(.gedir)');
+  var teze = document.createElement('span');
+  teze.className = 'kmp-rq gelir';
+  teze.textContent = yeni;
+  c.req.appendChild(teze);
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      teze.classList.remove('gelir');
+      if(kohne){
+        kohne.classList.add('gedir');
+        setTimeout(function(){ if(kohne.parentNode) kohne.parentNode.removeChild(kohne); }, 400);
+      }
+    });
+  });
+}
+
+/* üstünə gələndə 3D əyilmə + kursor parıltısı (yalnız işarələyicili cihazda) */
+function qutuTilt(){
+  if(azalt || !matchMedia('(hover: hover)').matches) return;
+  [].slice.call(document.querySelectorAll('.kmp-qutu')).forEach(function(q){
+    var g = q.querySelector('.kmp-govde'), r = null;
+    q.addEventListener('mouseenter', function(){ r = q.getBoundingClientRect(); q.classList.add('isiq'); });
+    q.addEventListener('mousemove', function(e){
+      if(!r) r = q.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      q.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      q.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      g.style.transform =
+        'rotateX(' + ((0.5 - y) * 11).toFixed(2) + 'deg) ' +
+        'rotateY(' + ((x - 0.5) * 13).toFixed(2) + 'deg) translateZ(5px)';
+    });
+    q.addEventListener('mouseleave', function(){
+      r = null; q.classList.remove('isiq'); g.style.transform = '';
+    });
+  });
+}
+
+function sayimYenile(){
+  var gs = document.getElementById('kmp-gs');
+  if(!gsQutu.gun) return;
+  var qalan = new Date(KAMPANIYA.bitis).getTime() - Date.now();
+  if(isNaN(qalan)) return;
+  if(qalan <= 0){
+    ['gun','saat','deq','san'].forEach(function(k){ reqemYaz(gsQutu[k], '00'); });
+    if(gs) gs.classList.remove('telesik');
+    return;
+  }
+  var sn  = Math.floor(qalan / 1000);
+  var gun = Math.floor(sn / 86400),
+      saat= Math.floor((sn % 86400) / 3600),
+      deq = Math.floor((sn % 3600) / 60),
+      san = sn % 60;
+  function ik(n){ return n < 10 ? '0' + n : '' + n; }
+  var deyer = { gun:ik(gun), saat:ik(saat), deq:ik(deq), san:ik(san) };
+
+  ['gun','saat','deq','san'].forEach(function(k){ reqemYaz(gsQutu[k], deyer[k]); });
+
+  /* son 7 gün — rəng və nəbz dəyişir */
+  if(gs) gs.classList.toggle('telesik', gun < 7);
+}
+
+/* ən böyük endirim faizi — kampaniya nişanında göstərilir */
+function pillEndirim(){
+  var el = document.getElementById('kmp-pill-endirim');
+  if(!el) return;
+  var en = 0;
+  PACKAGES.single.concat(PACKAGES.monthly).forEach(function(p){ if(p.endirim > en) en = p.endirim; });
+  el.textContent = '· ' + en + '%-ə qədər endirim';
+}
+
+/* ---------------- YARPAQLAR ---------------- */
+function yarpaqlariQur(){
+  var q = document.getElementById('kmp-yarpaqlar');
+  /* mobildə CSS onsuz da display:none edir — burada yalnız hərəkət
+     azaldılıbsa dayanırıq ki, ekran sonradan genişlənsə yarpaqlar olsun */
+  if(!q || azalt) return;
+  var YARPAQ = '<svg viewBox="0 0 32 40" aria-hidden="true">' +
+    '<path d="M16 1.5C7.8 8.6 2.5 15.2 2.5 22.6c0 7.6 6 13.9 13.5 15.9 7.5-2 13.5-8.3 13.5-15.9C29.5 15.2 24.2 8.6 16 1.5z"/>' +
+    '<path d="M15.4 12h1.2v26h-1.2z" opacity=".55"/></svg>';
+  /* 6 yarpaq — az saxlanılıb, çox olsa ucuz görünür */
+  var yer = [
+    {l:8,  en:30, sure:26, gec:0,   sur:'26px',  don:'300deg', op:.09},
+    {l:26, en:22, sure:31, gec:-9,  sur:'-18px', don:'-260deg',op:.06},
+    {l:47, en:36, sure:22, gec:-4,  sur:'34px',  don:'340deg', op:.10},
+    {l:63, en:24, sure:29, gec:-15, sur:'-24px', don:'280deg', op:.07},
+    {l:81, en:32, sure:19, gec:-7,  sur:'20px',  don:'-320deg',op:.08},
+    {l:93, en:20, sure:24, gec:-18, sur:'-14px', don:'300deg', op:.06}
+  ];
+  q.innerHTML = yer.map(function(y){
+    return '<span class="kmp-yarpaq" style="' +
+      'left:' + y.l + '%;width:' + y.en + 'px;height:' + Math.round(y.en * 1.25) + 'px;' +
+      'opacity:' + y.op + ';animation-duration:' + y.sure + 's;animation-delay:' + y.gec + 's;' +
+      '--sur:' + y.sur + ';--don:' + y.don + '">' + YARPAQ + '</span>';
+  }).join('');
+}
+
+/* ==========================================================================
+   SİFARİŞ FORMASI
+   Paket seçiləndə kiçik pəncərə açılır. İki yol var: e-poçt (FormSubmit) və
+   WhatsApp. Hər ikisində seçilmiş paketin detalları avtomatik əlavə olunur —
+   müştəri onları yazmır, sən də nəyin seçildiyini dəqiq görürsən.
+   ========================================================================== */
+var mdl, mdlAcan = null, seciliPaket = null;
+
+function paketTap(i){
+  var siyahi = cari === 1 ? PACKAGES.monthly : PACKAGES.single;
+  return siyahi[i] || null;
+}
+function rejimAdi(){ return cari === 1 ? 'Aylıq' : 'Tək paket'; }
+
+function telKecerli(t){
+  var r = (t || '').replace(/[^0-9]/g, '');
+  return r.length >= 9 && r.length <= 15;
+}
+
+function formOxu(){
+  return {
+    ad:    (document.getElementById('kmp-f-ad').value    || '').trim(),
+    tel:   (document.getElementById('kmp-f-tel').value   || '').trim(),
+    mail:  (document.getElementById('kmp-f-mail').value  || '').trim(),
+    tarix: (document.getElementById('kmp-f-tarix').value || '').trim(),
+    qeyd:  (document.getElementById('kmp-f-qeyd').value  || '').trim()
+  };
+}
+
+function formYoxla(){
+  var f = formOxu(), xeta = '';
+  var ad = document.getElementById('kmp-f-ad'), tel = document.getElementById('kmp-f-tel');
+  ad.classList.remove('xeta'); tel.classList.remove('xeta');
+  if(f.ad.length < 2){ ad.classList.add('xeta'); xeta = 'Adını yaz.'; }
+  else if(!telKecerli(f.tel)){ tel.classList.add('xeta'); xeta = 'Telefon nömrəsini düzgün yaz.'; }
+  document.getElementById('kmp-mdl-xeta').textContent = xeta;
+  if(xeta){ (f.ad.length < 2 ? ad : tel).focus(); return null; }
+  return f;
+}
+
+/* mesajın səliqəli mətni — həm WhatsApp, həm mailto ehtiyatı üçün */
+function mesajMetni(p, f){
+  var q = [];
+  q.push('Salam! Saytdan paket seçdim.');
+  q.push('');
+  q.push('PAKET');
+  q.push(p.ad + ' — ' + rejimAdi());
+  q.push(p.yeni + ' ₼  (köhnə ' + p.kohne + ' ₼, −' + p.endirim + '% payız kampaniyası)');
+  q.push('');
+  q.push('PAKETƏ DAXİLDİR');
+  p.siyahi.forEach(function(x){ q.push('• ' + x); });
+  q.push('');
+  q.push('MƏLUMATLARIM');
+  q.push('Ad: ' + f.ad);
+  q.push('Telefon: ' + f.tel);
+  if(f.mail)  q.push('E-poçt: ' + f.mail);
+  if(f.tarix) q.push('Təxmini tarix: ' + f.tarix);
+  if(f.qeyd)  q.push('Qeyd: ' + f.qeyd);
+  return q.join('\n');
+}
+
+function mdlAc(i, acan){
+  var p = paketTap(i);
+  if(!p) return;
+  seciliPaket = p; mdlAcan = acan || null;
+
+  document.getElementById('kmp-mdl-rejim').textContent   = rejimAdi();
+  document.getElementById('kmp-mdl-bas').textContent     = p.ad;
+  document.getElementById('kmp-mdl-kohne').textContent   = p.kohne + ' ₼';
+  document.getElementById('kmp-mdl-yeni').textContent    = p.yeni + ' ₼';
+  document.getElementById('kmp-mdl-vahid').textContent   = p.vahid;
+  document.getElementById('kmp-mdl-endirim').textContent = '−' + p.endirim + '%';
+  document.getElementById('kmp-mdl-xeta').textContent    = '';
+  document.getElementById('kmp-mdl-govde').hidden = false;
+  document.getElementById('kmp-mdl-ugur').hidden  = true;
+
+  mdl.hidden = false;
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(function(){
+    mdl.classList.add('aciq');
+    var ad = document.getElementById('kmp-f-ad');
+    setTimeout(function(){ try{ ad.focus(); }catch(e){} }, 120);
+  });
+}
+
+function mdlBagla(){
+  if(!mdl || mdl.hidden) return;
+  mdl.classList.remove('aciq');
+  document.body.style.overflow = '';
+  setTimeout(function(){ mdl.hidden = true; }, azalt ? 0 : 380);
+  if(mdlAcan){ try{ mdlAcan.focus(); }catch(e){} mdlAcan = null; }
+}
+
+function whatsappGonder(){
+  var f = formYoxla(); if(!f || !seciliPaket) return;
+  var url = 'https://wa.me/' + ELAQE.whatsapp + '?text=' + encodeURIComponent(mesajMetni(seciliPaket, f));
+  window.open(url, '_blank', 'noopener');
+  mdlUgur();
+}
+
+function epostaGonder(){
+  var f = formYoxla(); if(!f || !seciliPaket) return;
+  var p = seciliPaket, btn = document.getElementById('kmp-mdl-mail');
+  var xetaEl = document.getElementById('kmp-mdl-xeta');
+  btn.disabled = true; btn.textContent = 'Göndərilir…';
+
+  var movzu = 'Paket sorğusu — ' + p.ad + ' (' + rejimAdi() + ') · ' + f.ad;
+  var yuk = {
+    _subject: movzu, _template: 'table', _captcha: 'false',
+    'Paket': p.ad + ' — ' + rejimAdi(),
+    'Qiymət': p.yeni + ' ₼ (köhnə ' + p.kohne + ' ₼, −' + p.endirim + '%)',
+    'Paketə daxildir': p.siyahi.join(' · '),
+    'Ad və soyad': f.ad,
+    'Telefon / WhatsApp': f.tel,
+    'E-poçt': f.mail || '—',
+    'Təxmini tarix': f.tarix || '—',
+    'Qeyd': f.qeyd || '—',
+    'Göndərilmə vaxtı': new Date().toLocaleString('az-AZ')
+  };
+  if(f.mail) yuk._replyto = f.mail;
+
+  var bitdi = false;
+  function birDefe(fn){ if(bitdi) return; bitdi = true; clearTimeout(saat); fn(); }
+  function ugur(){ btn.disabled = false; btn.textContent = 'E-poçt ilə göndər'; mdlUgur(); }
+  function ugursuz(){
+    btn.disabled = false; btn.textContent = 'Yenidən göndər';
+    xetaEl.textContent = 'Avtomatik göndərmə alınmadı. E-poçt proqramın açılır — ' +
+                         'oradan göndər, ya da WhatsApp düyməsini işlət.';
+    try{
+      location.href = 'mailto:' + ELAQE.eposta +
+        '?subject=' + encodeURIComponent(movzu) +
+        '&body='    + encodeURIComponent(mesajMetni(p, f));
+    }catch(e){}
+  }
+  var saat = setTimeout(function(){ birDefe(ugursuz); }, 12000);
+
+  if(typeof fetch !== 'function'){ birDefe(ugursuz); return; }
+  fetch('https://formsubmit.co/ajax/' + ELAQE.eposta, {
+    method:'POST',
+    headers:{'Content-Type':'application/json','Accept':'application/json'},
+    body: JSON.stringify(yuk)
+  })
+  .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  .then(function(){ birDefe(ugur); })
+  .catch(function(){ birDefe(ugursuz); });
+}
+
+function mdlUgur(){
+  document.getElementById('kmp-mdl-govde').hidden = true;
+  document.getElementById('kmp-mdl-ugur').hidden  = false;
+}
+
+function sifarisQur(){
+  mdl = document.getElementById('kmp-mdl');
+  if(!mdl || !tor) return;
+
+  /* "Seç" düyməsi: pəncərəni aç. JS işləməsə link öz işini görür. */
+  tor.addEventListener('click', function(e){
+    var d = e.target.closest('[data-sec]');
+    if(!d) return;
+    e.preventDefault();
+    mdlAc(parseInt(d.getAttribute('data-sec'), 10) || 0, d);
+  });
+
+  mdl.addEventListener('click', function(e){ if(e.target.closest('[data-kmp-bagla]')) mdlBagla(); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') mdlBagla(); });
+  document.getElementById('kmp-mdl-wa').addEventListener('click', whatsappGonder);
+  document.getElementById('kmp-mdl-mail').addEventListener('click', epostaGonder);
+  document.getElementById('kmp-mdl-form').addEventListener('submit', function(e){ e.preventDefault(); });
+}
+
+/* ---------------- BAŞLAT ---------------- */
+function basla(){
+  kartlariQur(0);
+  rejimBtn.forEach(function(b, i){ b.addEventListener('click', function(){ if(i !== cari) rejimQoy(i); }); });
+  surguYer(0);
+  addEventListener('resize', function(){ surguYer(cari); });
+  yarpaqlariQur();
+  sifarisQur();
+  pillEndirim();
+  sayimQur();
+  sayimYenile();
+  setInterval(function(){ if(!document.hidden) sayimYenile(); }, 1000);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) sayimYenile(); });
+
+  if(azalt || !('IntersectionObserver' in window)){
+    acilib = true; hamisiniOynat(); return;
+  }
+  /* Hər kart AYRICA izlənilir. Mobildə kartlar tək sütundadır və qab
+     çox uzundur — qabı izləsək üçüncü kartın qiymət animasiyası ekrandan
+     kənarda oynayardı, istifadəçi endirimi görməzdi. */
+  var io = new IntersectionObserver(function(g){
+    g.forEach(function(x){
+      if(!x.isIntersecting) return;
+      var kart = x.target;
+      if(kart.getAttribute('data-oynadi')) return;
+      kart.setAttribute('data-oynadi', '1');
+      acilib = true;
+      kartOynat(kart, (parseInt(kart.getAttribute('data-i'), 10) || 0) * 60);
+      io.unobserve(kart);
+    });
+  }, {threshold:.25, rootMargin:'0px 0px -8% 0px'});
+  [].slice.call(tor.children).forEach(function(k){ io.observe(k); });
+
+  /* ehtiyat: müşahidəçi işə düşməsə də kartlar gizli qalmasın */
+  setTimeout(function(){
+    [].slice.call(tor.children).forEach(function(kart, i){
+      if(kart.getAttribute('data-oynadi')) return;
+      kart.setAttribute('data-oynadi', '1');
+      acilib = true;
+      kartOynat(kart, i * 60);
+    });
+  }, 5000);
+}
+
+if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', basla);
+else basla();
+})();
 </script>
 </body>
 </html>
