@@ -1,0 +1,11 @@
+# rahmanmalikzade.com — Rəhman Məlikzadə, videoqraf və fotoqraf, Bakı
+
+User-agent: *
+Allow: /
+
+# Qeyd: /mobil, /yoxla, /konsept və /paket-kampaniya səhifələri
+# HTML-in içindəki <meta name="robots" content="noindex"> ilə indeksdən
+# kənarlaşdırılır. Onları burada Disallow ETMƏK OLMAZ — əks halda robot
+# səhifəni oxuya bilməz və noindex göstərişini heç vaxt görməz.
+
+Sitemap: https://rahmanmalikzade.com/sitemap.xml
