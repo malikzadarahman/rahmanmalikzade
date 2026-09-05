@@ -1,7 +1,20 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/mobil",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "rewrites": [
-    { "source": "/foto-paket/:id", "destination": "/kalkulyator.html" },
-    { "source": "/video-paket/:id", "destination": "/video-kalkulyator.html" }
+    {
+      "source": "/foto-paket/:id",
+      "destination": "/kalkulyator.html"
+    },
+    {
+      "source": "/video-paket/:id",
+      "destination": "/video-kalkulyator.html"
+    }
   ]
 }
