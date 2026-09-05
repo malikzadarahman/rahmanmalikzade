@@ -48,6 +48,7 @@ button{font-family:inherit;border:0;background:none;color:inherit;cursor:pointer
 .kicik{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sus)}
 .blok{padding:clamp(72px,12vh,168px) var(--kenar)}
 h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-height:1.02;letter-spacing:-.01em}
+.bas-alt{margin-top:16px;max-width:48ch;color:var(--sus);font-size:14.5px}
 
 /* nümunə lenti — əsas sayta köçürüləndə silinir */
 .numune{
@@ -213,6 +214,9 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 .paket ul{list-style:none;margin-top:20px;padding-top:18px;border-top:1px solid var(--xett)}
 .paket li{font-size:13.5px;color:var(--sus);padding:5px 0;display:flex;gap:9px}
 .paket li::before{content:"—";color:var(--murekkeb);opacity:.35;flex:none}
+/* birinci bənd = paketin əsas fərqi (Reels sayı) — daha aydın */
+.paket li.bend-esas{color:var(--murekkeb);font-size:15px;padding-bottom:9px}
+.paket li.bend-esas::before{color:var(--autumn);opacity:1}
 
 .dgm{
   margin-top:22px;text-align:center;
@@ -288,7 +292,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
   <div class="kampaniya-pill"><i aria-hidden="true"></i>Payız kampaniyası<b id="pill-endirim">&mdash;</b></div>
   <div class="kicik" style="margin-top:18px">Paketlər</div>
-  <h2 id="p-bas" style="margin-top:12px">Video + foto</h2>
+  <h2 id="p-bas" style="margin-top:12px">Reels paketləri</h2>
+  <p class="bas-alt">Danışıq, təqdimat və kiçik reklam videoları üçün — hazır formatda, təhvilə qədər.</p>
 
   <div class="rejim" role="tablist" aria-label="Ödəniş rejimi">
     <div class="surgu" id="surgu" aria-hidden="true"></div>
@@ -319,30 +324,72 @@ var KAMPANIYA = {
 
 var PACKAGES = {
   single: [
-    { nisan:"Super 8", ad:"Reels Start", qisa:"Sosial media üçün sürətli kontent.",
-      kohne:350, yeni:250, endirim:29, vahid:"/ layihə", esas:false,
-      siyahi:["2–3 saat çəkiliş","2 Reels","Montaj + subtitr","Color correction"] },
+    { nisan:"Super 8", ad:"Reels Start", qisa:"Danışıq, təqdimat və kiçik reklam videoları üçün başlanğıc.",
+      kohne:350, yeni:250, endirim:29, vahid:"/ paket", esas:false,
+      siyahi:[
+        "4 Reels (15–45 san)",
+        "2–3 saat çəkiliş",
+        "Danışıq, təqdimat və ya kiçik reklam",
+        "Montaj + subtitr",
+        "Color correction"
+      ] },
 
-    { nisan:"16 mm", ad:"Brand Content", qisa:"Reklam çarxı və ya brend filmi.",
-      kohne:550, yeni:390, endirim:29, vahid:"/ layihə", esas:true,
-      siyahi:["Yarım gün çəkiliş","1 əsas reklam videosu","2 qısa Reels","Sound design + color grading"] },
+    { nisan:"16 mm", ad:"Reels Studio", qisa:"Studio şəraiti və brendə özəl musiqi ilə.",
+      kohne:550, yeni:390, endirim:29, vahid:"/ paket", esas:true,
+      siyahi:[
+        "6 Reels (15–60 san)",
+        "Yarım gün çəkiliş",
+        "Studio icarəsi daxil",
+        "Brendə özəl musiqi",
+        "Montaj + subtitr + color grading",
+        "2 revizyon raundu"
+      ] },
 
-    { nisan:"35 mm", ad:"Full Content Day", qisa:"Tam gün, geniş çeşid material.",
-      kohne:850, yeni:590, endirim:31, vahid:"/ layihə", esas:false,
-      siyahi:["Tam gün çəkiliş","1 əsas video","3–4 qısa sosial media videosu","Motion graphics","Sound design","3 revision raundu"] }
+    { nisan:"35 mm", ad:"Reels Pro", qisa:"Planlı çəkiliş, çöl və studio bir paketdə.",
+      kohne:650, yeni:450, endirim:31, vahid:"/ paket", esas:false,
+      siyahi:[
+        "8 Reels (15–60 san)",
+        "Çöl və studio çəkilişi",
+        "Öncədən görüş və çəkiliş planı",
+        "Brendə özəl musiqi + sound design",
+        "Motion graphics və subtitr",
+        "4 revizyon raundu",
+        "Prioritet təhvil"
+      ] }
   ],
   monthly: [
-    { nisan:"Super 8", ad:"Reels Start", qisa:"Aylıq davamlı Reels axını.",
+    { nisan:"Super 8", ad:"Reels Start", qisa:"Aylıq davamlı Reels axını — sabit ritm.",
       kohne:690, yeni:490, endirim:29, vahid:"/ ayda", esas:false,
-      siyahi:["Ayda 2 çəkiliş (2–3 saat)","6 Reels","Montaj + subtitr","Color correction","Aylıq kontent planı"] },
+      siyahi:[
+        "Ayda 8 Reels",
+        "Ayda 2 çəkiliş günü (2–3 saat)",
+        "Danışıq və təqdimat kontenti",
+        "Montaj + subtitr",
+        "Aylıq kontent planı"
+      ] },
 
-    { nisan:"16 mm", ad:"Brand Content", qisa:"Aylıq reklam və brend kontenti.",
+    { nisan:"16 mm", ad:"Reels Studio", qisa:"Studio və brend musiqisi ilə aylıq kontent.",
       kohne:1100, yeni:780, endirim:29, vahid:"/ ayda", esas:true,
-      siyahi:["Ayda 2 yarım gün çəkiliş","2 əsas reklam videosu","4 qısa Reels","Sound design + color grading","2 revision raundu"] },
+      siyahi:[
+        "Ayda 12 Reels",
+        "Ayda 2 yarım gün çəkiliş",
+        "Studio icarəsi daxil",
+        "Brendə özəl musiqi",
+        "Color grading + 2 revizyon raundu",
+        "Aylıq kontent planı"
+      ] },
 
-    { nisan:"35 mm", ad:"Full Content Day", qisa:"Ən geniş aylıq kontent paketi.",
+    { nisan:"35 mm", ad:"Reels Pro", qisa:"Ən geniş aylıq paket — plan, çöl, studio.",
       kohne:1700, yeni:1180, endirim:31, vahid:"/ ayda", esas:false,
-      siyahi:["Ayda 1 tam gün + 1 yarım gün çəkiliş","3 əsas video","6–8 qısa sosial media videosu","Motion graphics","Sound design","3 revision raundu","Prioritet təhvil (48 saat)"] }
+      siyahi:[
+        "Ayda 16 Reels",
+        "Çöl və studio çəkilişi",
+        "Öncədən görüş və aylıq çəkiliş planı",
+        "Brendə özəl musiqi + sound design",
+        "Motion graphics və subtitr",
+        "Sərbəst revizyon",
+        "Prioritet təhvil (48 saat)"
+      ] }
   ]
 };
 
@@ -376,7 +423,9 @@ function kartlariQur(rejim){
         '</div>' +
         '<span class="qenaet"><b>' + (p.kohne - p.yeni) + ' ₼</b> qənaət edirsən</span>' +
       '</div>' +
-      '<ul>' + p.siyahi.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
+      '<ul>' + p.siyahi.map(function(s, j){
+        return '<li' + (j === 0 ? ' class="bend-esas"' : '') + '>' + esc(s) + '</li>';
+      }).join('') + '</ul>' +
       '<a class="dgm ' + (p.esas ? 'dolu' : 'bos') + '" href="/#elaqe">Seç</a>' +
     '</article>';
   }).join('');
