@@ -481,7 +481,10 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;
+  /* sabit naviqasiyanın hündürlüyü + nəfəs boşluğu: anker kliklərində
+     bölmə başlığı nav-ın altında gizlənməsin */
+  scroll-padding-top:76px}
 body{
   background:var(--kagiz);color:var(--murekkeb);font-family:var(--metn);font-weight:300;
   font-size:clamp(15px,1.05vw,17px);line-height:1.6;-webkit-font-smoothing:antialiased;padding-bottom:46px;
