@@ -222,7 +222,10 @@ p{max-width:46ch}
 }
 .nav.enib{border-bottom-color:var(--xett)}
 .nav-ad{font-family:var(--dsp);font-size:15px;letter-spacing:.01em}
-.nav-links{display:flex;gap:clamp(16px,2.4vw,32px);font-size:12.5px;font-weight:400;letter-spacing:.01em}
+.nav-links{
+  display:flex;gap:clamp(16px,2.4vw,32px);font-size:12.5px;font-weight:400;letter-spacing:.01em;
+  transition:opacity .6s var(--yum),transform .6s var(--yum)
+}
 .nav-links a{color:var(--sus);transition:color .3s}
 .nav-links a:hover,.nav-links a.aktiv{color:var(--murekkeb)}
 .xett-ust{position:fixed;top:0;left:0;height:2px;background:var(--murekkeb);width:0;z-index:9500}
@@ -236,6 +239,9 @@ body.acilis-var .nav-links a{color:rgba(251,250,248,.5)}
 body.acilis-var .nav-links a:hover,body.acilis-var .nav-links a.aktiv{color:var(--kagiz)}
 body.acilis-var .rec-ust{color:rgba(251,250,248,.5)}
 body.acilis-var .xett-ust{background:var(--kagiz)}
+/* bölmə keçidləri açılış səhnəsində gizlidir — flaş partlayıb
+   ağ səhifə çıxandan sonra (acilis-var götürüləndə) yumşaq görünür */
+body.acilis-var .nav-links{opacity:0;transform:translateY(-8px);pointer-events:none}
 /* ================= AÇILIŞ: KAMERA + FLAŞ ================= */
 .acilis{position:relative;z-index:5;height:146vh;background:var(--murekkeb);pointer-events:none}
 .acilis-yapisqan{position:sticky;top:0;height:100svh;overflow:hidden}
@@ -244,15 +250,6 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
   align-items:center;justify-content:center;gap:clamp(28px,4.6vh,54px);
   background:var(--murekkeb);will-change:opacity
 }
-.acilis-rec{
-  position:absolute;top:clamp(84px,11vh,120px);left:50%;transform:translateX(-50%);
-  display:flex;align-items:center;gap:9px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;
-  color:rgba(251,250,248,.42)
-}
-.acilis-rec i{width:6px;height:6px;border-radius:50%;background:var(--rec);box-shadow:0 0 10px var(--rec);animation:acNebz 1.9s infinite}
-@keyframes acNebz{0%,100%{opacity:1}50%{opacity:.25}}
-
 .kam{position:relative;width:min(62vw,540px);will-change:transform}
 .kam picture{display:block}
 .kam img{
@@ -334,7 +331,7 @@ body.acilis-var .xett-ust{background:var(--kagiz)}
   .acilis,.flas{display:none}
   .hero-qab{margin-top:0;height:auto}
   .hero-qab .hero{position:relative}
-  .acilis-ox i,.acilis-rec i{animation:none}
+  .acilis-ox i{animation:none}
 }
 
 /* ============ HERO ============ */
@@ -2123,7 +2120,6 @@ body.menyu-aciq .menyu-alt{opacity:1;transform:none}
   .acilis{height:152vh}
   .kam{width:78vw}
   .acilis-bas{font-size:clamp(20px,6.5vw,28px)}
-  .acilis-rec{top:76px}
 
   /* hero */
   .hero-qab{height:142svh}
@@ -2394,7 +2390,6 @@ body.menyu-aciq .xett-ust{opacity:0}
   <div class="acilis-yapisqan">
     <div class="acilis-sehne" id="acilis-sehne">
 
-      <div class="acilis-rec"><i></i>REC</div>
 
       <div class="kam" id="kam">
         <picture>
