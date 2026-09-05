@@ -652,6 +652,7 @@ footer{
 #kalkulyator .pk-btn.qizil:hover{opacity:.86}
 #kalkulyator .pk-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
 
+#kalkulyator .pk-gonder-xeta{margin-top:12px;font-size:12.5px;line-height:1.55;color:var(--pk-vurgu);max-width:56ch}
 #kalkulyator .pk-ugur{display:none;text-align:center;padding:clamp(32px,5vw,54px) 18px;border:1px solid var(--xett);border-radius:8px;margin-top:20px}
 #kalkulyator .pk-ugur.gorunur{display:block}
 #kalkulyator .pk-ugur-ikon{width:44px;height:44px;border-radius:50%;background:rgba(217,58,30,.08);color:var(--pk-vurgu);margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
@@ -2094,6 +2095,8 @@ function pkIcerikYekun(state){
       '<button type="button" class="pk-btn" id="pk-pdf">PDF təklifini yüklə</button>' +
     '</div>' +
 
+    '<div class="pk-gonder-xeta" id="pk-gonder-xeta" role="alert" aria-live="polite"></div>' +
+
     '<div class="pk-ugur" id="pk-ugur">' +
       '<div class="pk-ugur-ikon">' + pkSvg('ugur') + '</div>' +
       '<h3>Sorğunuz qəbul edildi</h3>' +
@@ -2368,6 +2371,51 @@ function pkRenderMobilQiymet(hesab){
     };
   }
 
+  /* ================= SORĞUNUN GÖNDƏRİLMƏSİ =================
+     Sayt statikdir — öz serveri yoxdur, ona görə sorğu FormSubmit
+     üzərindən e-poçta göndərilir.
+     Vacib: uğur mesajı YALNIZ göndərmə həqiqətən alınanda göstərilir.
+     Alınmasa forma təmizlənmir, mailto ehtiyatı açılır — sorğu itmir. */
+  var PK_MAIL_HEDEF = "malikzadarahman@gmail.com";
+  var PK_MAIL_UC    = "https://formsubmit.co/ajax/" + PK_MAIL_HEDEF;
+  var PK_MAIL_MOVZU = "Video çəkiliş sorğusu";
+
+  function pkFaylAdi(){
+    var el = document.getElementById("pk-fayl-input");
+    return (el && el.files && el.files[0]) ? el.files[0].name : "";
+  }
+
+  function pkSorguSahe(){
+    var s = pkSelectionMetni(), f = state.form, fayl = pkFaylAdi();
+    var o = {
+      "Ad və soyad": f.ad || "—",
+      "Telefon / WhatsApp": f.telefon || "—",
+      "E-poçt": f.eposta || "—",
+      "Şirkət / brend": f.brend || "—",
+      "Çəkiliş növü": s.tip,
+      "Foto sayı": String(s.foto),
+      "Rakurs sayı": String(s.rakurs),
+      "Müddət": s.saat + " saat",
+      "Məkan": s.mekan,
+      "Avadanlıq": s.avadanliq,
+      "Əlavə xidmətlər": s.xidmetler,
+      "Təxmini qiymət": s.qiymet,
+      "Arzu olunan tarix": f.tarix || "—",
+      "Alternativ tarix": f.altTarix || "—",
+      "Çəkiliş ünvanı": f.unvan || "—",
+      "Əlavə qeyd": f.qeyd || "—"
+    };
+    /* fayl özü göndərilmir — adı bildirilir, sonra müştəridən istənilir */
+    if(fayl) o["Referans fayl"] = fayl + " (müştəridən ayrıca istə)";
+    return o;
+  }
+
+  function pkMetnMektub(sahe){
+    var setir = [];
+    for(var k in sahe){ if(Object.prototype.hasOwnProperty.call(sahe, k)) setir.push(k + ": " + sahe[k]); }
+    return setir.join("\n");
+  }
+
   function pkGonderClick(){
     var honeypot = document.getElementById("pk-honeypot");
     if(honeypot && honeypot.value) return;
@@ -2376,20 +2424,57 @@ function pkRenderMobilQiymet(hesab){
       if(ilkXeta) ilkXeta.focus();
       return;
     }
+
     var btn = document.getElementById("pk-gonder");
+    var xetaEl = document.getElementById("pk-gonder-xeta");
+    if(xetaEl) xetaEl.textContent = "";
     btn.disabled = true; btn.textContent = "Göndərilir…";
-    /* --- API inteqrasiyası buraya qoşulur ---
-       fetch('/api/cekilis-sorgusu', { method:'POST', headers:{'Content-Type':'application/json'},
-         body: JSON.stringify({ secimler:state, qiymet:sonHesab, gonderilibTarixi:new Date().toISOString() }) })
-    */
-    setTimeout(function(){
-      btn.disabled = false; btn.textContent = "Çəkiliş sorğusunu göndər";
+
+    var sahe  = pkSorguSahe();
+    var movzu = PK_MAIL_MOVZU + " — " + (state.form.ad || "ad qeyd edilməyib");
+    var yuk   = { _subject: movzu, _template: "table", _captcha: "false" };
+    for(var k in sahe){ if(Object.prototype.hasOwnProperty.call(sahe, k)) yuk[k] = sahe[k]; }
+    if(state.form.eposta) yuk._replyto = state.form.eposta;
+
+    function ugur(){
+      btn.disabled = false;
+      btn.textContent = "Çəkiliş sorğusunu göndər";
       var ugurEl = document.getElementById("pk-ugur");
-      ugurEl.classList.add("gorunur");
-      btn.closest(".pk-son-cta").style.display = "none";
+      if(ugurEl) ugurEl.classList.add("gorunur");
+      var cta = btn.closest(".pk-son-cta");
+      if(cta) cta.style.display = "none";
       trackEvent("form_gonderildi", { tip: state.tip, yekun: sonHesab?sonHesab.yekun:null });
       pkTemizle();
-    }, 900);
+    }
+
+    function ugursuz(){
+      btn.disabled = false;
+      btn.textContent = "Yenidən göndər";
+      if(xetaEl) xetaEl.textContent =
+        "Avtomatik göndərmə alınmadı. E-poçt proqramın açılır — mesajı oradan göndər, " +
+        "və ya WhatsApp düyməsini işlət. Doldurduğun məlumatlar yerində qalır.";
+      trackEvent("form_gonderilmedi", { tip: state.tip });
+      try{
+        location.href = "mailto:" + PK_MAIL_HEDEF +
+          "?subject=" + encodeURIComponent(movzu) +
+          "&body="    + encodeURIComponent(pkMetnMektub(sahe));
+      }catch(e){}
+    }
+
+    var cavabVar = false;
+    function birDefe(fn){ if(cavabVar) return; cavabVar = true; clearTimeout(saat); fn(); }
+    var saat = setTimeout(function(){ birDefe(ugursuz); }, 12000);
+
+    if(typeof fetch !== "function"){ birDefe(ugursuz); return; }
+
+    fetch(PK_MAIL_UC, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify(yuk)
+    })
+    .then(function(r){ if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .then(function(){ birDefe(ugur); })
+    .catch(function(){ birDefe(ugursuz); });
   }
 
   function pkWhatsappClick(){
