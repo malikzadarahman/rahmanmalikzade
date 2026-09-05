@@ -238,34 +238,64 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 .gs-bas{
   font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)
 }
-.gs-qutular{display:inline-flex;gap:8px}
-.gs-qutular i{
-  position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:3px;
-  min-width:60px;padding:9px 10px;border-radius:12px;font-style:normal;
-  background:var(--autumn-soft);border:1px solid rgba(180,83,31,.18)
+/* Qutular "Nə çəkirəm" bölməsindəki tünd kartların dilində:
+   tünd gövdə, kursor parıltısı, üstünə gələndə 3D əyilmə və rəng dəyişməsi. */
+.gs-qutular{display:inline-flex;gap:10px;flex-wrap:wrap}
+.gs-qutu{
+  --aksR:180;--aksG:83;--aksB:31;--parlaq:#f0c3a4;
+  position:relative;border-radius:16px;perspective:900px
 }
-.gs-qutular u{
-  text-decoration:none;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--sus)
+.gs-qutu[data-k="san"]{--aksR:192;--aksG:52;--aksB:43;--parlaq:#f7b6b0}
+.gs-govde{
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;
+  min-width:78px;padding:15px 14px 12px;
+  background:var(--murekkeb);border:1px solid rgba(251,250,248,.09);border-radius:inherit;
+  box-shadow:0 18px 42px -28px rgba(11,11,12,.75);
+  overflow:hidden;isolation:isolate;transform-style:preserve-3d;
+  transition:transform .35s var(--yum),border-color .45s var(--yum),box-shadow .45s var(--yum)
 }
-.gs-qutular b{
-  font-family:var(--mono);font-size:22px;font-weight:400;line-height:1;
-  font-variant-numeric:tabular-nums;color:var(--autumn)
+/* kursorun ardınca gedən parıltı */
+.gs-parilti{
+  position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
+  transition:opacity .18s linear;
+  background:radial-gradient(230px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--aksR),var(--aksG),var(--aksB),.6) 0%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),.22) 38%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),0) 68%)
 }
-/* saniyə qutusu hər saniyə bir dəfə "vurur" */
-.gs-qutular i[data-k="san"] b{color:var(--sale)}
-.gs-qutular i.tik b{animation:sanTik .5s var(--acilma)}
-@keyframes sanTik{
-  0%{transform:scale(1.16);opacity:.55}
-  55%{transform:scale(1);opacity:1}
-  100%{transform:scale(1)}
+.gs-qutu.isiq .gs-parilti{opacity:1}
+.gs-qutu.isiq .gs-govde{
+  border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.6);
+  box-shadow:0 26px 56px -26px rgba(var(--aksR),var(--aksG),var(--aksB),.5)
 }
-/* son 7 gün — təcili vəziyyət */
+.gs-qutu.isiq .rq{color:var(--parlaq)}
+.gs-qutu.isiq .gs-etiket{color:rgba(251,250,248,.82)}
+
+/* rəqəm: dəyişəndə köhnəsi yuxarı sürüşüb bulanır, yenisi aşağıdan gəlir */
+.gs-req{
+  position:relative;display:block;width:2ch;height:1.06em;overflow:hidden;
+  font-family:var(--mono);font-size:26px;line-height:1.06;font-variant-numeric:tabular-nums
+}
+.rq{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--kagiz);
+  transition:transform .34s var(--acilma),opacity .34s var(--acilma),
+             filter .34s var(--acilma),color .45s var(--yum)
+}
+.rq.gelir{transform:translateY(108%);opacity:0;filter:blur(5px)}
+.rq.gedir{transform:translateY(-108%);opacity:0;filter:blur(5px)}
+
+.gs-etiket{
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(251,250,248,.45);transition:color .45s var(--yum)
+}
+
+/* son 7 gün — hamısı qırmızıya keçir və yavaş nəbz alır */
 .gs.telesik .gs-bas{color:var(--sale)}
-.gs.telesik .gs-qutular i{background:rgba(192,52,43,.08);border-color:rgba(192,52,43,.26)}
-.gs.telesik .gs-qutular b{color:var(--sale)}
+.gs.telesik .gs-qutu{--aksR:192;--aksG:52;--aksB:43;--parlaq:#f7b6b0}
+.gs.telesik .gs-govde{border-color:rgba(192,52,43,.38)}
 .gs.telesik{animation:gsNebz 2.6s ease-in-out infinite}
-@keyframes gsNebz{0%,100%{opacity:1}50%{opacity:.78}}
+@keyframes gsNebz{0%,100%{opacity:1}50%{opacity:.8}}
 
 /* ---------- kartların altındakı sətir ---------- */
 .sayim{margin-top:clamp(24px,3.5vh,36px);font-size:13px;max-width:62ch}
@@ -279,8 +309,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .endirim{min-width:58px;padding:8px 12px;font-size:12px}
   .paket .kicik{padding-right:76px}
   .kohne{font-size:16px}
-  .gs-qutular i{min-width:52px;padding:8px}
-  .gs-qutular b{font-size:19px}
+  .gs-govde{min-width:66px;padding:12px 10px 10px}
+  .gs-req{font-size:21px}
   .qiymet{font-size:32px}
 }
 
@@ -297,7 +327,9 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .paket::after,.endirim::after{display:none !important}
   .kampaniya-pill i{animation:none !important}
   .gs{animation:none !important}
-  .gs-qutular i.tik b{animation:none !important}
+  .gs-govde{transform:none !important}
+  .rq{transition:none !important;filter:none !important}
+  .gs-parilti{display:none !important}
   .qiymet strong{animation:none !important}
 }
 </style>
@@ -587,11 +619,60 @@ function sayimQur(){
   var q = document.getElementById('gs-qutular');
   if(!q) return;
   q.innerHTML = [['gun','gün'],['saat','saat'],['deq','dəq'],['san','san']].map(function(k){
-    return '<i data-k="' + k[0] + '"><b>00</b><u>' + k[1] + '</u></i>';
+    return '<span class="gs-qutu" data-k="' + k[0] + '">' +
+             '<span class="gs-govde">' +
+               '<span class="gs-parilti" aria-hidden="true"></span>' +
+               '<span class="gs-req"><span class="rq">00</span></span>' +
+               '<span class="gs-etiket">' + k[1] + '</span>' +
+             '</span>' +
+           '</span>';
   }).join('');
   ['gun','saat','deq','san'].forEach(function(k){
-    var i = q.querySelector('[data-k="' + k + '"]');
-    gsQutu[k] = { qab:i, reqem:i.querySelector('b') };
+    var qab = q.querySelector('[data-k="' + k + '"]');
+    gsQutu[k] = { qab:qab, req:qab.querySelector('.gs-req'), deyer:'00' };
+  });
+  qutuTilt();
+}
+
+/* rəqəmi dəyişdirir: köhnəsi yuxarı sürüşüb bulanır, yenisi aşağıdan gəlir */
+function reqemYaz(c, yeni){
+  if(c.deyer === yeni) return;
+  c.deyer = yeni;
+  if(azalt){ c.req.innerHTML = '<span class="rq">' + yeni + '</span>'; return; }
+  var kohne = c.req.querySelector('.rq:not(.gedir)');
+  var teze = document.createElement('span');
+  teze.className = 'rq gelir';
+  teze.textContent = yeni;
+  c.req.appendChild(teze);
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      teze.classList.remove('gelir');
+      if(kohne){
+        kohne.classList.add('gedir');
+        setTimeout(function(){ if(kohne.parentNode) kohne.parentNode.removeChild(kohne); }, 400);
+      }
+    });
+  });
+}
+
+/* üstünə gələndə 3D əyilmə + kursor parıltısı (yalnız işarələyicili cihazda) */
+function qutuTilt(){
+  if(azalt || !matchMedia('(hover: hover)').matches) return;
+  [].slice.call(document.querySelectorAll('.gs-qutu')).forEach(function(q){
+    var g = q.querySelector('.gs-govde'), r = null;
+    q.addEventListener('mouseenter', function(){ r = q.getBoundingClientRect(); q.classList.add('isiq'); });
+    q.addEventListener('mousemove', function(e){
+      if(!r) r = q.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+      q.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+      q.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+      g.style.transform =
+        'rotateX(' + ((0.5 - y) * 15).toFixed(2) + 'deg) ' +
+        'rotateY(' + ((x - 0.5) * 17).toFixed(2) + 'deg) translateZ(8px)';
+    });
+    q.addEventListener('mouseleave', function(){
+      r = null; q.classList.remove('isiq'); g.style.transform = '';
+    });
   });
 }
 
@@ -601,7 +682,7 @@ function sayimYenile(){
   var qalan = new Date(KAMPANIYA.bitis).getTime() - Date.now();
   if(isNaN(qalan)) return;
   if(qalan <= 0){
-    ['gun','saat','deq','san'].forEach(function(k){ gsQutu[k].reqem.textContent = '00'; });
+    ['gun','saat','deq','san'].forEach(function(k){ reqemYaz(gsQutu[k], '00'); });
     if(gs) gs.classList.remove('telesik');
     return;
   }
@@ -613,16 +694,7 @@ function sayimYenile(){
   function ik(n){ return n < 10 ? '0' + n : '' + n; }
   var deyer = { gun:ik(gun), saat:ik(saat), deq:ik(deq), san:ik(san) };
 
-  ['gun','saat','deq','san'].forEach(function(k){
-    var c = gsQutu[k];
-    if(c.reqem.textContent === deyer[k]) return;       /* dəyişməyibsə toxunma */
-    c.reqem.textContent = deyer[k];
-    if(k === 'san' && !azalt){
-      c.qab.classList.remove('tik');
-      void c.qab.offsetWidth;                          /* animasiyanı yenidən başlat */
-      c.qab.classList.add('tik');
-    }
-  });
+  ['gun','saat','deq','san'].forEach(function(k){ reqemYaz(gsQutu[k], deyer[k]); });
 
   /* son 7 gün — rəng və nəbz dəyişir */
   if(gs) gs.classList.toggle('telesik', gun < 7);
