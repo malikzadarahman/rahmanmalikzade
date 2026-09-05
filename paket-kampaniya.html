@@ -234,68 +234,95 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
 /* ==================== GERİ SAYIM ==================== */
 /* ---------- geri sayım (başlığın üstündə) ---------- */
-.gs{margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.gs{position:relative;margin-top:18px;display:flex;align-items:center;gap:13px;flex-wrap:wrap}
+/* şüşənin arxasında yumşaq isti işıq — bulanacaq bir şey olsun deyə */
+.gs::before{
+  content:"";position:absolute;left:-4%;right:-4%;top:-45%;bottom:-45%;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(55% 130% at 28% 50%,rgba(180,83,31,.16),transparent 72%),
+    radial-gradient(45% 130% at 78% 50%,rgba(192,52,43,.11),transparent 72%);
+  filter:blur(22px)
+}
 .gs-bas{
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)
+  font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)
 }
-/* Qutular "Nə çəkirəm" bölməsindəki tünd kartların dilində:
-   tünd gövdə, kursor parıltısı, üstünə gələndə 3D əyilmə və rəng dəyişməsi. */
-.gs-qutular{display:inline-flex;gap:10px;flex-wrap:wrap}
+/* Şüşə qutular — Apple üslubu: yarımşəffaf, arxası bulanır,
+   üst kənarında incə işıq, yumşaq qatlı kölgə. */
+.gs-qutular{display:inline-flex;gap:7px;flex-wrap:wrap}
 .gs-qutu{
-  --aksR:180;--aksG:83;--aksB:31;--parlaq:#f0c3a4;
-  position:relative;border-radius:16px;perspective:900px
+  --aksR:180;--aksG:83;--aksB:31;
+  position:relative;border-radius:13px;perspective:800px
 }
-.gs-qutu[data-k="san"]{--aksR:192;--aksG:52;--aksB:43;--parlaq:#f7b6b0}
+.gs-qutu[data-k="san"]{--aksR:192;--aksG:52;--aksB:43}
 .gs-govde{
-  position:relative;display:flex;flex-direction:column;align-items:center;gap:7px;
-  min-width:78px;padding:15px 14px 12px;
-  background:var(--murekkeb);border:1px solid rgba(251,250,248,.09);border-radius:inherit;
-  box-shadow:0 18px 42px -28px rgba(11,11,12,.75);
+  position:relative;display:flex;flex-direction:column;align-items:center;gap:4px;
+  min-width:58px;padding:9px 10px 7px;border-radius:inherit;
+  background:rgba(255,255,255,.5);
+  -webkit-backdrop-filter:blur(18px) saturate(185%);
+  backdrop-filter:blur(18px) saturate(185%);
+  border:1px solid rgba(255,255,255,.62);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(11,11,12,.035),
+    0 1px 2px rgba(11,11,12,.05),
+    0 8px 22px -14px rgba(11,11,12,.28);
   overflow:hidden;isolation:isolate;transform-style:preserve-3d;
-  transition:transform .35s var(--yum),border-color .45s var(--yum),box-shadow .45s var(--yum)
+  transition:transform .4s var(--yum),border-color .45s var(--yum),
+             box-shadow .45s var(--yum),background .45s var(--yum)
 }
-/* kursorun ardınca gedən parıltı */
+/* şüşənin üstündən keçən nazik işıq zolağı */
+.gs-govde::after{
+  content:"";position:absolute;left:12%;right:12%;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.95),transparent)
+}
+/* kursorun ardınca gedən isti şüa — şüşənin içində */
 .gs-parilti{
   position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:0;
-  transition:opacity .18s linear;
-  background:radial-gradient(230px circle at var(--mx,50%) var(--my,50%),
-    rgba(var(--aksR),var(--aksG),var(--aksB),.6) 0%,
-    rgba(var(--aksR),var(--aksG),var(--aksB),.22) 38%,
-    rgba(var(--aksR),var(--aksG),var(--aksB),0) 68%)
+  transition:opacity .2s linear;
+  background:radial-gradient(170px circle at var(--mx,50%) var(--my,50%),
+    rgba(var(--aksR),var(--aksG),var(--aksB),.28) 0%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),.10) 40%,
+    rgba(var(--aksR),var(--aksG),var(--aksB),0) 70%)
 }
 .gs-qutu.isiq .gs-parilti{opacity:1}
 .gs-qutu.isiq .gs-govde{
-  border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.6);
-  box-shadow:0 26px 56px -26px rgba(var(--aksR),var(--aksG),var(--aksB),.5)
+  background:rgba(255,255,255,.66);
+  border-color:rgba(var(--aksR),var(--aksG),var(--aksB),.42);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 2px 4px rgba(11,11,12,.05),
+    0 16px 34px -18px rgba(var(--aksR),var(--aksG),var(--aksB),.5)
 }
-.gs-qutu.isiq .rq{color:var(--parlaq)}
-.gs-qutu.isiq .gs-etiket{color:rgba(251,250,248,.82)}
+.gs-qutu.isiq .rq{color:rgb(var(--aksR),var(--aksG),var(--aksB))}
+.gs-qutu.isiq .gs-etiket{color:rgba(11,11,12,.55)}
 
 /* rəqəm: dəyişəndə köhnəsi yuxarı sürüşüb bulanır, yenisi aşağıdan gəlir */
 .gs-req{
   position:relative;display:block;width:2ch;height:1.06em;overflow:hidden;
-  font-family:var(--mono);font-size:26px;line-height:1.06;font-variant-numeric:tabular-nums
+  font-family:var(--mono);font-size:18px;line-height:1.06;font-variant-numeric:tabular-nums
 }
 .rq{
   position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  color:var(--kagiz);
+  color:var(--murekkeb);
   transition:transform .34s var(--acilma),opacity .34s var(--acilma),
              filter .34s var(--acilma),color .45s var(--yum)
 }
-.rq.gelir{transform:translateY(108%);opacity:0;filter:blur(5px)}
-.rq.gedir{transform:translateY(-108%);opacity:0;filter:blur(5px)}
+.gs-qutu[data-k="san"] .rq{color:var(--sale)}
+.rq.gelir{transform:translateY(108%);opacity:0;filter:blur(4px)}
+.rq.gedir{transform:translateY(-108%);opacity:0;filter:blur(4px)}
 
 .gs-etiket{
-  font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;
-  color:rgba(251,250,248,.45);transition:color .45s var(--yum)
+  font-family:var(--mono);font-size:7.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sus);transition:color .45s var(--yum)
 }
 
-/* son 7 gün — hamısı qırmızıya keçir və yavaş nəbz alır */
+/* son 7 gün — hamısı qırmızı aksentə keçir */
 .gs.telesik .gs-bas{color:var(--sale)}
-.gs.telesik .gs-qutu{--aksR:192;--aksG:52;--aksB:43;--parlaq:#f7b6b0}
-.gs.telesik .gs-govde{border-color:rgba(192,52,43,.38)}
+.gs.telesik .gs-qutu{--aksR:192;--aksG:52;--aksB:43}
+.gs.telesik .rq{color:var(--sale)}
+.gs.telesik .gs-govde{border-color:rgba(192,52,43,.3)}
 .gs.telesik{animation:gsNebz 2.6s ease-in-out infinite}
-@keyframes gsNebz{0%,100%{opacity:1}50%{opacity:.8}}
+@keyframes gsNebz{0%,100%{opacity:1}50%{opacity:.82}}
 
 /* ---------- kartların altındakı sətir ---------- */
 .sayim{margin-top:clamp(24px,3.5vh,36px);font-size:13px;max-width:62ch}
@@ -309,8 +336,9 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .endirim{min-width:58px;padding:8px 12px;font-size:12px}
   .paket .kicik{padding-right:76px}
   .kohne{font-size:16px}
-  .gs-govde{min-width:66px;padding:12px 10px 10px}
-  .gs-req{font-size:21px}
+  .gs-govde{min-width:52px;padding:8px 8px 6px}
+  .gs-req{font-size:16px}
+  .gs-qutular{gap:6px}
   .qiymet{font-size:32px}
 }
 
@@ -328,6 +356,7 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .kampaniya-pill i{animation:none !important}
   .gs{animation:none !important}
   .gs-govde{transform:none !important}
+  .gs::before{display:none !important}
   .rq{transition:none !important;filter:none !important}
   .gs-parilti{display:none !important}
   .qiymet strong{animation:none !important}
@@ -667,8 +696,8 @@ function qutuTilt(){
       q.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
       q.style.setProperty('--my', (y * 100).toFixed(1) + '%');
       g.style.transform =
-        'rotateX(' + ((0.5 - y) * 15).toFixed(2) + 'deg) ' +
-        'rotateY(' + ((x - 0.5) * 17).toFixed(2) + 'deg) translateZ(8px)';
+        'rotateX(' + ((0.5 - y) * 11).toFixed(2) + 'deg) ' +
+        'rotateY(' + ((x - 0.5) * 13).toFixed(2) + 'deg) translateZ(5px)';
     });
     q.addEventListener('mouseleave', function(){
       r = null; q.classList.remove('isiq'); g.style.transform = '';
