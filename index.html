@@ -2350,7 +2350,54 @@ body.menyu-aciq .xett-ust{opacity:0}
   .xd-ic > *{transform:translateY(14px)}
   .xd.gorunur .xd-ic > *{animation-duration:.58s}
 }
+/* ---------- BAŞLIQ HƏRFLƏRİ: sürüşməyə bağlı yığılma ----------
+   --p (0→1) başlığın ekrandan keçmə nisbətidir, JS onu h2-yə yazır.
+   --d hərfin mərkəzdən işarəli məsafəsi (-1…1), --a onun mütləq dəyəri.
+   Sürüşmə bitəndə hamısı yerinə oturur. JS işləməsə --p standart 1-dir
+   və başlıq normal görünür. */
+.hrf-soz{display:inline-block;white-space:nowrap}
+.hrf{
+  display:inline-block;
+  transform:
+    translate3d(calc(var(--d,0) * (1 - var(--p,1)) * var(--yayilma,46px)),
+                calc((1 - var(--p,1)) * (10px + var(--a,0) * 26px)), 0)
+    rotate(calc((1 - var(--p,1)) * var(--d,0) * 7deg));
+  opacity:calc(.05 + var(--p,1) * .95)
+}
+@media (max-width:820px){ .hrf{--yayilma:16px} }
+@media (prefers-reduced-motion:reduce){
+  .hrf{transform:none !important;opacity:1 !important}
+}
 </style>
+<script>
+/* ==========================================================================
+   ORTAQ SÜRÜŞMƏ KADRI
+   Əvvəl beş ayrı sürüşmə dinləyicisi vardı və hər biri öz rAF döngüsündə
+   layout oxuyub yazırdı. Bu, kadr başına bir neçə məcburi reflow yaradır —
+   sürüşmə takılır, sonra birdən "atır". İndi hamısı TƏK rAF-da işləyir.
+   ========================================================================== */
+window.__SF = (function(){
+  var isler = [], planli = false;
+  function kadr(){
+    planli = false;
+    for(var i = 0; i < isler.length; i++){ try{ isler[i](); }catch(e){} }
+  }
+  function plan(){
+    if(planli) return;
+    planli = true;
+    if(typeof requestAnimationFrame === 'function') requestAnimationFrame(kadr);
+    else setTimeout(kadr, 16);
+  }
+  addEventListener('scroll', plan, {passive:true});
+  addEventListener('resize', plan);
+  addEventListener('orientationchange', plan);
+  return {
+    qos: function(fn){ if(isler.indexOf(fn) < 0) isler.push(fn); plan(); },
+    sil: function(fn){ var i = isler.indexOf(fn); if(i >= 0) isler.splice(i, 1); },
+    indi: plan
+  };
+})();
+</script>
 </head>
 <body>
 
@@ -3058,6 +3105,19 @@ body.menyu-aciq .xett-ust{opacity:0}
   var navLinks = [].slice.call(document.querySelectorAll('.nav-links a'));
   var bolmeler = navLinks.map(bolmeTap);
 
+  /* --- Layout ölçüləri keşlənir. Sürüşmə zamanı offsetTop/offsetLeft
+         oxumaq məcburi reflow yaradırdı; indi yalnız ölçü dəyişəndə oxunur. --- */
+  var docH = 0, xanaUst = [], xanaSol = [], xanaEn = [], bolmeUst = [], reelUst = 0, reelH = 0;
+  function ust(e){ return e ? e.getBoundingClientRect().top + window.scrollY : null; }
+  function olc(){
+    docH = document.documentElement.scrollHeight;
+    xanaUst  = xanaBolme.map(ust);
+    xanaSol  = xanalar.map(function(a){ return a.offsetLeft; });
+    xanaEn   = xanalar.map(function(a){ return a.offsetWidth; });
+    bolmeUst = bolmeler.map(ust);
+    if(reel){ reelUst = ust(reel); reelH = reel.offsetHeight; }
+  }
+
   function kadrMetni(f){
     var s = Math.floor(f/25), k = f%25, d = Math.floor(s/60), sn = s%60;
     var p = function(n){ return String(n).padStart(2,'0'); };
@@ -3067,7 +3127,7 @@ body.menyu-aciq .xett-ust{opacity:0}
   var isleyir = false, partladi = false;
   function scrollYenile(){
     var y = window.scrollY;
-    var hs = document.documentElement.scrollHeight - innerHeight;
+    var hs = docH - innerHeight;
     var p = hs > 0 ? Math.min(1, Math.max(0, y/hs)) : 0;
 
     xettUst.style.width = (p*100)+'%';
@@ -3075,32 +3135,26 @@ body.menyu-aciq .xett-ust{opacity:0}
     seritTc.textContent = kadrMetni(Math.round(p * 25*60*4));
 
     /* aktiv bölmə */
-    var xOrta = y + innerHeight*0.35, xAktiv = 0;
-    xanaBolme.forEach(function(b,i){ if(b && b.offsetTop <= xOrta) xAktiv = i; });
+    var xOrta = y + innerHeight*0.35, xAktiv = 0, i;
+    for(i = 0; i < xanaUst.length; i++){ if(xanaUst[i] != null && xanaUst[i] <= xOrta) xAktiv = i; }
     if(xAktiv !== sonXana){
       xanalar.forEach(function(a,i){ a.classList.toggle('aktiv', i === xAktiv); });
       sonXana = xAktiv;
     }
 
     /* kursor aktiv xananın öz içində gəzsin — ad ilə tam sinxron */
-    var cariB = xanaBolme[xAktiv], novbB = null;
-    for(var j = xAktiv + 1; j < xanaBolme.length; j++){ if(xanaBolme[j]){ novbB = xanaBolme[j]; break; } }
-    var bBas = cariB ? cariB.offsetTop : 0;
-    var bSon = novbB ? novbB.offsetTop : document.documentElement.scrollHeight;
+    var bBas = xanaUst[xAktiv] != null ? xanaUst[xAktiv] : 0;
+    var bSon = docH;
+    for(var j = xAktiv + 1; j < xanaUst.length; j++){ if(xanaUst[j] != null){ bSon = xanaUst[j]; break; } }
     var ic = (xOrta - bBas) / Math.max(1, bSon - bBas);
     ic = ic < 0 ? 0 : (ic > 1 ? 1 : ic);
-    var xEl = xanalar[xAktiv];
-    if(xEl) oxbas.style.transform = 'translateX(' + (xEl.offsetLeft + xEl.offsetWidth * ic).toFixed(1) + 'px)';
-
-    if(heroIc){
-      heroIc.style.transform = '';
-      heroIc.style.opacity = '1';
+    if(xanaSol[xAktiv] != null){
+      oxbas.style.transform = 'translateX(' + (xanaSol[xAktiv] + xanaEn[xAktiv] * ic).toFixed(1) + 'px)';
     }
 
     if(cerceve && reel){
-      var r = reel.getBoundingClientRect();
-      var uzun = reel.offsetHeight - innerHeight;
-      var rp = uzun > 0 ? Math.min(1, Math.max(0, -r.top / uzun)) : 0;
+      var uzun = reelH - innerHeight;
+      var rp = uzun > 0 ? Math.min(1, Math.max(0, (y - reelUst) / uzun)) : 0;
       var s = 0.82 + rp*0.18;
       if(!azalt) cerceve.style.transform = 'scale('+s.toFixed(4)+')';
       cerceve.style.borderRadius = (22 - rp*14).toFixed(1)+'px';
@@ -3108,16 +3162,18 @@ body.menyu-aciq .xett-ust{opacity:0}
     }
 
     var orta = y + innerHeight*0.4, aktiv = -1;
-    bolmeler.forEach(function(b,i){ if(b && b.offsetTop <= orta) aktiv = i; });
-    navLinks.forEach(function(a,i){ a.classList.toggle('aktiv', i === aktiv); });
+    for(i = 0; i < bolmeUst.length; i++){ if(bolmeUst[i] != null && bolmeUst[i] <= orta) aktiv = i; }
+    navLinks.forEach(function(a,k){ a.classList.toggle('aktiv', k === aktiv); });
 
     isleyir = false;
   }
-  addEventListener('scroll', function(){
-    if(!isleyir){ isleyir = true; requestAnimationFrame(scrollYenile); }
-  }, {passive:true});
-  addEventListener('resize', function(){ surguYer(cari); scrollYenile(); });
-  scrollYenile();
+  if(heroIc){ heroIc.style.transform = ''; heroIc.style.opacity = '1'; }
+  window.__SF.qos(scrollYenile);
+  addEventListener('resize', function(){ olc(); surguYer(cari); scrollYenile(); });
+  addEventListener('load', function(){ olc(); scrollYenile(); });
+  olc(); scrollYenile();
+  setTimeout(function(){ olc(); scrollYenile(); }, 800);
+  setTimeout(function(){ olc(); scrollYenile(); }, 2400);
 })();
 </script>
 <script>
@@ -4671,9 +4727,7 @@ function pkRenderMobilQiymet(hesab){
     document.body.classList.toggle('hero-acildi', p >= ESIK - 0.02);
   }
 
-  addEventListener('scroll', function(){
-    if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
-  }, {passive:true});
+  window.__SF.qos(yenile);
   addEventListener('resize', yenile);
   if('scrollRestoration' in history) history.scrollRestoration = 'manual';
   yenile();
@@ -4780,9 +4834,7 @@ function pkRenderMobilQiymet(hesab){
     }
   }
 
-  addEventListener('scroll', function(){
-    if(!isleyir){ isleyir = true; requestAnimationFrame(yenile); }
-  }, {passive:true});
+  window.__SF.qos(yenile);
   addEventListener('resize', function(){ xYerlesdir(); yenile(); });
   addEventListener('load', function(){ xYerlesdir(); yenile(); });
   xYerlesdir();
@@ -5084,10 +5136,9 @@ function pkRenderMobilQiymet(hesab){
         var r = el.getBoundingClientRect();
         if(r.top < innerHeight * 0.9 && r.bottom > 0) el.classList.add('gor');
       });
-      if(!qalan) removeEventListener('scroll', sur);
+      if(!qalan) window.__SF.sil(yoxla);
     }
-    function sur(){ if(!isleyir){ isleyir = true; requestAnimationFrame(yoxla); } }
-    addEventListener('scroll', sur, {passive:true});
+    window.__SF.qos(yoxla);
 
     /* --- EHTİYAT 2: nə olursa olsun, məzmun gizli qalmasın --- */
     setTimeout(function(){
@@ -5153,6 +5204,84 @@ function pkRenderMobilQiymet(hesab){
   document.addEventListener('visibilitychange', function(){ if(!document.hidden) setTimeout(ac, 120); });
 })();
 
+</script>
+<script>
+/* ==========================================================================
+   BAŞLIQ HƏRFLƏRİ — sürüşdükcə yerinə yığılır
+   Hər söz .hrf-soz, hər hərf .hrf olur. Hərfin mərkəzdən məsafəsi (--d)
+   nə qədər çoxdursa, o qədər uzaqdan gəlir. Sürüşmə nisbəti (--p) yalnız
+   başlığın özünə yazılır — hərflərə ayrı-ayrı yazılmır, qalanını CSS edir.
+   ========================================================================== */
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var baslar = [].slice.call(document.querySelectorAll(
+    '.karx-bas, #x-bas, #i-bas, #p-bas, #f-bas, #e-bas'));
+  if(!baslar.length) return;
+
+  function bol(h){
+    var yeni = [];
+    [].slice.call(h.childNodes).forEach(function(n){
+      if(n.nodeType === 1){ yeni.push(n.cloneNode(true)); return; }   /* <br> və s. */
+      if(n.nodeType !== 3){ return; }
+      n.nodeValue.split(/(\s+)/).forEach(function(parca){
+        if(!parca) return;
+        if(/^\s+$/.test(parca)){ yeni.push(document.createTextNode(' ')); return; }
+        var soz = document.createElement('span');
+        soz.className = 'hrf-soz';
+        for(var i = 0; i < parca.length; i++){
+          var hrf = document.createElement('span');
+          hrf.className = 'hrf';
+          hrf.textContent = parca.charAt(i);
+          soz.appendChild(hrf);
+        }
+        yeni.push(soz);
+      });
+    });
+    if(!yeni.length) return false;
+    h.textContent = '';
+    yeni.forEach(function(n){ h.appendChild(n); });
+
+    var hrfler = h.querySelectorAll('.hrf'), say = hrfler.length, orta = (say - 1) / 2;
+    for(var i = 0; i < say; i++){
+      var d = orta ? (i - orta) / orta : 0;                 /* -1 … 1 */
+      hrfler[i].style.setProperty('--d', d.toFixed(3));
+      hrfler[i].style.setProperty('--a', Math.abs(d).toFixed(3));
+    }
+    h.style.setProperty('--p', '0');
+    /* blok səviyyəsindəki açılışı ləğv et — indi hərflər özü açılır */
+    h.removeAttribute('data-ac');
+    h.classList.add('ac');
+    return true;
+  }
+
+  baslar = baslar.filter(bol);
+  if(!baslar.length) return;
+
+  function yenile(){
+    var vh = innerHeight || document.documentElement.clientHeight || 1;
+    for(var i = 0; i < baslar.length; i++){
+      var h = baslar[i], r = h.getBoundingClientRect();
+      /* Zolaqdan kənardakılar son vəziyyətə çəkilir — sürətli sürüşmədə,
+         anchor keçidində və ya mövqe bərpasında yarımçıq donmasın. */
+      if(r.bottom < -240){ if(h.getAttribute('data-p') !== '1'){ h.style.setProperty('--p','1'); h.setAttribute('data-p','1'); } continue; }
+      if(r.top > vh + 240){ if(h.getAttribute('data-p') !== '0'){ h.style.setProperty('--p','0'); h.setAttribute('data-p','0'); } continue; }
+      h.removeAttribute('data-p');
+      /* 0: alt kənardan girir · 1: ekranın təxminən yarısına çatır */
+      var p = (vh - r.top) / (vh * 0.58);
+      p = p < 0 ? 0 : (p > 1 ? 1 : p);
+      h.style.setProperty('--p', p.toFixed(3));
+    }
+  }
+
+  if(window.__SF) window.__SF.qos(yenile);
+  else addEventListener('scroll', yenile, {passive:true});
+  addEventListener('resize', yenile);
+  addEventListener('load', yenile);
+  yenile();
+  setTimeout(yenile, 400);
+  /* şrift gec yüklənsə mövqelər sürüşür — yenidən hesabla */
+  if(document.fonts && document.fonts.ready) document.fonts.ready.then(yenile);
+})();
 </script>
 </body>
 </html>
