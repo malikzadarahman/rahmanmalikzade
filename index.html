@@ -2568,6 +2568,10 @@ body.menyu-aciq .xett-ust{opacity:0}
   /* --- açılış: sabit səhnə + boşluq (fixed iOS-da sticky-dən etibarlıdır) --- */
   .acilis{height:168svh;min-height:168svh;position:relative;z-index:5;background:transparent}
   .acilis-yapisqan{position:fixed;top:0;left:0;right:0;height:100svh;z-index:5}
+  /* hero açılışın altına çəkilir — masaüstündəki kimi.
+     Bu olmadan səhnə söndükdən sonra hero mətninə qədər
+     təxminən bir ekran boş ağ sahə qalırdı. */
+  .hero-qab{margin-top:-100svh}
   .acilis-sehne{position:absolute;inset:0}
 
   /* --- hero: adi axın, mənfi kənar yoxdur --- */
