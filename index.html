@@ -4686,7 +4686,7 @@ function pkRenderMobilQiymet(hesab){
   if(!cipQab || !sehne) return;
 
   var azalt = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var ADDIM = 72, INTERVAL = 3600;
+  var ADDIM = 72, INTERVAL = 6200;   /* avtomatik keçid: hər 6.2 saniyədə */
 
   var IKON = {
     kalb:  '<path d="M12 20s-7-4.6-7-9.3A3.9 3.9 0 0 1 12 8a3.9 3.9 0 0 1 7 2.7C19 15.4 12 20 12 20z"/>',
@@ -4713,15 +4713,15 @@ function pkRenderMobilQiymet(hesab){
   };
 
   var ISLER = [
+    { ad:'Fashion film', ikon:'moda', sekil:'https://vz-d125fae9-c0e.b-cdn.net/9cdd1345-5a1b-4c4d-be9c-0def042deb23/thumbnail.jpg',
+      video:'738448/9cdd1345-5a1b-4c4d-be9c-0def042deb23',
+      metn:'Mercedes-Benz Fashion Week — Belskaya üçün backstage, model hazırlığı və podium anlarını birləşdirən dark fashion filmi.' },
     { ad:'Korporativ tədbir', ikon:'teqvim', sekil:'https://vz-d125fae9-c0e.b-cdn.net/f0e2fee4-424e-4062-8691-8bf734b4ee0d/thumbnail_ea7b3433.jpg',
       video:'738448/f0e2fee4-424e-4062-8691-8bf734b4ee0d', saqulu:true,
       metn:'UBOC üçün iki günlük korporativ tədbirin dinamik reels çəkilişi — müzakirələr, xarici qonaqlar və interaktiv komanda fəaliyyəti.' },
     { ad:'Storytelling', ikon:'kitab', sekil:'https://vz-d125fae9-c0e.b-cdn.net/20b448a5-ea2f-4e8f-902b-f15633280335/thumbnail_05febfdc.jpg',
       video:'738448/20b448a5-ea2f-4e8f-902b-f15633280335',
       metn:'İnsayt Psixoloji Mərkəzi üçün kitab müzakirəsi və məktub yazma anlarını əks etdirən sakit, atmosferik çəkiliş.' },
-    { ad:'Fashion film', ikon:'moda', sekil:'https://vz-d125fae9-c0e.b-cdn.net/9cdd1345-5a1b-4c4d-be9c-0def042deb23/thumbnail.jpg',
-      video:'738448/9cdd1345-5a1b-4c4d-be9c-0def042deb23',
-      metn:'Mercedes-Benz Fashion Week — Belskaya üçün backstage, model hazırlığı və podium anlarını birləşdirən dark fashion filmi.' },
     { ad:'Food reels', ikon:'boshqab', sekil:'https://vz-d125fae9-c0e.b-cdn.net/808184b6-75f4-481e-b48b-be483b7cba1e/thumbnail.jpg',
       video:'738448/808184b6-75f4-481e-b48b-be483b7cba1e', saqulu:true,
       metn:'Rovshan Chef — üç fərqli yeməyin hazırlanması və təqdimatını göstərən dinamik food reels çəkilişi.' },
