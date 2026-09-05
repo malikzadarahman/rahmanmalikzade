@@ -1,0 +1,14 @@
+{
+  "name": "Rəhman Məlikzadə — Videoqraf & Creative Producer",
+  "short_name": "Rəhman Məlikzadə",
+  "description": "Bakıda reklam, Reels, brend və tədbir video çəkilişi.",
+  "lang": "az",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fbfaf8",
+  "theme_color": "#fbfaf8",
+  "icons": [
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}
