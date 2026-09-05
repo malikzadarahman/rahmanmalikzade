@@ -76,12 +76,19 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
 /* --- kampaniya nişanı --- */
 .kampaniya-pill{
-  display:inline-flex;align-items:center;gap:8px;
+  display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
   background:var(--autumn-soft);color:var(--autumn);
-  padding:7px 14px;border-radius:100px;
-  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase
+  padding:10px 18px;border-radius:100px;border:1px solid rgba(180,83,31,.18);
+  font-family:var(--mono);font-size:11px;letter-spacing:.15em;text-transform:uppercase
 }
-.kampaniya-pill i{width:5px;height:5px;border-radius:50%;background:var(--autumn);flex:none}
+.kampaniya-pill i{width:6px;height:6px;border-radius:50%;background:var(--sale);flex:none;
+  box-shadow:0 0 0 0 rgba(192,52,43,.5);animation:pillNebz 2.2s ease-out infinite}
+@keyframes pillNebz{
+  0%{box-shadow:0 0 0 0 rgba(192,52,43,.45)}
+  70%{box-shadow:0 0 0 9px rgba(192,52,43,0)}
+  100%{box-shadow:0 0 0 0 rgba(192,52,43,0)}
+}
+.kampaniya-pill b{font-weight:400;color:var(--sale)}
 
 /* ==================== REJİM DÜYMƏSİ ==================== */
 .rejim{display:inline-flex;border:1px solid var(--xett);border-radius:100px;padding:4px;position:relative;margin-top:26px}
@@ -113,6 +120,17 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 .paket{opacity:0;transform:translateY(16px)}
 .paket.gor{opacity:1;transform:none;transition:opacity .6s var(--acilma),transform .6s var(--acilma),border-color .3s var(--yum),box-shadow .3s var(--yum)}
 .paket.gor:hover{transform:translateY(-4px)}
+/* kart görünəndə üzərindən bir dəfə işıq keçir */
+.paket::after{
+  content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:2;
+  background:linear-gradient(105deg,transparent 36%,rgba(180,83,31,.13) 50%,transparent 64%);
+  transform:translateX(-125%);opacity:0
+}
+.paket.parla::after{animation:kartParla 1.2s var(--acilma) forwards}
+@keyframes kartParla{
+  0%{transform:translateX(-125%);opacity:1}
+  100%{transform:translateX(125%);opacity:0}
+}
 
 /* "ən çox seçilən" etiketi */
 .esas-etiket{
@@ -123,16 +141,28 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
 /* endirim nişanı */
 .endirim{
-  position:absolute;top:clamp(16px,1.8vw,20px);right:clamp(16px,1.8vw,20px);
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:52px;padding:6px 11px;border-radius:100px;
-  border:1px solid rgba(192,52,43,.32);background:rgba(251,250,248,.82);
-  color:var(--sale);font-family:var(--mono);font-size:11px;letter-spacing:.04em;
-  opacity:0;transform:scale(.8)
+  position:absolute;top:clamp(14px,1.6vw,18px);right:clamp(14px,1.6vw,18px);
+  display:inline-flex;align-items:center;justify-content:center;overflow:hidden;
+  min-width:64px;padding:9px 14px;border-radius:100px;
+  background:var(--sale);color:#fff;
+  font-family:var(--mono);font-size:13px;letter-spacing:.02em;
+  box-shadow:0 8px 22px -8px rgba(192,52,43,.55);
+  opacity:0;transform:scale(.8) rotate(-6deg)
 }
-.endirim.gel{opacity:1;transform:scale(1);transition:opacity .4s var(--acilma),transform .4s var(--acilma)}
+.endirim.gel{
+  opacity:1;transform:scale(1) rotate(0deg);
+  transition:opacity .4s var(--acilma),transform .45s cubic-bezier(.34,1.5,.5,1)
+}
+/* nişanın üzərindən keçən parıltı */
+.endirim::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(100deg,transparent 38%,rgba(255,255,255,.6) 50%,transparent 62%);
+  transform:translateX(-130%)
+}
+.endirim.gel::after{animation:nisanParla 1.15s .45s var(--acilma)}
+@keyframes nisanParla{to{transform:translateX(130%)}}
 .endirim.nebz{animation:endirimNebz 2.5s ease-in-out infinite}
-@keyframes endirimNebz{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+@keyframes endirimNebz{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
 
 .paket .kicik{padding-right:64px}
 .paket h3{font-family:var(--dsp);font-weight:400;font-size:clamp(22px,2.6vw,30px);margin:14px 0 6px}
@@ -147,15 +177,33 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
 /* köhnə qiymət — yeni qiymətin ÜSTÜNDƏ, sabit hündürlükdə (layout sıçramır) */
 .kohne{
-  display:block;height:20px;line-height:20px;
-  font-size:13px;color:var(--sus);text-decoration:none;position:relative;width:fit-content
+  display:block;height:26px;line-height:26px;
+  font-size:17px;color:var(--sus);text-decoration:none;position:relative;width:fit-content
 }
 .kohne::after{
-  content:"";position:absolute;left:0;right:0;top:52%;height:1px;background:currentColor;
+  content:"";position:absolute;left:-2px;right:-2px;top:52%;height:2px;
+  background:var(--sale);border-radius:2px;
   transform:scaleX(0);transform-origin:left;
   transition:transform .45s var(--acilma)
 }
 .kohne.cizildi::after{transform:scaleX(1)}
+
+/* qənaət sətri — endirimin manatla qarşılığı */
+.qenaet{
+  display:inline-flex;align-items:center;gap:7px;margin-top:10px;
+  padding:6px 12px;border-radius:100px;
+  background:rgba(192,52,43,.09);color:var(--sale);
+  font-size:12.5px;white-space:nowrap;
+  opacity:0;transform:translateY(6px);
+  transition:opacity .45s var(--acilma),transform .45s var(--acilma)
+}
+.qenaet.gel{opacity:1;transform:none}
+.qenaet b{font-weight:500;font-variant-numeric:tabular-nums}
+
+/* qiymət düşüb oturanda yüngül vurğu */
+.qiymet strong{display:inline-block;transition:transform .35s var(--acilma)}
+.qiymet strong.dusdu{animation:qiymetOtur .45s var(--acilma)}
+@keyframes qiymetOtur{0%{transform:scale(1)}40%{transform:scale(1.07)}100%{transform:scale(1)}}
 
 .qiymet{display:flex;align-items:baseline;gap:4px;margin-top:4px;font-family:var(--dsp);font-size:clamp(30px,3.4vw,40px);line-height:1}
 .qiymet strong{font-weight:400;font-variant-numeric:tabular-nums}
@@ -180,18 +228,34 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
 /* ==================== GERİ SAYIM ==================== */
 .sayim{
-  margin-top:clamp(20px,3vh,30px);display:flex;align-items:center;gap:10px;flex-wrap:wrap;
-  font-size:12.5px;color:var(--autumn)
+  margin-top:clamp(24px,3.5vh,36px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  font-size:13.5px;color:var(--autumn)
 }
-.sayim b{font-weight:400;font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums;letter-spacing:.04em}
-.sayim span{color:var(--sus)}
+.sayim-bas{color:var(--sus)}
+.sayim-bas b{font-weight:400;color:var(--autumn)}
+.sayim-qutular{display:inline-flex;gap:7px}
+.sayim-qutular i{
+  display:inline-flex;flex-direction:column;align-items:center;gap:2px;
+  min-width:52px;padding:7px 8px;border-radius:10px;
+  background:var(--autumn-soft);border:1px solid rgba(180,83,31,.16);font-style:normal
+}
+.sayim-qutular u{
+  text-decoration:none;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--sus)
+}
+.sayim-qutular b{
+  font-family:var(--mono);font-size:16px;font-weight:400;line-height:1;
+  font-variant-numeric:tabular-nums;color:var(--autumn)
+}
 
 /* ==================== MOBİL ==================== */
 @media (max-width:820px){
   .yarpaqlar{display:none}                    /* performans: mobildə yarpaq yoxdur */
   .paketler{grid-template-columns:minmax(0,1fr)}
-  .endirim{min-width:46px;padding:5px 9px;font-size:10.5px}
-  .paket .kicik{padding-right:56px}
+  .endirim{min-width:58px;padding:8px 12px;font-size:12px}
+  .paket .kicik{padding-right:76px}
+  .kohne{font-size:16px}
+  .sayim-qutular i{min-width:46px}
   .qiymet{font-size:32px}
 }
 
@@ -204,6 +268,10 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .endirim{opacity:1 !important;transform:none !important;animation:none !important;transition:none !important}
   .qiymet-blok{transition:none !important}
   .rejim .surgu{transition:none !important}
+  .qenaet{opacity:1 !important;transform:none !important;transition:none !important}
+  .paket::after,.endirim::after{display:none !important}
+  .kampaniya-pill i{animation:none !important}
+  .qiymet strong{animation:none !important}
 }
 </style>
 </head>
@@ -218,7 +286,7 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 <section class="blok" id="paketler" aria-labelledby="p-bas">
   <div class="yarpaqlar" id="yarpaqlar" aria-hidden="true"></div>
 
-  <div class="kampaniya-pill"><i aria-hidden="true"></i>Payız kampaniyası</div>
+  <div class="kampaniya-pill"><i aria-hidden="true"></i>Payız kampaniyası<b id="pill-endirim">&mdash;</b></div>
   <div class="kicik" style="margin-top:18px">Paketlər</div>
   <h2 id="p-bas" style="margin-top:12px">Video + foto</h2>
 
@@ -231,8 +299,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   <div class="paketler" id="paketler-tor"></div>
 
   <p class="sayim" id="sayim">
-    <span id="sayim-mtn">Kampaniya 30 sentyabra qədər</span>
-    <b id="sayim-saat" aria-live="off">—</b>
+    <span class="sayim-bas" id="sayim-mtn">Kampaniya <b>30 sentyabra</b> qədər</span>
+    <span class="sayim-qutular" id="sayim-qutular" aria-live="off"></span>
   </p>
 </section>
 
@@ -302,10 +370,11 @@ function kartlariQur(rejim){
       '<div class="qiymet-blok">' +
         '<s class="kohne">' + p.kohne + ' ₼</s>' +
         '<div class="qiymet">' +
-          '<strong data-hedef="' + p.yeni + '">0</strong>' +
+          '<strong data-bas="' + p.kohne + '" data-hedef="' + p.yeni + '">' + p.kohne + '</strong>' +
           '<span class="val">₼</span>' +
           '<span class="vahid">' + esc(p.vahid) + '</span>' +
         '</div>' +
+        '<span class="qenaet"><b>' + (p.kohne - p.yeni) + ' ₼</b> qənaət edirsən</span>' +
       '</div>' +
       '<ul>' + p.siyahi.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join('') + '</ul>' +
       '<a class="dgm ' + (p.esas ? 'dolu' : 'bos') + '" href="/#elaqe">Seç</a>' +
@@ -314,43 +383,55 @@ function kartlariQur(rejim){
 }
 
 /* ---------------- RƏQƏM SAYIMI ---------------- */
-function sayimAnimasiya(el, hedef, muddet, bitdi){
+/* Qiymət KÖHNƏDƏN YENİYƏ enir — endirimin ən aydın göstəricisi budur:
+   istifadəçi rəqəmin düşdüyünü gözü ilə görür. */
+function sayimAnimasiya(el, basDeyer, hedef, muddet, bitdi){
   if(azalt){ el.textContent = hedef; if(bitdi) bitdi(); return; }
-  var bas = null;
+  var t0 = null;
+  el.textContent = basDeyer;
   function addim(t){
-    if(bas === null) bas = t;
-    var n = Math.min(1, (t - bas) / muddet);
+    if(t0 === null) t0 = t;
+    var n = Math.min(1, (t - t0) / muddet);
     var e = 1 - Math.pow(1 - n, 3);                 /* ease-out cubic */
-    el.textContent = Math.round(hedef * e);
+    el.textContent = Math.round(basDeyer + (hedef - basDeyer) * e);
     if(n < 1) requestAnimationFrame(addim);
-    else { el.textContent = hedef; if(bitdi) bitdi(); }
+    else {
+      el.textContent = hedef;
+      el.classList.add('dusdu');
+      setTimeout(function(){ el.classList.remove('dusdu'); }, 500);
+      if(bitdi) bitdi();
+    }
   }
   requestAnimationFrame(addim);
 }
 
 /* ---------------- BİR KARTIN ARDICILLIĞI ---------------- */
 function kartOynat(kart, gecikme){
-  var kohne = kart.querySelector('.kohne');
-  var reqem = kart.querySelector('.qiymet strong');
-  var nisan = kart.querySelector('.endirim');
-  var hedef = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+  var kohne  = kart.querySelector('.kohne');
+  var reqem  = kart.querySelector('.qiymet strong');
+  var nisan  = kart.querySelector('.endirim');
+  var qenaet = kart.querySelector('.qenaet');
+  var hedef  = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+  var basDeyer = parseInt(reqem.getAttribute('data-bas'), 10) || hedef;
 
   if(azalt){
     kart.classList.add('gor');
     kohne.classList.add('cizildi');
     reqem.textContent = hedef;
     nisan.classList.add('gel');
+    if(qenaet) qenaet.classList.add('gel');
     return;
   }
 
-  setTimeout(function(){ kart.classList.add('gor'); }, gecikme);
+  setTimeout(function(){ kart.classList.add('gor', 'parla'); }, gecikme);
   setTimeout(function(){ kohne.classList.add('cizildi'); }, gecikme + 300);
   setTimeout(function(){
-    sayimAnimasiya(reqem, hedef, 800, function(){
+    sayimAnimasiya(reqem, basDeyer, hedef, 900, function(){
       nisan.classList.add('gel');
-      setTimeout(function(){ nisan.classList.add('nebz'); }, 420);
+      if(qenaet) qenaet.classList.add('gel');
+      setTimeout(function(){ nisan.classList.add('nebz'); }, 500);
     });
-  }, gecikme + 300);
+  }, gecikme + 320);
 }
 
 function hamisiniOynat(){
@@ -393,19 +474,24 @@ function rejimQoy(i, ilk){
 /* rejim dəyişəndə kartlar yenidən görünmür — yalnız qiymət hissəsi oynayır */
 function hamisiniOynatQiymet(){
   [].slice.call(tor.children).forEach(function(kart, i){
-    var kohne = kart.querySelector('.kohne');
-    var reqem = kart.querySelector('.qiymet strong');
-    var nisan = kart.querySelector('.endirim');
-    var hedef = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+    var kohne  = kart.querySelector('.kohne');
+    var reqem  = kart.querySelector('.qiymet strong');
+    var nisan  = kart.querySelector('.endirim');
+    var qenaet = kart.querySelector('.qenaet');
+    var hedef  = parseInt(reqem.getAttribute('data-hedef'), 10) || 0;
+    var basDeyer = parseInt(reqem.getAttribute('data-bas'), 10) || hedef;
     var g = i * 60;
     if(azalt){
-      kohne.classList.add('cizildi'); reqem.textContent = hedef; nisan.classList.add('gel'); return;
+      kohne.classList.add('cizildi'); reqem.textContent = hedef;
+      nisan.classList.add('gel'); if(qenaet) qenaet.classList.add('gel');
+      return;
     }
     setTimeout(function(){ kohne.classList.add('cizildi'); }, g + 60);
     setTimeout(function(){
-      sayimAnimasiya(reqem, hedef, 800, function(){
+      sayimAnimasiya(reqem, basDeyer, hedef, 900, function(){
         nisan.classList.add('gel');
-        setTimeout(function(){ nisan.classList.add('nebz'); }, 420);
+        if(qenaet) qenaet.classList.add('gel');
+        setTimeout(function(){ nisan.classList.add('nebz'); }, 500);
       });
     }, g + 60);
   });
@@ -413,17 +499,27 @@ function hamisiniOynatQiymet(){
 
 /* ---------------- GERİ SAYIM ---------------- */
 function sayimYenile(){
-  var el = document.getElementById('sayim-saat');
-  var mtn = document.getElementById('sayim-mtn');
-  if(!el) return;
-  if(mtn) mtn.textContent = KAMPANIYA.bitisMetni;
+  var q = document.getElementById('sayim-qutular');
+  if(!q) return;
   var qalan = new Date(KAMPANIYA.bitis).getTime() - Date.now();
-  if(isNaN(qalan)){ el.textContent = ''; return; }
-  if(qalan <= 0){ el.textContent = '— kampaniya bitdi'; return; }
+  if(isNaN(qalan)){ q.innerHTML = ''; return; }
+  if(qalan <= 0){ q.innerHTML = '<i><b>0</b><u>bitdi</u></i>'; return; }
   var dq = Math.floor(qalan / 60000);
   var gun = Math.floor(dq / 1440), saat = Math.floor((dq % 1440) / 60), deq = dq % 60;
   function ik(n){ return n < 10 ? '0' + n : '' + n; }
-  el.textContent = '· ' + ik(gun) + ' gün : ' + ik(saat) + ' saat : ' + ik(deq) + ' dəq';
+  q.innerHTML =
+    '<i><b>' + ik(gun)  + '</b><u>gün</u></i>' +
+    '<i><b>' + ik(saat) + '</b><u>saat</u></i>' +
+    '<i><b>' + ik(deq)  + '</b><u>dəq</u></i>';
+}
+
+/* ən böyük endirim faizi — kampaniya nişanında göstərilir */
+function pillEndirim(){
+  var el = document.getElementById('pill-endirim');
+  if(!el) return;
+  var en = 0;
+  PACKAGES.single.concat(PACKAGES.monthly).forEach(function(p){ if(p.endirim > en) en = p.endirim; });
+  el.textContent = '· ' + en + '%-ə qədər endirim';
 }
 
 /* ---------------- YARPAQLAR ---------------- */
@@ -459,6 +555,7 @@ function basla(){
   surguYer(0);
   addEventListener('resize', function(){ surguYer(cari); });
   yarpaqlariQur();
+  pillEndirim();
   sayimYenile();
   setInterval(sayimYenile, 30000);
 
