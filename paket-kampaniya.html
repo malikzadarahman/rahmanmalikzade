@@ -200,6 +200,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 }
 .qenaet.gel{opacity:1;transform:none}
 .qenaet b{font-weight:500;font-variant-numeric:tabular-nums}
+/* aylıq rejimdə: tək-tək almaqla müqayisə */
+.pkt-qeyd{display:block;margin-top:9px;font-size:12px;color:var(--sus)}
 
 /* qiymət düşüb oturanda yüngül vurğu */
 .qiymet strong{display:inline-block;transition:transform .35s var(--acilma)}
@@ -231,26 +233,44 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 .paket ul{margin-bottom:22px}
 
 /* ==================== GERİ SAYIM ==================== */
-.sayim{
-  margin-top:clamp(24px,3.5vh,36px);display:flex;align-items:center;gap:14px;flex-wrap:wrap;
-  font-size:13.5px;color:var(--autumn)
+/* ---------- geri sayım (başlığın üstündə) ---------- */
+.gs{margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.gs-bas{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--sus)
 }
-.sayim-bas{color:var(--sus)}
-.sayim-bas b{font-weight:400;color:var(--autumn)}
-.sayim-qutular{display:inline-flex;gap:7px}
-.sayim-qutular i{
-  display:inline-flex;flex-direction:column;align-items:center;gap:2px;
-  min-width:52px;padding:7px 8px;border-radius:10px;
-  background:var(--autumn-soft);border:1px solid rgba(180,83,31,.16);font-style:normal
+.gs-qutular{display:inline-flex;gap:8px}
+.gs-qutular i{
+  position:relative;display:inline-flex;flex-direction:column;align-items:center;gap:3px;
+  min-width:60px;padding:9px 10px;border-radius:12px;font-style:normal;
+  background:var(--autumn-soft);border:1px solid rgba(180,83,31,.18)
 }
-.sayim-qutular u{
+.gs-qutular u{
   text-decoration:none;font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;
   text-transform:uppercase;color:var(--sus)
 }
-.sayim-qutular b{
-  font-family:var(--mono);font-size:16px;font-weight:400;line-height:1;
+.gs-qutular b{
+  font-family:var(--mono);font-size:22px;font-weight:400;line-height:1;
   font-variant-numeric:tabular-nums;color:var(--autumn)
 }
+/* saniyə qutusu hər saniyə bir dəfə "vurur" */
+.gs-qutular i[data-k="san"] b{color:var(--sale)}
+.gs-qutular i.tik b{animation:sanTik .5s var(--acilma)}
+@keyframes sanTik{
+  0%{transform:scale(1.16);opacity:.55}
+  55%{transform:scale(1);opacity:1}
+  100%{transform:scale(1)}
+}
+/* son 7 gün — təcili vəziyyət */
+.gs.telesik .gs-bas{color:var(--sale)}
+.gs.telesik .gs-qutular i{background:rgba(192,52,43,.08);border-color:rgba(192,52,43,.26)}
+.gs.telesik .gs-qutular b{color:var(--sale)}
+.gs.telesik{animation:gsNebz 2.6s ease-in-out infinite}
+@keyframes gsNebz{0%,100%{opacity:1}50%{opacity:.78}}
+
+/* ---------- kartların altındakı sətir ---------- */
+.sayim{margin-top:clamp(24px,3.5vh,36px);font-size:13px;max-width:62ch}
+.sayim-bas{color:var(--sus)}
+.sayim-bas b{font-weight:400;color:var(--autumn)}
 
 /* ==================== MOBİL ==================== */
 @media (max-width:820px){
@@ -259,7 +279,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .endirim{min-width:58px;padding:8px 12px;font-size:12px}
   .paket .kicik{padding-right:76px}
   .kohne{font-size:16px}
-  .sayim-qutular i{min-width:46px}
+  .gs-qutular i{min-width:52px;padding:8px}
+  .gs-qutular b{font-size:19px}
   .qiymet{font-size:32px}
 }
 
@@ -275,6 +296,8 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   .qenaet{opacity:1 !important;transform:none !important;transition:none !important}
   .paket::after,.endirim::after{display:none !important}
   .kampaniya-pill i{animation:none !important}
+  .gs{animation:none !important}
+  .gs-qutular i.tik b{animation:none !important}
   .qiymet strong{animation:none !important}
 }
 </style>
@@ -291,6 +314,11 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
   <div class="yarpaqlar" id="yarpaqlar" aria-hidden="true"></div>
 
   <div class="kampaniya-pill"><i aria-hidden="true"></i>Payız kampaniyası<b id="pill-endirim">&mdash;</b></div>
+
+  <div class="gs" id="gs">
+    <span class="gs-bas">Kampaniyanın bitməsinə</span>
+    <span class="gs-qutular" id="gs-qutular" aria-live="off"></span>
+  </div>
   <div class="kicik" style="margin-top:18px">Paketlər</div>
   <h2 id="p-bas" style="margin-top:12px">Reels paketləri</h2>
   <p class="bas-alt">Danışıq, təqdimat və kiçik reklam videoları üçün — hazır formatda, təhvilə qədər.</p>
@@ -303,9 +331,9 @@ h2{font-family:var(--dsp);font-weight:400;font-size:clamp(30px,5.2vw,72px);line-
 
   <div class="paketler" id="paketler-tor"></div>
 
-  <p class="sayim" id="sayim">
-    <span class="sayim-bas" id="sayim-mtn">Kampaniya <b>30 sentyabra</b> qədər</span>
-    <span class="sayim-qutular" id="sayim-qutular" aria-live="off"></span>
+  <p class="sayim">
+    <span class="sayim-bas">Kampaniya <b>30 sentyabra</b> qədər davam edir.
+      Bitəndən sonra qiymətlər köhnə həddinə qayıdır.</span>
   </p>
 </section>
 
@@ -339,7 +367,7 @@ var PACKAGES = {
       siyahi:[
         "6 Reels (15–60 san)",
         "Yarım gün çəkiliş",
-        "Studio icarəsi daxil",
+        "Studio icarəsi daxil (maksimum 1 saat)",
         "Brendə özəl musiqi",
         "Montaj + subtitr + color grading",
         "2 revizyon raundu"
@@ -349,7 +377,7 @@ var PACKAGES = {
       kohne:650, yeni:450, endirim:31, vahid:"/ paket", esas:false,
       siyahi:[
         "8 Reels (15–60 san)",
-        "Çöl və studio çəkilişi",
+        "Çöl və studio çəkilişi (studio maksimum 1 saat)",
         "Öncədən görüş və çəkiliş planı",
         "Brendə özəl musiqi + sound design",
         "Motion graphics və subtitr",
@@ -359,7 +387,8 @@ var PACKAGES = {
   ],
   monthly: [
     { nisan:"Super 8", ad:"Reels Start", qisa:"Aylıq davamlı Reels axını — sabit ritm.",
-      kohne:690, yeni:490, endirim:29, vahid:"/ ayda", esas:false,
+      kohne:550, yeni:390, endirim:29, vahid:"/ ayda", esas:false,
+      qeyd:"Tək-tək alsan 500 ₼ olardı",
       siyahi:[
         "Ayda 8 Reels",
         "Ayda 2 çəkiliş günü (2–3 saat)",
@@ -369,21 +398,23 @@ var PACKAGES = {
       ] },
 
     { nisan:"16 mm", ad:"Reels Studio", qisa:"Studio və brend musiqisi ilə aylıq kontent.",
-      kohne:1100, yeni:780, endirim:29, vahid:"/ ayda", esas:true,
+      kohne:850, yeni:590, endirim:31, vahid:"/ ayda", esas:true,
+      qeyd:"Tək-tək alsan 780 ₼ olardı",
       siyahi:[
         "Ayda 12 Reels",
         "Ayda 2 yarım gün çəkiliş",
-        "Studio icarəsi daxil",
+        "Studio icarəsi daxil (maksimum 1 saat)",
         "Brendə özəl musiqi",
         "Color grading + 2 revizyon raundu",
         "Aylıq kontent planı"
       ] },
 
     { nisan:"35 mm", ad:"Reels Pro", qisa:"Ən geniş aylıq paket — plan, çöl, studio.",
-      kohne:1700, yeni:1180, endirim:31, vahid:"/ ayda", esas:false,
+      kohne:1100, yeni:750, endirim:32, vahid:"/ ayda", esas:false,
+      qeyd:"Tək-tək alsan 900 ₼ olardı",
       siyahi:[
         "Ayda 16 Reels",
-        "Çöl və studio çəkilişi",
+        "Çöl və studio çəkilişi (studio maksimum 1 saat)",
         "Öncədən görüş və aylıq çəkiliş planı",
         "Brendə özəl musiqi + sound design",
         "Motion graphics və subtitr",
@@ -422,6 +453,7 @@ function kartlariQur(rejim){
           '<span class="vahid">' + esc(p.vahid) + '</span>' +
         '</div>' +
         '<span class="qenaet"><b>' + (p.kohne - p.yeni) + ' ₼</b> qənaət edirsən</span>' +
+        (p.qeyd ? '<span class="pkt-qeyd">' + esc(p.qeyd) + '</span>' : '') +
       '</div>' +
       '<ul>' + p.siyahi.map(function(s, j){
         return '<li' + (j === 0 ? ' class="bend-esas"' : '') + '>' + esc(s) + '</li>';
@@ -547,19 +579,53 @@ function hamisiniOynatQiymet(){
 }
 
 /* ---------------- GERİ SAYIM ---------------- */
-function sayimYenile(){
-  var q = document.getElementById('sayim-qutular');
+/* Geri sayım: qutular bir dəfə qurulur, sonra yalnız rəqəmlər yenilənir.
+   Saniyə hər dəfə dəyişəndə qısa "tik" vurğusu alır — kampaniyanın
+   həqiqətən işlədiyi hiss olunsun. */
+var gsQutu = {};
+function sayimQur(){
+  var q = document.getElementById('gs-qutular');
   if(!q) return;
+  q.innerHTML = [['gun','gün'],['saat','saat'],['deq','dəq'],['san','san']].map(function(k){
+    return '<i data-k="' + k[0] + '"><b>00</b><u>' + k[1] + '</u></i>';
+  }).join('');
+  ['gun','saat','deq','san'].forEach(function(k){
+    var i = q.querySelector('[data-k="' + k + '"]');
+    gsQutu[k] = { qab:i, reqem:i.querySelector('b') };
+  });
+}
+
+function sayimYenile(){
+  var gs = document.getElementById('gs');
+  if(!gsQutu.gun) return;
   var qalan = new Date(KAMPANIYA.bitis).getTime() - Date.now();
-  if(isNaN(qalan)){ q.innerHTML = ''; return; }
-  if(qalan <= 0){ q.innerHTML = '<i><b>0</b><u>bitdi</u></i>'; return; }
-  var dq = Math.floor(qalan / 60000);
-  var gun = Math.floor(dq / 1440), saat = Math.floor((dq % 1440) / 60), deq = dq % 60;
+  if(isNaN(qalan)) return;
+  if(qalan <= 0){
+    ['gun','saat','deq','san'].forEach(function(k){ gsQutu[k].reqem.textContent = '00'; });
+    if(gs) gs.classList.remove('telesik');
+    return;
+  }
+  var sn  = Math.floor(qalan / 1000);
+  var gun = Math.floor(sn / 86400),
+      saat= Math.floor((sn % 86400) / 3600),
+      deq = Math.floor((sn % 3600) / 60),
+      san = sn % 60;
   function ik(n){ return n < 10 ? '0' + n : '' + n; }
-  q.innerHTML =
-    '<i><b>' + ik(gun)  + '</b><u>gün</u></i>' +
-    '<i><b>' + ik(saat) + '</b><u>saat</u></i>' +
-    '<i><b>' + ik(deq)  + '</b><u>dəq</u></i>';
+  var deyer = { gun:ik(gun), saat:ik(saat), deq:ik(deq), san:ik(san) };
+
+  ['gun','saat','deq','san'].forEach(function(k){
+    var c = gsQutu[k];
+    if(c.reqem.textContent === deyer[k]) return;       /* dəyişməyibsə toxunma */
+    c.reqem.textContent = deyer[k];
+    if(k === 'san' && !azalt){
+      c.qab.classList.remove('tik');
+      void c.qab.offsetWidth;                          /* animasiyanı yenidən başlat */
+      c.qab.classList.add('tik');
+    }
+  });
+
+  /* son 7 gün — rəng və nəbz dəyişir */
+  if(gs) gs.classList.toggle('telesik', gun < 7);
 }
 
 /* ən böyük endirim faizi — kampaniya nişanında göstərilir */
@@ -605,23 +671,39 @@ function basla(){
   addEventListener('resize', function(){ surguYer(cari); });
   yarpaqlariQur();
   pillEndirim();
+  sayimQur();
   sayimYenile();
-  setInterval(sayimYenile, 30000);
+  setInterval(function(){ if(!document.hidden) sayimYenile(); }, 1000);
+  document.addEventListener('visibilitychange', function(){ if(!document.hidden) sayimYenile(); });
 
   if(azalt || !('IntersectionObserver' in window)){
     acilib = true; hamisiniOynat(); return;
   }
+  /* Hər kart AYRICA izlənilir. Mobildə kartlar tək sütundadır və qab
+     çox uzundur — qabı izləsək üçüncü kartın qiymət animasiyası ekrandan
+     kənarda oynayardı, istifadəçi endirimi görməzdi. */
   var io = new IntersectionObserver(function(g){
-    if(g[0].isIntersecting && !acilib){
+    g.forEach(function(x){
+      if(!x.isIntersecting) return;
+      var kart = x.target;
+      if(kart.getAttribute('data-oynadi')) return;
+      kart.setAttribute('data-oynadi', '1');
       acilib = true;
-      hamisiniOynat();
-      io.disconnect();
-    }
-  }, {threshold:.15, rootMargin:'0px 0px -6% 0px'});
-  io.observe(tor);
+      kartOynat(kart, (parseInt(kart.getAttribute('data-i'), 10) || 0) * 60);
+      io.unobserve(kart);
+    });
+  }, {threshold:.25, rootMargin:'0px 0px -8% 0px'});
+  [].slice.call(tor.children).forEach(function(k){ io.observe(k); });
 
   /* ehtiyat: müşahidəçi işə düşməsə də kartlar gizli qalmasın */
-  setTimeout(function(){ if(!acilib){ acilib = true; hamisiniOynat(); } }, 4000);
+  setTimeout(function(){
+    [].slice.call(tor.children).forEach(function(kart, i){
+      if(kart.getAttribute('data-oynadi')) return;
+      kart.setAttribute('data-oynadi', '1');
+      acilib = true;
+      kartOynat(kart, i * 60);
+    });
+  }, 5000);
 }
 
 if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', basla);
